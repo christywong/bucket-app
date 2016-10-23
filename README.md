@@ -7,6 +7,6 @@
 4. Run `npm install` to download our node_modules. (Note we only need to do this once, unless someone adds or updates a package)
 
 ##Running Our App
-1. Then run 'npm run build`, to build our public directory.
+1. Then run `npm run build`, to build our public directory.
 2. And finally run `npm run start`, to run our Node server.
 3. Head on over to https://localhost:8080, to create some buckets.
