@@ -25,7 +25,8 @@ const config = {
       {
         test: /\.jsx?$/,
         loaders:['babel?cacheDirectory'],
-        include: PATHS.src
+        include: PATHS.src,
+        exclude: PATHS.src + '/static'
       },
       {
         test: /\.scss$/,
@@ -40,7 +41,9 @@ const config = {
       { from: 'src/static/404.html', to: '../'},
       { from: 'src/static/app.html', to: '../'},
       { from: 'src/static/home.html', to: '../'},
-      { from: 'src/images/bucket-logo.png', to: '../images'}
+      { from: 'src/static/images/bucket-logo.png', to: '../images'},
+      { from: 'src/static/js/jquery-3.1.1.slim.js', to: './'},
+      { from: 'src/static/js/main.js', to: './'}
     ]),
     new ExtractTextPlugin('../styles/main.css')
   ]

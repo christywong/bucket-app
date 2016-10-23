@@ -1,5 +1,5 @@
 import React from 'react';
-var styles = require("../styles/main.scss");
+var styles = require("../static/styles/main.scss");
 import Component  from './Components';
 import Navbar  from './Navbar';
 import Sidebar from './Sidebar'
