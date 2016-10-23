@@ -8,12 +8,11 @@ export default class NavigationBar extends React.Component{
       <Navbar style={{zIndex: 500}} inverse>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href = "/home">Bucket</a>
+            <a href = "/home">Buckets</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-
             <NavItem>Link1</NavItem>
             <NavItem>Link2</NavItem>
           </Nav>
