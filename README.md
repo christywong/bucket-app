@@ -12,4 +12,4 @@
 3. Head on over to [https://localhost:8080](https://localhost:8080) to create some buckets.
 
 ##Running In Watch Mode
-Instead of having to run `npm run build` everytime we make changes to our app, we can run the command `npm run watch`. This will automatically build any changes we make to the src files, into the public directory after every save.
+Instead of having to run `npm run build` everytime we make changes to our app, we can run the command `npm run watch`. This will automatically build any changes we make to the src files into the public directory after every save.
