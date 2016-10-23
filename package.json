@@ -1,0 +1,23 @@
+{
+  "name": "bucket-app",
+  "version": "1.0.0",
+  "description": "Our application for UC San Diego's cse170/cogs120 course. This application is under the collaborate studio brief. ",
+  "main": "server.js",
+  "dependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "body-parser": "^1.15.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-react-hmre": "^1.1.1"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Daniel Kong, Joey Wong, Christy Wong",
+  "license": "ISC"
+}
