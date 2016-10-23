@@ -9,4 +9,4 @@
 ##Running Our App
 1. Then run `npm run build`, to build our public directory.
 2. And finally run `npm run start`, to run our Node server.
-3. Head on over to https://localhost:8080, to create some buckets.
+3. Head on over to [https://localhost:8080](https://localhost:8080) to create some buckets.
