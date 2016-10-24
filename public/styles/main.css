@@ -1,0 +1,60 @@
+/*** Login Form ***/
+#login-form {
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px;
+  border: #1F5081 solid 3px;
+  padding: 30px;
+  height: 350px;
+  border-radius: 4px; }
+
+.form-input {
+  padding-left: 5px;
+  margin-top: 7px;
+  height: 25px;
+  width: 100%;
+  font-size: 14px;
+  border: #1F5081 solid 1px; }
+
+.bucket-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+#login-button {
+  background-color: #1F5081;
+  color: white;
+  border: none;
+  float: right;
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  font-size: 18px; }
+
+#img-wrapper-404 {
+  float: right; }
+
+#error-text-404 {
+  float: left; }
+
+#error-text-404 > h1 {
+  margin-bottom: 25px;
+  font-size: 100px;
+  color: #1F5081; }
+
+#error-text-404 > h2 {
+  font-size: 28px;
+  width: 300px; }
+
+#container-404 {
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 625px; }
+
+#app {
+  background-color: #f6f3ee;
+  min-height: 100vh; }
+
+/*# sourceMappingURL=main.css.map*/
