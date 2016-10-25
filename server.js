@@ -23,9 +23,9 @@ app.get('/app', function(req,res){
   res.sendFile(path.join(__dirname, '/public/app.html'));
 });
 
-// app.use(function(req,res,next){
-//   res.sendFile(path.join(__dirname, '/public/404.html'));
-// });
+app.use(function(req,res,next){
+  res.sendFile(path.join(__dirname, '/public/404.html'));
+});
 
 app.listen(port, function(){
   console.log('connected to port 8080');
