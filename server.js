@@ -2,6 +2,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       path = require('path');
 const app = express();
+const routes = require('./server/routes');
 
 const port = process.env.PORT || 8080;
 
@@ -9,6 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/public'));
 
+routes(app);
 
 app.get('/login', function(req,res){
   res.sendFile(path.join(__dirname, '/public/index.html'));
