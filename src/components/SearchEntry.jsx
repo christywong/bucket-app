@@ -5,15 +5,16 @@ export default class SearchEntry extends React.Component {
     console.log(this.props);
     var cardStyle = {
       width: 200,
-      height: 200,
+      height: 125,
       display: "block",
-      marginLeft: "auto",
-      marginRight: "auto"
+      marginBottom: 20,
+      borderBottom: 'solid 1px #D3D3D3',
+      backgroundColor: '#fff'
     }
     return(
       <div style={cardStyle}>
-        <p style ={{color: 'white'}}>{this.props.ItemEntry.name}</p>
-        <img src={this.props.ItemEntry.image_url} width="150" style={{marginLeft:"auto", marginRight:"auto",display:'block'}}/>
+        <p style ={{color: 'black', marginBottom: 5}}>{this.props.ItemEntry.name}</p>
+        <img src={this.props.ItemEntry.image_url} width="75"/>
       </div>
     )
   }

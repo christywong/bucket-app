@@ -16,10 +16,11 @@ export default class Sidebar extends React.Component{
       left: 0,
       top: 0,
       position: 'absolute',
-      height: '100vh',
+      height: '100%',
       width: '250px',
-      backgroundColor: '#1F5081',
-      margin: 'none'
+      backgroundColor: '#fff',
+      margin: 'none',
+      overflow: 'scroll'
     };
     var searchQueryStyle = {
       marginTop: 75,
@@ -41,13 +42,13 @@ export default class Sidebar extends React.Component{
       width: '100%',
       paddingLeft: 5,
       border: 'none',
-      borderRadius: 3
+      borderRadius: 3,
+      border: "solid 1px #D3D3D3"
     }
 
     return(
       <div style={sidebarStyle}>
         <div className = "searchWrapper" style={searchQueryStyle}>
-          <input style={inputStyle} type="text" placeholder="Zip Code" />
           <input className = 'searchInput' style={inputStyle} type="text" placeholder="City" name="City"/>
           <input className = 'searchInput' style={inputStyle} type="text" placeholder="Category" name="Category"/>
           <Button onClick = {this.searchQuery}> Search </Button>

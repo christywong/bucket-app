@@ -40705,6 +40705,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -40734,10 +40736,11 @@
 	        left: 0,
 	        top: 0,
 	        position: 'absolute',
-	        height: '100vh',
+	        height: '100%',
 	        width: '250px',
-	        backgroundColor: '#1F5081',
-	        margin: 'none'
+	        backgroundColor: '#fff',
+	        margin: 'none',
+	        overflow: 'scroll'
 	      };
 	      var searchQueryStyle = {
 	        marginTop: 75,
@@ -40751,7 +40754,7 @@
 	        marginLeft: 'auto',
 	        marginRight: 'auto'
 	      };
-	      var inputStyle = {
+	      var inputStyle = _defineProperty({
 	        marginBottom: 10,
 	        marginLeft: 'auto',
 	        marginRight: 'auto',
@@ -40760,7 +40763,7 @@
 	        paddingLeft: 5,
 	        border: 'none',
 	        borderRadius: 3
-	      };
+	      }, 'border', "solid 1px #D3D3D3");
 
 	      return _react2.default.createElement(
 	        'div',
@@ -40768,7 +40771,6 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'searchWrapper', style: searchQueryStyle },
-	          _react2.default.createElement('input', { style: inputStyle, type: 'text', placeholder: 'Zip Code' }),
 	          _react2.default.createElement('input', { className: 'searchInput', style: inputStyle, type: 'text', placeholder: 'City', name: 'City' }),
 	          _react2.default.createElement('input', { className: 'searchInput', style: inputStyle, type: 'text', placeholder: 'Category', name: 'Category' }),
 	          _react2.default.createElement(
@@ -40825,7 +40827,7 @@
 /* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -40855,25 +40857,26 @@
 	  }
 
 	  _createClass(SearchEntry, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      console.log(this.props);
 	      var cardStyle = {
 	        width: 200,
-	        height: 200,
+	        height: 125,
 	        display: "block",
-	        marginLeft: "auto",
-	        marginRight: "auto"
+	        marginBottom: 20,
+	        borderBottom: 'solid 1px #D3D3D3',
+	        backgroundColor: '#fff'
 	      };
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        { style: cardStyle },
 	        _react2.default.createElement(
-	          "p",
-	          { style: { color: 'white' } },
+	          'p',
+	          { style: { color: 'black', marginBottom: 5 } },
 	          this.props.ItemEntry.name
 	        ),
-	        _react2.default.createElement("img", { src: this.props.ItemEntry.image_url, width: "150", style: { marginLeft: "auto", marginRight: "auto", display: 'block' } })
+	        _react2.default.createElement('img', { src: this.props.ItemEntry.image_url, width: '75' })
 	      );
 	    }
 	  }]);
