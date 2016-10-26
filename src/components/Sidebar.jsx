@@ -1,6 +1,7 @@
 import React from 'react';
 import CardEntry from './SearchEntry';
 import { Button } from 'react-bootstrap';
+
 export default class Sidebar extends React.Component{
   constructor (props) {
     super(props);
@@ -11,54 +12,18 @@ export default class Sidebar extends React.Component{
   }
 
   render(){
-    var sidebarStyle = {
-      zIndex: 100,
-      left: 0,
-      top: 0,
-      position: 'absolute',
-      height: '100%',
-      width: '250px',
-      backgroundColor: '#fff',
-      margin: 'none',
-      overflow: 'scroll'
-    };
-    var searchQueryStyle = {
-      marginTop: 75,
-      width: '80%',
-      display: 'block',
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-    var center = {
-      display: 'block',
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-    var inputStyle = {
-      marginBottom: 10,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      display: 'block',
-      width: '100%',
-      paddingLeft: 5,
-      border: 'none',
-      borderRadius: 3,
-      border: "solid 1px #D3D3D3"
-    }
-
     return(
-      <div style={sidebarStyle}>
-        <div className = "searchWrapper" style={searchQueryStyle}>
-          <input className = 'searchInput' style={inputStyle} type="text" placeholder="City" name="City"/>
-          <input className = 'searchInput' style={inputStyle} type="text" placeholder="Category" name="Category"/>
+      <div className='sidebar'>
+        <div className = "searchWrapper center-block">
+          <input className = 'searchInput' type="text" placeholder="City" name="City"/>
+          <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
           <Button onClick = {this.searchQuery}> Search </Button>
           <div className = "searchResults" style={{marginTop:25}}>
             {this.state.yelpEntries.map((entry) => <CardEntry key = {entry.id} ItemEntry = {entry} /> )}
           </div>
         </div>
-
       </div>
-    )
+    );
   }
 
   searchQuery(){
@@ -86,5 +51,6 @@ export default class Sidebar extends React.Component{
       xhr.responseType = 'json'
       xhr.send();
     }
+
   }
 }
