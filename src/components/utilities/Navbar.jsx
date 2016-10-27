@@ -17,7 +17,7 @@ export default () => {
         <NavItem eventKey={2} href="/archive.html">Bucket'd</NavItem>
           <NavDropdown eventKey={3} title="Settings" id="basic-nav-dropdown">
             <MenuItem eventKey={3.1} href="/settings.html">Account Settings</MenuItem>
-            <MenuItem eventKey={3.2} href="/index">Logout</MenuItem>
+            <MenuItem eventKey={3.2} href="/index.html">Logout</MenuItem>
           </NavDropdown>
       </Nav>
     </Navbar.Collapse>

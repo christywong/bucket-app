@@ -4378,7 +4378,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.2, href: "/index" },
+	            { eventKey: 3.2, href: "/index.html" },
 	            "Logout"
 	          )
 	        )
