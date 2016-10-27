@@ -21,7 +21,7 @@ export default class CommentForm extends React.Component{
           }}
           onKeyPress = {(event)=>{
             if(event.key === 'Enter' && this.state.comment !== ''){
-              this.props.postComment(this.state.comment, 0);
+              this.props.postComment(this.state.comment, this.props.bucketId);
               this.setState({comment: ''})
             }
           }}

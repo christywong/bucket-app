@@ -10,6 +10,7 @@ export default class Bucket extends React.Component{
         <div className="card-image center-block">
         </div>
         <CommentBox
+          bucketId = {this.props.bucketId}
           commentList = {this.props.commentList}
           postComment = {this.props.postComment}
           />

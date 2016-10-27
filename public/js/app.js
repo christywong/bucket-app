@@ -4337,7 +4337,7 @@
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactBootstrap.Navbar,
-	    { style: { zIndex: 500 }, inverse: true },
+	    { style: { zIndex: 500 }, inverse: true, fluid: true },
 	    _react2.default.createElement(
 	      _reactBootstrap.Navbar.Header,
 	      null,
@@ -4346,10 +4346,11 @@
 	        null,
 	        _react2.default.createElement(
 	          "a",
-	          { href: "/home" },
-	          "Buckets"
+	          { href: "#" },
+	          "Bucket"
 	        )
-	      )
+	      ),
+	      _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	    ),
 	    _react2.default.createElement(
 	      _reactBootstrap.Navbar.Collapse,
@@ -4359,18 +4360,27 @@
 	        { pullRight: true },
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          null,
+	          { eventKey: 1, href: "#" },
 	          "Groups"
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          null,
+	          { eventKey: 2, href: "#" },
 	          "Bucket'd"
 	        ),
 	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          null,
-	          "Settings"
+	          _reactBootstrap.NavDropdown,
+	          { eventKey: 3, title: "Settings", id: "basic-nav-dropdown" },
+	          _react2.default.createElement(
+	            _reactBootstrap.MenuItem,
+	            { eventKey: 3.1 },
+	            "Account Settings"
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.MenuItem,
+	            { eventKey: 3.2 },
+	            "Logout"
+	          )
 	        )
 	      )
 	    )
@@ -40669,7 +40679,7 @@
 	      showModal: false,
 	      bucketCategories: [{ id: 0, title: "My Bucket", commentCount: 1, comments: [{ id: '1', author: "Phill", text: "I like this place!" }] }],
 	      bucketCount: 0,
-	      currentUser: 'Daniel'
+	      currentUser: 'Alok'
 	    };
 
 	    //Bind our functions to the current scope
@@ -40706,7 +40716,8 @@
 	                _react2.default.createElement(_Buckets2.default, {
 	                  cardTitle: bucketEntry.title,
 	                  commentList: bucketEntry.comments,
-	                  postComment: _this2.postComment
+	                  postComment: _this2.postComment,
+	                  bucketId: bucketEntry.id
 	                })
 	              );
 	            })
@@ -40728,7 +40739,7 @@
 	      var bucketCount = this.state.bucketCount + 1;
 	      var title = bucketTitle.slice(0, 1).toUpperCase() + bucketTitle.slice(1, bucketTitle.length);
 	      this.setState({
-	        bucketCategories: [].concat(_toConsumableArray(this.state.bucketCategories), [{ id: bucketCount, title: title }]),
+	        bucketCategories: [].concat(_toConsumableArray(this.state.bucketCategories), [{ id: bucketCount, title: title, commentCount: 0, comments: [] }]),
 	        bucketCount: bucketCount,
 	        showModal: false });
 	    }
@@ -40736,6 +40747,7 @@
 	    key: 'postComment',
 	    value: function postComment(comment, bucketId) {
 	      console.log('comment ', comment);
+	      console.log('bucket id', bucketId);
 
 	      var newComment = {
 	        author: this.state.currentUser,
@@ -40743,6 +40755,7 @@
 	      };
 
 	      var stateWithComment = this.state.bucketCategories.map(function (bucket) {
+	        console.log('bucket', bucket);
 	        if (bucket.id === bucketId) {
 	          var newCount = bucket.commentCount + 1;
 	          newComment.id = newCount;
@@ -40838,6 +40851,7 @@
 	        ),
 	        _react2.default.createElement('div', { className: 'card-image center-block' }),
 	        _react2.default.createElement(_CommentBox2.default, {
+	          bucketId: this.props.bucketId,
 	          commentList: this.props.commentList,
 	          postComment: this.props.postComment
 	        })
@@ -40898,7 +40912,9 @@
 	        'div',
 	        { className: 'comment-box center-block' },
 	        _react2.default.createElement(_CommentList2.default, { commentList: this.props.commentList }),
-	        _react2.default.createElement(_CommentForm2.default, { postComment: this.props.postComment })
+	        _react2.default.createElement(_CommentForm2.default, {
+	          bucketId: this.props.bucketId,
+	          postComment: this.props.postComment })
 	      );
 	    }
 	  }]);
@@ -41033,7 +41049,7 @@
 	        },
 	        onKeyPress: function onKeyPress(event) {
 	          if (event.key === 'Enter' && _this2.state.comment !== '') {
-	            _this2.props.postComment(_this2.state.comment, 0);
+	            _this2.props.postComment(_this2.state.comment, _this2.props.bucketId);
 	            _this2.setState({ comment: '' });
 	          }
 	        }

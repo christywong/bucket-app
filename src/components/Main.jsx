@@ -12,7 +12,7 @@ export default class Component extends React.Component {
       showModal : false,
       bucketCategories: [{id: 0, title: "My Bucket", commentCount: 1, comments: [{ id: '1', author: "Phill", text: "I like this place!"}]}],
       bucketCount: 0,
-      currentUser: 'Daniel'
+      currentUser: 'Alok'
     }
 
     //Bind our functions to the current scope
@@ -35,6 +35,7 @@ export default class Component extends React.Component {
                   cardTitle={bucketEntry.title}
                   commentList={bucketEntry.comments}
                   postComment={this.postComment}
+                  bucketId={bucketEntry.id}
                   />
               </Col> )})}
           </Row>
@@ -51,13 +52,14 @@ export default class Component extends React.Component {
     this.setState({
         bucketCategories: [
           ...this.state.bucketCategories,
-          {id: bucketCount, title: title}],
+          {id: bucketCount, title: title, commentCount: 0, comments: []}],
           bucketCount: bucketCount,
           showModal:false})
   }
 
   postComment(comment, bucketId){
     console.log('comment ', comment);
+    console.log('bucket id', bucketId);
 
     var newComment = {
       author: this.state.currentUser,
@@ -65,6 +67,7 @@ export default class Component extends React.Component {
     }
 
     const stateWithComment = this.state.bucketCategories.map((bucket)=>{
+      console.log('bucket', bucket);
       if(bucket.id === bucketId){
         var newCount = bucket.commentCount+1;
         newComment.id = newCount;

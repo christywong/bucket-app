@@ -11,7 +11,9 @@ export default class CommentBox extends React.Component{
     return(
       <div className="comment-box center-block">
          <CommentList commentList = {this.props.commentList}/>
-         <CommentForm postComment = {this.props.postComment}/>
+         <CommentForm
+           bucketId = {this.props.bucketId} 
+           postComment = {this.props.postComment}/>
        </div>
      )
    }
