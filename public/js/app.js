@@ -4346,7 +4346,7 @@
 	        null,
 	        _react2.default.createElement(
 	          "a",
-	          { href: "#" },
+	          { href: "/home" },
 	          "Bucket"
 	        )
 	      ),

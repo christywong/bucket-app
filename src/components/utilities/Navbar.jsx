@@ -7,7 +7,7 @@ export default () => {
       <Navbar style={{zIndex: 500}} inverse fluid>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Bucket</a>
+        <a href="/home">Bucket</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
