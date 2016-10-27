@@ -98,7 +98,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(430);
+	var styles = __webpack_require__(436);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -40646,11 +40646,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Buckets = __webpack_require__(434);
+	var _Buckets = __webpack_require__(430);
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
-	var _AddBucketModal = __webpack_require__(439);
+	var _AddBucketModal = __webpack_require__(435);
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
@@ -40790,15 +40790,6 @@
 
 /***/ },
 /* 430 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40813,7 +40804,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _CommentBox = __webpack_require__(435);
+	var _CommentBox = __webpack_require__(431);
 
 	var _CommentBox2 = _interopRequireDefault(_CommentBox);
 
@@ -40865,7 +40856,7 @@
 	exports.default = Bucket;
 
 /***/ },
-/* 435 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40880,11 +40871,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _CommentList = __webpack_require__(436);
+	var _CommentList = __webpack_require__(432);
 
 	var _CommentList2 = _interopRequireDefault(_CommentList);
 
-	var _CommentForm = __webpack_require__(438);
+	var _CommentForm = __webpack_require__(434);
 
 	var _CommentForm2 = _interopRequireDefault(_CommentForm);
 
@@ -40925,7 +40916,7 @@
 	exports.default = CommentBox;
 
 /***/ },
-/* 436 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40938,7 +40929,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Comments = __webpack_require__(437);
+	var _Comments = __webpack_require__(433);
 
 	var _Comments2 = _interopRequireDefault(_Comments);
 
@@ -40957,7 +40948,7 @@
 	};
 
 /***/ },
-/* 437 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40994,7 +40985,7 @@
 	};
 
 /***/ },
-/* 438 */
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41097,7 +41088,7 @@
 	exports.default = CommentForm;
 
 /***/ },
-/* 439 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41201,6 +41192,12 @@
 	}(_react2.default.Component);
 
 	exports.default = AddModal;
+
+/***/ },
+/* 436 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
