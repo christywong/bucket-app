@@ -12,8 +12,9 @@ export default () => {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem>Link1</NavItem>
-            <NavItem>Link2</NavItem>
+            <NavItem>Groups</NavItem>
+            <NavItem>Bucket'd</NavItem>
+            <NavItem>Settings</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

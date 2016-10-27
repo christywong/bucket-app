@@ -98,7 +98,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(432);
+	var styles = __webpack_require__(434);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -4360,12 +4360,17 @@
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
 	          null,
-	          "Link1"
+	          "Groups"
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
 	          null,
-	          "Link2"
+	          "Bucket'd"
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.NavItem,
+	          null,
+	          "Settings"
 	        )
 	      )
 	    )
@@ -40635,7 +40640,7 @@
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
-	var _AddBucketModal = __webpack_require__(431);
+	var _AddBucketModal = __webpack_require__(433);
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
@@ -40661,11 +40666,13 @@
 
 	    _this.state = {
 	      showModal: false,
-	      bucketCategories: [{ id: 0, title: "My Bucket", comments: [{ author: "", text: "" }] }],
+	      bucketCategories: [{ id: 0, title: "My Bucket", comments: [{ id: '0', author: "Daniel", text: "I like this place!" }, { id: '1', author: "Phil", text: "Me Too" }, { id: '2', author: "Daniel", text: "Let's go again" }] }],
 	      bucketCount: 0
 	    };
 
 	    _this.createBucket = _this.createBucket.bind(_this);
+	    _this.showModal = _this.showModal.bind(_this);
+	    _this.closeModal = _this.closeModal.bind(_this);
 	    return _this;
 	  }
 
@@ -40681,7 +40688,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'main-container' },
-	        _react2.default.createElement(_AddBucketModal2.default, null),
+	        this.state.showModal ? _react2.default.createElement(_AddBucketModal2.default, { close: this.closeModal, addBucket: this.createBucket }) : null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Grid,
 	          null,
@@ -40692,28 +40699,39 @@
 	              return _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { key: bucketEntry.id.toString(), lg: 4, md: 6 },
-	                _react2.default.createElement(_Buckets2.default, { cardTitle: bucketEntry.title })
+	                _react2.default.createElement(_Buckets2.default, { cardTitle: bucketEntry.title, commentList: bucketEntry.comments })
 	              );
 	            })
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'add-btn', onClick: this.createBucket },
+	          { className: 'add-btn', onClick: this.showModal },
 	          '+'
 	        )
 	      );
 	    }
 	  }, {
 	    key: 'createBucket',
-	    value: function createBucket() {
+	    value: function createBucket(bucketTitle) {
 	      var bucketCount = this.state.bucketCount + 1;
-
+	      var title = bucketTitle.slice(0, 1).toUpperCase() + bucketTitle.slice(1, bucketTitle.length);
 	      this.setState({
-	        bucketCategories: [].concat(_toConsumableArray(this.state.bucketCategories), [{ id: bucketCount, title: 'New bucket ' + bucketCount }]),
+	        bucketCategories: [].concat(_toConsumableArray(this.state.bucketCategories), [{ id: bucketCount, title: title }]),
 	        bucketCount: bucketCount,
-	        addBucketModal: true
+	        showModal: false
 	      });
+	    }
+	  }, {
+	    key: 'showModal',
+	    value: function showModal() {
+	      this.setState({ showModal: true });
+	    }
+	  }, {
+	    key: 'closeModal',
+	    value: function closeModal() {
+	      console.log('closing modal');
+	      this.setState({ showModal: false });
 	    }
 	  }]);
 
@@ -40726,7 +40744,7 @@
 /* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -40737,6 +40755,10 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _CommentBox = __webpack_require__(431);
+
+	var _CommentBox2 = _interopRequireDefault(_CommentBox);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40756,32 +40778,36 @@
 	  }
 
 	  _createClass(Bucket, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      console.log('comment list', this.props.commentList);
 	      return _react2.default.createElement(
-	        "div",
-	        { key: this.props.key, className: "card-style center-block" },
+	        'div',
+	        { className: 'card-style center-block' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "card-header center-block" },
+	          'div',
+	          { className: 'card-header center-block' },
 	          _react2.default.createElement(
-	            "h2",
+	            'h2',
 	            { style: { margin: 0, fontSize: 24 } },
 	            this.props.cardTitle
 	          )
 	        ),
-	        _react2.default.createElement("div", { className: "card-image center-block" }),
-	        _react2.default.createElement(
-	          "p",
-	          { style: { color: "#337ab7", cursor: 'pointer', textAlign: 'center', marginTop: 5 } },
-	          "Show past comments"
-	        )
+	        _react2.default.createElement('div', { className: 'card-image center-block' }),
+	        _react2.default.createElement(_CommentBox2.default, { commentList: this.props.commentList })
 	      );
 	    }
 	  }]);
 
 	  return Bucket;
 	}(_react2.default.Component);
+
+	//
+	// <p style= {{color:"#337ab7", cursor:'pointer', textAlign:'center', marginTop:5}}>
+	//   Show past comments
+	// </p>
+	//<CommentBox commentList ={this.props.commentList} />
+
 
 	exports.default = Bucket;
 
@@ -40795,6 +40821,96 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CommentList = __webpack_require__(432);
+
+	var _CommentList2 = _interopRequireDefault(_CommentList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CommentBox = function (_React$Component) {
+	  _inherits(CommentBox, _React$Component);
+
+	  function CommentBox(props) {
+	    _classCallCheck(this, CommentBox);
+
+	    return _possibleConstructorReturn(this, (CommentBox.__proto__ || Object.getPrototypeOf(CommentBox)).call(this, props));
+	  }
+
+	  _createClass(CommentBox, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'comment-box' },
+	        _react2.default.createElement(_CommentList2.default, { commentList: this.props.commentList })
+	      );
+	    }
+	  }]);
+
+	  return CommentBox;
+	}(_react2.default.Component);
+
+	//
+
+
+	exports.default = CommentBox;
+
+/***/ },
+/* 432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Comments = __webpack_require__(438);
+
+	var _Comments2 = _interopRequireDefault(_Comments);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	  var commentList = _ref.commentList;
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'comment-list' },
+	    commentList.map(function (comment) {
+	      return _react2.default.createElement(_Comments2.default, { key: comment.id, author: comment.author, text: comment.text });
+	    })
+	  );
+	};
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -40803,50 +40919,137 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = function () {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// export default ({close, createBucket}) => {
+	var AddModal = function (_React$Component) {
+	  _inherits(AddModal, _React$Component);
+
+	  function AddModal(props) {
+	    _classCallCheck(this, AddModal);
+
+	    var _this = _possibleConstructorReturn(this, (AddModal.__proto__ || Object.getPrototypeOf(AddModal)).call(this, props));
+
+	    _this.state = { titleValue: '' };
+	    _this.handleTitleValue = _this.handleTitleValue.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(AddModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          close = _props.close,
+	          addBucket = _props.addBucket;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'static-modal' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Dialog,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Add a Bucket'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(_reactBootstrap.FormControl, {
+	              type: 'text',
+	              placeholder: 'Ex. Beach Things...',
+	              onChange: function onChange(event) {
+	                _this2.handleTitleValue(event);
+	              }
+	            })
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: close },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  addBucket(_this2.state.titlevalue);
+	                }, bsStyle: 'primary' },
+	              'Save changes'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'handleTitleValue',
+	    value: function handleTitleValue(event) {
+	      this.setState({ titlevalue: event.target.value });
+	    }
+	  }]);
+
+	  return AddModal;
+	}(_react2.default.Component);
+
+	exports.default = AddModal;
+
+/***/ },
+/* 434 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	  var author = _ref.author,
+	      text = _ref.text;
+
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'static-modal' },
+	    { className: 'comment' },
 	    _react2.default.createElement(
-	      _reactBootstrap.Modal.Dialog,
-	      null,
+	      'p',
+	      { className: 'comment-name' },
+	      author,
+	      ': ',
 	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Header,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Title,
-	          null,
-	          'Modal title'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Body,
-	        null,
-	        'One fine body...'
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Footer,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          null,
-	          'Close'
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          { bsStyle: 'primary' },
-	          'Save changes'
-	        )
+	        'span',
+	        { className: 'comment-text' },
+	        text
 	      )
 	    )
 	  );
 	};
-
-/***/ },
-/* 432 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
