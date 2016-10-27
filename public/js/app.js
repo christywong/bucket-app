@@ -40660,7 +40660,7 @@
 	    var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this, props));
 
 	    _this.state = {
-	      addBucketModal: false,
+	      showModal: false,
 	      bucketCategories: [{ id: 0, title: "My Bucket", comments: [{ author: "", text: "" }] }],
 	      bucketCount: 0
 	    };
@@ -40676,11 +40676,12 @@
 
 	      var bucketArray = this.state.bucketCategories;
 	      var closeModal = function closeModal() {
-	        return _this2.setState({ addBucketModal: false });
+	        return _this2.setState({ showModal: false });
 	      };
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'main-container' },
+	        _react2.default.createElement(_AddBucketModal2.default, null),
 	        _react2.default.createElement(
 	          _reactBootstrap.Grid,
 	          null,

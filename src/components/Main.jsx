@@ -7,7 +7,7 @@ export default class Component extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      addBucketModal : false,
+      showModal : false,
       bucketCategories: [{id: 0, title: "My Bucket", comments: [{ author: "", text: ""}]}],
       bucketCount: 0
     }
@@ -16,9 +16,10 @@ export default class Component extends React.Component {
   }
   render() {
     const bucketArray = this.state.bucketCategories;
-    let closeModal = () => this.setState({ addBucketModal: false });
+    let closeModal = () => this.setState({ showModal: false });
     return (
       <div className="main-container">
+        <AddModal />
         <Grid>
           <Row>
             {
