@@ -5,11 +5,7 @@ var CONSUMER_KEY;
 var CONSUMER_SECRET;
 var TOKEN;
 var TOKEN_SECRET;
-console.log(process.env.consumer_key);
-console.log(process.env.consumer_secret);
-console.log(process.env.token);
-console.log(process.env.token_secret);
-console.log('process env', process.env);
+
 if (process.env.LOCAL === 'true'){
   CONSUMER_KEY    = config.get('consumer_key');
   CONSUMER_SECRET = config.get('consumer_secret');
@@ -17,10 +13,10 @@ if (process.env.LOCAL === 'true'){
   TOKEN_SECRET    = config.get('token_secret');
 } else {
   console.log('TESTING KEYS ON HEROKU!!!!');
-  CONSUMER_KEY    = process.env.consumer_key;
-  CONSUMER_SECRET = process.env.consumer_secret;
-  TOKEN           = process.env.token;
-  TOKEN_SECRET    = process.env.token_secret;
+  CONSUMER_KEY    = process.env.CONSUMER_KEY;
+  CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+  TOKEN           = process.env.TOKEN;
+  TOKEN_SECRET    = process.env.TOKEN_SECRET;
 
   console.log(CONSUMER_KEY);
   console.log(CONSUMER_SECRET);
