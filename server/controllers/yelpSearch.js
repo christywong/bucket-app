@@ -5,7 +5,11 @@ var CONSUMER_KEY;
 var CONSUMER_SECRET;
 var TOKEN;
 var TOKEN_SECRET;
-
+console.log(process.env.consumer_key);
+console.log(process.env.consumer_secret);
+console.log(process.env.token);
+console.log(process.env.token_secret);
+console.log('process env', process.env);
 if (process.env.LOCAL === 'true'){
   CONSUMER_KEY    = config.get('consumer_key');
   CONSUMER_SECRET = config.get('consumer_secret');
