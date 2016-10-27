@@ -8,7 +8,6 @@ const PATHS = {
   build : path.join(__dirname, 'public/js')
 };
 
-
 const config = {
   entry: {
     app: PATHS.app
@@ -24,9 +23,12 @@ const config = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders:['babel?cacheDirectory'],
+        loader:'babel',
         include: PATHS.src,
-        exclude: PATHS.src + '/static'
+        exclude: PATHS.src + '/static',
+        query: {
+          presets: ['es2015', 'react']
+        }
       },
       {
         test: /\.scss$/,

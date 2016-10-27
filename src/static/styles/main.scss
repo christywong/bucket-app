@@ -1,44 +1,50 @@
-/*** Login Form ***/
+/*** Variables ***/
+$primary-blue: #1F5081;
+$primary-blue-hover: #184067;
 
+/*** Login Form ***/
 #login-form{
   margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  border: #1F5081 solid 3px;
+  border: $primary-blue solid 3px;
   padding: 30px;
   height: 350px;
   border-radius: 4px;
+
+  .form-input{
+    padding-left: 5px;
+    margin-top: 7px;
+    height: 25px;
+    width: 100%;
+    font-size: 14px;
+    border: $primary-blue solid 1px;
+  }
+
+  .bucket-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #login-button{
+    background-color: $primary-blue;
+    color: white;
+    border:none;
+    float:right;
+    cursor:pointer;
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+  }
+  #login-button:hover{
+    background-color: #184067;
+  }
 }
 
-.form-input{
-  padding-left: 5px;
-  margin-top: 7px;
-  height: 25px;
-  width: 100%;
-  font-size: 14px;
-  border: #1F5081 solid 1px;
-}
-
-.bucket-logo{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#login-button{
-  background-color: #1F5081;
-  color: white;
-  border:none;
-  float:right;
-  cursor:pointer;
-  width: 80px;
-  height: 40px;
-  font-size: 18px;
-}
-
-#login-button:hover{
-
+.navbar{
+  border-radius: 0 !important;
 }
 
 #img-wrapper-404{
@@ -50,7 +56,7 @@
 #error-text-404 > h1{
   margin-bottom: 25px;
   font-size: 100px;
-  color: #1F5081;
+  color: $primary-blue;
 }
 #error-text-404 > h2{
   font-size: 28px;
@@ -63,7 +69,100 @@
   width: 625px;
 }
 
+
 #app{
   background-color: rgb(246,243,238);
   min-height: 100vh;
 }
+
+.main-container{
+  margin-left: 250px;
+
+  .card-style{
+    width: 75%;
+    min-width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: solid 1px #D3D3D3;
+
+    .card-header{
+      margin: none;
+      border-bottom: solid 1px #D3D3D3;
+      width: 90%;
+      min-width: 25px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .card-image{
+      width: 200px;
+      height: 120px;
+      background-color: gray;
+      margin-top: 10px;
+    }
+  }
+
+  .add-btn{
+    position: fixed;
+    line-height: 45px;
+    text-align: center;
+    background-color: $primary-blue;
+    color: white;
+    cursor: pointer;
+    right: 40px;
+    bottom: 30px;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+  }
+
+  .add-btn:hover{
+    background-color: $primary-blue-hover;
+  }
+
+}
+
+.sidebar{
+  z-index: 100;
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 250px;
+  background-color: #fff;
+  margin: none;
+  overflow: scroll;
+}
+
+.searchWrapper{
+  margin-top: 75px;
+  width: 80%;
+}
+
+.searchInput{
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3;
+}
+
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.search-entry-card{
+  width: 200px;
+  height: 125px;
+  display: block;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #D3D3D3;
+  background-color: #fff;
+}
+
+/***** regular css rules here *******/

@@ -1,3 +1,4 @@
+/*** Variables ***/
 /*** Login Form ***/
 #login-form {
   margin-top: 150px;
@@ -8,29 +9,31 @@
   padding: 30px;
   height: 350px;
   border-radius: 4px; }
+  #login-form .form-input {
+    padding-left: 5px;
+    margin-top: 7px;
+    height: 25px;
+    width: 100%;
+    font-size: 14px;
+    border: #1F5081 solid 1px; }
+  #login-form .bucket-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+  #login-form #login-button {
+    background-color: #1F5081;
+    color: white;
+    border: none;
+    float: right;
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    font-size: 18px; }
+  #login-form #login-button:hover {
+    background-color: #184067; }
 
-.form-input {
-  padding-left: 5px;
-  margin-top: 7px;
-  height: 25px;
-  width: 100%;
-  font-size: 14px;
-  border: #1F5081 solid 1px; }
-
-.bucket-logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto; }
-
-#login-button {
-  background-color: #1F5081;
-  color: white;
-  border: none;
-  float: right;
-  cursor: pointer;
-  width: 80px;
-  height: 40px;
-  font-size: 18px; }
+.navbar {
+  border-radius: 0 !important; }
 
 #img-wrapper-404 {
   float: right; }
@@ -56,3 +59,78 @@
 #app {
   background-color: #f6f3ee;
   min-height: 100vh; }
+
+.main-container {
+  margin-left: 250px; }
+  .main-container .card-style {
+    width: 75%;
+    min-width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: solid 1px #D3D3D3; }
+    .main-container .card-style .card-header {
+      margin: none;
+      border-bottom: solid 1px #D3D3D3;
+      width: 90%;
+      min-width: 25px;
+      padding-top: 10px;
+      padding-bottom: 10px; }
+    .main-container .card-style .card-image {
+      width: 200px;
+      height: 120px;
+      background-color: gray;
+      margin-top: 10px; }
+  .main-container .add-btn {
+    position: fixed;
+    line-height: 45px;
+    text-align: center;
+    background-color: #1F5081;
+    color: white;
+    cursor: pointer;
+    right: 40px;
+    bottom: 30px;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 28px; }
+  .main-container .add-btn:hover {
+    background-color: #184067; }
+
+.sidebar {
+  z-index: 100;
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 250px;
+  background-color: #fff;
+  margin: none;
+  overflow: scroll; }
+
+.searchWrapper {
+  margin-top: 75px;
+  width: 80%; }
+
+.searchInput {
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3; }
+
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
+.search-entry-card {
+  width: 200px;
+  height: 125px;
+  display: block;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #D3D3D3;
+  background-color: #fff; }
+
+/***** regular css rules here *******/

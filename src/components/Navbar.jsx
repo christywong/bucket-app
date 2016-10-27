@@ -2,8 +2,7 @@ import React from 'react';
 
 import {Navbar, NavItem, Nav} from "react-bootstrap";
 
-export default class NavigationBar extends React.Component{
-  render(){
+export default () => {
     return(
       <Navbar style={{zIndex: 500}} inverse>
         <Navbar.Header>
@@ -19,5 +18,4 @@ export default class NavigationBar extends React.Component{
         </Navbar.Collapse>
       </Navbar>
     )
-  }
 };
