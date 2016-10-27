@@ -4360,12 +4360,12 @@
 	        { pullRight: true },
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          { eventKey: 1, href: "#" },
+	          { eventKey: 1, href: "/home" },
 	          "Groups"
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          { eventKey: 2, href: "#" },
+	          { eventKey: 2, href: "/archive.html" },
 	          "Bucket'd"
 	        ),
 	        _react2.default.createElement(
@@ -4373,12 +4373,12 @@
 	          { eventKey: 3, title: "Settings", id: "basic-nav-dropdown" },
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.1 },
+	            { eventKey: 3.1, href: "/settings.html" },
 	            "Account Settings"
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.2 },
+	            { eventKey: 3.2, href: "/index.html" },
 	            "Logout"
 	          )
 	        )

@@ -12,10 +12,10 @@ if (process.env.LOCAL === 'true'){
   TOKEN           = config.get('token');
   TOKEN_SECRET    = config.get('token_secret');
 } else {
-  CONSUMER_KEY    = process.env.consumer_key;
-  CONSUMER_SECRET = process.env.consumer_secret;
-  TOKEN           = process.env.token;
-  TOKEN_SECRET    = process.env.token_secret;
+  CONSUMER_KEY    = process.env.CONSUMER_KEY;
+  CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+  TOKEN           = process.env.TOKEN;
+  TOKEN_SECRET    = process.env.TOKEN_SECRET;
 }
 
 var yelp = new Yelp({
