@@ -40896,7 +40896,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'comment-box' },
+	        { className: 'comment-box center-block' },
 	        _react2.default.createElement(_CommentList2.default, { commentList: this.props.commentList }),
 	        _react2.default.createElement(_CommentForm2.default, { postComment: this.props.postComment })
 	      );
@@ -40965,7 +40965,7 @@
 	    { className: 'comment' },
 	    _react2.default.createElement(
 	      'p',
-	      { className: 'comment-name' },
+	      { className: 'comment-author' },
 	      author,
 	      ': ',
 	      _react2.default.createElement(
@@ -41023,28 +41023,21 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      return _react2.default.createElement(
-	        _reactBootstrap.Form,
-	        { inline: true },
-	        _react2.default.createElement(_reactBootstrap.FormControl, {
-	          type: 'text',
-	          placeholder: 'Write a comment...',
-	          value: this.state.comment,
-	          onChange: function onChange(event) {
-	            _this2.onTextChange(event);
+	      return _react2.default.createElement(_reactBootstrap.FormControl, {
+	        className: 'comment-form',
+	        type: 'text',
+	        placeholder: 'Write a comment...',
+	        value: this.state.comment,
+	        onChange: function onChange(event) {
+	          _this2.onTextChange(event);
+	        },
+	        onKeyPress: function onKeyPress(event) {
+	          if (event.key === 'Enter' && _this2.state.comment !== '') {
+	            _this2.props.postComment(_this2.state.comment, 0);
+	            _this2.setState({ comment: '' });
 	          }
-	        }),
-	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          { onClick: function onClick() {
-	              if (_this2.state.comment !== '') {
-	                _this2.props.postComment(_this2.state.comment, 0);
-	                _this2.setState({ comment: '' });
-	              }
-	            } },
-	          'Post'
-	        )
-	      );
+	        }
+	      });
 	    }
 	  }, {
 	    key: 'onTextChange',
@@ -41055,6 +41048,35 @@
 
 	  return CommentForm;
 	}(_react2.default.Component);
+
+	// Just in case we need it
+	//
+	// <Form className="comment-post" inline>
+	//   <FormControl
+	//     type="text"
+	//     placeholder="Write a comment..."
+	//     value = {this.state.comment}
+	//     onChange = {(event)=>{
+	//       this.onTextChange(event);
+	//     }}
+	//     onKeyPress = {(event)=>{
+	//       if(event.key === 'Enter' && this.state.comment !== ''){
+	//         this.props.postComment(this.state.comment, 0);
+	//         this.setState({comment: ''})
+	//       }
+	//
+	//       return false;
+	//
+	//     }}
+	//     />
+	//   <Button onClick = {()=>{
+	//       if(this.state.comment !== ''){
+	//         this.props.postComment(this.state.comment, 0);
+	//         this.setState({comment: ''})
+	//       }
+	//     }}>Post</Button>
+	// </Form>
+
 
 	exports.default = CommentForm;
 

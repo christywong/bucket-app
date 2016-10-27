@@ -134,3 +134,13 @@
   background-color: #fff; }
 
 /***** regular css rules here *******/
+.comment-box {
+  width: 90%;
+  margin-top: 10px; }
+  .comment-box .comment-author {
+    color: #1F5081;
+    margin-bottom: 5px; }
+  .comment-box .comment-text {
+    color: black; }
+  .comment-box .comment-form {
+    margin-top: 10px; }

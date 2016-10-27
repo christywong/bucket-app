@@ -9,7 +9,7 @@ export default class CommentBox extends React.Component{
 
   render(){
     return(
-      <div className="comment-box">
+      <div className="comment-box center-block">
          <CommentList commentList = {this.props.commentList}/>
          <CommentForm postComment = {this.props.postComment}/>
        </div>

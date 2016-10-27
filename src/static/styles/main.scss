@@ -166,3 +166,17 @@ $primary-blue-hover: #184067;
 }
 
 /***** regular css rules here *******/
+.comment-box{
+  width: 90%;
+  margin-top: 10px;
+  .comment-author{
+    color: $primary-blue;
+    margin-bottom: 5px;
+  }
+  .comment-text{
+    color: black;
+  }
+  .comment-form{
+    margin-top: 10px;
+  }
+}

@@ -11,26 +11,52 @@ export default class CommentForm extends React.Component{
   }
   render(){
     return(
-      <Form inline>
-      <FormControl
-        type="text"
-        placeholder="Write a comment..."
-        value = {this.state.comment}
-        onChange = {(event)=>{
-          this.onTextChange(event);
-        }}
+        <FormControl
+          className='comment-form'
+          type="text"
+          placeholder="Write a comment..."
+          value = {this.state.comment}
+          onChange = {(event)=>{
+            this.onTextChange(event);
+          }}
+          onKeyPress = {(event)=>{
+            if(event.key === 'Enter' && this.state.comment !== ''){
+              this.props.postComment(this.state.comment, 0);
+              this.setState({comment: ''})
+            }
+          }}
         />
-      <Button onClick = {()=>{
-          if(this.state.comment !== ''){
-            this.props.postComment(this.state.comment, 0);
-            this.setState({comment: ''})
-          }
-        }}>Post</Button>
-      </Form>
-
     )
   }
   onTextChange(event){
     this.setState({comment: event.target.value})
   }
 }
+
+// Just in case we need it
+//
+// <Form className="comment-post" inline>
+//   <FormControl
+//     type="text"
+//     placeholder="Write a comment..."
+//     value = {this.state.comment}
+//     onChange = {(event)=>{
+//       this.onTextChange(event);
+//     }}
+//     onKeyPress = {(event)=>{
+//       if(event.key === 'Enter' && this.state.comment !== ''){
+//         this.props.postComment(this.state.comment, 0);
+//         this.setState({comment: ''})
+//       }
+//
+//       return false;
+//
+//     }}
+//     />
+//   <Button onClick = {()=>{
+//       if(this.state.comment !== ''){
+//         this.props.postComment(this.state.comment, 0);
+//         this.setState({comment: ''})
+//       }
+//     }}>Post</Button>
+// </Form>
