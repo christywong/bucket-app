@@ -12,10 +12,16 @@ if (process.env.LOCAL === 'true'){
   TOKEN           = config.get('token');
   TOKEN_SECRET    = config.get('token_secret');
 } else {
+  console.log('TESTING KEYS ON HEROKU!!!!');
   CONSUMER_KEY    = process.env.consumer_key;
   CONSUMER_SECRET = process.env.consumer_secret;
   TOKEN           = process.env.token;
   TOKEN_SECRET    = process.env.token_secret;
+
+  console.log(CONSUMER_KEY);
+  console.log(CONSUMER_SECRET);
+  console.log(TOKEN);
+  console.log(TOKEN_SECRET);
 }
 
 var yelp = new Yelp({
