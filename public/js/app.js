@@ -98,7 +98,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(434);
+	var styles = __webpack_require__(430);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -40636,11 +40636,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Buckets = __webpack_require__(430);
+	var _Buckets = __webpack_require__(434);
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
-	var _AddBucketModal = __webpack_require__(433);
+	var _AddBucketModal = __webpack_require__(439);
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
@@ -40662,17 +40662,21 @@
 	  function Component(props) {
 	    _classCallCheck(this, Component);
 
+	    //Hard code our state for now
 	    var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this, props));
 
 	    _this.state = {
 	      showModal: false,
-	      bucketCategories: [{ id: 0, title: "My Bucket", comments: [{ id: '0', author: "Daniel", text: "I like this place!" }, { id: '1', author: "Phil", text: "Me Too" }, { id: '2', author: "Daniel", text: "Let's go again" }] }],
-	      bucketCount: 0
+	      bucketCategories: [{ id: 0, title: "My Bucket", commentCount: 1, comments: [{ id: '1', author: "Phill", text: "I like this place!" }] }],
+	      bucketCount: 0,
+	      currentUser: 'Daniel'
 	    };
 
+	    //Bind our functions to the current scope
 	    _this.createBucket = _this.createBucket.bind(_this);
 	    _this.showModal = _this.showModal.bind(_this);
 	    _this.closeModal = _this.closeModal.bind(_this);
+	    _this.postComment = _this.postComment.bind(_this);
 	    return _this;
 	  }
 
@@ -40699,7 +40703,11 @@
 	              return _react2.default.createElement(
 	                _reactBootstrap.Col,
 	                { key: bucketEntry.id.toString(), lg: 4, md: 6 },
-	                _react2.default.createElement(_Buckets2.default, { cardTitle: bucketEntry.title, commentList: bucketEntry.comments })
+	                _react2.default.createElement(_Buckets2.default, {
+	                  cardTitle: bucketEntry.title,
+	                  commentList: bucketEntry.comments,
+	                  postComment: _this2.postComment
+	                })
 	              );
 	            })
 	          )
@@ -40711,6 +40719,9 @@
 	        )
 	      );
 	    }
+
+	    //Functions for Buckets and stuff
+
 	  }, {
 	    key: 'createBucket',
 	    value: function createBucket(bucketTitle) {
@@ -40719,7 +40730,31 @@
 	      this.setState({
 	        bucketCategories: [].concat(_toConsumableArray(this.state.bucketCategories), [{ id: bucketCount, title: title }]),
 	        bucketCount: bucketCount,
-	        showModal: false
+	        showModal: false });
+	    }
+	  }, {
+	    key: 'postComment',
+	    value: function postComment(comment, bucketId) {
+	      console.log('comment ', comment);
+
+	      var newComment = {
+	        author: this.state.currentUser,
+	        text: comment
+	      };
+
+	      var stateWithComment = this.state.bucketCategories.map(function (bucket) {
+	        if (bucket.id === bucketId) {
+	          var newCount = bucket.commentCount + 1;
+	          newComment.id = newCount;
+	          bucket.commentCount = newCount;
+	          bucket.comments = [].concat(_toConsumableArray(bucket.comments), [newComment]);
+	        }
+	        return bucket;
+	      });
+
+	      console.log(stateWithComment);
+	      this.setState({
+	        bucketCategories: stateWithComment
 	      });
 	    }
 	  }, {
@@ -40742,6 +40777,15 @@
 
 /***/ },
 /* 430 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40756,7 +40800,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _CommentBox = __webpack_require__(431);
+	var _CommentBox = __webpack_require__(435);
 
 	var _CommentBox2 = _interopRequireDefault(_CommentBox);
 
@@ -40780,7 +40824,6 @@
 	  _createClass(Bucket, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log('comment list', this.props.commentList);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'card-style center-block' },
@@ -40794,7 +40837,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'card-image center-block' }),
-	        _react2.default.createElement(_CommentBox2.default, { commentList: this.props.commentList })
+	        _react2.default.createElement(_CommentBox2.default, {
+	          commentList: this.props.commentList,
+	          postComment: this.props.postComment
+	        })
 	      );
 	    }
 	  }]);
@@ -40802,17 +40848,10 @@
 	  return Bucket;
 	}(_react2.default.Component);
 
-	//
-	// <p style= {{color:"#337ab7", cursor:'pointer', textAlign:'center', marginTop:5}}>
-	//   Show past comments
-	// </p>
-	//<CommentBox commentList ={this.props.commentList} />
-
-
 	exports.default = Bucket;
 
 /***/ },
-/* 431 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40827,9 +40866,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _CommentList = __webpack_require__(432);
+	var _CommentList = __webpack_require__(436);
 
 	var _CommentList2 = _interopRequireDefault(_CommentList);
+
+	var _CommentForm = __webpack_require__(438);
+
+	var _CommentForm2 = _interopRequireDefault(_CommentForm);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40854,7 +40897,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'comment-box' },
-	        _react2.default.createElement(_CommentList2.default, { commentList: this.props.commentList })
+	        _react2.default.createElement(_CommentList2.default, { commentList: this.props.commentList }),
+	        _react2.default.createElement(_CommentForm2.default, { postComment: this.props.postComment })
 	      );
 	    }
 	  }]);
@@ -40862,13 +40906,10 @@
 	  return CommentBox;
 	}(_react2.default.Component);
 
-	//
-
-
 	exports.default = CommentBox;
 
 /***/ },
-/* 432 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40881,7 +40922,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Comments = __webpack_require__(438);
+	var _Comments = __webpack_require__(437);
 
 	var _Comments2 = _interopRequireDefault(_Comments);
 
@@ -40893,14 +40934,132 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'comment-list' },
-	    commentList.map(function (comment) {
+	    commentList ? commentList.map(function (comment) {
 	      return _react2.default.createElement(_Comments2.default, { key: comment.id, author: comment.author, text: comment.text });
-	    })
+	    }) : null
 	  );
 	};
 
 /***/ },
-/* 433 */
+/* 437 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	  var author = _ref.author,
+	      text = _ref.text;
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'comment' },
+	    _react2.default.createElement(
+	      'p',
+	      { className: 'comment-name' },
+	      author,
+	      ': ',
+	      _react2.default.createElement(
+	        'span',
+	        { className: 'comment-text' },
+	        text
+	      )
+	    )
+	  );
+	};
+
+/***/ },
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(36);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CommentForm = function (_React$Component) {
+	  _inherits(CommentForm, _React$Component);
+
+	  function CommentForm(props) {
+	    _classCallCheck(this, CommentForm);
+
+	    var _this = _possibleConstructorReturn(this, (CommentForm.__proto__ || Object.getPrototypeOf(CommentForm)).call(this, props));
+
+	    _this.state = {
+	      comment: ''
+	    };
+	    _this.onTextChange = _this.onTextChange.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(CommentForm, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        _reactBootstrap.Form,
+	        { inline: true },
+	        _react2.default.createElement(_reactBootstrap.FormControl, {
+	          type: 'text',
+	          placeholder: 'Write a comment...',
+	          value: this.state.comment,
+	          onChange: function onChange(event) {
+	            _this2.onTextChange(event);
+	          }
+	        }),
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { onClick: function onClick() {
+	              if (_this2.state.comment !== '') {
+	                _this2.props.postComment(_this2.state.comment, 0);
+	                _this2.setState({ comment: '' });
+	              }
+	            } },
+	          'Post'
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'onTextChange',
+	    value: function onTextChange(event) {
+	      this.setState({ comment: event.target.value });
+	    }
+	  }]);
+
+	  return CommentForm;
+	}(_react2.default.Component);
+
+	exports.default = CommentForm;
+
+/***/ },
+/* 439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41004,52 +41163,6 @@
 	}(_react2.default.Component);
 
 	exports.default = AddModal;
-
-/***/ },
-/* 434 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (_ref) {
-	  var author = _ref.author,
-	      text = _ref.text;
-
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'comment' },
-	    _react2.default.createElement(
-	      'p',
-	      { className: 'comment-name' },
-	      author,
-	      ': ',
-	      _react2.default.createElement(
-	        'span',
-	        { className: 'comment-text' },
-	        text
-	      )
-	    )
-	  );
-	};
 
 /***/ }
 /******/ ]);

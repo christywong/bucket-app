@@ -6,15 +6,20 @@ import {Grid, Row, Col} from 'react-bootstrap';
 export default class Component extends React.Component {
   constructor(props){
     super(props);
+
+    //Hard code our state for now
     this.state = {
       showModal : false,
-      bucketCategories: [{id: 0, title: "My Bucket", comments: [{ id: '0', author: "Daniel", text: "I like this place!"}, { id: '1', author: "Phil", text: "Me Too"}, { id: '2', author: "Daniel", text: "Let's go again"}]}],
-      bucketCount: 0
+      bucketCategories: [{id: 0, title: "My Bucket", commentCount: 1, comments: [{ id: '1', author: "Phill", text: "I like this place!"}]}],
+      bucketCount: 0,
+      currentUser: 'Daniel'
     }
 
+    //Bind our functions to the current scope
     this.createBucket = this.createBucket.bind(this);
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.postComment = this.postComment.bind(this);
   }
   render() {
     const bucketArray = this.state.bucketCategories;
@@ -24,14 +29,14 @@ export default class Component extends React.Component {
         {this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}
         <Grid>
           <Row>
-            {
-              bucketArray.map((bucketEntry) => {
-                return(
-                  <Col key = {bucketEntry.id.toString()} lg={4} md={6}>
-                    <Bucket cardTitle={bucketEntry.title} commentList={bucketEntry.comments}/>
-                  </Col>)
-              })
-            }
+            { bucketArray.map((bucketEntry) => { return(
+              <Col key = {bucketEntry.id.toString()} lg={4} md={6}>
+                <Bucket
+                  cardTitle={bucketEntry.title}
+                  commentList={bucketEntry.comments}
+                  postComment={this.postComment}
+                  />
+              </Col> )})}
           </Row>
         </Grid>
         <div className='add-btn' onClick = {this.showModal}>+</div>
@@ -39,18 +44,40 @@ export default class Component extends React.Component {
     )
   }
 
+  //Functions for Buckets and stuff
   createBucket(bucketTitle){
     const bucketCount = this.state.bucketCount + 1;
     const title = bucketTitle.slice(0,1).toUpperCase() + bucketTitle.slice(1,bucketTitle.length);
-    this.setState(
-      {
+    this.setState({
         bucketCategories: [
           ...this.state.bucketCategories,
           {id: bucketCount, title: title}],
           bucketCount: bucketCount,
-          showModal:false
+          showModal:false})
+  }
+
+  postComment(comment, bucketId){
+    console.log('comment ', comment);
+
+    var newComment = {
+      author: this.state.currentUser,
+      text: comment
+    }
+
+    const stateWithComment = this.state.bucketCategories.map((bucket)=>{
+      if(bucket.id === bucketId){
+        var newCount = bucket.commentCount+1;
+        newComment.id = newCount;
+        bucket.commentCount = newCount;
+        bucket.comments = [...bucket.comments, newComment]
       }
-    )
+      return bucket;
+    });
+
+    console.log(stateWithComment);
+    this.setState({
+      bucketCategories: stateWithComment
+    });
   }
 
   showModal(){

@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
 export default class CommentBox extends React.Component{
   constructor(props){
@@ -10,9 +11,8 @@ export default class CommentBox extends React.Component{
     return(
       <div className="comment-box">
          <CommentList commentList = {this.props.commentList}/>
+         <CommentForm postComment = {this.props.postComment}/>
        </div>
      )
    }
 }
-
-//

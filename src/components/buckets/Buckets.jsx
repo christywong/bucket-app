@@ -2,7 +2,6 @@ import React from 'react';
 import CommentBox from '../comments/CommentBox';
 export default class Bucket extends React.Component{
   render(){
-    console.log('comment list', this.props.commentList);
     return(
       <div className="card-style center-block">
         <div className="card-header center-block">
@@ -10,15 +9,11 @@ export default class Bucket extends React.Component{
         </div>
         <div className="card-image center-block">
         </div>
-        <CommentBox commentList ={this.props.commentList} />
+        <CommentBox
+          commentList = {this.props.commentList}
+          postComment = {this.props.postComment}
+          />
       </div>
     );
   }
-
 }
-
-//
-// <p style= {{color:"#337ab7", cursor:'pointer', textAlign:'center', marginTop:5}}>
-//   Show past comments
-// </p>
-//<CommentBox commentList ={this.props.commentList} />
