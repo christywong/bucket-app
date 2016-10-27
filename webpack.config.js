@@ -43,6 +43,8 @@ const config = {
       { from: 'src/static/404.html', to: '../'},
       { from: 'src/static/app.html', to: '../'},
       { from: 'src/static/home.html', to: '../'},
+      { from: 'src/static/archive.html', to: '../'},
+      { from: 'src/static/settings.html', to: '../'},
       { from: 'src/static/images/bucket-logo.png', to: '../images'},
       { from: 'src/static/js/jquery-3.1.1.slim.js', to: './'},
       { from: 'src/static/js/main.js', to: './'}
