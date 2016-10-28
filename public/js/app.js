@@ -40620,6 +40620,11 @@
 	          { style: { color: 'black', marginBottom: 5 } },
 	          this.props.ItemEntry.name
 	        ),
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#', style: { float: 'right', cursor: 'pointer' } },
+	          'Add To'
+	        ),
 	        _react2.default.createElement('img', { src: this.props.ItemEntry.image_url, width: '75' })
 	      );
 	    }
@@ -40839,6 +40844,11 @@
 	            { style: { margin: 0, fontSize: 24 } },
 	            this.props.cardTitle
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { style: { color: '#337ab7', textAlign: 'right', width: '90%', marginTop: 5, cursor: 'pointer' } },
+	          'Edit Card'
 	        ),
 	        _react2.default.createElement('div', { className: 'card-image center-block' }),
 	        _react2.default.createElement(_CommentBox2.default, {
