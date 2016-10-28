@@ -11,5 +11,7 @@
 2. And finally run `npm run start`, to run our Node server.
 3. Head on over to [https://localhost:8080](https://localhost:8080) to create some buckets.
 
-##Running In Watch Mode
-Instead of having to run `npm run build` everytime we make changes to our app, we can run the command `npm run watch`. This will automatically build any changes we make to the src files into the public directory after every save.
+##Running Our App in Development Mode
+1. Run `npm run watch`. This automatically build any changes we make into src.
+2. And then run `npm run start-dev`. This automatically restarts the server whenever we make a change.
+
