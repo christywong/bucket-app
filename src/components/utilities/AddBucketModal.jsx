@@ -29,7 +29,7 @@ export default class AddModal extends React.Component{
               <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
             </div>
             <div style={{marginTop:25, display: 'inline-block'}}>
-              {this.state.yelpEntries.map((entry) => <CardEntry SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} /> )}
+              {this.state.yelpEntries.map((entry) => <CardEntry addCard = {this.props.addCard} SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} /> )}
             </div>
         </Modal.Body>
         <Modal.Footer>
@@ -50,7 +50,6 @@ export default class AddModal extends React.Component{
 
   searchQuery(){
     var me = this;
-
     var cityValue = document.getElementsByName('City')[0].value;
     var categoryValue = document.getElementsByName('Category')[0].value;
     console.log('city input: ', cityValue, ' category input: ', categoryValue);
@@ -76,11 +75,3 @@ export default class AddModal extends React.Component{
 
   }
 }
-
-
-
-// <FormControl
-//   type="text"
-//   placeholder="Ex. Beach Things..."
-//   onChange= {(event)=>{this.handleTitleValue(event)}}
-//   />

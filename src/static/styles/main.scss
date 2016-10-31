@@ -1,7 +1,7 @@
 /*** Variables ***/
 $primary-blue: #1F5081;
 $primary-blue-hover: #184067;
-
+html,body { height:100%; }
 /*** Login Form ***/
 #login-form{
   margin-top: 150px;
@@ -74,17 +74,30 @@ $primary-blue-hover: #184067;
   background-color: rgb(246,243,238);
   min-height: 100vh;
 }
-
+.navbar{
+  margin-bottom: 0 !important;
+}
 .main-container{
-  margin-left: 250px;
+  top: 50;
+  padding-top: 25px;
+  margin-left: 225px;
+  display:flex;
+  flex-direction: row;
+  height: calc(100vh - 60px);
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  justify-content: center;
+
 
   .card-style{
-    width: 75%;
-    min-width: 250px;
-    height: 400px;
+    width: 200px;
+    height: 250px;
     background-color: #fff;
     border-radius: 3px;
     border: solid 1px #D3D3D3;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
 
     .card-header{
       margin: none;
@@ -113,7 +126,7 @@ $primary-blue-hover: #184067;
   height: 100%;
   width: 225px;
   background-color: $primary-blue;
-  margin: none;
+  margin: 0;
   overflow: scroll;
   padding-top: 50px;
 }

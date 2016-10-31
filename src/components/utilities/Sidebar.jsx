@@ -19,7 +19,6 @@ export default class Sidebar extends React.Component{
           <div>
           <input className = 'searchInput' type="text" placeholder="City" name="City"/>
           <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
-          <Button style={{float: "right"}} onClick = {this.searchQuery}> Search </Button>
           </div>
           <div style={{marginTop:25, display: 'inline-block'}}>
             {this.state.yelpEntries.map((entry) => <CardEntry SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} /> )}
