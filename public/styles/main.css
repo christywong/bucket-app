@@ -88,8 +88,8 @@
   top: 0;
   position: absolute;
   height: 100%;
-  width: 250px;
-  background-color: #fff;
+  width: 225px;
+  background-color: #1F5081;
   margin: none;
   overflow: scroll;
   padding-top: 50px; }
@@ -158,3 +158,37 @@
 
 .add-btn:hover {
   background-color: #184067; }
+
+.bucket-tags {
+  cursor: pointer; }
+
+.active {
+  background-color: #184067; }
+
+.bucket-tags:hover {
+  background-color: #184067; }
+
+.bucket-tags h3 {
+  margin-left: 20px;
+  padding: 15px;
+  color: #fff;
+  margin-top: 0px;
+  margin-bottom: 0px; }
+
+#create-bucket-button {
+  margin-left: 30px;
+  padding: 10px;
+  background-color: #fff;
+  color: #1F5081;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px; }
+
+#create-bucket-button:hover {
+  background-color: #d2d2d2; }

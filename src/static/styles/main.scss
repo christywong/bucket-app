@@ -111,8 +111,8 @@ $primary-blue-hover: #184067;
   top: 0;
   position: absolute;
   height: 100%;
-  width: 250px;
-  background-color: #fff;
+  width: 225px;
+  background-color: $primary-blue;
   margin: none;
   overflow: scroll;
   padding-top: 50px;
@@ -175,25 +175,63 @@ $primary-blue-hover: #184067;
     text-decoration: none;
 }
 
- .add-btn{
-    position: fixed;
-    line-height: 45px;
-    text-align: center;
-    background-color: $primary-blue;
-    color: white;
-    cursor: pointer;
-    right: 40px;
-    bottom: 30px;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-    font-size: 28px;
-  }
+.add-btn{
+  position: fixed;
+  line-height: 45px;
+  text-align: center;
+  background-color: $primary-blue;
+  color: white;
+  cursor: pointer;
+  right: 40px;
+  bottom: 30px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+}
 
-  .add-btn:hover{
-    background-color: $primary-blue-hover;
-  }
+.add-btn:hover{
+  background-color: $primary-blue-hover;
+}
 
-  .bucket-tags{
-    
-  }
+.bucket-tags {
+  cursor: pointer;
+}
+
+.active{
+  background-color: $primary-blue-hover;
+}
+
+.bucket-tags:hover {
+  background-color: $primary-blue-hover;
+}
+
+.bucket-tags h3 {
+  margin-left: 20px;
+  padding: 15px;
+  color: #fff;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#create-bucket-button {
+  margin-left: 30px;
+  padding: 10px;
+  background-color: #fff;
+  color: $primary-blue;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
+#create-bucket-button:hover {
+  background-color: #d2d2d2;
+}
+
+
