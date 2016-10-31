@@ -102,7 +102,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+<<<<<<< HEAD
 	var styles = __webpack_require__(439);
+=======
+	var styles = __webpack_require__(438);
+>>>>>>> christy-branch
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -114,9 +118,9 @@
 
 	    _this.state = {
 	      showModal: false,
-	      buckets: [{ id: 0, title: "My Bucket", cards: [{ id: 0, title: "a" }, { id: 1, title: "b" }, { id: 2, title: "3" }] }, { id: 1, title: 'Brunch', cards: [{ id: 0, title: "Cottage" }, { id: 1, title: "Cody's La Jolla" }, { id: 2, title: "Snooze" }] }, { id: 2, title: 'Hiking', cards: [{ id: 0, title: "Gliderport" }, { id: 1, title: "Potato Chip" }] }],
+	      buckets: [{ id: 0, title: "My Bucket", cards: [{ id: 0, title: "a" }, { id: 1, title: "b" }, { id: 2, title: "c" }] }, { id: 1, title: 'Brunch', cards: [{ id: 0, title: "Cottage" }, { id: 1, title: "Cody's La Jolla" }, { id: 2, title: "Snooze" }] }, { id: 2, title: 'Hiking', cards: [{ id: 0, title: "Gliderport" }, { id: 1, title: "Potato Chip" }] }],
 	      bucketList: [{ id: 0, title: "My Bucket" }, { id: 1, title: "Brunch" }, { id: 2, title: "Hiking" }],
-	      selectedBucket: { title: "Current", cards: [{ id: 0, title: "1" }, { id: 1, title: "2" }] }
+	      selectedBucket: { id: 0, title: "My Bucket", cards: [{ id: 0, title: "a" }, { id: 1, title: "b" }, { id: 2, title: "c" }] }
 	    };
 	    _this.changeState = _this.changeState.bind(_this);
 	    return _this;
@@ -130,6 +134,10 @@
 	        null,
 	        _react2.default.createElement(_Navbar2.default, null),
 	        _react2.default.createElement(_Main2.default, {
+<<<<<<< HEAD
+=======
+	          selectedBucket: this.state.selectedBucket.id,
+>>>>>>> christy-branch
 	          changeStateBucket: this.changeState,
 	          bucketList: this.state.bucketList,
 	          bucketName: this.state.selectedBucket.title,
@@ -40727,7 +40735,11 @@
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
+<<<<<<< HEAD
 	var _Cards = __webpack_require__(438);
+=======
+	var _Cards = __webpack_require__(437);
+>>>>>>> christy-branch
 
 	var _Cards2 = _interopRequireDefault(_Cards);
 
@@ -40778,6 +40790,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Sidebar2.default, {
+	          selectedBucket: this.props.selectedBucket,
 	          bucketList: this.props.bucketList,
 	          changeStateBucket: this.props.changeStateBucket }),
 	        _react2.default.createElement(
@@ -41349,13 +41362,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 	var _SearchEntry = __webpack_require__(427);
+=======
+	var _SearchEntry = __webpack_require__(428);
+>>>>>>> christy-branch
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
 	var _reactBootstrap = __webpack_require__(36);
 
+<<<<<<< HEAD
 	var _Buckets = __webpack_require__(437);
+=======
+	var _Buckets = __webpack_require__(442);
+>>>>>>> christy-branch
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
@@ -41373,10 +41394,14 @@
 	  function Sidebar(props) {
 	    _classCallCheck(this, Sidebar);
 
+<<<<<<< HEAD
 	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
 	    _this.myfunction = _this.myfunction.bind(_this);
 	    return _this;
+=======
+	    return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+>>>>>>> christy-branch
 	  }
 
 	  _createClass(Sidebar, [{
@@ -41393,6 +41418,7 @@
 	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
 	            key: bucket.id,
 	            bucketId: bucket.id,
+<<<<<<< HEAD
 	            bucketName: bucket.title });
 	        })
 	      );
@@ -41402,6 +41428,18 @@
 	  }, {
 	    key: 'myfunction',
 	    value: function myfunction() {}
+=======
+	            bucketName: bucket.title,
+	            active: _this2.props.selectedBucket === bucket.id ? "active" : null });
+	        }),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'button', id: 'create-bucket-button' },
+	          'Create New Bucket'
+	        )
+	      );
+	    }
+>>>>>>> christy-branch
 	  }]);
 
 	  return Sidebar;
@@ -41411,6 +41449,7 @@
 
 /***/ },
 /* 437 */
+<<<<<<< HEAD
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41470,6 +41509,8 @@
 
 /***/ },
 /* 438 */
+=======
+>>>>>>> christy-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41532,10 +41573,79 @@
 	exports.default = Cards;
 
 /***/ },
+<<<<<<< HEAD
 /* 439 */
+=======
+/* 438 */
+>>>>>>> christy-branch
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
+<<<<<<< HEAD
+=======
+/***/ },
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Bucket2 = function (_React$Component) {
+	  _inherits(Bucket2, _React$Component);
+
+	  function Bucket2() {
+	    _classCallCheck(this, Bucket2);
+
+	    return _possibleConstructorReturn(this, (Bucket2.__proto__ || Object.getPrototypeOf(Bucket2)).apply(this, arguments));
+	  }
+
+	  _createClass(Bucket2, [{
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        "div",
+	        { "data-tag": this.props.bucketId, className: "bucket-tags " + this.props.active, onClick: function onClick() {
+	            //console.log(e.target.getAttribute('class'));
+
+	            _this2.props.changeStateBucket(_this2.props.bucketId);
+	          } },
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          this.props.bucketName
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Bucket2;
+	}(_react2.default.Component);
+
+	exports.default = Bucket2;
+
+>>>>>>> christy-branch
 /***/ }
 /******/ ]);

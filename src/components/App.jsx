@@ -12,7 +12,7 @@ export default class App extends React.Component{
     this.state = {
       showModal : false,
       buckets: [
-        {id: 0, title: "My Bucket", cards:[{id: 0, title: "a"}, {id: 1, title: "b"}, {id: 2, title: "3"}]},
+        {id: 0, title: "My Bucket", cards:[{id: 0, title: "a"}, {id: 1, title: "b"}, {id: 2, title: "c"}]},
         {id: 1, title: 'Brunch', cards:[{id: 0, title: "Cottage"}, {id: 1, title: "Cody's La Jolla"}, {id: 2, title: "Snooze"}]},
         {id: 2, title: 'Hiking', cards:[{id: 0, title: "Gliderport"}, {id: 1, title: "Potato Chip"}]}],
       bucketList: [
@@ -20,7 +20,7 @@ export default class App extends React.Component{
         {id: 1, title: "Brunch"},
         {id: 2, title: "Hiking"}
       ],
-      selectedBucket: {title: "Current", cards:[{id: 0, title: "1"}, {id: 1, title: "2"}]}
+      selectedBucket: {id: 0, title: "My Bucket", cards:[{id: 0, title: "a"}, {id: 1, title: "b"}, {id: 2, title: "c"}]}
     }
     this.changeState = this.changeState.bind(this);
   }
@@ -30,10 +30,11 @@ export default class App extends React.Component{
       <div>
         <Navbar />
         <Main
-          changeStateBucket={this.changeState}
+          selectedBucket = {this.state.selectedBucket.id}
+          changeStateBucket = {this.changeState}
           bucketList = {this.state.bucketList}
-          bucketName={this.state.selectedBucket.title}
-          bucketCards={this.state.selectedBucket.cards} />
+          bucketName = {this.state.selectedBucket.title}
+          bucketCards = {this.state.selectedBucket.cards} />
       </div>
     );
   }
@@ -41,7 +42,7 @@ export default class App extends React.Component{
   changeState(bucketId) {
     console.log(bucketId);
     var bucketArray = this.state.buckets;
-    for(var i=0; i < bucketArray.length; i++) {
+    for(var i = 0; i < bucketArray.length; i++) {
       if (bucketArray[i].id == bucketId) {
         this.setState({
           selectedBucket: bucketArray[i]

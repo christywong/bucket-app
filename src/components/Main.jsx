@@ -30,8 +30,9 @@ export default class Component extends React.Component {
       <div>
 
       <Sidebar2
+        selectedBucket = {this.props.selectedBucket}
         bucketList = {this.props.bucketList}
-        changeStateBucket={this.props.changeStateBucket}/>
+        changeStateBucket = {this.props.changeStateBucket} />
 
       <div className="main-container">
         {this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}
