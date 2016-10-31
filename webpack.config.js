@@ -24,8 +24,8 @@ const config = {
       {
         test: /\.jsx?$/,
         loader:'babel',
-        include: PATHS.src,
-        exclude: PATHS.src + '/static',
+        include: PATHS.app,
+        exclude: PATHS.app + '/static',
         query: {
           presets: ['es2015', 'react']
         }
@@ -33,7 +33,7 @@ const config = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style","css!sass"),
-        include: PATHS.src
+        include: PATHS.app
       }
     ]
   },

@@ -19,6 +19,6 @@ exports.view = function(req, res){
       "title": "Group 4",
       "link": "app.html",
       "members": ["a", "b"]
-    }]    
+    }]
   });
 };

@@ -29,10 +29,11 @@ export default class App extends React.Component{
     return (
       <div>
         <Navbar />
-        <Main changeStateBucket={this.changeState}
-              bucketList = {this.state.bucketList} 
-              bucketName={this.state.selectedBucket.title} 
-              bucketCards={this.state.selectedBucket.cards} />
+        <Main
+          changeStateBucket={this.changeState}
+          bucketList = {this.state.bucketList}
+          bucketName={this.state.selectedBucket.title}
+          bucketCards={this.state.selectedBucket.cards} />
       </div>
     );
   }

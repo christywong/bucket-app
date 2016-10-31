@@ -28,9 +28,9 @@ export default class Component extends React.Component {
     let closeModal = () => this.setState({ showModal: false });
     return (
       <div>
-      
-      <Sidebar2 
-        bucketList = {this.props.bucketList} 
+
+      <Sidebar2
+        bucketList = {this.props.bucketList}
         changeStateBucket={this.props.changeStateBucket}/>
 
       <div className="main-container">
@@ -97,3 +97,4 @@ export default class Component extends React.Component {
     this.setState({showModal:false});
   }
 }
+  // <!--{this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}-->
