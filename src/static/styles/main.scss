@@ -115,6 +115,7 @@ $primary-blue-hover: #184067;
   background-color: #fff;
   margin: none;
   overflow: scroll;
+  padding-top: 50px;
 }
 
 .searchWrapper{
@@ -191,4 +192,8 @@ $primary-blue-hover: #184067;
 
   .add-btn:hover{
     background-color: $primary-blue-hover;
+  }
+
+  .bucket-tags{
+    
   }

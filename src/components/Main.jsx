@@ -2,6 +2,8 @@ import React from 'react';
 import Bucket from './buckets/Buckets';
 import AddModal from './utilities/AddBucketModal';
 import {Grid, Row, Col} from 'react-bootstrap';
+import Sidebar2 from './utilities/Sidebar2';
+import Cards from './buckets/Cards';
 
 export default class Component extends React.Component {
   constructor(props){
@@ -22,25 +24,29 @@ export default class Component extends React.Component {
     this.postComment = this.postComment.bind(this);
   }
   render() {
-    const bucketArray = this.state.bucketCategories;
+    const cardArray = this.props.bucketCards;
     let closeModal = () => this.setState({ showModal: false });
     return (
+      <div>
+      
+      <Sidebar2 
+        bucketList = {this.props.bucketList} 
+        changeStateBucket={this.props.changeStateBucket}/>
+
       <div className="main-container">
         {this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}
         <Grid>
           <Row>
-            { bucketArray.map((bucketEntry) => { return(
-              <Col key = {bucketEntry.id.toString()} lg={4} md={6}>
-                <Bucket
-                  cardTitle={bucketEntry.title}
-                  commentList={bucketEntry.comments}
-                  postComment={this.postComment}
-                  bucketId={bucketEntry.id}
+            { cardArray.map((cardEntry) => { return(
+              <Col key = {cardEntry.id.toString()} lg={4} md={6}>
+                <Cards
+                  cardTitle={cardEntry.title}
                   />
               </Col> )})}
           </Row>
         </Grid>
         <div className='add-btn' onClick = {this.showModal}>+</div>
+      </div>
       </div>
     )
   }
