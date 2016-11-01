@@ -1,29 +1,34 @@
 import React from 'react';
 import CardEntry from './SearchEntry';
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 export default class Sidebar extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
-      yelpEntries: []
+      yelpEntries: [],
+      selectedEntries: []
     };
     this.searchQuery = this.searchQuery.bind(this);
+    this.selectEntry = this.selectEntry.bind(this);
   }
 
   render(){
     return(
-      <div className='sidebar'>
-        <div className = "searchWrapper center-block">
+        <div>
+          <div>
           <input className = 'searchInput' type="text" placeholder="City" name="City"/>
           <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
-          <Button onClick = {this.searchQuery}> Search </Button>
-          <div className = "searchResults" style={{marginTop:25}}>
-            {this.state.yelpEntries.map((entry) => <CardEntry key = {entry.id} ItemEntry = {entry} /> )}
+          </div>
+          <div style={{marginTop:25, display: 'inline-block'}}>
+            {this.state.yelpEntries.map((entry) => <CardEntry SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} /> )}
           </div>
         </div>
-      </div>
     );
+  }
+
+  selectEntry(entryId){
+    console.log(entryId.id + ' ' + entryId.name);
   }
 
   searchQuery(){

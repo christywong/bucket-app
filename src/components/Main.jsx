@@ -28,23 +28,20 @@ export default class Component extends React.Component {
     let closeModal = () => this.setState({ showModal: false });
     return (
       <div>
-      
-      <Sidebar2 
-        bucketList = {this.props.bucketList} 
-        changeStateBucket={this.props.changeStateBucket}/>
+
+      <Sidebar2
+        selectedBucket = {this.props.selectedBucket}
+        bucketList = {this.props.bucketList}
+        changeStateBucket = {this.props.changeStateBucket} />
 
       <div className="main-container">
-        {this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}
-        <Grid>
-          <Row>
+        {this.state.showModal ? <AddModal addCard = {this.props.addCard} close = {this.closeModal} addBucket = {this.createBucket}/> : null}
             { cardArray.map((cardEntry) => { return(
-              <Col key = {cardEntry.id.toString()} lg={4} md={6}>
                 <Cards
+                  key = {cardEntry.id.toString()}
                   cardTitle={cardEntry.title}
                   />
-              </Col> )})}
-          </Row>
-        </Grid>
+            )})}
         <div className='add-btn' onClick = {this.showModal}>+</div>
       </div>
       </div>
@@ -97,3 +94,4 @@ export default class Component extends React.Component {
     this.setState({showModal:false});
   }
 }
+  // <!--{this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}-->
