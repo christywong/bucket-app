@@ -1,10 +1,9 @@
 import React from 'react';
 var styles = require("../static/styles/main.scss");
-import Navbar  from './utilities//Navbar';
-import Main from './Main';
 import uuid from 'uuid';
+import App from './App';
 
-export default class App extends React.Component{
+export default class BucketPage extends React.Component{
   constructor(props) {
     super(props);
 
@@ -14,7 +13,7 @@ export default class App extends React.Component{
         title: "Group 1",
         members: ["christy", "joey"],
         buckets: [
-          {id: 0, title: "My Bucket", cards:[{id: uuid.v4(), title: "Vallartas"}, {id: uuid.v4(), title: "Phil's BBQ"}, {id: uuid.v4(), title: "Barona"}]},
+          {id: 0, title: "My Bucket", cards:[{id: uuid.v4(), title: "a"}, {id: uuid.v4(), title: "b"}, {id: uuid.v4(), title: "c"}]},
           {id: 1, title: 'Brunch', cards:[{id: uuid.v4(), title: "Cottage"}, {id: uuid.v4(), title: "Cody's La Jolla"}, {id: uuid.v4(), title: "Snooze"}]},
           {id: 2, title: 'Hiking', cards:[{id: uuid.v4(), title: "Gliderport"}, {id: uuid.v4(), title: "Potato Chip"}]}],
       },
@@ -24,26 +23,19 @@ export default class App extends React.Component{
         members: ["daniel"]
       }],
     currentGroup: {id: 0, title: "Group 1"}
+  }
 
-    }
   }
 
   render(){
     const currentGroup = this.getCurrentGroup(this.state.currentGroup.id);
-    const groups = this.state.groups.map((group)=>(
-      {id: group['id'], title: group['title']}
-    ))
     console.log('currentGroup ',currentGroup);
     return (
-      <div>
-        <Navbar groups = {this.state.groups} />
-        <Main currentGroup = {currentGroup} />
-      </div>
+      <App currentGroup = {currentGroup}/>
     );
   }
 
   getCurrentGroup(currentGroupId){
     return this.state.groups.filter((group) => (currentGroupId === group.id))[0];
   }
-
 }

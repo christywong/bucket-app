@@ -1,97 +1,96 @@
 import React from 'react';
-import Bucket from './buckets/Buckets';
 import AddModal from './utilities/AddBucketModal';
 import {Grid, Row, Col} from 'react-bootstrap';
-import Sidebar2 from './utilities/Sidebar2';
+import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';
+import uuid from 'uuid';
 
 export default class Component extends React.Component {
+
   constructor(props){
     super(props);
 
-    //Hard code our state for now
+    const listOfBuckets = this.props.currentGroup.buckets.map((bucket) => (
+      {id: bucket["id"], title: bucket["title"]}));
+
     this.state = {
       showModal : false,
-      bucketCategories: [{id: 0, title: "My Bucket", commentCount: 1, comments: [{ id: '1', author: "Phill", text: "I like this place!"}]}],
-      bucketCount: 0,
-      currentUser: 'Alok'
+      buckets: this.props.currentGroup.buckets,
+      bucketList: listOfBuckets,
+      selectedBucket: {id: 0, title: "My Bucket", cards:[{id: 0, title: "Vallartas"}, {id: 1, title: "Phil's BBQ"}, {id: 2, title: "Barona"}]}
     }
 
     //Bind our functions to the current scope
-    this.createBucket = this.createBucket.bind(this);
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.postComment = this.postComment.bind(this);
+    this.changeState = this.changeState.bind(this);
+    this.addCard = this.addCard.bind(this);
   }
   render() {
-    const cardArray = this.props.bucketCards;
+    const cardArray = this.state.selectedBucket.cards;
+    const selectedBucketId = this.state.selectedBucket.id;
     let closeModal = () => this.setState({ showModal: false });
     return (
       <div>
+        <Sidebar
+          selectedBucket = {selectedBucketId}
+          bucketList = {this.state.bucketList}
+          changeStateBucket = {this.changeState} />
 
-      <Sidebar2
-        selectedBucket = {this.props.selectedBucket}
-        bucketList = {this.props.bucketList}
-        changeStateBucket = {this.props.changeStateBucket} />
-
-      <div className="main-container">
-        {this.state.showModal ? <AddModal addCard = {this.props.addCard} close = {this.closeModal} addBucket = {this.createBucket}/> : null}
-            { cardArray.map((cardEntry) => { return(
-                <Cards
-                  key = {cardEntry.id.toString()}
-                  cardTitle={cardEntry.title}
-                  />
-            )})}
-        <div className='add-btn' onClick = {this.showModal}>+</div>
-      </div>
+        <div className="main-container">
+          {this.state.showModal ? <AddModal addCard = {this.addCard} close = {this.closeModal} addBucket = {this.createBucket}/> : null}
+              { cardArray.map((cardEntry) => { return(
+                  <Cards
+                    key = {cardEntry.id.toString()}
+                    cardTitle={cardEntry.title}
+                    />
+              )})}
+          <div className='add-btn' onClick = {this.showModal}>+</div>
+        </div>
       </div>
     )
   }
 
   //Functions for Buckets and stuff
-  createBucket(bucketTitle){
-    const bucketCount = this.state.bucketCount + 1;
-    const title = bucketTitle.slice(0,1).toUpperCase() + bucketTitle.slice(1,bucketTitle.length);
-    this.setState({
-        bucketCategories: [
-          ...this.state.bucketCategories,
-          {id: bucketCount, title: title, commentCount: 0, comments: []}],
-          bucketCount: bucketCount,
-          showModal:false})
-  }
-
-  postComment(comment, bucketId){
-    console.log('comment ', comment);
-    console.log('bucket id', bucketId);
-
-    var newComment = {
-      author: this.state.currentUser,
-      text: comment
-    }
-
-    const stateWithComment = this.state.bucketCategories.map((bucket)=>{
-      console.log('bucket', bucket);
-      if(bucket.id === bucketId){
-        var newCount = bucket.commentCount+1;
-        newComment.id = newCount;
-        bucket.commentCount = newCount;
-        bucket.comments = [...bucket.comments, newComment]
-      }
-      return bucket;
-    });
-
-    console.log(stateWithComment);
-    this.setState({
-      bucketCategories: stateWithComment
-    });
-  }
-
   showModal(){
     this.setState({showModal: true})
   }
+
   closeModal(){
     console.log('closing modal');
     this.setState({showModal:false});
   }
+
+  changeState(bucketId) {
+    console.log(this.state);
+    var bucketArray = this.state.buckets;
+    for(var i = 0; i < bucketArray.length; i++) {
+      if (bucketArray[i].id == bucketId) {
+        this.setState({
+          selectedBucket: bucketArray[i]
+        });
+        break;
+      }
+    }
+  }
+
+  addCard(cardName, bucketId){
+    let newCard = {
+      id: uuid.v4(),
+      title: cardName
+    }
+    console.log(cardName, bucketId);
+    const bucketArray = this.state.buckets;
+    const bucketWithNewCard = bucketArray.map((bucket)=>{
+      if(bucket.id === bucketId){
+        bucket.cards = [...bucket.cards, newCard];
+
+      }
+    return bucket;
+
+    });
+    this.setState({
+      buckets: bucketWithNewCard
+    });
+  }
 }
-  // <!--{this.state.showModal ? <AddModal close = {this.closeModal} addBucket = {this.createBucket}/> : null}-->
