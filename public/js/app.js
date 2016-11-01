@@ -41397,7 +41397,14 @@
 	  function Sidebar(props) {
 	    _classCallCheck(this, Sidebar);
 
-	    return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+
+	    _this.handleClick = function (e) {
+	      _this.setState({ target: e.target, show: !_this.state.show });
+	    };
+
+	    _this.state = { show: false };
+	    return _this;
 	  }
 
 	  _createClass(Sidebar, [{
@@ -41418,9 +41425,29 @@
 	            active: _this2.props.selectedBucket === bucket.id ? "active" : null });
 	        }),
 	        _react2.default.createElement(
-	          'button',
-	          { type: 'button', id: 'create-bucket-button' },
-	          'Create New Bucket'
+	          _reactBootstrap.ButtonToolbar,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { onClick: this.handleClick, id: 'create-bucket-button' },
+	            'Create New Bucket'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Overlay,
+	            {
+	              show: this.state.show,
+	              target: this.state.target,
+	              placement: 'top',
+	              container: this,
+	              containerPadding: 20
+	            },
+	            _react2.default.createElement(
+	              _reactBootstrap.Popover,
+	              { id: 'popover-contained', title: 'Create Bucket' },
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Bucket Name' }),
+	              _react2.default.createElement('input', { id: 'submit-new-bucket', type: 'submit', value: 'Create' })
+	            )
+	          )
 	        )
 	      );
 	    }
