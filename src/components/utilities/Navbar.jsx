@@ -2,7 +2,8 @@ import React from 'react';
 
 import {Navbar, NavItem, Nav, NavDropdown, MenuItem} from "react-bootstrap";
 
-export default () => {
+export default ({groups}) => {
+    var index = 0;
     return(
       <Navbar style={{zIndex: 500}} inverse fluid>
     <Navbar.Header>
@@ -13,7 +14,14 @@ export default () => {
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav pullRight>
-        <NavItem eventKey={1} href="/home">Groups</NavItem>
+        <NavDropdown eventKey={1} id="groups-dropdown" title="Groups">
+          {groups.map((group)=>{
+            index++; 
+            return (<MenuItem eventKey={group.dropdownid} key={group.id.toString()} href="">{group.title}</MenuItem>)
+          })}
+          <MenuItem divider />
+          <MenuItem eventKey={1.3} href="">Create Group</MenuItem>
+        </NavDropdown>
         <NavItem eventKey={2} href="/archive.html">Bucket'd</NavItem>
           <NavDropdown eventKey={3} title="Settings" id="basic-nav-dropdown">
             <MenuItem eventKey={3.1} href="/settings.html">Account Settings</MenuItem>
