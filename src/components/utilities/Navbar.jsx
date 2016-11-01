@@ -15,7 +15,6 @@ export default ({groups}) => {
         <Nav pullRight>
           <NavDropdown eventKey={1} id="groups-dropdown" title="Groups">
             {groups.map((group)=>{
-              index++;
               return (<MenuItem eventKey={group.dropdownid} key={group.id.toString()} href="">{group.title}</MenuItem>)
             })}
             <MenuItem divider />
