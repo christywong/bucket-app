@@ -19,6 +19,10 @@ export default class App extends React.Component{
         {id: 1, title: "Brunch"},
         {id: 2, title: "Hiking"}
       ],
+      groups: [
+        {id: 0, dropdownid: 1.1, title: "Group 1", link: "app.html", members: ["christy", "joey"]},
+        {id: 1, dropdownid: 1.2, title: "Group 2", link: "app.html", members: ["daniel"]}
+      ],
       selectedBucket: {id: 0, title: "My Bucket", cards:[{id: 0, title: "a"}, {id: 1, title: "b"}, {id: 2, title: "c"}]}
     }
     this.changeState = this.changeState.bind(this);
@@ -28,7 +32,7 @@ export default class App extends React.Component{
   render(){
     return (
       <div>
-        <Navbar />
+        <Navbar groups={this.state.groups} />
         <Main
           addCard ={this.addCard}
           selectedBucket = {this.state.selectedBucket.id}
