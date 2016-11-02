@@ -5,14 +5,14 @@
   $('#login-button').on('click',function(e){
     console.log('button clicked');
     event.preventDefault();
-    window.location = '/home';
-  });
-
-  $('#btn-to-app').on('click',function(e){
-    console.log('button clicked');
-    event.preventDefault();
     window.location = '/app';
   });
+
+  // $('#btn-to-app').on('click',function(e){
+  //   console.log('button clicked');
+  //   event.preventDefault();
+  //   window.location = '/app';
+  // });
   //check();
 
 })();

@@ -85,10 +85,9 @@ export default class NavbarInstance extends React.Component {
                 </OverlayTrigger>
               </ButtonToolbar>
             </NavDropdown>
-            <NavItem eventKey={2} href="/archive.html">Bucket'd</NavItem>
-              <NavDropdown eventKey={3} title="Settings" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1} href="/settings.html">Account Settings</MenuItem>
-                <MenuItem eventKey={3.2} href="/index.html">Logout</MenuItem>
+              <NavDropdown eventKey={2} title="Settings" id="basic-nav-dropdown">
+                <MenuItem eventKey={2.1} href="/settings.html">Account Settings</MenuItem>
+                <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
               </NavDropdown>
           </Nav>
         </Navbar.Collapse>

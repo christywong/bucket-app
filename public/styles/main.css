@@ -75,7 +75,9 @@ html, body {
   height: calc(100vh - 60px);
   flex-wrap: wrap;
   overflow-y: scroll;
-  justify-content: center; }
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start; }
   .main-container .card-style {
     width: 200px;
     height: 215px;
@@ -235,10 +237,13 @@ html, body {
 
 .p-no-margin {
   margin: 0; }
-<<<<<<< HEAD
-=======
 
 #create-group-button {
   outline: none !important;
   border: none !important; }
->>>>>>> christy-branch
+
+.tag-list {
+  cursor: pointer; }
+
+.tag-list:hover {
+  color: #184067; }

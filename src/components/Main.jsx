@@ -31,7 +31,7 @@ export default class Component extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    this.initializeBucket(nextProps.currentGroup.buckets);
+    this.initializeBucket(nextProps.currentGroup);
   }
 
   render() {
@@ -83,19 +83,21 @@ export default class Component extends React.Component {
   }
 
   changeState(bucketId) {
-    const bucketArray = this.state.buckets;
-    for(var i = 0; i < bucketArray.length; i++) {
-      if (bucketArray[i].id == bucketId) {
-        this.setState({
-          selectedBucket: bucketArray[i]
-        });
-        break;
-      }
+    const bucketArray = this.state.buckets.cards;
+    const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+
+
+    const changeBucket = {
+      cards: nextBucket
     }
+
+
+    this.setState({
+      selectedBucket: changeBucket
+    });
   }
 
   addCard(card, bucketId){
-
     const newCard = {
       id: uuid.v4(),
       yelpId: card.id,
@@ -143,25 +145,20 @@ export default class Component extends React.Component {
       buckets: nextBucketState,
       selectedBucket: update(this.state.selectedBucket, {cards: {$set: nextSelectedBucketState}})
     });
-    // const movedCard = buckets.filter((bucket) => {
-    //   if(bucket.id === nextBucket){
-    //
-    //   }
-    // });
-
   }
 
   initializeBucket(buckets){
     console.log('initializing buckets ', buckets);
-    const listOfBuckets = buckets.map((bucket) => (
-      {id: bucket["id"], title: bucket["title"]}));
-
-    const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
-    const selected = selectedBucket ? selectedBucket : {cards:[]}
+    // const listOfBuckets = buckets.map((bucket) => (
+    //   {id: bucket["id"], title: bucket["title"]}));
+    //
+    // const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
+    const selected = buckets.buckets ? buckets.buckets : {cards:[]}
+    const listOfBuckets = buckets.tags ? buckets.tags : []
 
     this.setState({
       bucketList: listOfBuckets,
-      buckets: buckets,
+      buckets: buckets.buckets,
       selectedBucket: selected
     });
   }

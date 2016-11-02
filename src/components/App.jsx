@@ -6,7 +6,6 @@ import uuid from 'uuid';
 import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
 
-
 export default class App extends React.Component{
   constructor(props) {
     super(props);
@@ -48,6 +47,8 @@ export default class App extends React.Component{
         if(xhr.status === 200){
           //set application state here
           var result = xhr.response;
+          var selectedGroup = result.groups[0];
+          result.currentGroup = selectedGroup;
           me.setState({
             data: result
           });
@@ -56,7 +57,7 @@ export default class App extends React.Component{
         }
       }
     }
-      xhr.open('GET', '/api/getData');
+      xhr.open('GET', '/api/getTest');
       xhr.responseType = 'json'
       xhr.send();
   }
