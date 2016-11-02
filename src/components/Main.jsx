@@ -14,7 +14,7 @@ export default class Component extends React.Component {
       {id: bucket["id"], title: bucket["title"]}));
 
     this.state = {
-      showModal : false,
+      showModal: false,
       buckets: this.props.currentGroup.buckets,
       bucketList: listOfBuckets,
       selectedBucket: {id: 0, title: "My Bucket", cards:[{id: 0, title: "Vallartas"}, {id: 1, title: "Phil's BBQ"}, {id: 2, title: "Barona"}]}
@@ -25,6 +25,7 @@ export default class Component extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.changeState = this.changeState.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.addBucket = this.addBucket.bind(this);
   }
   render() {
     const cardArray = this.state.selectedBucket.cards;
@@ -35,7 +36,8 @@ export default class Component extends React.Component {
         <Sidebar
           selectedBucket = {selectedBucketId}
           bucketList = {this.state.bucketList}
-          changeStateBucket = {this.changeState} />
+          changeStateBucket = {this.changeState}
+          addBucket = {this.addBucket} />
 
         <div className="main-container">
           {this.state.showModal ? <AddModal addCard = {this.addCard} close = {this.closeModal} addBucket = {this.createBucket}/> : null}
@@ -92,5 +94,14 @@ export default class Component extends React.Component {
     this.setState({
       buckets: bucketWithNewCard
     });
+  }
+
+  addBucket(name) {
+    if (name != "") {
+      var newBucket = [...this.state.bucketList, {id: uuid.v4(), title: name}];
+      this.setState({
+        bucketList: newBucket
+      });
+    }
   }
 }

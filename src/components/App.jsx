@@ -1,8 +1,9 @@
 import React from 'react';
 var styles = require("../static/styles/main.scss");
-import Navbar  from './utilities//Navbar';
+import Navbar from './utilities//Navbar';
 import Main from './Main';
 import uuid from 'uuid';
+import NavbarInstance from './utilities/NavbarInstance';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -36,7 +37,7 @@ export default class App extends React.Component{
     console.log('currentGroup ',currentGroup);
     return (
       <div>
-        <Navbar groups = {this.state.groups} />
+        <NavbarInstance groups = {this.state.groups} />
         <Main currentGroup = {currentGroup} />
       </div>
     );
