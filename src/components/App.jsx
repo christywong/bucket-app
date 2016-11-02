@@ -3,69 +3,61 @@ var styles = require("../static/styles/main.scss");
 import Navbar  from './utilities//Navbar';
 import Main from './Main';
 import uuid from 'uuid';
+import update from 'react-addons-update';
 
 export default class App extends React.Component{
   constructor(props) {
     super(props);
-
     this.state = {
-      groups: [
-      {id: 0,
-        title:"My Bucket",
-        members: ["joey"],
-        buckets: [
-          {id: 0, title: "All Buckets", cards:[{id: uuid.v4(), title: "Vallartas"}, {id: uuid.v4(), title: "Phil's BBQ"}, {id: uuid.v4(), title: "Barona"}]},
-          {id: 1, title: 'Brunch', cards:[{id: uuid.v4(), title: "Cottage"}, {id: uuid.v4(), title: "Cody's La Jolla"}, {id: uuid.v4(), title: "Snooze"}]},
-          {id: 2, title: 'Hiking', cards:[{id: uuid.v4(), title: "Gliderport"}, {id: uuid.v4(), title: "Potato Chip"}]},
-          {id: 3, title: 'Archive', cards:[{id: uuid.v4(), title: "Gliderport"}, {id: uuid.v4(), title: "Potato Chip"}]}]
-      },
-      {
-        id: 1,
-        title: "Group 1",
-        members: ["christy", "joey"],
-        buckets: [
-          {id: 0, title: "My Bucket", cards:[{id: uuid.v4(), title: "Vallartas"}, {id: uuid.v4(), title: "Phil's BBQ"}, {id: uuid.v4(), title: "Barona"}]},
-          {id: 1, title: 'Brunch', cards:[{id: uuid.v4(), title: "Cottage"}, {id: uuid.v4(), title: "Cody's La Jolla"}, {id: uuid.v4(), title: "Snooze"}]},
-          {id: 2, title: 'Hiking', cards:[{id: uuid.v4(), title: "Gliderport"}, {id: uuid.v4(), title: "Potato Chip"}]}],
-      },
-      {
-        id: 2,
-        title: "Group 2",
-        members: ["daniel"]
-      }],
-    currentGroup: {id: 0}
-
+        data: {
+            groups: [],
+            currentGroup: {
+                buckets: []
+            }
+        }
     }
-    this.getCurrentGroup=this.getCurrentGroup.bind(this);
-    this.changeGroup=this.changeGroup.bind(this);
+    this.changeGroup = this.changeGroup.bind(this);
   }
 
+  componentDidMount() {
+      this.loadJSONData();
+  }
 
   render(){
-    const currentGroup = this.getCurrentGroup(this.state.currentGroup.id);
-    const groups = this.state.groups.map((group)=>(
-      {id: group['id'], title: group['title']}
-    ))
-    console.log('currentGroup ',currentGroup);
     return (
       <div>
-        <Navbar changegroup= {this.changeGroup} groups = {this.state.groups} />
-        <Main currentGroup = {currentGroup} />
+        <Navbar changegroup= {this.changeGroup} groups = {this.state.data.groups} />
+        <Main currentGroup = {this.state.data.currentGroup} />
       </div>
     );
   }
 
-  getCurrentGroup(currentGroupId){
-    return this.state.groups.filter((group) => (currentGroupId === group.id))[0];
+  loadJSONData(){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          //set application state here
+          var result = xhr.response;
+          me.setState({
+            data: result
+          });
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+      xhr.open('GET', '/api/getData');
+      xhr.responseType = 'json'
+      xhr.send();
   }
 
   changeGroup(currentGroupId){
-    console.log("clicked group ", currentGroupId);
-    var currentGroupObj={id:currentGroupId}
+    const newGroup = this.state.data.groups.filter((group)=>(currentGroupId===group.id))[0];
     this.setState({
-      currentGroup:currentGroupObj
-    })
+      data: update(this.state.data,{currentGroup: {$set: newGroup}})
+    });
   }
-
 
 }

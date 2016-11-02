@@ -1,0 +1,286 @@
+{
+    "groups": [{
+        "id": 0,
+        "title": "My Bucket",
+        "members": ["Alok"],
+        "buckets": [{
+            "id": 0,
+            "title": "All Buckets",
+            "cards": [{
+                "id": "61f77c0f-e4e3-40b5-9511-a83e0dbfab6b",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Vallartas"
+            }, {
+                "id": "3ed79cee-6335-42f4-810a-64cd162ff44f",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Phil's BBQ"
+            }, {
+                "id": "fe891338-15a9-432b-93ab-6f631832d294",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Barona"
+            }]
+        }, {
+            "id": 1,
+            "title": "Brunch",
+            "cards": [{
+                "id": "d0af6f25-77bf-4585-8333-61290cdb8dba",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Cottage"
+            }, {
+                "id": "f0809567-ccb0-4a6e-ba1d-d539ee1b8cf6",
+                "yelpId": "codys-la-jolla-la-jolla",
+                "img": "https://s3-media1.fl.yelpcdn.com/bphoto/4pU-RcmB0EHWi_Q3VWKXIQ/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount":992,
+                "title": "Cody's La Jolla"
+            }, {
+                "id": "62301a7f-e09f-46b4-9860-068341568052",
+                "yelpId":"snooze-san-diego-8",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/27j_ZIeJXAZrj1OA62ELOA/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city":"San Diego",
+                "reviewCount": 1314,
+                "title": "Snooze"
+            }]
+        }, {
+            "id": 2,
+            "title": "Hiking",
+            "cards": [{
+                "id": "fa0a77c5-d036-4284-8df5-8c6765327c04",
+                "yelpId": "torrey-pines-gliderport-la-jolla",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/3gnd9qtIHo8VZUovUrNK-w/ms.jpg",
+                "rating":"https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png",
+                "city": "La Jolla",
+                "reviewCount": 202,
+                "title": "Torrey Pines Gliderport"
+
+            }, {
+                "id": "3e50f5a8-d90c-4dfa-814d-5117f6c2edde",
+                "yelpId": "cowles-mountain-san-diego-3",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/khSYrVKJ0frVU1dJXYRY7w/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "San Diego",
+                "reviewCount": 764,
+                "title": "Cowles Mountain"
+            }]
+        }, {
+            "id": 3,
+            "title": "Archive",
+            "cards": [{
+                "id": "b1e5c726-6bb7-487c-82ae-6f7e6ff3d31a",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Gliderport"
+            }, {
+                "id": "e1773418-c9e6-4ebd-8fe8-0c4a51797b17",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Potato Chip"
+            }]
+        }]
+    }, {
+        "id": 1,
+        "title": "CSE 170",
+        "members": ["Christy", "Joey", "Daniel", "Alok"],
+        "buckets": [{
+            "id": 0,
+            "title": "All Buckets",
+            "cards": [{
+                "id": "3c4fc714-d8c4-41d0-b6b4-e7ff306a8fb0",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Vallartas"
+            }, {
+                "id": "640c4242-7caf-477a-8d80-8b0ae6a150f1",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Phil's BBQ"
+            }, {
+                "id": "121dbe7c-18ce-4e07-aeb3-457c556f82df",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Barona"
+            }]
+        }, {
+            "id": 1,
+            "title": "Clubs",
+            "cards": [{
+                "id": "5c0c8093-0bf0-4f84-90ac-5389c14e8f01",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Cottage"
+            }, {
+                "id": "f0809567-ccb0-4a6e-ba1d-d539ee1b8cf6",
+                "yelpId": "codys-la-jolla-la-jolla",
+                "img": "https://s3-media1.fl.yelpcdn.com/bphoto/4pU-RcmB0EHWi_Q3VWKXIQ/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount":992,
+                "title": "Cody's La Jolla"
+            }, {
+                "id": "62301a7f-e09f-46b4-9860-068341568052",
+                "yelpId":"snooze-san-diego-8",
+                "img": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city":"San Diego",
+                "reviewCount": 1314,
+                "title": "Snooze"
+            }]
+        }]
+    }],
+    "currentGroup": {
+        "id": 0,
+        "title": "My Bucket",
+        "members": ["Alok"],
+        "buckets": [{
+            "id": 0,
+            "title": "All Buckets",
+            "cards": [{
+                "id": "d0af6f25-77bf-4585-8333-61290cdb8dba",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Cottage"
+            }, {
+                "id": "fa0a77c5-d036-4284-8df5-8c6765327c04",
+                "yelpId": "torrey-pines-gliderport-la-jolla",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/3gnd9qtIHo8VZUovUrNK-w/ms.jpg",
+                "rating":"https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png",
+                "city": "La Jolla",
+                "reviewCount": 202,
+                "title": "Torrey Pines Gliderport"
+
+            }, {
+                "id": "3e50f5a8-d90c-4dfa-814d-5117f6c2edde",
+                "yelpId": "cowles-mountain-san-diego-3",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/khSYrVKJ0frVU1dJXYRY7w/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "San Diego",
+                "reviewCount": 764,
+                "title": "Cowles Mountain"
+            },{
+                "id": "f0809567-ccb0-4a6e-ba1d-d539ee1b8cf6",
+                "yelpId": "codys-la-jolla-la-jolla",
+                "img": "https://s3-media1.fl.yelpcdn.com/bphoto/4pU-RcmB0EHWi_Q3VWKXIQ/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount":992,
+                "title": "Cody's La Jolla"
+            }, {
+                "id": "62301a7f-e09f-46b4-9860-068341568052",
+                "yelpId":"snooze-san-diego-8",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/27j_ZIeJXAZrj1OA62ELOA/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city":"San Diego",
+                "reviewCount": 1314,
+                "title": "Snooze"
+            }]
+        }, {
+            "id": 1,
+            "title": "Brunch",
+            "cards": [{
+                "id": "d0af6f25-77bf-4585-8333-61290cdb8dba",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Cottage"
+            }, {
+                "id": "f0809567-ccb0-4a6e-ba1d-d539ee1b8cf6",
+                "yelpId": "codys-la-jolla-la-jolla",
+                "img": "https://s3-media1.fl.yelpcdn.com/bphoto/4pU-RcmB0EHWi_Q3VWKXIQ/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount":992,
+                "title": "Cody's La Jolla"
+            }, {
+                "id": "62301a7f-e09f-46b4-9860-068341568052",
+                "yelpId":"snooze-san-diego-8",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/27j_ZIeJXAZrj1OA62ELOA/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city":"San Diego",
+                "reviewCount": 1314,
+                "title": "Snooze"
+            }]
+        }, {
+            "id": 2,
+            "title": "Hiking",
+            "cards": [{
+                "id": "fa0a77c5-d036-4284-8df5-8c6765327c04",
+                "yelpId": "torrey-pines-gliderport-la-jolla",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/3gnd9qtIHo8VZUovUrNK-w/ms.jpg",
+                "rating":"https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png",
+                "city": "La Jolla",
+                "reviewCount": 202,
+                "title": "Torrey Pines Gliderport"
+
+            }, {
+                "id": "3e50f5a8-d90c-4dfa-814d-5117f6c2edde",
+                "yelpId": "cowles-mountain-san-diego-3",
+                "img":"https://s3-media1.fl.yelpcdn.com/bphoto/khSYrVKJ0frVU1dJXYRY7w/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "San Diego",
+                "reviewCount": 764,
+                "title": "Cowles Mountain"
+            }]
+        }, {
+            "id": 3,
+            "title": "Archive",
+            "cards": [{
+                "id": "b1e5c726-6bb7-487c-82ae-6f7e6ff3d31a",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Gliderport"
+            }, {
+                "id": "e1773418-c9e6-4ebd-8fe8-0c4a51797b17",
+                "yelpId": "the-cottage-la-jolla",
+                "img": "https://s3-media2.fl.yelpcdn.com/bphoto/3dJsrilDUaJ3xduAGD2Gzg/ms.jpg",
+                "rating":"https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+                "city": "La Jolla",
+                "reviewCount": 2984,
+                "title": "Potato Chip"
+            }]
+        }]
+    }
+}

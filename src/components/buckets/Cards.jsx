@@ -9,19 +9,17 @@ export default class Cards extends React.Component{
         </div>
         <div className="card-left">
           <a href="https://www.yelp.com/biz/vallarta-express-mexican-eatery-san-diego?adjust_creative=SpLSZTvEK8wLBqyuM71G_g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=SpLSZTvEK8wLBqyuM71G_g" target="_blank">
-            <img src="https://s3-media2.fl.yelpcdn.com/bphoto/J2sXXGMLXMOH-XKkfVJMWQ/ms.jpg"
+            <img src={this.props.img}
               width= '75'/>
           </a>
           </div>
         <div className="card-right">
-          <img src="https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png" />
-          <p className='p-no-margin'> Reviews: 982 </p>
-          <p className='p-no-margin'> San Diego </p>
+          <img src={this.props.rating} />
+          <p className='p-no-margin'> Reviews: {this.props.reviewCount} </p>
+          <p className='p-no-margin'> {this.props.city} </p>
         </div>
 
       </div>
     );
   }
 }
-// <div className="card-image center-block">
-// </div>

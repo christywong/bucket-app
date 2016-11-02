@@ -9,16 +9,11 @@ export default class Component extends React.Component {
 
   constructor(props){
     super(props);
-
-    const listOfBuckets = this.props.currentGroup.buckets.map((bucket) => (
-      {id: bucket["id"], title: bucket["title"]}));
-    console.log("listOfBuckets ", listOfBuckets)
-
     this.state = {
       showModal : false,
-      buckets: this.props.currentGroup.buckets,
-      bucketList: listOfBuckets,
-      selectedBucket: {id: 0, title: "My Bucket", cards:[{id: 0, title: "Vallartas"}, {id: 1, title: "Phil's BBQ"}, {id: 2, title: "Barona"}]}
+      bucketList: [],
+      buckets: [],
+      selectedBucket: {}
     }
 
     //Bind our functions to the current scope
@@ -27,10 +22,20 @@ export default class Component extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.addCard = this.addCard.bind(this);
   }
+
+  componentWillMount(){
+    this.initializeBucket(this.props.currentGroup.buckets);
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.initializeBucket(nextProps.currentGroup.buckets);
+  }
+
   render() {
     const cardArray = this.state.selectedBucket.cards;
     const selectedBucketId = this.state.selectedBucket.id;
     let closeModal = () => this.setState({ showModal: false });
+
     return (
       <div>
         <Sidebar
@@ -44,6 +49,10 @@ export default class Component extends React.Component {
                   <Cards
                     key = {cardEntry.id.toString()}
                     cardTitle={cardEntry.title}
+                    img = {cardEntry.img}
+                    rating= {cardEntry.rating}
+                    reviewCount={cardEntry.reviewCount}
+                    city={cardEntry.city}
                     />
               )})}
           <div className='add-btn' onClick = {this.showModal}>+</div>
@@ -58,13 +67,11 @@ export default class Component extends React.Component {
   }
 
   closeModal(){
-    console.log('closing modal');
     this.setState({showModal:false});
   }
 
   changeState(bucketId) {
-    console.log(this.state);
-    var bucketArray = this.state.buckets;
+    const bucketArray = this.state.buckets;
     for(var i = 0; i < bucketArray.length; i++) {
       if (bucketArray[i].id == bucketId) {
         this.setState({
@@ -80,7 +87,6 @@ export default class Component extends React.Component {
       id: uuid.v4(),
       title: cardName
     }
-    console.log(cardName, bucketId);
     const bucketArray = this.state.buckets;
     const bucketWithNewCard = bucketArray.map((bucket)=>{
       if(bucket.id === bucketId){
@@ -92,6 +98,19 @@ export default class Component extends React.Component {
     });
     this.setState({
       buckets: bucketWithNewCard
+    });
+  }
+
+  initializeBucket(buckets){
+    const listOfBuckets = buckets.map((bucket) => (
+      {id: bucket["id"], title: bucket["title"]}));
+    const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
+    const selected = selectedBucket ? selectedBucket : {cards:[]}
+
+    this.setState({
+      bucketList: listOfBuckets,
+      buckets: buckets,
+      selectedBucket: selected
     });
   }
 }
