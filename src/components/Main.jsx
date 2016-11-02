@@ -12,6 +12,7 @@ export default class Component extends React.Component {
 
     const listOfBuckets = this.props.currentGroup.buckets.map((bucket) => (
       {id: bucket["id"], title: bucket["title"]}));
+    console.log("listOfBuckets ", listOfBuckets)
 
     this.state = {
       showModal : false,
