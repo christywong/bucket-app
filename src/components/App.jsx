@@ -28,8 +28,14 @@ export default class App extends React.Component{
   render(){
     return (
       <div>
-        <NavbarInstance groups = {this.state.datagroups} />
-        <Main currentGroup = {currentGroup} />
+        <NavbarInstance
+          groups = {this.state.data.groups}
+          changeGroup = {this.changeGroup}
+          />
+        <Main
+          currentGroup =
+          {this.state.data.currentGroup}
+          />
       </div>
     );
   }
@@ -56,9 +62,10 @@ export default class App extends React.Component{
   }
 
   changeGroup(currentGroupId){
+    console.log(currentGroupId);
     const newGroup = this.state.data.groups.filter((group)=>(currentGroupId===group.id))[0];
     this.setState({
-      data: update(this.state.data,{currentGroup: {$set: newGroup}})
+      data: update(this.state.data, {currentGroup: {$set: newGroup}})
     });
   }
 

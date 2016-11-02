@@ -16,7 +16,7 @@ export default class AddModal extends React.Component{
     this.selectEntry = this.selectEntry.bind(this);
   }
   render(){
-    var {close, addBucket} = this.props;
+    var {close, addBucket, bucketTags} = this.props;
     return(
     <div className="static-modal">
       <Modal.Dialog>
@@ -29,7 +29,7 @@ export default class AddModal extends React.Component{
               <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
             </div>
             <div style={{marginTop:25, display: 'inline-block'}}>
-              {this.state.yelpEntries.map((entry) => <CardEntry addCard = {this.props.addCard} SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} /> )}
+              {this.state.yelpEntries.map((entry) => <CardEntry addCard = {this.props.addCard} SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} bucketTags = {bucketTags}/> )}
             </div>
         </Modal.Body>
         <Modal.Footer>

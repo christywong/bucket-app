@@ -4,6 +4,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';
 import uuid from 'uuid';
+import update from 'react-addons-update';
 
 export default class Component extends React.Component {
 
@@ -46,7 +47,17 @@ export default class Component extends React.Component {
           addBucket = {this.addBucket} />
 
         <div className="main-container">
-          {this.state.showModal ? <AddModal addCard = {this.addCard} close = {this.closeModal} addBucket = {this.createBucket}/> : null}
+          {
+            this.state.showModal ?
+            <AddModal
+              addCard = {this.addCard}
+              close = {this.closeModal}
+              addBucket = {this.createBucket}
+              bucketTags = {this.state.bucketList}
+              />
+            : null
+          }
+
               { cardArray.map((cardEntry) => { return(
                   <Cards
                     key = {cardEntry.id.toString()}
@@ -84,29 +95,46 @@ export default class Component extends React.Component {
     }
   }
 
-  addCard(cardName, bucketId){
+  addCard(card, bucketId){
+
     let newCard = {
       id: uuid.v4(),
-      title: cardName
+      yelpId: card.id,
+      img: card.image_url,
+      rating: card.rating_img_url,
+      city: card.location.city,
+      reviewCount: card.review_count,
+      title: card.name
     }
-    const bucketArray = this.state.buckets;
-    const bucketWithNewCard = bucketArray.map((bucket)=>{
+    //const currentBucket = this.state.selectedBucket.id;
+
+    const bucketWithNewCard = [...this.state.selectedBucket.cards, newCard];
+
+    //console.log('bucket with new card, ', currentBucket);
+
+    const updatedGroup = this.state.buckets.map((bucket)=>{
       if(bucket.id === bucketId){
         bucket.cards = [...bucket.cards, newCard];
-
       }
     return bucket;
+    });
 
-    });
+    console.log('updated group ', updatedGroup);
+
     this.setState({
-      buckets: bucketWithNewCard
+      // selectedBucket: update(this.state.selectedBucket, {cards:{$set: bucketWithNewCard}}),
+      buckets: updatedGroup
     });
+
   }
 
   initializeBucket(buckets){
+    console.log('initializing buckets ', buckets);
     const listOfBuckets = buckets.map((bucket) => (
       {id: bucket["id"], title: bucket["title"]}));
+
     const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
+
     const selected = selectedBucket ? selectedBucket : {cards:[]}
 
     this.setState({

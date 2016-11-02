@@ -87,6 +87,8 @@ html,body { height:100%; }
   flex-wrap: wrap;
   overflow-y: scroll;
   justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
 
 
   .card-style{
@@ -298,4 +300,12 @@ html,body { height:100%; }
 #create-group-button {
   outline: none !important;
   border: none !important;
+}
+
+.tag-list{
+  cursor:pointer;
+}
+
+.tag-list:hover{
+  color: $primary-blue-hover;
 }

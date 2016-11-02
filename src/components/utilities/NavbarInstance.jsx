@@ -29,14 +29,14 @@ export default class NavbarInstance extends React.Component {
     } else if (dropdown && !show) {
       this.setState({dropdown: false});
     }
+    console.log('event ', e);
     console.log(this.state.dropdown);
-    
   }
 
   handlePopoverClick(e) {
     this.setState({
-      target: e.target, 
-      show: !this.state.show, 
+      target: e.target,
+      show: !this.state.show,
       dropdown: true
     });
   }
@@ -50,12 +50,14 @@ export default class NavbarInstance extends React.Component {
   }
 
   render() {
+
     const createGroupPopover = (
       <Popover id="popover-trigger-click-root-close" title="Create Group">
         <input type="text" id="group-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
         <input type="submit" id="submit-new-group" value="Create" onClick={this.handleSubmit}></input>
       </Popover>
     )
+
     return(
       <Navbar style={{zIndex: 500}} inverse fluid>
         <Navbar.Header>
@@ -66,13 +68,17 @@ export default class NavbarInstance extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavDropdown onClick={this.handleDropdownClick} open={this.state.dropdown} eventKey={1} id="groups-dropdown" title="Groups">
+            <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
               {this.props.groups.map((group)=>{
-                return (<MenuItem eventKey={group.dropdownid} key={group.id.toString()} href="">{group.title}</MenuItem>)
+                return (<MenuItem
+                  eventKey={group.dropdownid}
+                  key={group.id.toString()}
+                  onClick={()=>{this.props.changeGroup(group.id)}}
+                  >{group.title}</MenuItem>)
               })}
               <MenuItem divider />
               <ButtonToolbar>
-                <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={createGroupPopover}>
+                <OverlayTrigger id="popover-trigger-click-root-close" trigger="click" rootClose placement="bottom" overlay={createGroupPopover}>
                   <MenuItem onClick={this.handlePopoverClick} id="create-group-button">
                     Create New Group
                   </MenuItem>
