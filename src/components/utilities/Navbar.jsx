@@ -32,3 +32,4 @@ export default ({groups, changegroup}) => {
   </Navbar>
   )
 };
+

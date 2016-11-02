@@ -235,3 +235,10 @@ html, body {
 
 .p-no-margin {
   margin: 0; }
+<<<<<<< HEAD
+=======
+
+#create-group-button {
+  outline: none !important;
+  border: none !important; }
+>>>>>>> christy-branch

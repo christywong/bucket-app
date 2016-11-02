@@ -1,9 +1,11 @@
 import React from 'react';
 var styles = require("../static/styles/main.scss");
-import Navbar  from './utilities//Navbar';
+import Navbar from './utilities//Navbar';
 import Main from './Main';
 import uuid from 'uuid';
 import update from 'react-addons-update';
+import NavbarInstance from './utilities/NavbarInstance';
+
 
 export default class App extends React.Component{
   constructor(props) {
@@ -26,8 +28,8 @@ export default class App extends React.Component{
   render(){
     return (
       <div>
-        <Navbar changegroup= {this.changeGroup} groups = {this.state.data.groups} />
-        <Main currentGroup = {this.state.data.currentGroup} />
+        <NavbarInstance groups = {this.state.datagroups} />
+        <Main currentGroup = {currentGroup} />
       </div>
     );
   }
