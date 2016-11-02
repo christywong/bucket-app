@@ -7,6 +7,7 @@ export default class SearchEntry extends React.Component {
 
   }
   render(){
+
     const createBucketPopover = (
       <Popover id="popover-trigger-click-root-close" title="Select a Tag">
         {this.props.bucketTags.map((tag) => (

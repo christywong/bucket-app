@@ -23,6 +23,7 @@ export default class Component extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.addCard = this.addCard.bind(this);
     this.addBucket = this.addBucket.bind(this);
+    this.moveCard = this.moveCard.bind(this);
   }
 
   componentWillMount(){
@@ -61,11 +62,9 @@ export default class Component extends React.Component {
               { cardArray.map((cardEntry) => { return(
                   <Cards
                     key = {cardEntry.id.toString()}
-                    cardTitle={cardEntry.title}
-                    img = {cardEntry.img}
-                    rating= {cardEntry.rating}
-                    reviewCount={cardEntry.reviewCount}
-                    city={cardEntry.city}
+                    activities = {cardEntry}
+                    moveCard={this.moveCard}
+                    bucketTags = {this.state.bucketList}
                     />
               )})}
           <div className='add-btn' onClick = {this.showModal}>+</div>
@@ -97,7 +96,7 @@ export default class Component extends React.Component {
 
   addCard(card, bucketId){
 
-    let newCard = {
+    const newCard = {
       id: uuid.v4(),
       yelpId: card.id,
       img: card.image_url,
@@ -106,12 +105,8 @@ export default class Component extends React.Component {
       reviewCount: card.review_count,
       title: card.name
     }
-    //const currentBucket = this.state.selectedBucket.id;
 
     const bucketWithNewCard = [...this.state.selectedBucket.cards, newCard];
-
-    //console.log('bucket with new card, ', currentBucket);
-
     const updatedGroup = this.state.buckets.map((bucket)=>{
       if(bucket.id === bucketId){
         bucket.cards = [...bucket.cards, newCard];
@@ -119,12 +114,40 @@ export default class Component extends React.Component {
     return bucket;
     });
 
-    console.log('updated group ', updatedGroup);
-
     this.setState({
-      // selectedBucket: update(this.state.selectedBucket, {cards:{$set: bucketWithNewCard}}),
       buckets: updatedGroup
     });
+  }
+
+  moveCard(card, nextBucket){
+    console.log('moving card ', card , ' to bucket ', nextBucket);
+    console.log(this.state.buckets[nextBucket]);
+    var newCard = update(this.state.buckets[nextBucket],{cards:{$push: [card]}});
+    var currentBucket = this.state.selectedBucket.id;
+
+    const nextSelectedBucketState = this.state.selectedBucket.cards.filter((currentCard)=>(currentCard.id !== card.id));
+
+    const nextBucketState = this.state.buckets.map((bucket)=>{
+      if(bucket.id === nextBucket){
+        return newCard;
+      }
+      if(bucket.id === currentBucket){
+        bucket.cards = nextSelectedBucketState;
+      }
+      return bucket;
+    });
+
+    console.log('new card ', nextSelectedBucketState);
+
+    this.setState({
+      buckets: nextBucketState,
+      selectedBucket: update(this.state.selectedBucket, {cards: {$set: nextSelectedBucketState}})
+    });
+    // const movedCard = buckets.filter((bucket) => {
+    //   if(bucket.id === nextBucket){
+    //
+    //   }
+    // });
 
   }
 
@@ -134,7 +157,6 @@ export default class Component extends React.Component {
       {id: bucket["id"], title: bucket["title"]}));
 
     const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
-
     const selected = selectedBucket ? selectedBucket : {cards:[]}
 
     this.setState({
