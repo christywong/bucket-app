@@ -117,6 +117,7 @@ export default class Component extends React.Component {
     this.setState({
       buckets: updatedGroup
     });
+
   }
 
   moveCard(card, nextBucket){
@@ -168,10 +169,18 @@ export default class Component extends React.Component {
 
   addBucket(name) {
     if (name != "") {
-      var newBucket = [...this.state.bucketList, {id: uuid.v4(), title: name}];
+      var newBucket = {id: uuid.v4(), title: name, cards: []};
+      var newBucketList = [...this.state.bucketList, newBucket];
+      var newBuckets = [...this.state.buckets, newBucket];
       this.setState({
-        bucketList: newBucket
+        bucketList: newBucketList,
+        selectedBucket: newBucket,
+        buckets: newBuckets
       });
+
+      // not sure if i can do this; trying to keep the newly created buckets in the groups, 
+      // so that they still show up when switching between groups
+      this.props.currentGroup.buckets = newBuckets;
     }
   }
 

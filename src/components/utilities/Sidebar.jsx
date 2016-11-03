@@ -29,11 +29,14 @@ export default class Sidebar extends React.Component{
   }
 
   handleSubmit(e) {
+    //this.setState({show: false});
+    this.refs.overlay.hide();
     this.props.addBucket(this.state.value);
   }
 
   render(){
     var list = this.props.bucketList;
+    console.log("list is: ", list);
     const createBucketPopover = (
       <Popover id="popover-trigger-click-root-close" title="Create Bucket">
         <input type="text" id="bucket-name-input" placeholder="Bucket Name" onChange={this.handleChange}></input>
@@ -44,13 +47,14 @@ export default class Sidebar extends React.Component{
     return(
       <div className='sidebar'>
         {list.map ( (bucket) => { return(
-          <Bucket changeStateBucket={this.props.changeStateBucket}
+          <Bucket changeStateBucket = {this.props.changeStateBucket}
             key = {bucket.id}
             bucketId = {bucket.id}
             bucketName = {bucket.title}
-            active = {this.props.selectedBucket === bucket.id ? "active" : null} />)})}
+            active = {this.props.selectedBucket === bucket.id ? "active" : null} />
+        )})}
         <ButtonToolbar>
-          <OverlayTrigger trigger="click" rootClose placement="top" overlay={createBucketPopover}>
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={createBucketPopover}>
             <Button onClick={this.handleClick} id="create-bucket-button">
               Create New Bucket
             </Button>
