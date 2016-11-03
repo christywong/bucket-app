@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown} from "react-bootstrap";
 import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
 
@@ -52,9 +51,21 @@ export default class NavbarInstance extends React.Component {
   render() {
 
     const createGroupPopover = (
-      <Popover id="popover-trigger-click-root-close" title="Create Group">
-        <input type="text" id="group-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
-        <input type="submit" id="submit-new-group" value="Create" onClick={this.handleSubmit}></input>
+      <Popover
+        id="popover-trigger-click-root-close"
+        title="Create Group">
+        <input
+          type="text"
+          id="group-name-input"
+          placeholder="Group Name"
+          onChange={this.handleChange}>
+        </input>
+        <input
+          type="submit"
+          id="submit-new-group"
+          value="Create"
+          onClick={this.handleSubmit}>
+        </input>
       </Popover>
     )
 
@@ -68,27 +79,46 @@ export default class NavbarInstance extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
+            <NavDropdown
+              eventKey={1}
+              id="groups-dropdown"
+              title="Groups">
               {this.props.groups.map((group)=>{
-                return (<MenuItem
-                  eventKey={group.dropdownid}
-                  key={group.id.toString()}
-                  onClick={()=>{this.props.changeGroup(group.id)}}
-                  >{group.title}</MenuItem>)
+                return (
+                  <MenuItem
+                    eventKey={group.dropdownid}
+                    key={group.id.toString()}
+                    onClick={()=>{this.props.changeGroup(group.id)}}
+                    >
+                    {group.title}
+                  </MenuItem>
+                )
               })}
               <MenuItem divider />
               <ButtonToolbar>
-                <OverlayTrigger id="popover-trigger-click-root-close" trigger="click" rootClose placement="bottom" overlay={createGroupPopover}>
-                  <MenuItem onClick={this.handlePopoverClick} id="create-group-button">
+                <OverlayTrigger
+                  id="popover-trigger-click-root-close"
+                  trigger="click"
+                  rootClose
+                  placement="bottom"
+                  overlay={createGroupPopover}>
+                  <MenuItem
+                    onClick={this.handlePopoverClick}
+                    id="create-group-button">
                     Create New Group
                   </MenuItem>
                 </OverlayTrigger>
               </ButtonToolbar>
             </NavDropdown>
-              <NavDropdown eventKey={2} title="Settings" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/settings.html">Account Settings</MenuItem>
-                <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
-              </NavDropdown>
+            <NavDropdown
+              eventKey={2}
+              title="Settings"
+              id="basic-nav-dropdown">
+              <MenuItem eventKey={2.1} href="/settings.html">
+                Account Settings
+              </MenuItem>
+              <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

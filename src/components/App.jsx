@@ -10,18 +10,20 @@ export default class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-        data: {
-            groups: [],
-            currentGroup: {
-                buckets: []
-            }
+      data: {
+        groups: [],
+        currentGroup: {
+          buckets: []
         }
+      }
     }
     this.changeGroup = this.changeGroup.bind(this);
+    this.addCardToGroup = this.addCardToGroup.bind(this);
+    this.addBucketToGroup = this.addBucketToGroup.bind(this);
   }
 
   componentDidMount() {
-      this.loadJSONData();
+    this.loadJSONData();
   }
 
   render(){
@@ -34,6 +36,9 @@ export default class App extends React.Component{
         <Main
           currentGroup =
           {this.state.data.currentGroup}
+          allGroups =
+          {this.state.data.groups}
+          updateAllGroups = {this.addCardToGroup}
           />
       </div>
     );
@@ -57,9 +62,9 @@ export default class App extends React.Component{
         }
       }
     }
-      xhr.open('GET', '/api/getTest');
-      xhr.responseType = 'json'
-      xhr.send();
+    xhr.open('GET', '/api/getTest');
+    xhr.responseType = 'json'
+    xhr.send();
   }
 
   changeGroup(currentGroupId){
@@ -68,6 +73,22 @@ export default class App extends React.Component{
     this.setState({
       data: update(this.state.data, {currentGroup: {$set: newGroup}})
     });
+  }
+
+  addCardToGroup(card, groupId, bucketId){
+    const nextGroupState = this.state.data.groups.map((group) =>{
+      if(group.id ===  groupId){
+        update(group.buckets, {cards : {$push: [card]}});
+      }
+      return group;
+    });
+
+    console.log(nextGroupState);
+
+  }
+
+  addBucketToGroup(bucket, currentGroupId){
+
   }
 
 }

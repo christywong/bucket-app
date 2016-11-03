@@ -14,7 +14,10 @@ export default class Component extends React.Component {
       showModal : false,
       bucketList: [],
       buckets: [],
-      selectedBucket: {}
+      selectedBucket: {},
+      currentBucketId: 0,
+      allGroups:[],
+      currentGroupId: 0
     }
 
     //Bind our functions to the current scope
@@ -31,18 +34,17 @@ export default class Component extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    this.initializeBucket(nextProps.currentGroup);
+    this.initializeBucket(nextProps);
   }
 
   render() {
     const cardArray = this.state.selectedBucket.cards;
-    const selectedBucketId = this.state.selectedBucket.id;
-    let closeModal = () => this.setState({ showModal: false });
+    const closeModal = () => this.setState({ showModal: false });
 
     return (
       <div>
         <Sidebar
-          selectedBucket = {selectedBucketId}
+          selectedBucket = {this.state.currentBucketId}
           bucketList = {this.state.bucketList}
           changeStateBucket = {this.changeState}
           addBucket = {this.addBucket} />
@@ -83,17 +85,19 @@ export default class Component extends React.Component {
   }
 
   changeState(bucketId) {
+    console.log(this.state.buckets);
     const bucketArray = this.state.buckets.cards;
+    console.log(bucketArray);
+    console.log(this.state.buckets);
     const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
-
 
     const changeBucket = {
       cards: nextBucket
     }
 
-
     this.setState({
-      selectedBucket: changeBucket
+      selectedBucket: changeBucket,
+      currentBucketId: bucketId
     });
   }
 
@@ -105,32 +109,35 @@ export default class Component extends React.Component {
       rating: card.rating_img_url,
       city: card.location.city,
       reviewCount: card.review_count,
-      title: card.name
+      title: card.name,
+      tags: [bucketId]
     }
 
-    const bucketWithNewCard = [...this.state.selectedBucket.cards, newCard];
-    const updatedGroup = this.state.buckets.map((bucket)=>{
-      if(bucket.id === bucketId){
-        bucket.cards = [...bucket.cards, newCard];
-      }
-    return bucket;
-    });
+    const currentBucketId = this.state.currentBucketId;
+    const currentBucket = this.state.buckets.cards;
+    const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
+    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.selectedBucket, {cards: {$push: [newCard]}}) : this.state.selectedBucket;
+
+    this.props.updateAllGroups(newCard, this.state.currentGroupId, bucketId);
 
     this.setState({
-      buckets: updatedGroup
+      buckets: updatedGroup,
+      selectedBucket: selectedBucket
     });
   }
 
-  moveCard(card, nextBucket){
-    console.log('moving card ', card , ' to bucket ', nextBucket);
-    console.log(this.state.buckets[nextBucket]);
-    var newCard = update(this.state.buckets[nextBucket],{cards:{$push: [card]}});
+  moveCard(card, newTag){
+    console.log('moving card ', card , ' to bucket ', newTag);
+    card.tags[0] = newTag;
+    var newCard = card;
+    //var newCard = update(this.state.buckets[nextBucket],{cards:{$push: [card]}});
     var currentBucket = this.state.selectedBucket.id;
 
     const nextSelectedBucketState = this.state.selectedBucket.cards.filter((currentCard)=>(currentCard.id !== card.id));
+    console.log(this.state.buckets);
 
     const nextBucketState = this.state.buckets.map((bucket)=>{
-      if(bucket.id === nextBucket){
+      if(bucket.id === newTag){
         return newCard;
       }
       if(bucket.id === currentBucket){
@@ -138,9 +145,6 @@ export default class Component extends React.Component {
       }
       return bucket;
     });
-
-    console.log('new card ', nextSelectedBucketState);
-
     this.setState({
       buckets: nextBucketState,
       selectedBucket: update(this.state.selectedBucket, {cards: {$set: nextSelectedBucketState}})
@@ -149,17 +153,19 @@ export default class Component extends React.Component {
 
   initializeBucket(buckets){
     console.log('initializing buckets ', buckets);
-    // const listOfBuckets = buckets.map((bucket) => (
-    //   {id: bucket["id"], title: bucket["title"]}));
-    //
-    // const selectedBucket = buckets.filter((bucket) => (bucket.id === 0))[0];
-    const selected = buckets.buckets ? buckets.buckets : {cards:[]}
-    const listOfBuckets = buckets.tags ? buckets.tags : []
+
+    const currentBucket = buckets.currentGroup;
+    const selected = currentBucket ? currentBucket.buckets : {cards:[]}
+    const listOfBuckets = currentBucket ? currentBucket.tags : []
+    const allBuckets = currentBucket ? currentBucket.buckets : null;
+    const currentGroup = buckets.currentGroup.id;
 
     this.setState({
       bucketList: listOfBuckets,
-      buckets: buckets.buckets,
-      selectedBucket: selected
+      buckets: allBuckets,
+      selectedBucket: selected,
+      allGroups: buckets.allGroups,
+      currentGroupId: currentGroup;
     });
   }
 

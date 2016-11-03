@@ -18,27 +18,44 @@ export default class AddModal extends React.Component{
   render(){
     var {close, addBucket, bucketTags} = this.props;
     return(
-    <div className="static-modal">
-      <Modal.Dialog>
-        <Modal.Header>
-          <Modal.Title>Search for a Card to Add</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="modal-body">
+      <div className="static-modal">
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>
+              Search for a Card to Add
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="modal-body">
             <div>
-              <input className = 'searchInput' type="text" placeholder="City" name="City"/>
-              <input className = 'searchInput' type="text" placeholder="Category" name="Category"/>
+              <input
+                className = 'searchInput'
+                type="text"
+                placeholder="City"
+                name="City"/>
+              <input
+                className = 'searchInput'
+                type="text"
+                placeholder="Category"
+                name="Category"/>
             </div>
             <div style={{marginTop:25, display: 'inline-block'}}>
-              {this.state.yelpEntries.map((entry) => <CardEntry addCard = {this.props.addCard} SelectEntry = {this.selectEntry} key = {entry.id} ItemEntry = {entry} bucketTags = {bucketTags}/> )}
+              {this.state.yelpEntries.map((entry) =>
+                <CardEntry
+                  addCard = {this.props.addCard}
+                  SelectEntry = {this.selectEntry}
+                  key = {entry.id}
+                  ItemEntry = {entry}
+                  bucketTags = {bucketTags}/>
+              )}
             </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick = {close}>Close</Button>
-          <Button onClick = {this.searchQuery}> Search </Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
-  )
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick = {close}>Close</Button>
+            <Button onClick = {this.searchQuery}> Search </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      </div>
+    )
   }
 
   handleTitleValue(event){
