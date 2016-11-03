@@ -48,7 +48,7 @@ export default class NavbarInstance extends React.Component {
 
   handleSubmit(e) {
     this.refs.overlayMember.hide();
-    this.refs.overlayGroup.hide();
+    this.refs.overlayBucket.hide();
     alert("the state is" + this.state.value);
   }
 
@@ -62,10 +62,10 @@ export default class NavbarInstance extends React.Component {
         <input type="submit" id="submit-new-group" value="Create" onClick={this.handleSubmit}></input>
       </Popover>
     )
-    const popoverGroup = (
-      <Popover id="popover-positioned-right" title="Add Group">
-        <input type="text" id="group-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
-        <input type="submit" id="submit-group" value="Add" onClick={this.handleSubmit}></input>
+    const popoverBucket = (
+      <Popover id="popover-positioned-right" title="Add Bucket">
+        <input type="text" id="bucket-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
+        <input type="submit" id="submit-bucket" value="Add" onClick={this.handleSubmit}></input>
       </Popover>
       )
     const popoverMember = (
@@ -89,13 +89,12 @@ export default class NavbarInstance extends React.Component {
           <Nav pullRight>
           <NavDropdown eventKey={1} title="Add" id="basic-nav-dropdown">
           <OverlayTrigger ref ="overlayMember" trigger="click" placement="left" overlay={popoverMember}>
-            <MenuItem onClick={this.handlePopoverClick} id="submit-member">Add Member</MenuItem>
+            <MenuItem onClick={this.props.addMember} id="submit-member">Add Member</MenuItem>
           </OverlayTrigger>
-              <OverlayTrigger ref="overlayGroup" trigger="click" placement="left" overlay={popoverGroup}>
-                <MenuItem onClick={this.handlePopoverClick} id="submit-group">Add Group</MenuItem>
+              <OverlayTrigger ref="overlayBucket" trigger="click" placement="left" overlay={popoverBucket}>
+                <MenuItem onClick={this.handlePopoverClick} id="submit-bucket">Add Bucket</MenuItem>
               </OverlayTrigger>
           </NavDropdown>
-
 
             <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
               {this.props.groups.map((group)=>{

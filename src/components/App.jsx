@@ -14,6 +14,7 @@ export default class App extends React.Component{
         data: {
             groups: [],
             currentGroup: {
+                members:[],
                 buckets: []
             }
         }
@@ -68,5 +69,13 @@ export default class App extends React.Component{
       data: update(this.state.data, {currentGroup: {$set: newGroup}})
     });
   }
-
+  addMember(name){
+    console.log(name);
+    if (name != ""){
+      var newMember ={name};
+      var newMemberArray = [...this.state.data.currentGroup.members, newMember]
+    this.setState({
+      members: newMemberArray
+    });
+  }
 }
