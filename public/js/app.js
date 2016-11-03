@@ -100,6 +100,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -128,6 +130,7 @@
 	    _this.changeGroup = _this.changeGroup.bind(_this);
 	    _this.addCardToGroup = _this.addCardToGroup.bind(_this);
 	    _this.addBucketToGroup = _this.addBucketToGroup.bind(_this);
+	    _this.addGroup = _this.addGroup.bind(_this);
 	    return _this;
 	  }
 
@@ -144,7 +147,8 @@
 	        null,
 	        _react2.default.createElement(_NavbarInstance2.default, {
 	          groups: this.state.data.groups,
-	          changeGroup: this.changeGroup
+	          changeGroup: this.changeGroup,
+	          addGroup: this.addGroup
 	        }),
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
@@ -201,6 +205,17 @@
 	  }, {
 	    key: 'addBucketToGroup',
 	    value: function addBucketToGroup(bucket, currentGroupId) {}
+	  }, {
+	    key: 'addGroup',
+	    value: function addGroup(name) {
+	      if (name != "") {
+	        var groupToAdd = { id: _uuid2.default.v4(), title: name };
+	        var newGroupList = [].concat(_toConsumableArray(this.state.data.groups), [groupToAdd]);
+	        this.setState({
+	          data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: newGroupList } })
+	        });
+	      }
+	    }
 	  }]);
 
 	  return App;
@@ -41184,6 +41199,7 @@
 	      //this.setState({show: false});
 	      this.refs.overlay.hide();
 	      this.props.addBucket(this.state.value);
+	      this.setState({ value: '' });
 	    }
 	  }, {
 	    key: 'render',
@@ -41837,6 +41853,7 @@
 	    _this.handlePopoverClick = _this.handlePopoverClick.bind(_this);
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.handleSubmitGroup = _this.handleSubmitGroup.bind(_this);
 	    return _this;
 	  }
 
@@ -41874,8 +41891,14 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      this.refs.overlayMember.hide();
+	      alert('the state value is: ' + this.state.value);
+	    }
+	  }, {
+	    key: 'handleSubmitGroup',
+	    value: function handleSubmitGroup(e) {
 	      this.refs.overlayGroup.hide();
-	      alert("the state is" + this.state.value);
+	      this.props.addGroup(this.state.value);
+	      this.setState({ value: '' });
 	    }
 	  }, {
 	    key: 'render',
@@ -41896,17 +41919,11 @@
 	          type: 'submit',
 	          id: 'submit-new-group',
 	          value: 'Create',
-	          onClick: this.handleSubmit })
-	      );
-	      var popoverGroup = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        { id: 'popover-positioned-right', title: 'Add Group' },
-	        _react2.default.createElement('input', { type: 'text', id: 'group-name-input', placeholder: 'Group Name', onChange: this.handleChange }),
-	        _react2.default.createElement('input', { type: 'submit', id: 'submit-group', value: 'Add', onClick: this.handleSubmit })
+	          onClick: this.handleSubmitGroup })
 	      );
 	      var popoverMember = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-positioned-right', title: 'Add Member' },
+	        { id: 'popover-trigger-click-root-close', title: 'Add Member' },
 	        _react2.default.createElement('input', { type: 'text', id: 'email-input', placeholder: 'Email', onChange: this.handleChange }),
 	        _react2.default.createElement('input', { type: 'submit', id: 'submit-member', value: 'Add', onClick: this.handleSubmit })
 	      );
@@ -41939,20 +41956,11 @@
 	              { eventKey: 1, title: 'Add', id: 'basic-nav-dropdown' },
 	              _react2.default.createElement(
 	                _reactBootstrap.OverlayTrigger,
-	                { ref: 'overlayMember', trigger: 'click', placement: 'left', overlay: popoverMember },
+	                { ref: 'overlayMember', rootClose: true, trigger: 'click', placement: 'left', overlay: popoverMember },
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
 	                  { onClick: this.handlePopoverClick, id: 'submit-member' },
 	                  'Add Member'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                { ref: 'overlayGroup', trigger: 'click', placement: 'left', overlay: popoverGroup },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onClick: this.handlePopoverClick, id: 'submit-group' },
-	                  'Add Group'
 	                )
 	              )
 	            ),
@@ -41980,6 +41988,7 @@
 	                  _reactBootstrap.OverlayTrigger,
 	                  {
 	                    id: 'popover-trigger-click-root-close',
+	                    ref: 'overlayGroup',
 	                    trigger: 'click',
 	                    rootClose: true,
 	                    placement: 'bottom',

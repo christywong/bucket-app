@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown} from "react-bootstrap";
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown } from "react-bootstrap";
 import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default class NavbarInstance extends React.Component {
@@ -16,6 +16,7 @@ export default class NavbarInstance extends React.Component {
     this.handlePopoverClick = this.handlePopoverClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitGroup = this.handleSubmitGroup.bind(this);
   }
 
   handleDropdownClick(e) {
@@ -47,8 +48,13 @@ export default class NavbarInstance extends React.Component {
 
   handleSubmit(e) {
     this.refs.overlayMember.hide();
+    alert('the state value is: ' + this.state.value);
+  }
+
+  handleSubmitGroup(e) {
     this.refs.overlayGroup.hide();
-    alert("the state is" + this.state.value);
+    this.props.addGroup(this.state.value);
+    this.setState({value: ''});
   }
 
 
@@ -69,22 +75,16 @@ export default class NavbarInstance extends React.Component {
           type="submit"
           id="submit-new-group"
           value="Create"
-          onClick={this.handleSubmit}>
+          onClick={this.handleSubmitGroup}>
         </input>
       </Popover>
     )
-    const popoverGroup = (
-      <Popover id="popover-positioned-right" title="Add Group">
-        <input type="text" id="group-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
-        <input type="submit" id="submit-group" value="Add" onClick={this.handleSubmit}></input>
-      </Popover>
-      )
     const popoverMember = (
-      <Popover id="popover-positioned-right" title="Add Member">
+      <Popover id="popover-trigger-click-root-close" title="Add Member">
         <input type="text" id="email-input" placeholder="Email" onChange={this.handleChange}></input>
         <input type="submit" id="submit-member" value="Add" onClick={this.handleSubmit}></input>
       </Popover>
-);
+    );
 
     return(
       <Navbar style={{zIndex: 500}} inverse fluid>
@@ -95,18 +95,13 @@ export default class NavbarInstance extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
 
-
         <Navbar.Collapse>
           <Nav pullRight>
-          <NavDropdown eventKey={1} title="Add" id="basic-nav-dropdown">
-          <OverlayTrigger ref ="overlayMember" trigger="click" placement="left" overlay={popoverMember}>
-            <MenuItem onClick={this.handlePopoverClick} id="submit-member">Add Member</MenuItem>
-          </OverlayTrigger>
-              <OverlayTrigger ref="overlayGroup" trigger="click" placement="left" overlay={popoverGroup}>
-                <MenuItem onClick={this.handlePopoverClick} id="submit-group">Add Group</MenuItem>
+            <NavDropdown eventKey={1} title="Add" id="basic-nav-dropdown">
+              <OverlayTrigger ref ="overlayMember" rootClose trigger="click" placement="left" overlay={popoverMember}>
+                <MenuItem onClick={this.handlePopoverClick} id="submit-member">Add Member</MenuItem>
               </OverlayTrigger>
-          </NavDropdown>
-
+            </NavDropdown>
 
             <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
               {this.props.groups.map((group)=>{
@@ -124,6 +119,7 @@ export default class NavbarInstance extends React.Component {
               <ButtonToolbar>
                 <OverlayTrigger
                   id="popover-trigger-click-root-close"
+                  ref="overlayGroup"
                   trigger="click"
                   rootClose
                   placement="bottom"
