@@ -40,6 +40,7 @@ export default class Component extends React.Component {
 
   render() {
     const cardArray = this.state.selectedBucket.cards;
+    console.log('card array ', cardArray);
     const closeModal = () => this.setState({ showModal: false });
 
     return (
@@ -130,25 +131,43 @@ export default class Component extends React.Component {
   moveCard(card, newTag){
     console.log('moving card ', card , ' to bucket ', newTag);
     card.tags[0] = newTag;
-    var newCard = card;
-    //var newCard = update(this.state.buckets[nextBucket],{cards:{$push: [card]}});
-    var currentBucket = this.state.selectedBucket.id;
+    var nextSelectedState ={};
 
-    const nextSelectedBucketState = this.state.selectedBucket.cards.filter((currentCard)=>(currentCard.id !== card.id));
-    console.log(this.state.buckets);
-
-    const nextBucketState = this.state.buckets.map((bucket)=>{
-      if(bucket.id === newTag){
-        return newCard;
+    const newCard = card;
+    const nextState = this.state.buckets.cards.map((oldCard) => {
+      if(oldCard === card.id){
+        return card;
       }
-      if(bucket.id === currentBucket){
-        bucket.cards = nextSelectedBucketState;
+      else{
+        return oldCard;
       }
-      return bucket;
     });
+
+    if(newTag !== this.state.currentBucketId && this.state.currentBucketId != 0){
+      nextSelectedState.cards = this.state.selectedBucket.cards.filter((oldCard)=>(oldCard.id !== card.id));
+    }
+    else{
+      nextSelectedState = this.state.selectedBucket;
+    }
+
+    console.log('next selected state ', nextSelectedState);
+
+    // var currentBucket = this.state.selectedBucket.id;
+    // const nextSelectedBucketState = this.state.selectedBucket.cards.filter((currentCard)=>(currentCard.id !== card.id));
+    // console.log(this.state.buckets);
+    //
+    // const nextBucketState = this.state.buckets.cards.map((bucket)=>{
+    //   if(bucket.id === newTag){
+    //     return newCard;
+    //   }
+    //   if(bucket.id === currentBucket){
+    //     bucket.cards = nextSelectedBucketState;
+    //   }
+    //   return bucket;
+    // });
     this.setState({
-      buckets: nextBucketState,
-      selectedBucket: update(this.state.selectedBucket, {cards: {$set: nextSelectedBucketState}})
+      buckets: update(this.state.buckets, {cards: {$set: nextState}}),
+      selectedBucket: nextSelectedState
     });
   }
 
