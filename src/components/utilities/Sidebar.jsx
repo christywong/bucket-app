@@ -28,11 +28,14 @@ export default class Sidebar extends React.Component{
   }
 
   handleSubmit(e) {
+    //this.setState({show: false});
+    this.refs.overlay.hide();
     this.props.addBucket(this.state.value);
   }
 
   render(){
     var list = this.props.bucketList;
+    console.log("list is: ", list);
     const createBucketPopover = (
       <Popover
         id="popover-trigger-click-root-close"

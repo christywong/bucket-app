@@ -33,6 +33,7 @@ export default class NavbarInstance extends React.Component {
   }
 
   handlePopoverClick(e) {
+
     this.setState({
       target: e.target,
       show: !this.state.show,
@@ -45,8 +46,12 @@ export default class NavbarInstance extends React.Component {
   }
 
   handleSubmit(e) {
+    this.refs.overlayMember.hide();
+    this.refs.overlayGroup.hide();
     alert("the state is" + this.state.value);
   }
+
+
 
   render() {
 
@@ -68,6 +73,18 @@ export default class NavbarInstance extends React.Component {
         </input>
       </Popover>
     )
+    const popoverGroup = (
+      <Popover id="popover-positioned-right" title="Add Group">
+        <input type="text" id="group-name-input" placeholder="Group Name" onChange={this.handleChange}></input>
+        <input type="submit" id="submit-group" value="Add" onClick={this.handleSubmit}></input>
+      </Popover>
+      )
+    const popoverMember = (
+      <Popover id="popover-positioned-right" title="Add Member">
+        <input type="text" id="email-input" placeholder="Email" onChange={this.handleChange}></input>
+        <input type="submit" id="submit-member" value="Add" onClick={this.handleSubmit}></input>
+      </Popover>
+);
 
     return(
       <Navbar style={{zIndex: 500}} inverse fluid>
@@ -77,12 +94,21 @@ export default class NavbarInstance extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
+
+
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavDropdown
-              eventKey={1}
-              id="groups-dropdown"
-              title="Groups">
+          <NavDropdown eventKey={1} title="Add" id="basic-nav-dropdown">
+          <OverlayTrigger ref ="overlayMember" trigger="click" placement="left" overlay={popoverMember}>
+            <MenuItem onClick={this.handlePopoverClick} id="submit-member">Add Member</MenuItem>
+          </OverlayTrigger>
+              <OverlayTrigger ref="overlayGroup" trigger="click" placement="left" overlay={popoverGroup}>
+                <MenuItem onClick={this.handlePopoverClick} id="submit-group">Add Group</MenuItem>
+              </OverlayTrigger>
+          </NavDropdown>
+
+
+            <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
               {this.props.groups.map((group)=>{
                 return (
                   <MenuItem

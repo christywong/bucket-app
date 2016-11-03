@@ -21,7 +21,7 @@ export default class Cards extends React.Component{
       <div className="card-style">
 
         <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={movePopover}>
-          <p className='p-no-margin'style={editStyles}> Move Card</p>
+          <p className='p-no-margin'style={editStyles}>Move</p>
         </OverlayTrigger>
 
         <div className="card-header center-block">
