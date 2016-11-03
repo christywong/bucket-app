@@ -13,7 +13,8 @@ export default class App extends React.Component{
       data: {
         groups: [],
         currentGroup: {
-          buckets: []
+          buckets: [],
+          members: []
         }
       }
     }
@@ -23,6 +24,7 @@ export default class App extends React.Component{
     this.addBucketToGroup = this.addBucketToGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
+    this.addMember = this.addMember.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,7 @@ export default class App extends React.Component{
           changeGroup = {this.changeGroup}
           addGroup = {this.addGroup}
           addBucket = {this.addBucket}
+          addMember = {this.addMember}
           />
         <Main
           currentGroup =
@@ -126,13 +129,28 @@ export default class App extends React.Component{
       });
     }
   }
-  addMember(name){
+  addMember(name, currentGroupId){
     console.log(name);
     if (name != ""){
-      var newMember ={name};
-      var newMemberArray = [...this.state.data.currentGroup.members, newMember]
+      var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+      var newMemberArray = [...this.state.data.currentGroup.members, newMember];
+      const nextState = update(this.state.data.currentGroup, {members: {$set: newMemberArray}});
+
+      const nextGroupState = this.state.data.groups.map((group) => {
+        if(group.id === currentGroupId){
+          group.members.push(newMember);
+        }
+        return group;
+      });
+      console.log('current group ', nextState);
+      console.log('croup state ', nextGroupState);
+      const nextDataState = {
+        groups: nextGroupState,
+        currentGroup: nextState
+      }
+      console.log(nextDataState);
       this.setState({
-        members: newMemberArray
+        data: nextDataState
       });
     }
   }

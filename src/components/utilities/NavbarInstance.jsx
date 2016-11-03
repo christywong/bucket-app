@@ -11,7 +11,8 @@ export default class NavbarInstance extends React.Component {
       value: '',
       dropdown: false,
       target:'',
-      newBucket:''
+      newBucket:'',
+      newMember: ''
     }
 
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
@@ -20,9 +21,15 @@ export default class NavbarInstance extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitGroup = this.handleSubmitGroup.bind(this);
 
+    //Bind our add bucket listeners
     this.handleClickBucket = this.handleClickBucket.bind(this);
     this.handleChangeBucket = this.handleChangeBucket.bind(this);
     this.handleSubmitBucket = this.handleSubmitBucket.bind(this);
+
+    //Bind our add member listeners
+    this.handleSubmitAddMember = this.handleSubmitAddMember.bind(this);
+    this.handleChangeAddMember = this.handleChangeAddMember.bind(this);
+    this.handleClickAddMember = this.handleClickAddMember.bind(this);
   }
 
   handleDropdownClick(e) {
@@ -47,13 +54,14 @@ export default class NavbarInstance extends React.Component {
     });
   }
 
+  //Handlers for adding a group
   handleChange(e) {
     this.setState({value: e.target.value});
   }
 
   handleSubmit(e) {
     this.refs.overlayMember.hide();
-
+    alert('the state value is: ' + this.state.value);
   }
 
   handleSubmitGroup(e) {
@@ -62,10 +70,9 @@ export default class NavbarInstance extends React.Component {
     this.setState({value: ''});
   }
 
+  //Handlers for adding a bucket
   handleClickBucket(e) {
     this.setState({target: e.target, show: !this.state.show});
-    this.refs.overlayBucket.hide();
-
   }
 
   handleChangeBucket(e) {
@@ -78,6 +85,19 @@ export default class NavbarInstance extends React.Component {
     this.props.addBucket(this.state.newBucket, this.props.currentGroup.id);
     this.setState({newBucket: ''});
   }
+
+  //Handlers for adding a member
+  handleChangeAddMember(e) {
+    console.log(e.target.value);
+    this.setState({newMember: e.target.value});
+  }
+
+  handleSubmitAddMember(e){
+    this.refs.overlayAddMember.hide();
+    this.props.addMember(this.state.newMember, this.props.currentGroup.id);
+    this.setState({newMember:''});
+  }
+
 
   render() {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
@@ -102,10 +122,22 @@ export default class NavbarInstance extends React.Component {
       </Popover>
     );
 
-    const popoverMember = (
-      <Popover id="popover-trigger-click-root-close" title="Add Member">
-        <input type="text" id="email-input" placeholder="Email" onChange={this.handleChange}></input>
-        <input type="submit" id="submit-member" value="Add" onClick={this.handleSubmit}></input>
+    const addMemberPopover= (
+      <Popover
+        id="popover-trigger-click-root-close"
+        title="Add Member">
+        <input
+          type="text"
+          id="email-input"
+          placeholder="Email"
+          onChange={this.handleChangeAddMember}>
+        </input>
+        <input
+          type="submit"
+          id="submit-member"
+          value="Add"
+          onClick={this.handleSubmitAddMember}>
+        </input>
       </Popover>
     );
 
@@ -132,25 +164,47 @@ export default class NavbarInstance extends React.Component {
       <Navbar style={{zIndex: 500}} inverse fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">{currentGroupTitle}</a>
+            <a href="#">
+              {currentGroupTitle}
+            </a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavDropdown eventKey={1} title="Add" id="basic-nav-dropdown">
-              <OverlayTrigger ref ="overlayMember" rootClose trigger="click" placement="left" overlay={popoverMember}>
-                <MenuItem onClick={this.handlePopoverClick} id="submit-member">Add Member</MenuItem>
+            <NavDropdown
+              eventKey={1}
+              title="Add"
+              id="basic-nav-dropdown">
+              <OverlayTrigger
+                ref ="overlayAddMember"
+                rootClose
+                trigger="click"
+                placement="left"
+                overlay={addMemberPopover}>
+                <MenuItem
+                  onClick={this.handlePopoverClick}
+                  id="submit-member">
+                  Add Member
+                </MenuItem>
               </OverlayTrigger>
-              <OverlayTrigger ref="overlay" trigger="click" rootClose placement="left" overlay={createBucketPopover}>
+              <OverlayTrigger
+                ref="overlay"
+                trigger="click"
+                rootClose
+                placement="left"
+                overlay={createBucketPopover}>
                 <MenuItem onClick={this.handleClickBucket}>
                   Add Bucket
                 </MenuItem>
               </OverlayTrigger>
             </NavDropdown>
 
-            <NavDropdown  eventKey={1} id="groups-dropdown" title="Groups">
+            <NavDropdown
+              eventKey={1}
+              id="groups-dropdown"
+              title="Groups">
               {this.props.groups.map((group)=>{
                 return (
                   <MenuItem

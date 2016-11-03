@@ -122,7 +122,8 @@
 	      data: {
 	        groups: [],
 	        currentGroup: {
-	          buckets: []
+	          buckets: [],
+	          members: []
 	        }
 	      }
 	    };
@@ -132,6 +133,7 @@
 	    _this.addBucketToGroup = _this.addBucketToGroup.bind(_this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
+	    _this.addMember = _this.addMember.bind(_this);
 	    return _this;
 	  }
 
@@ -151,7 +153,8 @@
 	          groups: this.state.data.groups,
 	          changeGroup: this.changeGroup,
 	          addGroup: this.addGroup,
-	          addBucket: this.addBucket
+	          addBucket: this.addBucket,
+	          addMember: this.addMember
 	        }),
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
@@ -252,13 +255,28 @@
 	    }
 	  }, {
 	    key: 'addMember',
-	    value: function addMember(name) {
+	    value: function addMember(name, currentGroupId) {
 	      console.log(name);
 	      if (name != "") {
-	        var newMember = { name: name };
+	        var newMember = name.charAt(0).toUpperCase() + name.slice(1);
 	        var newMemberArray = [].concat(_toConsumableArray(this.state.data.currentGroup.members), [newMember]);
+	        var nextState = (0, _reactAddonsUpdate2.default)(this.state.data.currentGroup, { members: { $set: newMemberArray } });
+
+	        var nextGroupState = this.state.data.groups.map(function (group) {
+	          if (group.id === currentGroupId) {
+	            group.members.push(newMember);
+	          }
+	          return group;
+	        });
+	        console.log('current group ', nextState);
+	        console.log('croup state ', nextGroupState);
+	        var nextDataState = {
+	          groups: nextGroupState,
+	          currentGroup: nextState
+	        };
+	        console.log(nextDataState);
 	        this.setState({
-	          members: newMemberArray
+	          data: nextDataState
 	        });
 	      }
 	    }
@@ -41761,7 +41779,8 @@
 	      value: '',
 	      dropdown: false,
 	      target: '',
-	      newBucket: ''
+	      newBucket: '',
+	      newMember: ''
 	    };
 
 	    _this.handleDropdownClick = _this.handleDropdownClick.bind(_this);
@@ -41770,9 +41789,15 @@
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleSubmitGroup = _this.handleSubmitGroup.bind(_this);
 
+	    //Bind our add bucket listeners
 	    _this.handleClickBucket = _this.handleClickBucket.bind(_this);
 	    _this.handleChangeBucket = _this.handleChangeBucket.bind(_this);
 	    _this.handleSubmitBucket = _this.handleSubmitBucket.bind(_this);
+
+	    //Bind our add member listeners
+	    _this.handleSubmitAddMember = _this.handleSubmitAddMember.bind(_this);
+	    _this.handleChangeAddMember = _this.handleChangeAddMember.bind(_this);
+	    _this.handleClickAddMember = _this.handleClickAddMember.bind(_this);
 	    return _this;
 	  }
 
@@ -41800,6 +41825,9 @@
 	        dropdown: true
 	      });
 	    }
+
+	    //Handlers for adding a group
+
 	  }, {
 	    key: 'handleChange',
 	    value: function handleChange(e) {
@@ -41809,6 +41837,7 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      this.refs.overlayMember.hide();
+	      alert('the state value is: ' + this.state.value);
 	    }
 	  }, {
 	    key: 'handleSubmitGroup',
@@ -41817,11 +41846,13 @@
 	      this.props.addGroup(this.state.value);
 	      this.setState({ value: '' });
 	    }
+
+	    //Handlers for adding a bucket
+
 	  }, {
 	    key: 'handleClickBucket',
 	    value: function handleClickBucket(e) {
 	      this.setState({ target: e.target, show: !this.state.show });
-	      this.refs.overlayBucket.hide();
 	    }
 	  }, {
 	    key: 'handleChangeBucket',
@@ -41835,6 +41866,22 @@
 	      this.refs.overlay.hide();
 	      this.props.addBucket(this.state.newBucket, this.props.currentGroup.id);
 	      this.setState({ newBucket: '' });
+	    }
+
+	    //Handlers for adding a member
+
+	  }, {
+	    key: 'handleChangeAddMember',
+	    value: function handleChangeAddMember(e) {
+	      console.log(e.target.value);
+	      this.setState({ newMember: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmitAddMember',
+	    value: function handleSubmitAddMember(e) {
+	      this.refs.overlayAddMember.hide();
+	      this.props.addMember(this.state.newMember, this.props.currentGroup.id);
+	      this.setState({ newMember: '' });
 	    }
 	  }, {
 	    key: 'render',
@@ -41861,11 +41908,21 @@
 	          onClick: this.handleSubmitGroup })
 	      );
 
-	      var popoverMember = _react2.default.createElement(
+	      var addMemberPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Add Member' },
-	        _react2.default.createElement('input', { type: 'text', id: 'email-input', placeholder: 'Email', onChange: this.handleChange }),
-	        _react2.default.createElement('input', { type: 'submit', id: 'submit-member', value: 'Add', onClick: this.handleSubmit })
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Add Member' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          id: 'email-input',
+	          placeholder: 'Email',
+	          onChange: this.handleChangeAddMember }),
+	        _react2.default.createElement('input', {
+	          type: 'submit',
+	          id: 'submit-member',
+	          value: 'Add',
+	          onClick: this.handleSubmitAddMember })
 	      );
 
 	      var createBucketPopover = _react2.default.createElement(
@@ -41910,19 +41967,34 @@
 	            { pullRight: true },
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
-	              { eventKey: 1, title: 'Add', id: 'basic-nav-dropdown' },
+	              {
+	                eventKey: 1,
+	                title: 'Add',
+	                id: 'basic-nav-dropdown' },
 	              _react2.default.createElement(
 	                _reactBootstrap.OverlayTrigger,
-	                { ref: 'overlayMember', rootClose: true, trigger: 'click', placement: 'left', overlay: popoverMember },
+	                {
+	                  ref: 'overlayAddMember',
+	                  rootClose: true,
+	                  trigger: 'click',
+	                  placement: 'left',
+	                  overlay: addMemberPopover },
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
-	                  { onClick: this.handlePopoverClick, id: 'submit-member' },
+	                  {
+	                    onClick: this.handlePopoverClick,
+	                    id: 'submit-member' },
 	                  'Add Member'
 	                )
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.OverlayTrigger,
-	                { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'left', overlay: createBucketPopover },
+	                {
+	                  ref: 'overlay',
+	                  trigger: 'click',
+	                  rootClose: true,
+	                  placement: 'left',
+	                  overlay: createBucketPopover },
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
 	                  { onClick: this.handleClickBucket },
@@ -41932,7 +42004,10 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
-	              { eventKey: 1, id: 'groups-dropdown', title: 'Groups' },
+	              {
+	                eventKey: 1,
+	                id: 'groups-dropdown',
+	                title: 'Groups' },
 	              this.props.groups.map(function (group) {
 	                return _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,

@@ -69,7 +69,7 @@
     {
         "id": 1,
         "title": "CSE 170",
-        "members": ["Alok"],
+        "members": ["Alok, Christy, Daniel, Joey"],
         "tags": [{
             "id": 0,
             "title": "All Buckets"
