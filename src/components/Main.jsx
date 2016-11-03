@@ -165,7 +165,7 @@ export default class Component extends React.Component {
       buckets: allBuckets,
       selectedBucket: selected,
       allGroups: buckets.allGroups,
-      currentGroupId: currentGroup;
+      currentGroupId: currentGroup
     });
   }
 
