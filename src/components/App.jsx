@@ -17,7 +17,7 @@ export default class App extends React.Component{
         }
       }
     }
-    
+
     this.changeGroup = this.changeGroup.bind(this);
     this.addCardToGroup = this.addCardToGroup.bind(this);
     this.addBucketToGroup = this.addBucketToGroup.bind(this);
@@ -83,9 +83,6 @@ export default class App extends React.Component{
       }
       return group;
     });
-
-    console.log(nextGroupState);
-
   }
 
   addBucketToGroup(bucket, currentGroupId){

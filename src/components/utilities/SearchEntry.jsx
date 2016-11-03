@@ -37,10 +37,10 @@ export default class SearchEntry extends React.Component {
             rootClose
             placement="right"
             overlay={createBucketPopover}>
-            <Button className="add-to-bucket-btn">+</Button>
+            <i className="fa fa-lg fa-plus-square add-to-bucket-btn" aria-hidden="true"></i>
           </OverlayTrigger>
 
-          <h5 style ={{color: 'black', marginBottom: 10, marginTop:0}}>
+          <h5 className="card-title" style ={{marginBottom: 10, marginTop:0}}>
             {this.props.ItemEntry.name}
           </h5>
           <div className="search-entry-left">
@@ -54,10 +54,9 @@ export default class SearchEntry extends React.Component {
             </a>
           </div>
           <div className="search-entry-right">
-            <p>
-              <span style={{fontWeight:"bold"}}>Rating: </span>
-              {this.props.ItemEntry.rating}
-            </p>
+            <img src={this.props.ItemEntry.rating_img_url} width='100'/>
+            <p>Reviews: {this.props.ItemEntry.review_count}</p>
+            <p>{this.props.ItemEntry.location.city}</p>
           </div>
         </div>
       </Col>

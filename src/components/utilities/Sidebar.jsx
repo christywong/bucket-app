@@ -35,7 +35,7 @@ export default class Sidebar extends React.Component{
 
   render(){
     var list = this.props.bucketList;
-    console.log("list is: ", list);
+    console.log("selected bucket: ", this.props.selectedBucket);
     const createBucketPopover = (
       <Popover
         id="popover-trigger-click-root-close"

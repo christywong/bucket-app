@@ -65,5 +65,39 @@
                 "tags": [1]
             }]
         }
+    },
+    {
+        "id": 1,
+        "title": "CSE 170",
+        "members": ["Alok"],
+        "tags": [{
+            "id": 0,
+            "title": "All Buckets"
+        }, {
+            "id": 1,
+            "title": "Study Spots"
+        }],
+        "buckets": {
+            "cards": [{
+                "id": "d0af6f25-77bf-4585-8333-61290cdb8dba",
+                "yelpId": "heartsleeves-coffee-san-diego",
+                "img": "https://s3-media1.fl.yelpcdn.com/bphoto/QUgcnzUOYoqG9D_36hkSng/ms.jpg",
+                "rating": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png",
+                "city": "San Diego",
+                "reviewCount": 98,
+                "title": "Heartsleeves Coffee",
+                "tags": [1]
+            }, {
+                "id": "fa0a77c5-d036-4284-8df5-8c6765327c04",
+                "yelpId": "roast-coach-coffee-bar-san-diego-4",
+                "img": "https://s3-media4.fl.yelpcdn.com/bphoto/4unC8-84cQiPr_emHCrYcg/ms.jpg",
+                "rating": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png",
+                "city": "San Diego",
+                "reviewCount": 89,
+                "title": "Roast Coach Coffee Bar",
+                "tags": [0]
+
+            }]
+        }
     }]
   }

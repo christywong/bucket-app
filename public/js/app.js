@@ -197,8 +197,6 @@
 	        }
 	        return group;
 	      });
-
-	      console.log(nextGroupState);
 	    }
 	  }, {
 	    key: 'addBucketToGroup',
@@ -40504,6 +40502,7 @@
 	    _this.addCard = _this.addCard.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.moveCard = _this.moveCard.bind(_this);
+	    _this.deleteCard = _this.deleteCard.bind(_this);
 	    return _this;
 	  }
 
@@ -40550,7 +40549,8 @@
 	              key: cardEntry.id.toString(),
 	              activities: cardEntry,
 	              moveCard: _this2.moveCard,
-	              bucketTags: _this2.state.bucketList
+	              bucketTags: _this2.state.bucketList,
+	              deleteCard: _this2.deleteCard
 	            });
 	          }),
 	          _react2.default.createElement(
@@ -40626,7 +40626,7 @@
 	      console.log('moving card ', card, ' to bucket ', newTag);
 	      card.tags[0] = newTag;
 	      var nextSelectedState = {};
-
+	      var currentBucketId = this.state.currentBucketId;
 	      var newCard = card;
 	      var nextState = this.state.buckets.cards.map(function (oldCard) {
 	        if (oldCard === card.id) {
@@ -40644,61 +40644,56 @@
 	        nextSelectedState = this.state.selectedBucket;
 	      }
 
-	      console.log('next selected state ', nextSelectedState);
-
-	      // var currentBucket = this.state.selectedBucket.id;
-	      // const nextSelectedBucketState = this.state.selectedBucket.cards.filter((currentCard)=>(currentCard.id !== card.id));
-	      // console.log(this.state.buckets);
-	      //
-	      // const nextBucketState = this.state.buckets.cards.map((bucket)=>{
-	      //   if(bucket.id === newTag){
-	      //     return newCard;
-	      //   }
-	      //   if(bucket.id === currentBucket){
-	      //     bucket.cards = nextSelectedBucketState;
-	      //   }
-	      //   return bucket;
-	      // });
+	      this.props.updateAllGroups(newCard, this.state.currentGroupId, currentBucketId);
 	      this.setState({
 	        buckets: (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $set: nextState } }),
 	        selectedBucket: nextSelectedState
 	      });
 	    }
 	  }, {
+	    key: 'deleteCard',
+	    value: function deleteCard(cardId) {
+	      console.log('deleting ', cardId);
+	      var selectedBucketNextState = this.state.selectedBucket.cards.filter(function (oldCard) {
+	        return oldCard.id !== cardId;
+	      });
+	      var bucketNextState = this.state.buckets.cards.filter(function (oldCard) {
+	        return oldCard.id !== cardId;
+	      });
+
+	      this.setState({
+	        buckets: (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $set: bucketNextState } }),
+	        selectedBucket: (0, _reactAddonsUpdate2.default)(this.state.selectedBucket, { cards: { $set: selectedBucketNextState } })
+	      });
+	    }
+	  }, {
 	    key: 'initializeBucket',
 	    value: function initializeBucket(buckets) {
 	      console.log('initializing buckets ', buckets);
-
 	      var currentBucket = buckets.currentGroup;
 	      var selected = currentBucket ? currentBucket.buckets : { cards: [] };
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
 	      var allBuckets = currentBucket ? currentBucket.buckets : null;
 	      var currentGroup = currentBucket ? buckets.currentGroup.id : 0;
-
+	      console.log('intializing current group ', currentGroup);
 	      this.setState({
 	        bucketList: listOfBuckets,
 	        buckets: allBuckets,
 	        selectedBucket: selected,
 	        allGroups: buckets.allGroups,
-	        currentGroupId: currentGroup
+	        currentGroupId: currentGroup,
+	        currentBucketId: 0
 	      });
 	    }
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name) {
 	      if (name != "") {
-	        var newBucket = { id: _uuid2.default.v4(), title: name, cards: [] };
+	        var newBucket = { id: _uuid2.default.v4(), title: name };
 	        var newBucketList = [].concat(_toConsumableArray(this.state.bucketList), [newBucket]);
-	        var newBuckets = [].concat(_toConsumableArray(this.state.buckets), [newBucket]);
 	        this.setState({
-	          bucketList: newBucketList,
-	          selectedBucket: newBucket,
-	          buckets: newBuckets
+	          bucketList: newBucketList
 	        });
-
-	        // not sure if i can do this; trying to keep the newly created buckets in the groups, 
-	        // so that they still show up when switching between groups
-	        this.props.currentGroup.buckets = newBuckets;
 	      }
 	    }
 	  }]);
@@ -40957,15 +40952,11 @@
 	              rootClose: true,
 	              placement: 'right',
 	              overlay: createBucketPopover },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { className: 'add-to-bucket-btn' },
-	              '+'
-	            )
+	            _react2.default.createElement('i', { className: 'fa fa-lg fa-plus-square add-to-bucket-btn', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
 	            'h5',
-	            { style: { color: 'black', marginBottom: 10, marginTop: 0 } },
+	            { className: 'card-title', style: { marginBottom: 10, marginTop: 0 } },
 	            this.props.ItemEntry.name
 	          ),
 	          _react2.default.createElement(
@@ -40985,15 +40976,17 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'search-entry-right' },
+	            _react2.default.createElement('img', { src: this.props.ItemEntry.rating_img_url, width: '100' }),
 	            _react2.default.createElement(
 	              'p',
 	              null,
-	              _react2.default.createElement(
-	                'span',
-	                { style: { fontWeight: "bold" } },
-	                'Rating: '
-	              ),
-	              this.props.ItemEntry.rating
+	              'Reviews: ',
+	              this.props.ItemEntry.review_count
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              this.props.ItemEntry.location.city
 	            )
 	          )
 	        )
@@ -41198,7 +41191,7 @@
 	      var _this2 = this;
 
 	      var list = this.props.bucketList;
-	      console.log("list is: ", list);
+	      console.log("selected bucket: ", this.props.selectedBucket);
 	      var createBucketPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        {
@@ -41220,8 +41213,8 @@
 	        'div',
 	        { className: 'sidebar' },
 	        list.map(function (bucket) {
-	          return _react2.default.createElement(_Buckets2.default, {
-	            changeStateBucket: _this2.props.changeStateBucket,
+	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
+
 	            key: bucket.id,
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
@@ -41232,16 +41225,10 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            {
-	              trigger: 'click',
-	              rootClose: true,
-	              placement: 'top',
-	              overlay: createBucketPopover },
+	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: createBucketPopover },
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              {
-	                onClick: this.handleClick,
-	                id: 'create-bucket-button' },
+	              { onClick: this.handleClick, id: 'create-bucket-button' },
 	              'Create New Bucket'
 	            )
 	          )
@@ -41362,22 +41349,48 @@
 	            'p',
 	            { key: tag.id, onClick: function onClick() {
 	                _this2.props.moveCard(card, tag.id);
+	                _this2.refs.overlay.hide();
 	              },
 	              className: 'tag-list' },
 	            tag.title
 	          );
 	        })
 	      );
+	      var deletePopover = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        { id: 'popover-trigger-click-root-close', title: 'Are you sure?' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { bsStyle: 'danger', style: { marginLeft: 10 }, bsSize: 'xsmall', onClick: function onClick() {
+	              _this2.props.deleteCard(card.id);
+	              _this2.refs.overlay.hide();
+	            } },
+	          'Yes'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { style: { float: "right", marginRight: 10 }, bsSize: 'xsmall', onClick: function onClick() {
+	              _this2.props.deleteCard();
+	              _this2.refs.overlay.hide();
+	            } },
+	          ' No'
+	        )
+	      );
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'card-style' },
 	        _react2.default.createElement(
-	          _reactBootstrap.OverlayTrigger,
-	          { trigger: 'click', rootClose: true, placement: 'bottom', overlay: movePopover },
+	          'div',
+	          { className: 'edit-card-controls' },
 	          _react2.default.createElement(
-	            'p',
-	            { className: 'p-no-margin', style: editStyles },
-	            'Move'
+	            _reactBootstrap.OverlayTrigger,
+	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'bottom', overlay: deletePopover },
+	            _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true' })
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.OverlayTrigger,
+	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'bottom', overlay: movePopover },
+	            _react2.default.createElement('i', { className: 'fa fa-pencil-square-o', 'aria-hidden': 'true' })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -41385,7 +41398,7 @@
 	          { className: 'card-header center-block' },
 	          _react2.default.createElement(
 	            'h4',
-	            { style: { margin: 0 } },
+	            { className: 'card-title', style: { margin: 0 } },
 	            card.title
 	          )
 	        ),
@@ -41426,16 +41439,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Cards;
-
-
-	var editStyles = {
-	  color: '#337ab7',
-	  display: 'inline-block',
-	  float: 'right',
-	  right: 0,
-	  cursor: 'pointer',
-	  margin: 0
-	};
 
 /***/ },
 /* 433 */

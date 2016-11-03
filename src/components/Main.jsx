@@ -28,6 +28,7 @@ export default class Component extends React.Component {
     this.addCard = this.addCard.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.moveCard = this.moveCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   componentWillMount(){
@@ -69,6 +70,7 @@ export default class Component extends React.Component {
                     activities = {cardEntry}
                     moveCard={this.moveCard}
                     bucketTags = {this.state.bucketList}
+                    deleteCard={this.deleteCard}
                     />
               )})}
           <div className='add-btn' onClick = {this.showModal}>+</div>
@@ -133,7 +135,7 @@ export default class Component extends React.Component {
     console.log('moving card ', card , ' to bucket ', newTag);
     card.tags[0] = newTag;
     var nextSelectedState ={};
-
+    const currentBucketId = this.state.currentBucketId
     const newCard = card;
     const nextState = this.state.buckets.cards.map((oldCard) => {
       if(oldCard === card.id){
@@ -151,29 +153,39 @@ export default class Component extends React.Component {
       nextSelectedState = this.state.selectedBucket;
     }
 
-    console.log('next selected state ', nextSelectedState);
-
+    this.props.updateAllGroups(newCard, this.state.currentGroupId, currentBucketId);
     this.setState({
       buckets: update(this.state.buckets, {cards: {$set: nextState}}),
       selectedBucket: nextSelectedState
     });
   }
 
+  deleteCard(cardId){
+    console.log('deleting ', cardId);
+    const selectedBucketNextState = this.state.selectedBucket.cards.filter((oldCard)=>(oldCard.id!==cardId));
+    const bucketNextState = this.state.buckets.cards.filter((oldCard)=>(oldCard.id!==cardId));
+
+    this.setState({
+      buckets: update(this.state.buckets, {cards: {$set: bucketNextState}}),
+      selectedBucket: update(this.state.selectedBucket, {cards: {$set: selectedBucketNextState}})
+    })
+  }
+
   initializeBucket(buckets){
     console.log('initializing buckets ', buckets);
-
     const currentBucket = buckets.currentGroup;
     const selected = currentBucket ? currentBucket.buckets : {cards:[]}
     const listOfBuckets = currentBucket ? currentBucket.tags : []
     const allBuckets = currentBucket ? currentBucket.buckets : null;
     const currentGroup = currentBucket ? buckets.currentGroup.id : 0;
-
+    console.log('intializing current group ', currentGroup)
     this.setState({
       bucketList: listOfBuckets,
       buckets: allBuckets,
       selectedBucket: selected,
       allGroups: buckets.allGroups,
-      currentGroupId: currentGroup
+      currentGroupId: currentGroup,
+      currentBucketId: 0
     });
   }
 
@@ -181,12 +193,9 @@ export default class Component extends React.Component {
     if (name != "") {
       var newBucket = {id: uuid.v4(), title: name};
       var newBucketList = [...this.state.bucketList, newBucket];
-
       this.setState({
         bucketList: newBucketList
       });
-
-      //this.props.currentGroup.buckets = newBuckets;
     }
   }
 

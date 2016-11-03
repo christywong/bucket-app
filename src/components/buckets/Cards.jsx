@@ -1,5 +1,5 @@
 import React from 'react';
-import {OverlayTrigger, Popover} from 'react-bootstrap';
+import {OverlayTrigger, Popover, Button} from 'react-bootstrap';
 
 export default class Cards extends React.Component{
   constructor(props){
@@ -12,20 +12,37 @@ export default class Cards extends React.Component{
         {this.props.bucketTags.map((tag) => (
           <p key={tag.id} onClick = {()=>{
               this.props.moveCard(card, tag.id);
+              this.refs.overlay.hide();
             }}
               className="tag-list">{tag.title}</p>
         ))}
       </Popover>
-    )
+    );
+    const deletePopover = (
+      <Popover id="popover-trigger-click-root-close" title="Are you sure?">
+        <Button bsStyle="danger" style={{marginLeft: 10}} bsSize="xsmall" onClick = {()=>{
+            this.props.deleteCard(card.id);
+            this.refs.overlay.hide();
+          }}>Yes</Button>
+        <Button style={{float:"right", marginRight: 10}} bsSize="xsmall" onClick = {()=>{
+            this.props.deleteCard();
+            this.refs.overlay.hide();
+          }}> No</Button>
+      </Popover>
+    );
     return(
       <div className="card-style">
-
-        <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={movePopover}>
-          <p className='p-no-margin'style={editStyles}>Move</p>
-        </OverlayTrigger>
+        <div className="edit-card-controls">
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="bottom" overlay={deletePopover}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+          </OverlayTrigger>
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="bottom" overlay={movePopover}>
+            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </OverlayTrigger>
+        </div>
 
         <div className="card-header center-block">
-          <h4 style={{margin: 0}}>{card.title}</h4>
+          <h4 className="card-title" style={{margin: 0}}>{card.title}</h4>
         </div>
 
         <div className="card-left">
@@ -44,13 +61,4 @@ export default class Cards extends React.Component{
       </div>
     );
   }
-}
-
-var editStyles = {
-  color: '#337ab7',
-  display: 'inline-block',
-  float: 'right',
-  right: 0,
-  cursor: 'pointer',
-  margin: 0
 }
