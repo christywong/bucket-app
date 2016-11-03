@@ -126,5 +126,15 @@ export default class App extends React.Component{
       });
     }
   }
+  addMember(name){
+    console.log(name);
+    if (name != ""){
+      var newMember ={name};
+      var newMemberArray = [...this.state.data.currentGroup.members, newMember]
+      this.setState({
+        members: newMemberArray
+      });
+    }
+  }
 
 }

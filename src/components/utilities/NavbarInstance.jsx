@@ -53,7 +53,7 @@ export default class NavbarInstance extends React.Component {
 
   handleSubmit(e) {
     this.refs.overlayMember.hide();
-    alert('the state value is: ' + this.state.value);
+
   }
 
   handleSubmitGroup(e) {
@@ -64,6 +64,8 @@ export default class NavbarInstance extends React.Component {
 
   handleClickBucket(e) {
     this.setState({target: e.target, show: !this.state.show});
+    this.refs.overlayBucket.hide();
+
   }
 
   handleChangeBucket(e) {
@@ -80,6 +82,7 @@ export default class NavbarInstance extends React.Component {
   render() {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
     const currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
+
     const createGroupPopover = (
       <Popover
         id="popover-trigger-click-root-close"
