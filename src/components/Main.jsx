@@ -5,6 +5,8 @@ import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';
 import uuid from 'uuid';
 import update from 'react-addons-update';
+var Menu = require('react-burger-menu').push;
+import Bucket from './buckets/Buckets';
 
 export default class Component extends React.Component {
 
@@ -42,16 +44,24 @@ export default class Component extends React.Component {
     const cardArray = this.state.selectedBucket.cards;
     console.log('card array ', cardArray);
     const closeModal = () => this.setState({ showModal: false });
-
+    // <Sidebar
+    //   selectedBucket = {this.state.currentBucketId}
+    //   bucketList = {this.state.bucketList}
+    //   changeStateBucket = {this.changeState}
+    //   addBucket = {this.addBucket} />
     return (
-      <div>
-        <Sidebar
-          selectedBucket = {this.state.currentBucketId}
-          bucketList = {this.state.bucketList}
-          changeStateBucket = {this.changeState}
-          addBucket = {this.addBucket} />
-
-        <div className="main-container">
+      <div id="outer-container">
+        <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } >
+          {this.state.bucketList.map ( (bucket) => { return(
+            <Bucket
+              changeStateBucket = {this.changeState}
+              key = {bucket.id}
+              bucketId = {bucket.id}
+              bucketName = {bucket.title}
+              active = {this.state.currentBucketId === bucket.id ? "active" : null} />
+          )})}
+        </Menu>
+        <div className="main-container" id="page-wrap">
           {
             this.state.showModal ?
             <AddModal
@@ -63,16 +73,18 @@ export default class Component extends React.Component {
             : null
           }
 
-              { cardArray.map((cardEntry) => { return(
-                  <Cards
-                    key = {cardEntry.id.toString()}
-                    activities = {cardEntry}
-                    moveCard={this.moveCard}
-                    bucketTags = {this.state.bucketList}
-                    deleteCard={this.deleteCard}
-                    />
-              )})}
-          <div className='add-btn' onClick = {this.showModal}>+</div>
+          { cardArray.map((cardEntry) => { return(
+            <Cards
+              key = {cardEntry.id.toString()}
+              activities = {cardEntry}
+              moveCard={this.moveCard}
+              bucketTags = {this.state.bucketList}
+              deleteCard={this.deleteCard}
+              />
+          )})}
+          <div
+            className='add-btn'
+            onClick = {this.showModal}>+</div>
         </div>
       </div>
     )

@@ -175,7 +175,7 @@ export default class NavbarInstance extends React.Component {
       <Navbar style={{zIndex: 500}} inverse fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">
+            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22}}>
               {currentGroupTitle}
             </a>
           </Navbar.Brand>
