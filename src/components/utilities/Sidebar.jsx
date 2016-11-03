@@ -31,6 +31,7 @@ export default class Sidebar extends React.Component{
     //this.setState({show: false});
     this.refs.overlay.hide();
     this.props.addBucket(this.state.value);
+    this.setState({value: ''});
   }
 
   render(){

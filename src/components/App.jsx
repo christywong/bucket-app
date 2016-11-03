@@ -21,6 +21,7 @@ export default class App extends React.Component{
     this.changeGroup = this.changeGroup.bind(this);
     this.addCardToGroup = this.addCardToGroup.bind(this);
     this.addBucketToGroup = this.addBucketToGroup.bind(this);
+    this.addGroup = this.addGroup.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +34,7 @@ export default class App extends React.Component{
         <NavbarInstance
           groups = {this.state.data.groups}
           changeGroup = {this.changeGroup}
+          addGroup = {this.addGroup}
           />
         <Main
           currentGroup =
@@ -90,6 +92,16 @@ export default class App extends React.Component{
 
   addBucketToGroup(bucket, currentGroupId){
 
+  }
+
+  addGroup(name) {
+    if (name != "") {
+      var groupToAdd = {id: uuid.v4(), title: name};
+      var newGroupList = [...this.state.data.groups, groupToAdd];
+      this.setState({
+        data: update(this.state.data, {groups: {$set: newGroupList}})
+      });
+    }
   }
 
 }
