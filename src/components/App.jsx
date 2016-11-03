@@ -41,6 +41,7 @@ export default class App extends React.Component{
           addGroup = {this.addGroup}
           addBucket = {this.addBucket}
           addMember = {this.addMember}
+
           />
         <Main
           currentGroup =
@@ -132,7 +133,10 @@ export default class App extends React.Component{
   addMember(name, currentGroupId){
     console.log(name);
     if (name != ""){
-      var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+      var newMember = {
+        id: uuid.v4(),
+        name: name.charAt(0).toUpperCase() + name.slice(1)
+      }
       var newMemberArray = [...this.state.data.currentGroup.members, newMember];
       const nextState = update(this.state.data.currentGroup, {members: {$set: newMemberArray}});
 

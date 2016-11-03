@@ -155,6 +155,7 @@
 	          addGroup: this.addGroup,
 	          addBucket: this.addBucket,
 	          addMember: this.addMember
+
 	        }),
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
@@ -258,7 +259,10 @@
 	    value: function addMember(name, currentGroupId) {
 	      console.log(name);
 	      if (name != "") {
-	        var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+	        var newMember = {
+	          id: _uuid2.default.v4(),
+	          name: name.charAt(0).toUpperCase() + name.slice(1)
+	        };
 	        var newMemberArray = [].concat(_toConsumableArray(this.state.data.currentGroup.members), [newMember]);
 	        var nextState = (0, _reactAddonsUpdate2.default)(this.state.data.currentGroup, { members: { $set: newMemberArray } });
 
@@ -41310,7 +41314,7 @@
 	          _reactBootstrap.Button,
 	          { bsStyle: 'danger', style: { marginLeft: 10 }, bsSize: 'xsmall', onClick: function onClick() {
 	              _this2.props.deleteCard(card.id);
-	              _this2.refs.overlay.hide();
+	              _this2.refs.deleteOverlay.hide();
 	            } },
 	          'Yes'
 	        ),
@@ -41318,7 +41322,7 @@
 	          _reactBootstrap.Button,
 	          { style: { float: "right", marginRight: 10 }, bsSize: 'xsmall', onClick: function onClick() {
 	              _this2.props.deleteCard();
-	              _this2.refs.overlay.hide();
+	              _this2.refs.deleteOverlay.hide();
 	            } },
 	          ' No'
 	        )
@@ -41331,7 +41335,7 @@
 	          { className: 'edit-card-controls' },
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
+	            { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	            _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
@@ -41797,7 +41801,6 @@
 	    //Bind our add member listeners
 	    _this.handleSubmitAddMember = _this.handleSubmitAddMember.bind(_this);
 	    _this.handleChangeAddMember = _this.handleChangeAddMember.bind(_this);
-	    _this.handleClickAddMember = _this.handleClickAddMember.bind(_this);
 	    return _this;
 	  }
 
@@ -41942,6 +41945,22 @@
 	          onClick: this.handleSubmitBucket })
 	      );
 
+	      var showMembersPopover = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        { onClick: function onClick() {
+	            _this2.refs.overlayMember.hide();
+	          } },
+	        this.props.currentGroup.members.map(function (member) {
+	          return _react2.default.createElement(
+	            'p',
+	            { key: member.id, onClick: function onClick() {
+	                _this2.refs.overlayMember.hide();
+	              } },
+	            member.name
+	          );
+	        })
+	      );
+
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        { style: { zIndex: 500 }, inverse: true, fluid: true },
@@ -42040,6 +42059,21 @@
 	                      onClick: this.handlePopoverClick,
 	                      id: 'create-group-button' },
 	                    'Create New Group'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.OverlayTrigger,
+	                  {
+	                    id: 'popover-trigger-click-root-close',
+	                    ref: 'overlayMember',
+	                    trigger: 'click',
+	                    rootClose: true,
+	                    placement: 'left',
+	                    overlay: showMembersPopover },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    'Show Members'
 	                  )
 	                )
 	              )

@@ -29,7 +29,6 @@ export default class NavbarInstance extends React.Component {
     //Bind our add member listeners
     this.handleSubmitAddMember = this.handleSubmitAddMember.bind(this);
     this.handleChangeAddMember = this.handleChangeAddMember.bind(this);
-    this.handleClickAddMember = this.handleClickAddMember.bind(this);
   }
 
   handleDropdownClick(e) {
@@ -160,6 +159,18 @@ export default class NavbarInstance extends React.Component {
       </Popover>
     );
 
+    const showMembersPopover = (
+      <Popover onClick = {()=>{
+          this.refs.overlayMember.hide();
+        }}>
+        {this.props.currentGroup.members.map((member) => (
+          <p key={member.id} onClick = {()=>{
+              this.refs.overlayMember.hide();
+            }}>{member.name}</p>
+        ))}
+      </Popover>
+    );
+
     return(
       <Navbar style={{zIndex: 500}} inverse fluid>
         <Navbar.Header>
@@ -231,8 +242,22 @@ export default class NavbarInstance extends React.Component {
                     Create New Group
                   </MenuItem>
                 </OverlayTrigger>
+
+                <OverlayTrigger
+                  id="popover-trigger-click-root-close"
+                  ref="overlayMember"
+                  trigger="click"
+                  rootClose
+                  placement="left"
+                  overlay={showMembersPopover}>
+                  <MenuItem>
+                    Show Members
+                  </MenuItem>
+                </OverlayTrigger>
+
               </ButtonToolbar>
             </NavDropdown>
+
             <NavDropdown
               eventKey={2}
               title="Settings"

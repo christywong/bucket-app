@@ -22,18 +22,18 @@ export default class Cards extends React.Component{
       <Popover id="popover-trigger-click-root-close" title="Are you sure?">
         <Button bsStyle="danger" style={{marginLeft: 10}} bsSize="xsmall" onClick = {()=>{
             this.props.deleteCard(card.id);
-            this.refs.overlay.hide();
+            this.refs.deleteOverlay.hide();
           }}>Yes</Button>
         <Button style={{float:"right", marginRight: 10}} bsSize="xsmall" onClick = {()=>{
             this.props.deleteCard();
-            this.refs.overlay.hide();
+            this.refs.deleteOverlay.hide();
           }}> No</Button>
       </Popover>
     );
     return(
       <div className="card-style">
         <div className="edit-card-controls">
-          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
+          <OverlayTrigger ref="deleteOverlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
             <i className="fa fa-trash-o" aria-hidden="true"></i>
           </OverlayTrigger>
           <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={movePopover}>
