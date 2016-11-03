@@ -10,6 +10,7 @@
     "express3-handlebars": "^0.5.2",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
+    "react-burger-menu": "^1.10.8",
     "react-fontawesome": "^1.2.0",
     "uuid": "^2.0.3",
     "yelp": "^1.0.1"
