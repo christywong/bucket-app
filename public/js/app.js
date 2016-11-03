@@ -86,15 +86,23 @@
 
 	var _Main2 = _interopRequireDefault(_Main);
 
+<<<<<<< HEAD
 	var _uuid = __webpack_require__(427);
+=======
+	var _uuid = __webpack_require__(433);
+>>>>>>> joey-branch
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _reactAddonsUpdate = __webpack_require__(429);
+	var _reactAddonsUpdate = __webpack_require__(435);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
+<<<<<<< HEAD
 	var _NavbarInstance = __webpack_require__(431);
+=======
+	var _NavbarInstance = __webpack_require__(437);
+>>>>>>> joey-branch
 
 	var _NavbarInstance2 = _interopRequireDefault(_NavbarInstance);
 
@@ -106,7 +114,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+<<<<<<< HEAD
 	var styles = __webpack_require__(432);
+=======
+	var styles = __webpack_require__(438);
+>>>>>>> joey-branch
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -10378,6 +10390,7 @@
 
 	      if (!listenerBank[registrationName][key]) {
 	        continue;
+<<<<<<< HEAD
 	      }
 
 	      var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
@@ -10385,6 +10398,15 @@
 	        PluginModule.willDeleteListener(inst, registrationName);
 	      }
 
+=======
+	      }
+
+	      var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
+	      if (PluginModule && PluginModule.willDeleteListener) {
+	        PluginModule.willDeleteListener(inst, registrationName);
+	      }
+
+>>>>>>> joey-branch
 	      delete listenerBank[registrationName][key];
 	    }
 	  },
@@ -39457,6 +39479,7 @@
 	exports.__esModule = true;
 
 	var _extends2 = __webpack_require__(38);
+<<<<<<< HEAD
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
@@ -39476,6 +39499,27 @@
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+=======
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _objectWithoutProperties2 = __webpack_require__(122);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+	var _classCallCheck2 = __webpack_require__(76);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(77);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(113);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+>>>>>>> joey-branch
 	var _classnames = __webpack_require__(123);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -40340,6 +40384,7 @@
 	var _classCallCheck2 = __webpack_require__(76);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+<<<<<<< HEAD
 
 	var _possibleConstructorReturn2 = __webpack_require__(77);
 
@@ -40787,220 +40832,133 @@
 	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
 	    nsecs = 0;
 	  }
+=======
+>>>>>>> joey-branch
 
-	  // Per 4.2.1.2 Throw error if too many uuids are requested
-	  if (nsecs >= 10000) {
-	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+	var _possibleConstructorReturn2 = __webpack_require__(77);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(113);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(123);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _bootstrapUtils = __webpack_require__(124);
+
+	var _StyleConfig = __webpack_require__(130);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var Well = function (_React$Component) {
+	  (0, _inherits3['default'])(Well, _React$Component);
+
+	  function Well() {
+	    (0, _classCallCheck3['default'])(this, Well);
+	    return (0, _possibleConstructorReturn3['default'])(this, _React$Component.apply(this, arguments));
 	  }
 
-	  _lastMSecs = msecs;
-	  _lastNSecs = nsecs;
-	  _clockseq = clockseq;
+	  Well.prototype.render = function render() {
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-	  msecs += 12219292800000;
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
 
-	  // `time_low`
-	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-	  b[i++] = tl >>> 24 & 0xff;
-	  b[i++] = tl >>> 16 & 0xff;
-	  b[i++] = tl >>> 8 & 0xff;
-	  b[i++] = tl & 0xff;
-
-	  // `time_mid`
-	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
-	  b[i++] = tmh >>> 8 & 0xff;
-	  b[i++] = tmh & 0xff;
-
-	  // `time_high_and_version`
-	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-	  b[i++] = tmh >>> 16 & 0xff;
-
-	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-	  b[i++] = clockseq >>> 8 | 0x80;
-
-	  // `clock_seq_low`
-	  b[i++] = clockseq & 0xff;
-
-	  // `node`
-	  var node = options.node || _nodeId;
-	  for (var n = 0; n < 6; n++) {
-	    b[i + n] = node[n];
-	  }
-
-	  return buf ? buf : unparse(b);
-	}
-
-	// **`v4()` - Generate random UUID**
-
-	// See https://github.com/broofa/node-uuid for API details
-	function v4(options, buf, offset) {
-	  // Deprecated - 'format' argument, as supported in v1.2
-	  var i = buf && offset || 0;
-
-	  if (typeof(options) == 'string') {
-	    buf = options == 'binary' ? new Array(16) : null;
-	    options = null;
-	  }
-	  options = options || {};
-
-	  var rnds = options.random || (options.rng || _rng)();
-
-	  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-	  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-	  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-	  // Copy bytes to buffer, if provided
-	  if (buf) {
-	    for (var ii = 0; ii < 16; ii++) {
-	      buf[i + ii] = rnds[ii];
-	    }
-	  }
-
-	  return buf || unparse(rnds);
-	}
-
-	// Export public API
-	var uuid = v4;
-	uuid.v1 = v1;
-	uuid.v4 = v4;
-	uuid.parse = parse;
-	uuid.unparse = unparse;
-
-	module.exports = uuid;
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
 
 
-/***/ },
-/* 428 */
-/***/ function(module, exports) {
+	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
-	/* WEBPACK VAR INJECTION */(function(global) {
-	var rng;
-
-	var crypto = global.crypto || global.msCrypto; // for IE 11
-	if (crypto && crypto.getRandomValues) {
-	  // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-	  // Moderately fast, high quality
-	  var _rnds8 = new Uint8Array(16);
-	  rng = function whatwgRNG() {
-	    crypto.getRandomValues(_rnds8);
-	    return _rnds8;
+	    return _react2['default'].createElement('div', (0, _extends3['default'])({}, elementProps, {
+	      className: (0, _classnames2['default'])(className, classes)
+	    }));
 	  };
-	}
 
-	if (!rng) {
-	  // Math.random()-based (RNG)
-	  //
-	  // If all else fails, use Math.random().  It's fast, but is of unspecified
-	  // quality.
-	  var  _rnds = new Array(16);
-	  rng = function() {
-	    for (var i = 0, r; i < 16; i++) {
-	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-	      _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-	    }
+	  return Well;
+	}(_react2['default'].Component);
 
-	    return _rnds;
-	  };
-	}
-
-	module.exports = rng;
-
-
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	exports['default'] = (0, _bootstrapUtils.bsClass)('well', (0, _bootstrapUtils.bsSizes)([_StyleConfig.Size.LARGE, _StyleConfig.Size.SMALL], Well));
+	module.exports = exports['default'];
 
 /***/ },
-/* 429 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(430);
-
-/***/ },
-/* 430 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule update
-	 */
-
-	/* global hasOwnProperty:true */
 
 	'use strict';
 
-	var _prodInvariant = __webpack_require__(8),
-	    _assign = __webpack_require__(5);
+	exports.__esModule = true;
+	exports.ValidComponentChildren = exports.createChainedFunction = exports.bootstrapUtils = undefined;
 
-	var keyOf = __webpack_require__(26);
-	var invariant = __webpack_require__(9);
-	var hasOwnProperty = {}.hasOwnProperty;
+	var _bootstrapUtils2 = __webpack_require__(124);
 
-	function shallowCopy(x) {
-	  if (Array.isArray(x)) {
-	    return x.concat();
-	  } else if (x && typeof x === 'object') {
-	    return _assign(new x.constructor(), x);
-	  } else {
-	    return x;
-	  }
-	}
+	var _bootstrapUtils = _interopRequireWildcard(_bootstrapUtils2);
 
-	var COMMAND_PUSH = keyOf({ $push: null });
-	var COMMAND_UNSHIFT = keyOf({ $unshift: null });
-	var COMMAND_SPLICE = keyOf({ $splice: null });
-	var COMMAND_SET = keyOf({ $set: null });
-	var COMMAND_MERGE = keyOf({ $merge: null });
-	var COMMAND_APPLY = keyOf({ $apply: null });
+	var _createChainedFunction2 = __webpack_require__(131);
 
-	var ALL_COMMANDS_LIST = [COMMAND_PUSH, COMMAND_UNSHIFT, COMMAND_SPLICE, COMMAND_SET, COMMAND_MERGE, COMMAND_APPLY];
+	var _createChainedFunction3 = _interopRequireDefault(_createChainedFunction2);
 
-	var ALL_COMMANDS_SET = {};
+	var _ValidComponentChildren2 = __webpack_require__(132);
 
-	ALL_COMMANDS_LIST.forEach(function (command) {
-	  ALL_COMMANDS_SET[command] = true;
+	var _ValidComponentChildren3 = _interopRequireDefault(_ValidComponentChildren2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	exports.bootstrapUtils = _bootstrapUtils;
+	exports.createChainedFunction = _createChainedFunction3['default'];
+	exports.ValidComponentChildren = _ValidComponentChildren3['default'];
+
+/***/ },
+/* 426 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
 
-	function invariantArrayCase(value, spec, command) {
-	  !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected target of %s to be an array; got %s.', command, value) : _prodInvariant('1', command, value) : void 0;
-	  var specValue = spec[command];
-	  !Array.isArray(specValue) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array; got %s. Did you forget to wrap your parameter in an array?', command, specValue) : _prodInvariant('2', command, specValue) : void 0;
-	}
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	/**
-	 * Returns a updated shallow copy of an object without mutating the original.
-	 * See https://facebook.github.io/react/docs/update.html for details.
-	 */
-	function update(value, spec) {
-	  !(typeof spec === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): You provided a key path to update() that did not contain one of %s. Did you forget to include {%s: ...}?', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : _prodInvariant('3', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : void 0;
+	var _react = __webpack_require__(2);
 
-	  if (hasOwnProperty.call(spec, COMMAND_SET)) {
-	    !(Object.keys(spec).length === 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot have more than one key in an object with %s', COMMAND_SET) : _prodInvariant('4', COMMAND_SET) : void 0;
+	var _react2 = _interopRequireDefault(_react);
 
-	    return spec[COMMAND_SET];
-	  }
+	var _AddBucketModal = __webpack_require__(427);
 
-	  var nextValue = shallowCopy(value);
+	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
-	  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
-	    var mergeObj = spec[COMMAND_MERGE];
-	    !(mergeObj && typeof mergeObj === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a spec of type \'object\'; got %s', COMMAND_MERGE, mergeObj) : _prodInvariant('5', COMMAND_MERGE, mergeObj) : void 0;
-	    !(nextValue && typeof nextValue === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a target of type \'object\'; got %s', COMMAND_MERGE, nextValue) : _prodInvariant('6', COMMAND_MERGE, nextValue) : void 0;
-	    _assign(nextValue, spec[COMMAND_MERGE]);
-	  }
+	var _reactBootstrap = __webpack_require__(36);
 
-	  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
-	    invariantArrayCase(value, spec, COMMAND_PUSH);
-	    spec[COMMAND_PUSH].forEach(function (item) {
-	      nextValue.push(item);
-	    });
-	  }
+	var _Sidebar = __webpack_require__(430);
 
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+	var _Cards = __webpack_require__(432);
+
+	var _Cards2 = _interopRequireDefault(_Cards);
+
+	var _uuid = __webpack_require__(433);
+
+	var _uuid2 = _interopRequireDefault(_uuid);
+
+	var _reactAddonsUpdate = __webpack_require__(435);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+<<<<<<< HEAD
 	  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
 	    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
 	    spec[COMMAND_UNSHIFT].forEach(function (item) {
@@ -41015,13 +40973,57 @@
 	      !Array.isArray(args) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
 	      nextValue.splice.apply(nextValue, args);
 	    });
+=======
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Component = function (_React$Component) {
+	  _inherits(Component, _React$Component);
+
+	  function Component(props) {
+	    _classCallCheck(this, Component);
+
+	    var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this, props));
+
+	    _this.state = {
+	      showModal: false,
+	      bucketList: [],
+	      buckets: [],
+	      selectedBucket: {}
+	    };
+
+	    //Bind our functions to the current scope
+	    _this.showModal = _this.showModal.bind(_this);
+	    _this.closeModal = _this.closeModal.bind(_this);
+	    _this.changeState = _this.changeState.bind(_this);
+	    _this.addCard = _this.addCard.bind(_this);
+	    _this.addBucket = _this.addBucket.bind(_this);
+	    _this.moveCard = _this.moveCard.bind(_this);
+	    return _this;
+>>>>>>> joey-branch
 	  }
 
-	  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
-	    !(typeof spec[COMMAND_APPLY] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be a function; got %s.', COMMAND_APPLY, spec[COMMAND_APPLY]) : _prodInvariant('9', COMMAND_APPLY, spec[COMMAND_APPLY]) : void 0;
-	    nextValue = spec[COMMAND_APPLY](nextValue);
-	  }
+	  _createClass(Component, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.initializeBucket(this.props.currentGroup.buckets);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.initializeBucket(nextProps.currentGroup.buckets);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 
+<<<<<<< HEAD
 	  for (var k in spec) {
 	    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
 	      nextValue[k] = update(value[k], spec[k]);
@@ -41126,13 +41128,39 @@
 	        _react2.default.createElement('input', { type: 'text', id: 'group-name-input', placeholder: 'Group Name', onChange: this.handleChange }),
 	        _react2.default.createElement('input', { type: 'submit', id: 'submit-new-group', value: 'Create', onClick: this.handleSubmit })
 	      );
+=======
+	      var cardArray = this.state.selectedBucket.cards;
+	      var selectedBucketId = this.state.selectedBucket.id;
+	      var closeModal = function closeModal() {
+	        return _this2.setState({ showModal: false });
+	      };
+>>>>>>> joey-branch
 
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        { style: { zIndex: 500 }, inverse: true, fluid: true },
 	        _react2.default.createElement(
+<<<<<<< HEAD
 	          _reactBootstrap.Navbar.Header,
 	          null,
+=======
+	          'div',
+	          { className: 'main-container' },
+	          this.state.showModal ? _react2.default.createElement(_AddBucketModal2.default, {
+	            addCard: this.addCard,
+	            close: this.closeModal,
+	            addBucket: this.createBucket,
+	            bucketTags: this.state.bucketList
+	          }) : null,
+	          cardArray.map(function (cardEntry) {
+	            return _react2.default.createElement(_Cards2.default, {
+	              key: cardEntry.id.toString(),
+	              activities: cardEntry,
+	              moveCard: _this2.moveCard,
+	              bucketTags: _this2.state.bucketList
+	            });
+	          }),
+>>>>>>> joey-branch
 	          _react2.default.createElement(
 	            _reactBootstrap.Navbar.Brand,
 	            null,
@@ -41204,6 +41232,7 @@
 	        )
 	      );
 	    }
+<<<<<<< HEAD
 	  }]);
 
 	  return NavbarInstance;
@@ -41214,14 +41243,139 @@
 /***/ },
 /* 432 */
 /***/ function(module, exports) {
+=======
 
-	// removed by extract-text-webpack-plugin
+	    //Functions for Buckets and stuff
+
+	  }, {
+	    key: 'showModal',
+	    value: function showModal() {
+	      this.setState({ showModal: true });
+	    }
+	  }, {
+	    key: 'closeModal',
+	    value: function closeModal() {
+	      this.setState({ showModal: false });
+	    }
+	  }, {
+	    key: 'changeState',
+	    value: function changeState(bucketId) {
+	      var bucketArray = this.state.buckets;
+	      for (var i = 0; i < bucketArray.length; i++) {
+	        if (bucketArray[i].id == bucketId) {
+	          this.setState({
+	            selectedBucket: bucketArray[i]
+	          });
+	          break;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'addCard',
+	    value: function addCard(card, bucketId) {
+
+	      var newCard = {
+	        id: _uuid2.default.v4(),
+	        yelpId: card.id,
+	        img: card.image_url,
+	        rating: card.rating_img_url,
+	        city: card.location.city,
+	        reviewCount: card.review_count,
+	        title: card.name
+	      };
+
+	      var bucketWithNewCard = [].concat(_toConsumableArray(this.state.selectedBucket.cards), [newCard]);
+	      var updatedGroup = this.state.buckets.map(function (bucket) {
+	        if (bucket.id === bucketId) {
+	          bucket.cards = [].concat(_toConsumableArray(bucket.cards), [newCard]);
+	        }
+	        return bucket;
+	      });
+
+	      this.setState({
+	        buckets: updatedGroup
+	      });
+	    }
+	  }, {
+	    key: 'moveCard',
+	    value: function moveCard(card, nextBucket) {
+	      console.log('moving card ', card, ' to bucket ', nextBucket);
+	      console.log(this.state.buckets[nextBucket]);
+	      var newCard = (0, _reactAddonsUpdate2.default)(this.state.buckets[nextBucket], { cards: { $push: [card] } });
+	      var currentBucket = this.state.selectedBucket.id;
+
+	      var nextSelectedBucketState = this.state.selectedBucket.cards.filter(function (currentCard) {
+	        return currentCard.id !== card.id;
+	      });
+
+	      var nextBucketState = this.state.buckets.map(function (bucket) {
+	        if (bucket.id === nextBucket) {
+	          return newCard;
+	        }
+	        if (bucket.id === currentBucket) {
+	          bucket.cards = nextSelectedBucketState;
+	        }
+	        return bucket;
+	      });
+
+	      console.log('new card ', nextSelectedBucketState);
+
+	      this.setState({
+	        buckets: nextBucketState,
+	        selectedBucket: (0, _reactAddonsUpdate2.default)(this.state.selectedBucket, { cards: { $set: nextSelectedBucketState } })
+	      });
+	      // const movedCard = buckets.filter((bucket) => {
+	      //   if(bucket.id === nextBucket){
+	      //
+	      //   }
+	      // });
+	    }
+	  }, {
+	    key: 'initializeBucket',
+	    value: function initializeBucket(buckets) {
+	      console.log('initializing buckets ', buckets);
+	      var listOfBuckets = buckets.map(function (bucket) {
+	        return { id: bucket["id"], title: bucket["title"] };
+	      });
+
+	      var selectedBucket = buckets.filter(function (bucket) {
+	        return bucket.id === 0;
+	      })[0];
+	      var selected = selectedBucket ? selectedBucket : { cards: [] };
+
+	      this.setState({
+	        bucketList: listOfBuckets,
+	        buckets: buckets,
+	        selectedBucket: selected
+	      });
+	    }
+	  }, {
+	    key: 'addBucket',
+	    value: function addBucket(name) {
+	      if (name != "") {
+	        var newBucket = [].concat(_toConsumableArray(this.state.bucketList), [{ id: _uuid2.default.v4(), title: name }]);
+	        this.setState({
+	          bucketList: newBucket
+	        });
+	      }
+	    }
+	  }]);
+
+	  return Component;
+	}(_react2.default.Component);
+>>>>>>> joey-branch
+
+	exports.default = Component;
 
 /***/ },
+<<<<<<< HEAD
 /* 433 */,
 /* 434 */,
 /* 435 */,
 /* 436 */
+=======
+/* 427 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41238,7 +41392,11 @@
 
 	var _reactBootstrap = __webpack_require__(36);
 
+<<<<<<< HEAD
 	var _SearchEntry = __webpack_require__(437);
+=======
+	var _SearchEntry = __webpack_require__(428);
+>>>>>>> joey-branch
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
@@ -41374,7 +41532,11 @@
 	exports.default = AddModal;
 
 /***/ },
+<<<<<<< HEAD
 /* 437 */
+=======
+/* 428 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41391,7 +41553,11 @@
 
 	var _reactBootstrap = __webpack_require__(36);
 
+<<<<<<< HEAD
 	var _reactFontawesome = __webpack_require__(438);
+=======
+	var _reactFontawesome = __webpack_require__(429);
+>>>>>>> joey-branch
 
 	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
@@ -41492,7 +41658,11 @@
 	exports.default = SearchEntry;
 
 /***/ },
+<<<<<<< HEAD
 /* 438 */
+=======
+/* 429 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41605,7 +41775,11 @@
 	module.exports = exports['default'];
 
 /***/ },
+<<<<<<< HEAD
 /* 439 */
+=======
+/* 430 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41620,13 +41794,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 	var _SearchEntry = __webpack_require__(437);
+=======
+	var _SearchEntry = __webpack_require__(428);
+>>>>>>> joey-branch
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
 	var _reactBootstrap = __webpack_require__(36);
 
+<<<<<<< HEAD
 	var _Buckets = __webpack_require__(440);
+=======
+	var _Buckets = __webpack_require__(431);
+>>>>>>> joey-branch
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
@@ -41680,7 +41862,10 @@
 	      var _this2 = this;
 
 	      var list = this.props.bucketList;
+<<<<<<< HEAD
 	      console.log("list is: ", list);
+=======
+>>>>>>> joey-branch
 	      var createBucketPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        { id: 'popover-trigger-click-root-close', title: 'Create Bucket' },
@@ -41721,7 +41906,11 @@
 	exports.default = Sidebar;
 
 /***/ },
+<<<<<<< HEAD
 /* 440 */
+=======
+/* 431 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41779,7 +41968,11 @@
 	exports.default = Bucket;
 
 /***/ },
+<<<<<<< HEAD
 /* 441 */
+=======
+/* 432 */
+>>>>>>> joey-branch
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41842,7 +42035,11 @@
 	          _react2.default.createElement(
 	            'p',
 	            { className: 'p-no-margin', style: editStyles },
+<<<<<<< HEAD
 	            'Move'
+=======
+	            ' Move Card'
+>>>>>>> joey-branch
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -41891,6 +42088,7 @@
 	}(_react2.default.Component);
 
 	exports.default = Cards;
+<<<<<<< HEAD
 
 
 	var editStyles = {
@@ -41901,6 +42099,591 @@
 	  cursor: 'pointer',
 	  margin: 0
 	};
+=======
+
+
+	var editStyles = {
+	  color: '#337ab7',
+	  display: 'inline-block',
+	  float: 'right',
+	  right: 0,
+	  cursor: 'pointer',
+	  margin: 0
+	};
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//     uuid.js
+	//
+	//     Copyright (c) 2010-2012 Robert Kieffer
+	//     MIT License - http://opensource.org/licenses/mit-license.php
+
+	// Unique ID creation requires a high quality random # generator.  We feature
+	// detect to determine the best RNG source, normalizing to a function that
+	// returns 128-bits of randomness, since that's what's usually required
+	var _rng = __webpack_require__(434);
+
+	// Maps for number <-> hex string conversion
+	var _byteToHex = [];
+	var _hexToByte = {};
+	for (var i = 0; i < 256; i++) {
+	  _byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	  _hexToByte[_byteToHex[i]] = i;
+	}
+
+	// **`parse()` - Parse a UUID into it's component bytes**
+	function parse(s, buf, offset) {
+	  var i = (buf && offset) || 0, ii = 0;
+
+	  buf = buf || [];
+	  s.toLowerCase().replace(/[0-9a-f]{2}/g, function(oct) {
+	    if (ii < 16) { // Don't overflow!
+	      buf[i + ii++] = _hexToByte[oct];
+	    }
+	  });
+
+	  // Zero out remaining bytes if string was short
+	  while (ii < 16) {
+	    buf[i + ii++] = 0;
+	  }
+
+	  return buf;
+	}
+
+	// **`unparse()` - Convert UUID byte array (ala parse()) into a string**
+	function unparse(buf, offset) {
+	  var i = offset || 0, bth = _byteToHex;
+	  return  bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]];
+	}
+
+	// **`v1()` - Generate time-based UUID**
+	//
+	// Inspired by https://github.com/LiosK/UUID.js
+	// and http://docs.python.org/library/uuid.html
+
+	// random #'s we need to init node and clockseq
+	var _seedBytes = _rng();
+
+	// Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+	var _nodeId = [
+	  _seedBytes[0] | 0x01,
+	  _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]
+	];
+
+	// Per 4.2.2, randomize (14 bit) clockseq
+	var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 0x3fff;
+
+	// Previous uuid creation time
+	var _lastMSecs = 0, _lastNSecs = 0;
+
+	// See https://github.com/broofa/node-uuid for API details
+	function v1(options, buf, offset) {
+	  var i = buf && offset || 0;
+	  var b = buf || [];
+
+	  options = options || {};
+
+	  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
+
+	  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+	  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+	  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+	  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+	  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
+
+	  // Per 4.2.1.2, use count of uuid's generated during the current clock
+	  // cycle to simulate higher resolution clock
+	  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
+
+	  // Time since last uuid creation (in msecs)
+	  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
+
+	  // Per 4.2.1.2, Bump clockseq on clock regression
+	  if (dt < 0 && options.clockseq === undefined) {
+	    clockseq = clockseq + 1 & 0x3fff;
+	  }
+
+	  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+	  // time interval
+	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+	    nsecs = 0;
+	  }
+
+	  // Per 4.2.1.2 Throw error if too many uuids are requested
+	  if (nsecs >= 10000) {
+	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+	  }
+
+	  _lastMSecs = msecs;
+	  _lastNSecs = nsecs;
+	  _clockseq = clockseq;
+
+	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+	  msecs += 12219292800000;
+
+	  // `time_low`
+	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+	  b[i++] = tl >>> 24 & 0xff;
+	  b[i++] = tl >>> 16 & 0xff;
+	  b[i++] = tl >>> 8 & 0xff;
+	  b[i++] = tl & 0xff;
+
+	  // `time_mid`
+	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
+	  b[i++] = tmh >>> 8 & 0xff;
+	  b[i++] = tmh & 0xff;
+
+	  // `time_high_and_version`
+	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+	  b[i++] = tmh >>> 16 & 0xff;
+
+	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+	  b[i++] = clockseq >>> 8 | 0x80;
+
+	  // `clock_seq_low`
+	  b[i++] = clockseq & 0xff;
+
+	  // `node`
+	  var node = options.node || _nodeId;
+	  for (var n = 0; n < 6; n++) {
+	    b[i + n] = node[n];
+	  }
+
+	  return buf ? buf : unparse(b);
+	}
+
+	// **`v4()` - Generate random UUID**
+
+	// See https://github.com/broofa/node-uuid for API details
+	function v4(options, buf, offset) {
+	  // Deprecated - 'format' argument, as supported in v1.2
+	  var i = buf && offset || 0;
+
+	  if (typeof(options) == 'string') {
+	    buf = options == 'binary' ? new Array(16) : null;
+	    options = null;
+	  }
+	  options = options || {};
+
+	  var rnds = options.random || (options.rng || _rng)();
+
+	  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+	  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+	  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+	  // Copy bytes to buffer, if provided
+	  if (buf) {
+	    for (var ii = 0; ii < 16; ii++) {
+	      buf[i + ii] = rnds[ii];
+	    }
+	  }
+
+	  return buf || unparse(rnds);
+	}
+
+	// Export public API
+	var uuid = v4;
+	uuid.v1 = v1;
+	uuid.v4 = v4;
+	uuid.parse = parse;
+	uuid.unparse = unparse;
+
+	module.exports = uuid;
+
+
+/***/ },
+/* 434 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	var rng;
+
+	var crypto = global.crypto || global.msCrypto; // for IE 11
+	if (crypto && crypto.getRandomValues) {
+	  // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
+	  // Moderately fast, high quality
+	  var _rnds8 = new Uint8Array(16);
+	  rng = function whatwgRNG() {
+	    crypto.getRandomValues(_rnds8);
+	    return _rnds8;
+	  };
+	}
+
+	if (!rng) {
+	  // Math.random()-based (RNG)
+	  //
+	  // If all else fails, use Math.random().  It's fast, but is of unspecified
+	  // quality.
+	  var  _rnds = new Array(16);
+	  rng = function() {
+	    for (var i = 0, r; i < 16; i++) {
+	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+	      _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+	    }
+
+	    return _rnds;
+	  };
+	}
+
+	module.exports = rng;
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 435 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(436);
+
+/***/ },
+/* 436 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule update
+	 */
+
+	/* global hasOwnProperty:true */
+
+	'use strict';
+
+	var _prodInvariant = __webpack_require__(8),
+	    _assign = __webpack_require__(5);
+
+	var keyOf = __webpack_require__(26);
+	var invariant = __webpack_require__(9);
+	var hasOwnProperty = {}.hasOwnProperty;
+
+	function shallowCopy(x) {
+	  if (Array.isArray(x)) {
+	    return x.concat();
+	  } else if (x && typeof x === 'object') {
+	    return _assign(new x.constructor(), x);
+	  } else {
+	    return x;
+	  }
+	}
+
+	var COMMAND_PUSH = keyOf({ $push: null });
+	var COMMAND_UNSHIFT = keyOf({ $unshift: null });
+	var COMMAND_SPLICE = keyOf({ $splice: null });
+	var COMMAND_SET = keyOf({ $set: null });
+	var COMMAND_MERGE = keyOf({ $merge: null });
+	var COMMAND_APPLY = keyOf({ $apply: null });
+
+	var ALL_COMMANDS_LIST = [COMMAND_PUSH, COMMAND_UNSHIFT, COMMAND_SPLICE, COMMAND_SET, COMMAND_MERGE, COMMAND_APPLY];
+
+	var ALL_COMMANDS_SET = {};
+
+	ALL_COMMANDS_LIST.forEach(function (command) {
+	  ALL_COMMANDS_SET[command] = true;
+	});
+
+	function invariantArrayCase(value, spec, command) {
+	  !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected target of %s to be an array; got %s.', command, value) : _prodInvariant('1', command, value) : void 0;
+	  var specValue = spec[command];
+	  !Array.isArray(specValue) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array; got %s. Did you forget to wrap your parameter in an array?', command, specValue) : _prodInvariant('2', command, specValue) : void 0;
+	}
+
+	/**
+	 * Returns a updated shallow copy of an object without mutating the original.
+	 * See https://facebook.github.io/react/docs/update.html for details.
+	 */
+	function update(value, spec) {
+	  !(typeof spec === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): You provided a key path to update() that did not contain one of %s. Did you forget to include {%s: ...}?', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : _prodInvariant('3', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : void 0;
+
+	  if (hasOwnProperty.call(spec, COMMAND_SET)) {
+	    !(Object.keys(spec).length === 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot have more than one key in an object with %s', COMMAND_SET) : _prodInvariant('4', COMMAND_SET) : void 0;
+
+	    return spec[COMMAND_SET];
+	  }
+
+	  var nextValue = shallowCopy(value);
+
+	  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
+	    var mergeObj = spec[COMMAND_MERGE];
+	    !(mergeObj && typeof mergeObj === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a spec of type \'object\'; got %s', COMMAND_MERGE, mergeObj) : _prodInvariant('5', COMMAND_MERGE, mergeObj) : void 0;
+	    !(nextValue && typeof nextValue === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a target of type \'object\'; got %s', COMMAND_MERGE, nextValue) : _prodInvariant('6', COMMAND_MERGE, nextValue) : void 0;
+	    _assign(nextValue, spec[COMMAND_MERGE]);
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
+	    invariantArrayCase(value, spec, COMMAND_PUSH);
+	    spec[COMMAND_PUSH].forEach(function (item) {
+	      nextValue.push(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
+	    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
+	    spec[COMMAND_UNSHIFT].forEach(function (item) {
+	      nextValue.unshift(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_SPLICE)) {
+	    !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s target to be an array; got %s', COMMAND_SPLICE, value) : _prodInvariant('7', COMMAND_SPLICE, value) : void 0;
+	    !Array.isArray(spec[COMMAND_SPLICE]) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	    spec[COMMAND_SPLICE].forEach(function (args) {
+	      !Array.isArray(args) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	      nextValue.splice.apply(nextValue, args);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
+	    !(typeof spec[COMMAND_APPLY] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be a function; got %s.', COMMAND_APPLY, spec[COMMAND_APPLY]) : _prodInvariant('9', COMMAND_APPLY, spec[COMMAND_APPLY]) : void 0;
+	    nextValue = spec[COMMAND_APPLY](nextValue);
+	  }
+
+	  for (var k in spec) {
+	    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
+	      nextValue[k] = update(value[k], spec[k]);
+	    }
+	  }
+
+	  return nextValue;
+	}
+
+	module.exports = update;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 437 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(36);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NavbarInstance = function (_React$Component) {
+	  _inherits(NavbarInstance, _React$Component);
+
+	  function NavbarInstance(props) {
+	    _classCallCheck(this, NavbarInstance);
+
+	    var _this = _possibleConstructorReturn(this, (NavbarInstance.__proto__ || Object.getPrototypeOf(NavbarInstance)).call(this, props));
+
+	    _this.state = {
+	      show: false,
+	      value: '',
+	      dropdown: false
+	    };
+
+	    _this.handleDropdownClick = _this.handleDropdownClick.bind(_this);
+	    _this.handlePopoverClick = _this.handlePopoverClick.bind(_this);
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(NavbarInstance, [{
+	    key: 'handleDropdownClick',
+	    value: function handleDropdownClick(e) {
+	      var dropdown = this.state.dropdown;
+	      var show = this.state.show;
+	      if (!dropdown) {
+	        this.setState({ dropdown: true });
+	      } else if (dropdown && show) {
+	        this.setState({ dropdown: true });
+	      } else if (dropdown && !show) {
+	        this.setState({ dropdown: false });
+	      }
+	      console.log('event ', e);
+	      console.log(this.state.dropdown);
+	    }
+	  }, {
+	    key: 'handlePopoverClick',
+	    value: function handlePopoverClick(e) {
+
+	      this.setState({
+	        target: e.target,
+	        show: !this.state.show,
+	        dropdown: true
+	      });
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.setState({ value: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      this.refs.overlayMember.hide();
+	      this.refs.overlayGroup.hide();
+	      alert("the state is" + this.state.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var createGroupPopover = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        { id: 'popover-trigger-click-root-close', title: 'Create Group' },
+	        _react2.default.createElement('input', { type: 'text', id: 'group-name-input', placeholder: 'Group Name', onChange: this.handleChange }),
+	        _react2.default.createElement('input', { type: 'submit', id: 'submit-new-group', value: 'Create', onClick: this.handleSubmit })
+	      );
+	      var popoverGroup = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        { id: 'popover-positioned-right', title: 'Add Group' },
+	        _react2.default.createElement('input', { type: 'text', id: 'group-name-input', placeholder: 'Group Name', onChange: this.handleChange }),
+	        _react2.default.createElement('input', { type: 'submit', id: 'submit-group', value: 'Add', onClick: this.handleSubmit })
+	      );
+	      var popoverMember = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        { id: 'popover-positioned-right', title: 'Add Member' },
+	        _react2.default.createElement('input', { type: 'text', id: 'email-input', placeholder: 'Email', onChange: this.handleChange }),
+	        _react2.default.createElement('input', { type: 'submit', id: 'submit-member', value: 'Add', onClick: this.handleSubmit })
+	      );
+
+	      return _react2.default.createElement(
+	        _reactBootstrap.Navbar,
+	        { style: { zIndex: 500 }, inverse: true, fluid: true },
+	        _react2.default.createElement(
+	          _reactBootstrap.Navbar.Header,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Navbar.Brand,
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '/home' },
+	              'Bucket'
+	            )
+	          ),
+	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Navbar.Collapse,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Nav,
+	            { pullRight: true },
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { eventKey: 1, title: 'Add', id: 'basic-nav-dropdown' },
+	              _react2.default.createElement(
+	                _reactBootstrap.OverlayTrigger,
+	                { ref: 'overlayMember', trigger: 'click', placement: 'left', overlay: popoverMember },
+	                _react2.default.createElement(
+	                  _reactBootstrap.MenuItem,
+	                  { onClick: this.handlePopoverClick, id: 'submit-member' },
+	                  'Add Member'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.OverlayTrigger,
+	                { ref: 'overlayGroup', trigger: 'click', placement: 'left', overlay: popoverGroup },
+	                _react2.default.createElement(
+	                  _reactBootstrap.MenuItem,
+	                  { onClick: this.handlePopoverClick, id: 'submit-group' },
+	                  'Add Group'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { eventKey: 1, id: 'groups-dropdown', title: 'Groups' },
+	              this.props.groups.map(function (group) {
+	                return _react2.default.createElement(
+	                  _reactBootstrap.MenuItem,
+	                  {
+	                    eventKey: group.dropdownid,
+	                    key: group.id.toString(),
+	                    onClick: function onClick() {
+	                      _this2.props.changeGroup(group.id);
+	                    }
+	                  },
+	                  group.title
+	                );
+	              }),
+	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
+	              _react2.default.createElement(
+	                _reactBootstrap.ButtonToolbar,
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.OverlayTrigger,
+	                  { id: 'popover-trigger-click-root-close', trigger: 'click', rootClose: true, placement: 'bottom', overlay: createGroupPopover },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    { onClick: this.handlePopoverClick, id: 'create-group-button' },
+	                    'Create New Group'
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavItem,
+	              { eventKey: 2, href: '/archive.html' },
+	              'Bucket'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { eventKey: 3, title: 'Settings', id: 'basic-nav-dropdown' },
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 3.1, href: '/settings.html' },
+	                'Account Settings'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 3.2, href: '/index.html' },
+	                'Logout'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NavbarInstance;
+	}(_react2.default.Component);
+
+	exports.default = NavbarInstance;
+
+/***/ },
+/* 438 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+>>>>>>> joey-branch
 
 /***/ }
 /******/ ]);
