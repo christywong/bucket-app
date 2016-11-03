@@ -58,22 +58,16 @@ export default class Sidebar extends React.Component{
     return(
       <div className='sidebar'>
         {list.map ( (bucket) => { return(
-          <Bucket
-            changeStateBucket={this.props.changeStateBucket}
+          <Bucket changeStateBucket = {this.props.changeStateBucket}
+
             key = {bucket.id}
             bucketId = {bucket.id}
             bucketName = {bucket.title}
             active = {this.props.selectedBucket === bucket.id ? "active" : null} />
         )})}
         <ButtonToolbar>
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={createBucketPopover}>
-            <Button
-              onClick={this.handleClick}
-              id="create-bucket-button">
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={createBucketPopover}>
+            <Button onClick={this.handleClick} id="create-bucket-button">
               Create New Bucket
             </Button>
           </OverlayTrigger>
