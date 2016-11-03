@@ -97,8 +97,10 @@ export default class App extends React.Component{
   addBucket(name, groupId) {
     console.log('adding bucket ', this.state.data.currentGroup.tags);
     console.log(name);
+
     if (name != "") {
-      const newBucket = {id: uuid.v4(), title: name};
+      var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
+      const newBucket = {id: uuid.v4(), title: newBucketName};
       const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
       const nextGroup = this.state.data.groups.map((group)=>{
         if(group.id === groupId){
