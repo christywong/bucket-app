@@ -10,6 +10,7 @@ export default class Component extends React.Component {
 
   constructor(props){
     super(props);
+
     this.state = {
       showModal : false,
       bucketList: [],
@@ -158,7 +159,7 @@ export default class Component extends React.Component {
     const selected = currentBucket ? currentBucket.buckets : {cards:[]}
     const listOfBuckets = currentBucket ? currentBucket.tags : []
     const allBuckets = currentBucket ? currentBucket.buckets : null;
-    const currentGroup = buckets.currentGroup.id;
+    const currentGroup = currentBucket ? buckets.currentGroup.id : 0;
 
     this.setState({
       bucketList: listOfBuckets,

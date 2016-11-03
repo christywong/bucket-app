@@ -17,6 +17,7 @@ export default class App extends React.Component{
         }
       }
     }
+    
     this.changeGroup = this.changeGroup.bind(this);
     this.addCardToGroup = this.addCardToGroup.bind(this);
     this.addBucketToGroup = this.addBucketToGroup.bind(this);
