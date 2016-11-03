@@ -33,10 +33,10 @@ export default class Cards extends React.Component{
     return(
       <div className="card-style">
         <div className="edit-card-controls">
-          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="bottom" overlay={deletePopover}>
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
             <i className="fa fa-trash-o" aria-hidden="true"></i>
           </OverlayTrigger>
-          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="bottom" overlay={movePopover}>
+          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={movePopover}>
             <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
           </OverlayTrigger>
         </div>

@@ -26,7 +26,6 @@ export default class Component extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.changeState = this.changeState.bind(this);
     this.addCard = this.addCard.bind(this);
-    this.addBucket = this.addBucket.bind(this);
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
   }
@@ -187,16 +186,6 @@ export default class Component extends React.Component {
       currentGroupId: currentGroup,
       currentBucketId: 0
     });
-  }
-
-  addBucket(name) {
-    if (name != "") {
-      var newBucket = {id: uuid.v4(), title: name};
-      var newBucketList = [...this.state.bucketList, newBucket];
-      this.setState({
-        bucketList: newBucketList
-      });
-    }
   }
 
 }

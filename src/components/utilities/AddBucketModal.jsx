@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal , Button, FormControl} from 'react-bootstrap';
+import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
 import CardEntry from './SearchEntry';
 
 // export default ({close, createBucket}) => {
@@ -9,14 +9,21 @@ export default class AddModal extends React.Component{
     this.state = {
       titleValue: '',
       yelpEntries: [],
-      selectedEntries: []
+      selectedEntries: [],
+      showPager : false,
+      pageOffset: 0,
+      citySearch: '',
+      categorySearch: ''
     }
     this.handleTitleValue = this.handleTitleValue.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
     this.selectEntry = this.selectEntry.bind(this);
+    // this.searchNext = this.searchNext.bind(this);
+    this.getYelpData = this.getYelpData.bind(this);
   }
   render(){
     var {close, addBucket, bucketTags} = this.props;
+
     return(
       <div className="static-modal">
         <Modal.Dialog>
@@ -48,47 +55,74 @@ export default class AddModal extends React.Component{
                   bucketTags = {bucketTags}/>
               )}
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick = {close}>Close</Button>
-            <Button onClick = {this.searchQuery}> Search </Button>
-          </Modal.Footer>
-        </Modal.Dialog>
-      </div>
-    )
-  }
 
-  handleTitleValue(event){
-    this.setState({titlevalue: event.target.value})
-  }
-  selectEntry(entryId){
-    console.log(entryId.id + ' ' + entryId.name);
-  }
 
-  searchQuery(){
-    var me = this;
-    var cityValue = document.getElementsByName('City')[0].value;
-    var categoryValue = document.getElementsByName('Category')[0].value;
-    console.log('city input: ', cityValue, ' category input: ', categoryValue);
-    if(cityValue && categoryValue){
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            //set application state here
-            var result = xhr.response;
-            var yelpObject = result.businesses;
-            me.setState({yelpEntries: yelpObject});
-            console.log(yelpObject);
-          } else{
-            console.log('Ooops an error occured');
-          }
+
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick = {()=>{
+                  close();
+                  this.setState({showPager:false});
+                }}>Close</Button>
+                <Button onClick = {this.searchQuery}> Search </Button>
+              </Modal.Footer>
+            </Modal.Dialog>
+          </div>
+        )
+      }
+
+      handleTitleValue(event){
+        this.setState({titlevalue: event.target.value})
+      }
+      selectEntry(entryId){
+        console.log(entryId.id + ' ' + entryId.name);
+      }
+
+      searchQuery(){
+        var me = this;
+        var cityValue = document.getElementsByName('City')[0].value;
+        var categoryValue = document.getElementsByName('Category')[0].value;
+        console.log('city input: ', cityValue, ' category input: ', categoryValue);
+        if(cityValue && categoryValue){
+          this.getYelpData(cityValue, categoryValue, 0);
         }
       }
-      xhr.open('GET', '/search/' + cityValue + '/' + categoryValue);
-      xhr.responseType = 'json'
-      xhr.send();
-    }
+
+      // searchNext(){
+      //   const nextPage = this.state.pageOffset + 6;
+      //   this.setState({pageOffset: nextPage});
+      //   var cityValue = this.state.citySearch;
+      //   var categoryValue = this.state.categoryValue;
+      //   console.log(nextPage);
+      //   this.getYelpData(cityValue, categoryValue, nextPage);
+      // }
+      // {this.state.showPager ?
+      //   <Pager>
+      //     <Pager.Item href="#">Previous</Pager.Item>
+      //     {' '}
+      //     <Pager.Item onClick = {this.searchNext} href="#">Next</Pager.Item>
+      //   </Pager>
+      //   : null }
+
+      getYelpData(cityValue, categoryValue, offSet){
+        var me = this;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if(xhr.readyState === 4){
+            if(xhr.status === 200){
+              //set application state here
+              var result = xhr.response;
+              var yelpObject = result.businesses;
+              me.setState({yelpEntries: yelpObject, showPager: true, pageOffset: 0});
+              console.log(yelpObject);
+            } else{
+              console.log('Ooops an error occured');
+            }
+          }
+        }
+        xhr.open('GET', '/search/' + cityValue + '/' + categoryValue + '/' + offSet);
+        xhr.responseType = 'json'
+        xhr.send();
+      }
 
   }
-}

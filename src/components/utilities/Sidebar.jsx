@@ -13,26 +13,8 @@ export default class Sidebar extends React.Component{
       show: false,
       value: ''
     };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(e) {
-    this.setState({target: e.target, show: !this.state.show});
-  }
-
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-
-  handleSubmit(e) {
-    //this.setState({show: false});
-    this.refs.overlay.hide();
-    this.props.addBucket(this.state.value);
-    this.setState({value: ''});
-  }
 
   render(){
     var list = this.props.bucketList;
@@ -66,13 +48,6 @@ export default class Sidebar extends React.Component{
             bucketName = {bucket.title}
             active = {this.props.selectedBucket === bucket.id ? "active" : null} />
         )})}
-        <ButtonToolbar>
-          <OverlayTrigger ref="overlay" trigger="click" rootClose placement="top" overlay={createBucketPopover}>
-            <Button onClick={this.handleClick} id="create-bucket-button">
-              Create New Bucket
-            </Button>
-          </OverlayTrigger>
-        </ButtonToolbar>
       </div>
     );
   }

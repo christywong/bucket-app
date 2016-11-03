@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Col, OverlayTrigger, Popover} from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
 export default class SearchEntry extends React.Component {
   constructor(props){
     super(props);

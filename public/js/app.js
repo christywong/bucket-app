@@ -86,15 +86,15 @@
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _uuid = __webpack_require__(433);
+	var _uuid = __webpack_require__(432);
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _reactAddonsUpdate = __webpack_require__(435);
+	var _reactAddonsUpdate = __webpack_require__(434);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-	var _NavbarInstance = __webpack_require__(437);
+	var _NavbarInstance = __webpack_require__(436);
 
 	var _NavbarInstance2 = _interopRequireDefault(_NavbarInstance);
 
@@ -108,7 +108,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(438);
+	var styles = __webpack_require__(437);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -131,6 +131,7 @@
 	    _this.addCardToGroup = _this.addCardToGroup.bind(_this);
 	    _this.addBucketToGroup = _this.addBucketToGroup.bind(_this);
 	    _this.addGroup = _this.addGroup.bind(_this);
+	    _this.addBucket = _this.addBucket.bind(_this);
 	    return _this;
 	  }
 
@@ -146,9 +147,11 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_NavbarInstance2.default, {
+	          currentGroup: this.state.data.currentGroup,
 	          groups: this.state.data.groups,
 	          changeGroup: this.changeGroup,
-	          addGroup: this.addGroup
+	          addGroup: this.addGroup,
+	          addBucket: this.addBucket
 	        }),
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
@@ -205,6 +208,32 @@
 	  }, {
 	    key: 'addBucketToGroup',
 	    value: function addBucketToGroup(bucket, currentGroupId) {}
+	  }, {
+	    key: 'addBucket',
+	    value: function addBucket(name, groupId) {
+	      var _this2 = this;
+
+	      console.log('adding bucket ', this.state.data.currentGroup.tags);
+	      console.log(name);
+	      if (name != "") {
+	        (function () {
+	          var newBucket = { id: _uuid2.default.v4(), title: name };
+	          var nextCurrentGroupState = (0, _reactAddonsUpdate2.default)(_this2.state.data.currentGroup, { tags: { $push: [newBucket] } });
+	          var nextGroup = _this2.state.data.groups.map(function (group) {
+	            if (group.id === groupId) {
+	              group.tags.push(newBucket);
+	            }
+	            return group;
+	          });
+
+	          var nextData = { groups: nextGroup, currentGroup: nextCurrentGroupState };
+	          console.log(nextData);
+	          _this2.setState({
+	            data: nextData
+	          });
+	        })();
+	      }
+	    }
 	  }, {
 	    key: 'addGroup',
 	    value: function addGroup(name) {
@@ -40466,25 +40495,23 @@
 
 	var _reactBootstrap = __webpack_require__(36);
 
-	var _Sidebar = __webpack_require__(430);
+	var _Sidebar = __webpack_require__(428);
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-	var _Cards = __webpack_require__(432);
+	var _Cards = __webpack_require__(431);
 
 	var _Cards2 = _interopRequireDefault(_Cards);
 
-	var _uuid = __webpack_require__(433);
+	var _uuid = __webpack_require__(432);
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _reactAddonsUpdate = __webpack_require__(435);
+	var _reactAddonsUpdate = __webpack_require__(434);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -40515,7 +40542,6 @@
 	    _this.closeModal = _this.closeModal.bind(_this);
 	    _this.changeState = _this.changeState.bind(_this);
 	    _this.addCard = _this.addCard.bind(_this);
-	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.moveCard = _this.moveCard.bind(_this);
 	    _this.deleteCard = _this.deleteCard.bind(_this);
 	    return _this;
@@ -40700,17 +40726,6 @@
 	        currentBucketId: 0
 	      });
 	    }
-	  }, {
-	    key: 'addBucket',
-	    value: function addBucket(name) {
-	      if (name != "") {
-	        var newBucket = { id: _uuid2.default.v4(), title: name };
-	        var newBucketList = [].concat(_toConsumableArray(this.state.bucketList), [newBucket]);
-	        this.setState({
-	          bucketList: newBucketList
-	        });
-	      }
-	    }
 	  }]);
 
 	  return Component;
@@ -40736,7 +40751,7 @@
 
 	var _reactBootstrap = __webpack_require__(36);
 
-	var _SearchEntry = __webpack_require__(428);
+	var _SearchEntry = __webpack_require__(429);
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
@@ -40760,11 +40775,17 @@
 	    _this.state = {
 	      titleValue: '',
 	      yelpEntries: [],
-	      selectedEntries: []
+	      selectedEntries: [],
+	      showPager: false,
+	      pageOffset: 0,
+	      citySearch: '',
+	      categorySearch: ''
 	    };
 	    _this.handleTitleValue = _this.handleTitleValue.bind(_this);
 	    _this.searchQuery = _this.searchQuery.bind(_this);
 	    _this.selectEntry = _this.selectEntry.bind(_this);
+	    // this.searchNext = this.searchNext.bind(this);
+	    _this.getYelpData = _this.getYelpData.bind(_this);
 	    return _this;
 	  }
 
@@ -40777,6 +40798,7 @@
 	          close = _props.close,
 	          addBucket = _props.addBucket,
 	          bucketTags = _props.bucketTags;
+
 
 	      return _react2.default.createElement(
 	        'div',
@@ -40828,7 +40850,10 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { onClick: close },
+	              { onClick: function onClick() {
+	                  close();
+	                  _this2.setState({ showPager: false });
+	                } },
 	              'Close'
 	            ),
 	            _react2.default.createElement(
@@ -40858,24 +40883,47 @@
 	      var categoryValue = document.getElementsByName('Category')[0].value;
 	      console.log('city input: ', cityValue, ' category input: ', categoryValue);
 	      if (cityValue && categoryValue) {
-	        var xhr = new XMLHttpRequest();
-	        xhr.onreadystatechange = function () {
-	          if (xhr.readyState === 4) {
-	            if (xhr.status === 200) {
-	              //set application state here
-	              var result = xhr.response;
-	              var yelpObject = result.businesses;
-	              me.setState({ yelpEntries: yelpObject });
-	              console.log(yelpObject);
-	            } else {
-	              console.log('Ooops an error occured');
-	            }
-	          }
-	        };
-	        xhr.open('GET', '/search/' + cityValue + '/' + categoryValue);
-	        xhr.responseType = 'json';
-	        xhr.send();
+	        this.getYelpData(cityValue, categoryValue, 0);
 	      }
+	    }
+
+	    // searchNext(){
+	    //   const nextPage = this.state.pageOffset + 6;
+	    //   this.setState({pageOffset: nextPage});
+	    //   var cityValue = this.state.citySearch;
+	    //   var categoryValue = this.state.categoryValue;
+	    //   console.log(nextPage);
+	    //   this.getYelpData(cityValue, categoryValue, nextPage);
+	    // }
+	    // {this.state.showPager ?
+	    //   <Pager>
+	    //     <Pager.Item href="#">Previous</Pager.Item>
+	    //     {' '}
+	    //     <Pager.Item onClick = {this.searchNext} href="#">Next</Pager.Item>
+	    //   </Pager>
+	    //   : null }
+
+	  }, {
+	    key: 'getYelpData',
+	    value: function getYelpData(cityValue, categoryValue, offSet) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            //set application state here
+	            var result = xhr.response;
+	            var yelpObject = result.businesses;
+	            me.setState({ yelpEntries: yelpObject, showPager: true, pageOffset: 0 });
+	            console.log(yelpObject);
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      xhr.open('GET', '/search/' + cityValue + '/' + categoryValue + '/' + offSet);
+	      xhr.responseType = 'json';
+	      xhr.send();
 	    }
 	  }]);
 
@@ -40900,11 +40948,100 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _SearchEntry = __webpack_require__(429);
+
+	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
+
 	var _reactBootstrap = __webpack_require__(36);
 
-	var _reactFontawesome = __webpack_require__(429);
+	var _Buckets = __webpack_require__(430);
 
-	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+	var _Buckets2 = _interopRequireDefault(_Buckets);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Sidebar = function (_React$Component) {
+	  _inherits(Sidebar, _React$Component);
+
+	  function Sidebar(props) {
+	    _classCallCheck(this, Sidebar);
+
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+
+	    _this.state = {
+	      show: false,
+	      value: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Sidebar, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var list = this.props.bucketList;
+	      console.log("selected bucket: ", this.props.selectedBucket);
+	      var createBucketPopover = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Create Bucket' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          id: 'bucket-name-input',
+	          placeholder: 'Bucket Name',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('input', {
+	          type: 'submit',
+	          id: 'submit-new-bucket',
+	          value: 'Create',
+	          onClick: this.handleSubmit })
+	      );
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'sidebar' },
+	        list.map(function (bucket) {
+	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
+
+	            key: bucket.id,
+	            bucketId: bucket.id,
+	            bucketName: bucket.title,
+	            active: _this2.props.selectedBucket === bucket.id ? "active" : null });
+	        })
+	      );
+	    }
+	  }]);
+
+	  return Sidebar;
+	}(_react2.default.Component);
+
+	exports.default = Sidebar;
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(36);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41018,248 +41155,7 @@
 	exports.default = SearchEntry;
 
 /***/ },
-/* 429 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	/**
-	 * A React component for the font-awesome icon library.
-	 *
-	 *
-	 * @param {Boolean} [border=false] Whether or not to show a border radius
-	 * @param {String} [className] An extra set of CSS classes to add to the component
-	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
-	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
-	 * @param {String} [flip=false] Flip the icon's orientation.
-	 * @param {Boolean} [inverse=false]Inverse the icon's color
-	 * @param {String} name Name of the icon to use
-	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
-	 * @param {Number} [rotate] The degress to rotate the icon by
-	 * @param {String} [size] The icon scaling size
-	 * @param {Boolean} [spin=false] Spin the icon
-	 * @param {String} [stack] Stack an icon on top of another
-	 * @module FontAwesome
-	 * @type {ReactClass}
-	 */
-	exports.default = _react2.default.createClass({
-
-	  displayName: 'FontAwesome',
-
-	  propTypes: {
-	    border: _react2.default.PropTypes.bool,
-	    className: _react2.default.PropTypes.string,
-	    cssModule: _react2.default.PropTypes.object,
-	    fixedWidth: _react2.default.PropTypes.bool,
-	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
-	    inverse: _react2.default.PropTypes.bool,
-	    name: _react2.default.PropTypes.string.isRequired,
-	    pulse: _react2.default.PropTypes.bool,
-	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
-	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
-	    spin: _react2.default.PropTypes.bool,
-	    stack: _react2.default.PropTypes.oneOf(['1x', '2x'])
-	  },
-
-	  render: function render() {
-	    var _props = this.props;
-	    var border = _props.border;
-	    var cssModule = _props.cssModule;
-	    var className = _props.className;
-	    var fixedWidth = _props.fixedWidth;
-	    var flip = _props.flip;
-	    var inverse = _props.inverse;
-	    var name = _props.name;
-	    var pulse = _props.pulse;
-	    var rotate = _props.rotate;
-	    var size = _props.size;
-	    var spin = _props.spin;
-	    var stack = _props.stack;
-
-	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack']);
-
-	    var classNames = [];
-
-	    if (cssModule) {
-	      classNames.push(cssModule['fa']);
-	      classNames.push(cssModule['fa-' + name]);
-	      size && classNames.push(cssModule['fa-' + size]);
-	      spin && classNames.push(cssModule['fa-spin']);
-	      pulse && classNames.push(cssModule['fa-pulse']);
-	      border && classNames.push(cssModule['fa-border']);
-	      fixedWidth && classNames.push(cssModule['fa-fw']);
-	      inverse && classNames.push(cssModule['fa-inverse']);
-	      flip && classNames.push(cssModule['fa-flip-' + flip]);
-	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
-	      stack && classNames.push(cssModule['fa-stack-' + stack]);
-	    } else {
-	      classNames.push('fa');
-	      classNames.push('fa-' + name);
-	      size && classNames.push('fa-' + size);
-	      spin && classNames.push('fa-spin');
-	      pulse && classNames.push('fa-pulse');
-	      border && classNames.push('fa-border');
-	      fixedWidth && classNames.push('fa-fw');
-	      inverse && classNames.push('fa-inverse');
-	      flip && classNames.push('fa-flip-' + flip);
-	      rotate && classNames.push('fa-rotate-' + rotate);
-	      stack && classNames.push('fa-stack-' + stack);
-	    }
-
-	    // Add any custom class names at the end.
-	    className && classNames.push(className);
-
-	    return _react2.default.createElement('span', _extends({}, props, {
-	      className: classNames.join(' ')
-	    }));
-	  }
-	});
-	module.exports = exports['default'];
-
-/***/ },
 /* 430 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _SearchEntry = __webpack_require__(428);
-
-	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
-
-	var _reactBootstrap = __webpack_require__(36);
-
-	var _Buckets = __webpack_require__(431);
-
-	var _Buckets2 = _interopRequireDefault(_Buckets);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Sidebar = function (_React$Component) {
-	  _inherits(Sidebar, _React$Component);
-
-	  function Sidebar(props) {
-	    _classCallCheck(this, Sidebar);
-
-	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
-
-	    _this.state = {
-	      show: false,
-	      value: ''
-	    };
-
-	    _this.handleClick = _this.handleClick.bind(_this);
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(Sidebar, [{
-	    key: 'handleClick',
-	    value: function handleClick(e) {
-	      this.setState({ target: e.target, show: !this.state.show });
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(e) {
-	      this.setState({ value: e.target.value });
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      //this.setState({show: false});
-	      this.refs.overlay.hide();
-	      this.props.addBucket(this.state.value);
-	      this.setState({ value: '' });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var list = this.props.bucketList;
-	      console.log("selected bucket: ", this.props.selectedBucket);
-	      var createBucketPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Create Bucket' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'bucket-name-input',
-	          placeholder: 'Bucket Name',
-	          onChange: this.handleChange }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-new-bucket',
-	          value: 'Create',
-	          onClick: this.handleSubmit })
-	      );
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'sidebar' },
-	        list.map(function (bucket) {
-	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
-
-	            key: bucket.id,
-	            bucketId: bucket.id,
-	            bucketName: bucket.title,
-	            active: _this2.props.selectedBucket === bucket.id ? "active" : null });
-	        }),
-	        _react2.default.createElement(
-	          _reactBootstrap.ButtonToolbar,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: createBucketPopover },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: this.handleClick, id: 'create-bucket-button' },
-	              'Create New Bucket'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Sidebar;
-	}(_react2.default.Component);
-
-	exports.default = Sidebar;
-
-/***/ },
-/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41317,7 +41213,7 @@
 	exports.default = Bucket;
 
 /***/ },
-/* 432 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41400,12 +41296,12 @@
 	          { className: 'edit-card-controls' },
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'bottom', overlay: deletePopover },
+	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	            _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'bottom', overlay: movePopover },
+	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: movePopover },
 	            _react2.default.createElement('i', { className: 'fa fa-pencil-square-o', 'aria-hidden': 'true' })
 	          )
 	        ),
@@ -41457,7 +41353,7 @@
 	exports.default = Cards;
 
 /***/ },
-/* 433 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//     uuid.js
@@ -41468,7 +41364,7 @@
 	// Unique ID creation requires a high quality random # generator.  We feature
 	// detect to determine the best RNG source, normalizing to a function that
 	// returns 128-bits of randomness, since that's what's usually required
-	var _rng = __webpack_require__(434);
+	var _rng = __webpack_require__(433);
 
 	// Maps for number <-> hex string conversion
 	var _byteToHex = [];
@@ -41646,7 +41542,7 @@
 
 
 /***/ },
-/* 434 */
+/* 433 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -41685,13 +41581,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 435 */
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(436);
+	module.exports = __webpack_require__(435);
 
 /***/ },
-/* 436 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -41810,7 +41706,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 437 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41846,7 +41742,9 @@
 	    _this.state = {
 	      show: false,
 	      value: '',
-	      dropdown: false
+	      dropdown: false,
+	      target: '',
+	      newBucket: ''
 	    };
 
 	    _this.handleDropdownClick = _this.handleDropdownClick.bind(_this);
@@ -41854,6 +41752,10 @@
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handleSubmitGroup = _this.handleSubmitGroup.bind(_this);
+
+	    _this.handleClickBucket = _this.handleClickBucket.bind(_this);
+	    _this.handleChangeBucket = _this.handleChangeBucket.bind(_this);
+	    _this.handleSubmitBucket = _this.handleSubmitBucket.bind(_this);
 	    return _this;
 	  }
 
@@ -41875,7 +41777,6 @@
 	  }, {
 	    key: 'handlePopoverClick',
 	    value: function handlePopoverClick(e) {
-
 	      this.setState({
 	        target: e.target,
 	        show: !this.state.show,
@@ -41901,10 +41802,30 @@
 	      this.setState({ value: '' });
 	    }
 	  }, {
+	    key: 'handleClickBucket',
+	    value: function handleClickBucket(e) {
+	      this.setState({ target: e.target, show: !this.state.show });
+	    }
+	  }, {
+	    key: 'handleChangeBucket',
+	    value: function handleChangeBucket(e) {
+	      this.setState({ newBucket: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmitBucket',
+	    value: function handleSubmitBucket(e) {
+	      //this.setState({show: false});
+	      this.refs.overlay.hide();
+	      this.props.addBucket(this.state.newBucket, this.props.currentGroup.id);
+	      this.setState({ newBucket: '' });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
+	      var currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
+	      var currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
 	      var createGroupPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        {
@@ -41921,11 +41842,29 @@
 	          value: 'Create',
 	          onClick: this.handleSubmitGroup })
 	      );
+
 	      var popoverMember = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        { id: 'popover-trigger-click-root-close', title: 'Add Member' },
 	        _react2.default.createElement('input', { type: 'text', id: 'email-input', placeholder: 'Email', onChange: this.handleChange }),
 	        _react2.default.createElement('input', { type: 'submit', id: 'submit-member', value: 'Add', onClick: this.handleSubmit })
+	      );
+
+	      var createBucketPopover = _react2.default.createElement(
+	        _reactBootstrap.Popover,
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Create Bucket' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          id: 'bucket-name-input',
+	          placeholder: 'Bucket Name',
+	          onChange: this.handleChangeBucket }),
+	        _react2.default.createElement('input', {
+	          type: 'submit',
+	          id: 'submit-new-bucket',
+	          value: 'Create',
+	          onClick: this.handleSubmitBucket })
 	      );
 
 	      return _react2.default.createElement(
@@ -41939,8 +41878,8 @@
 	            null,
 	            _react2.default.createElement(
 	              'a',
-	              { href: '/home' },
-	              'Bucket'
+	              { href: '#' },
+	              currentGroupTitle
 	            )
 	          ),
 	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
@@ -41961,6 +41900,15 @@
 	                  _reactBootstrap.MenuItem,
 	                  { onClick: this.handlePopoverClick, id: 'submit-member' },
 	                  'Add Member'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.OverlayTrigger,
+	                { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'left', overlay: createBucketPopover },
+	                _react2.default.createElement(
+	                  _reactBootstrap.MenuItem,
+	                  { onClick: this.handleClickBucket },
+	                  'Add Bucket'
 	                )
 	              )
 	            ),
@@ -42032,7 +41980,7 @@
 	exports.default = NavbarInstance;
 
 /***/ },
-/* 438 */
+/* 437 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
