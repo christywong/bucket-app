@@ -6,7 +6,7 @@ export default class Bucket extends React.Component{
         //console.log(e.target.getAttribute('class'));
         this.props.changeStateBucket(this.props.bucketId);
       }}>
-        <h3>{this.props.bucketName}</h3>
+        <h4>{this.props.bucketName}</h4>
       </div>
     );
   }

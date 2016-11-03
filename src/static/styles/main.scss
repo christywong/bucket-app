@@ -265,7 +265,7 @@ html,body { height:100%; }
   background-color: $primary-blue-hover;
 }
 
-.bucket-tags h3 {
+.bucket-tags h4 {
   margin-left: 20px;
   padding: 15px;
   color: #fff;
@@ -386,4 +386,8 @@ html,body { height:100%; }
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.bm-menu-wrap{
+  width: 225px !important;
 }

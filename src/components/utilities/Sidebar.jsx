@@ -11,14 +11,12 @@ export default class Sidebar extends React.Component{
       value: ''
     };
   }
-
   render(){
     var list = this.props.bucketList;
     return(
       <Menu>
         {list.map ( (bucket) => { return(
           <Bucket changeStateBucket = {this.props.changeStateBucket}
-
             key = {bucket.id}
             bucketId = {bucket.id}
             bucketName = {bucket.title}

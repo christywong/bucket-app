@@ -67,9 +67,7 @@ html, body {
   margin-bottom: 0 !important; }
 
 .main-container {
-  top: 50;
   padding-top: 25px;
-  margin-left: 225px;
   display: flex;
   flex-direction: row;
   height: calc(100vh - 60px);
@@ -211,7 +209,7 @@ html, body {
 .bucket-tags:hover {
   background-color: #184067; }
 
-.bucket-tags h3 {
+.bucket-tags h4 {
   margin-left: 20px;
   padding: 15px;
   color: #fff;
@@ -271,3 +269,46 @@ html, body {
 
 .card-title {
   color: #1F5081; }
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 12px;
+  z-index: 1000 !important; }
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: white; }
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px; }
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7; }
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding-top: 2.5em;
+  font-size: 1.15em; }
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47; }
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad; }
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3); }
+
+.bm-menu-wrap {
+  width: 225px !important; }

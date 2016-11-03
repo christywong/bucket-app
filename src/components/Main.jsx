@@ -42,13 +42,8 @@ export default class Component extends React.Component {
 
   render() {
     const cardArray = this.state.selectedBucket.cards;
-    console.log('card array ', cardArray);
     const closeModal = () => this.setState({ showModal: false });
-    // <Sidebar
-    //   selectedBucket = {this.state.currentBucketId}
-    //   bucketList = {this.state.bucketList}
-    //   changeStateBucket = {this.changeState}
-    //   addBucket = {this.addBucket} />
+
     return (
       <div id="outer-container">
         <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } >

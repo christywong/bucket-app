@@ -4,6 +4,8 @@ const express = require('express'),
       handlebars = require('express3-handlebars');
 const app = express();
 
+var JSONDATA = path.join(__dirname, './server/Data.json');
+
 const port = process.env.PORT || 8080;
 
 app.engine('handlebars', handlebars());
@@ -20,6 +22,20 @@ app.get('/login', function(req,res){
 
 app.get('/app', function(req,res){
   res.sendFile(path.join(__dirname, '/public/app.html'));
+});
+
+app.post('/api/postData', function(req,res){
+  console.log('saving data');
+  console.log(req.body);
+  fs.writeFile(JSONDATA, req.body, function(err, data){
+    if(err){
+      console.log('oh no error writing to the file');
+      return err;
+    }else {
+      console.log('success')
+      console.log(data);
+    }
+  })
 });
 
 app.use(function(req,res,next){

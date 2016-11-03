@@ -13,6 +13,7 @@ export default class SearchEntry extends React.Component {
         {this.props.bucketTags.map((tag) => (
           <p
             onClick = {()=>{
+              this.refs.selectTagOverlay.hide();
               this.props.addCard(this.props.ItemEntry, tag.id);
             }}
             className="tag-list">
@@ -32,6 +33,7 @@ export default class SearchEntry extends React.Component {
           className="search-entry-card"
           onClick={()=> {this.props.SelectEntry(this.props.ItemEntry)}}>
           <OverlayTrigger
+            ref='selectTagOverlay'
             trigger="click"
             rootClose
             placement="right"

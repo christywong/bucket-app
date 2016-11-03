@@ -25,6 +25,7 @@ export default class App extends React.Component{
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
+    this.sendJSONData = this.sendJSONData.bind(this);
   }
 
   componentDidMount() {
@@ -72,9 +73,29 @@ export default class App extends React.Component{
         }
       }
     }
-    xhr.open('GET', '/api/getTest');
+    xhr.open('GET', '/api/getData');
     xhr.responseType = 'json'
     xhr.send();
+  }
+
+  sendJSONData(){
+    console.log('sending json data')
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+    xhr.open('POST', '/api/postData', true);
+    console.log(this.state.data);
+    console.log('sending over ', JSON.stringify(this.state.data));
+    xhr.send(JSON.stringify(this.state.data));
   }
 
   changeGroup(currentGroupId){
@@ -86,9 +107,11 @@ export default class App extends React.Component{
   }
 
   addCardToGroup(card, groupId, bucketId){
+    console.log(card);
     const nextGroupState = this.state.data.groups.map((group) =>{
       if(group.id ===  groupId){
-        update(group.buckets, {cards : {$push: [card]}});
+        console.log('matching group id');
+        group.buckets.cards.push(card);
       }
       return group;
     });
@@ -117,7 +140,7 @@ export default class App extends React.Component{
       console.log(nextData);
       this.setState({
         data: nextData
-      });
+      },this.sendJSONData());
     }
   }
 
@@ -127,9 +150,10 @@ export default class App extends React.Component{
       var newGroupList = [...this.state.data.groups, groupToAdd];
       this.setState({
         data: update(this.state.data, {groups: {$set: newGroupList}})
-      });
+      },this.sendJSONData());
     }
   }
+
   addMember(name, currentGroupId){
     console.log(name);
     if (name != ""){
@@ -146,8 +170,7 @@ export default class App extends React.Component{
         }
         return group;
       });
-      console.log('current group ', nextState);
-      console.log('croup state ', nextGroupState);
+
       const nextDataState = {
         groups: nextGroupState,
         currentGroup: nextState
@@ -155,7 +178,7 @@ export default class App extends React.Component{
       console.log(nextDataState);
       this.setState({
         data: nextDataState
-      });
+      },this.sendJSONData());
     }
   }
 

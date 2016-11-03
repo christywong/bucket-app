@@ -160,7 +160,7 @@ export default class NavbarInstance extends React.Component {
     );
 
     const showMembersPopover = (
-      <Popover onClick = {()=>{
+      <Popover id="popover-trigger-click-root-close" onClick = {()=>{
           this.refs.overlayMember.hide();
         }}>
         {this.props.currentGroup.members.map((member) => (
@@ -242,7 +242,6 @@ export default class NavbarInstance extends React.Component {
                     Create New Group
                   </MenuItem>
                 </OverlayTrigger>
-
                 <OverlayTrigger
                   id="popover-trigger-click-root-close"
                   ref="overlayMember"
@@ -254,7 +253,6 @@ export default class NavbarInstance extends React.Component {
                     Show Members
                   </MenuItem>
                 </OverlayTrigger>
-
               </ButtonToolbar>
             </NavDropdown>
 

@@ -2,8 +2,8 @@ var yelpSearch = require('./controllers/yelpSearch.js');
 var bucketHome = require('./controllers/bucket-group.js');
 var fs = require('fs');
 var path = require('path');
-var JSONDATA = path.join(__dirname, 'Buckets.json');
-var TEST = path.join(__dirname, 'Data.json');
+var JSONDATA = path.join(__dirname, 'Data.json');
+//var TEST = path.join(__dirname, 'Data.json');
 
 //TODO Our API to do stuff
 module.exports = function (app){
@@ -22,14 +22,16 @@ module.exports = function (app){
     })
   });
 
-  app.get('/api/getTest', function(req,res){
-    fs.readFile(TEST, function(err,data){
+  app.post('/api/postData', function(req,res){
+    console.log('saving data');
+    console.log(req.body);
+    fs.writeFile(JSONDATA, req.body, function(err, data){
       if(err){
-        console.log('error retrieving json occured');
+        console.log('oh no error writing to the file');
         return err;
-      }
-      else{
-        res.json(JSON.parse(data));
+      }else {
+        console.log('success')
+        console.log(data);
       }
     })
   });
