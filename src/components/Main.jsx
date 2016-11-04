@@ -47,8 +47,7 @@ export default class Component extends React.Component {
 
   render() {
     const selectedBucket = this.state.selectedBucket;
-    const cardArray = selectedBucket ? this.state.selectedBucket.cards : null;
-
+    const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId).cards : null;
     const closeModal = () => this.setState({ showModal: false });
     const groupCards =  cardArray ? cardArray.map((cardEntry) => { return(
         <Cards
@@ -123,16 +122,25 @@ export default class Component extends React.Component {
     this.setState({showModal: false});
   }
 
-  changeState(bucketId) {
-    console.log(this.state.buckets);
-    const bucketArray = this.state.buckets.cards;
-    console.log(bucketArray);
-    console.log(this.state.buckets);
+  filterTags(bucketId){
+    const bucketArray = this.state.buckets ? this.state.buckets.cards : [];
     const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
 
     const changeBucket = {
       cards: nextBucket
     }
+
+    return changeBucket;
+  }
+
+  changeState(bucketId) {
+    // const bucketArray = this.state.buckets.cards;
+    // const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+    //
+    // const changeBucket = {
+    //   cards: nextBucket
+    // }
+    const changeBucket = this.filterTags(bucketId);
 
     this.setState({
       selectedBucket: changeBucket,
@@ -157,7 +165,7 @@ export default class Component extends React.Component {
     const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
     const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.selectedBucket, {cards: {$push: [newCard]}}) : this.state.selectedBucket;
 
-    this.props.addCardToGroup(newCard, this.state.currentGroupId, bucketId);
+    this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
     console.log('updated group ', updatedGroup, 'selected bucket ', selectedBucket);
     this.setState({
       buckets: updatedGroup,
@@ -218,7 +226,7 @@ export default class Component extends React.Component {
       selectedBucket: selected,
       allGroups: buckets.allGroups,
       currentGroupId: currentGroup,
-      currentBucketId: 0
+      currentBucketId: buckets.currentBucketId
     });
   }
 

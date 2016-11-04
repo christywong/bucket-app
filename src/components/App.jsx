@@ -19,7 +19,8 @@ export default class App extends React.Component{
           members: []
         }
       },
-      showModal: false
+      showModal: false,
+      currentBucket: 0
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -54,7 +55,6 @@ export default class App extends React.Component{
           addBucket = {this.addBucket}
           addMember = {this.addMember}
           showSettings = {this.showAccountSettingsModal}
-
           />
 
         {
@@ -68,6 +68,7 @@ export default class App extends React.Component{
           allGroups =
           {this.state.data.groups}
           addCardToGroup = {this.addCardToGroup}
+          currentBucketId = {this.state.currentBucket}
           />
       </div>
     );
@@ -83,6 +84,7 @@ export default class App extends React.Component{
           var result = xhr.response;
           var selectedGroup = result.groups[0];
           result.currentGroup = selectedGroup;
+
           me.setState({
             data: result
           });
@@ -120,12 +122,13 @@ export default class App extends React.Component{
     console.log(currentGroupId);
     const newGroup = this.state.data.groups.filter((group)=>(currentGroupId===group.id))[0];
     this.setState({
-      data: update(this.state.data, {currentGroup: {$set: newGroup}})
+      data: update(this.state.data, {currentGroup: {$set: newGroup}}),
+      currentBucket: 0
     });
   }
 
   addCardToGroup(card, groupId, bucketId){
-    console.log(card);
+    console.log('adding card from bucket id ', bucketId);
     const nextGroupState = this.state.data.groups.map((group) =>{
       if(group.id ===  groupId){
         console.log('matching group id');
@@ -135,7 +138,8 @@ export default class App extends React.Component{
     });
 
     this.setState({
-      data: update(this.state.data, {groups: {$set: nextGroupState}})
+      data: update(this.state.data, {groups: {$set: nextGroupState}}),
+      currentBucket: bucketId
     })
 
     console.log('next group state: ', nextGroupState);

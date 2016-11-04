@@ -130,7 +130,7 @@ export default class NavbarInstance extends React.Component {
     const addMemberPopover= (
       <Popover
         id="popover-trigger-click-root-close"
-        title="Add Member">
+        title="Add Friend">
         <input
           type="text"
           id="email-input"
@@ -149,7 +149,7 @@ export default class NavbarInstance extends React.Component {
     const createBucketPopover = (
       <Popover
         id="popover-trigger-click-root-close"
-        title="Create Bucket">
+        title="Add Bucket">
         <input
           type="text"
           id="bucket-name-input"
@@ -159,14 +159,14 @@ export default class NavbarInstance extends React.Component {
         <input
           type="submit"
           id="submit-new-bucket"
-          value="Create"
+          value="Add"
           onClick={this.handleSubmitBucket}>
         </input>
       </Popover>
     );
     console.log(currentGroupMembers);
     const showMembersPopover = (
-      <Popover id="popover-trigger-click-root-close" title="Current Members" onClick = {()=>{
+      <Popover id="popover-trigger-click-root-close" title="Friends" onClick = {()=>{
           this.refs.overlayMember.hide();
         }}>
         {currentGroupMembers ? currentGroupMembers.map((member) => (
@@ -204,7 +204,7 @@ export default class NavbarInstance extends React.Component {
                 <MenuItem
                   onClick={this.handlePopoverClick}
                   id="submit-member">
-                  Add Member
+                  Add Friend
                 </MenuItem>
               </OverlayTrigger>
               <OverlayTrigger
@@ -244,7 +244,7 @@ export default class NavbarInstance extends React.Component {
                 placement="bottom"
                 overlay={createGroupPopover}>
                 <MenuItem onClick={this.handlePopoverClick}>
-                   Create New Group
+                   Create Group
                 </MenuItem>
               </OverlayTrigger>
 
@@ -256,7 +256,7 @@ export default class NavbarInstance extends React.Component {
                 placement="bottom"
                 overlay={showMembersPopover}>
                 <MenuItem>
-                  Show Members
+                  View Group
                 </MenuItem>
               </OverlayTrigger>
             </NavDropdown>

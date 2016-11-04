@@ -130,7 +130,8 @@
 	          members: []
 	        }
 	      },
-	      showModal: false
+	      showModal: false,
+	      currentBucket: 0
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -168,13 +169,13 @@
 	          addBucket: this.addBucket,
 	          addMember: this.addMember,
 	          showSettings: this.showAccountSettingsModal
-
 	        }),
 	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, { close: this.closeAccountSettingsModal }) : null,
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
 	          allGroups: this.state.data.groups,
-	          addCardToGroup: this.addCardToGroup
+	          addCardToGroup: this.addCardToGroup,
+	          currentBucketId: this.state.currentBucket
 	        })
 	      );
 	    }
@@ -190,6 +191,7 @@
 	            var result = xhr.response;
 	            var selectedGroup = result.groups[0];
 	            result.currentGroup = selectedGroup;
+
 	            me.setState({
 	              data: result
 	            });
@@ -231,13 +233,14 @@
 	        return currentGroupId === group.id;
 	      })[0];
 	      this.setState({
-	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { currentGroup: { $set: newGroup } })
+	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { currentGroup: { $set: newGroup } }),
+	        currentBucket: 0
 	      });
 	    }
 	  }, {
 	    key: 'addCardToGroup',
 	    value: function addCardToGroup(card, groupId, bucketId) {
-	      console.log(card);
+	      console.log('adding card from bucket id ', bucketId);
 	      var nextGroupState = this.state.data.groups.map(function (group) {
 	        if (group.id === groupId) {
 	          console.log('matching group id');
@@ -247,7 +250,8 @@
 	      });
 
 	      this.setState({
-	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: nextGroupState } })
+	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: nextGroupState } }),
+	        currentBucket: bucketId
 	      });
 
 	      console.log('next group state: ', nextGroupState);
@@ -40673,8 +40677,7 @@
 	      var _this2 = this;
 
 	      var selectedBucket = this.state.selectedBucket;
-	      var cardArray = selectedBucket ? this.state.selectedBucket.cards : null;
-
+	      var cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId).cards : null;
 	      var closeModal = function closeModal() {
 	        return _this2.setState({ showModal: false });
 	      };
@@ -40753,12 +40756,9 @@
 	      this.setState({ showModal: false });
 	    }
 	  }, {
-	    key: 'changeState',
-	    value: function changeState(bucketId) {
-	      console.log(this.state.buckets);
-	      var bucketArray = this.state.buckets.cards;
-	      console.log(bucketArray);
-	      console.log(this.state.buckets);
+	    key: 'filterTags',
+	    value: function filterTags(bucketId) {
+	      var bucketArray = this.state.buckets ? this.state.buckets.cards : [];
 	      var nextBucket = bucketId !== 0 ? bucketArray.filter(function (bucket) {
 	        return bucket.tags[0] == bucketId;
 	      }) : bucketArray;
@@ -40766,6 +40766,19 @@
 	      var changeBucket = {
 	        cards: nextBucket
 	      };
+
+	      return changeBucket;
+	    }
+	  }, {
+	    key: 'changeState',
+	    value: function changeState(bucketId) {
+	      // const bucketArray = this.state.buckets.cards;
+	      // const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+	      //
+	      // const changeBucket = {
+	      //   cards: nextBucket
+	      // }
+	      var changeBucket = this.filterTags(bucketId);
 
 	      this.setState({
 	        selectedBucket: changeBucket,
@@ -40791,7 +40804,7 @@
 	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $push: [newCard] } });
 	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state.selectedBucket, { cards: { $push: [newCard] } }) : this.state.selectedBucket;
 
-	      this.props.addCardToGroup(newCard, this.state.currentGroupId, bucketId);
+	      this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
 	      console.log('updated group ', updatedGroup, 'selected bucket ', selectedBucket);
 	      this.setState({
 	        buckets: updatedGroup,
@@ -40859,7 +40872,7 @@
 	        selectedBucket: selected,
 	        allGroups: buckets.allGroups,
 	        currentGroupId: currentGroup,
-	        currentBucketId: 0
+	        currentBucketId: buckets.currentBucketId
 	      });
 	    }
 	  }]);
@@ -55238,7 +55251,7 @@
 	        _reactBootstrap.Popover,
 	        {
 	          id: 'popover-trigger-click-root-close',
-	          title: 'Add Member' },
+	          title: 'Add Friend' },
 	        _react2.default.createElement('input', {
 	          type: 'text',
 	          id: 'email-input',
@@ -55255,7 +55268,7 @@
 	        _reactBootstrap.Popover,
 	        {
 	          id: 'popover-trigger-click-root-close',
-	          title: 'Create Bucket' },
+	          title: 'Add Bucket' },
 	        _react2.default.createElement('input', {
 	          type: 'text',
 	          id: 'bucket-name-input',
@@ -55264,13 +55277,13 @@
 	        _react2.default.createElement('input', {
 	          type: 'submit',
 	          id: 'submit-new-bucket',
-	          value: 'Create',
+	          value: 'Add',
 	          onClick: this.handleSubmitBucket })
 	      );
 	      console.log(currentGroupMembers);
 	      var showMembersPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Current Members', onClick: function onClick() {
+	        { id: 'popover-trigger-click-root-close', title: 'Friends', onClick: function onClick() {
 	            _this2.refs.overlayMember.hide();
 	          } },
 	        currentGroupMembers ? currentGroupMembers.map(function (member) {
@@ -55327,7 +55340,7 @@
 	                  {
 	                    onClick: this.handlePopoverClick,
 	                    id: 'submit-member' },
-	                  'Add Member'
+	                  'Add Friend'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -55378,7 +55391,7 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
 	                  { onClick: this.handlePopoverClick },
-	                  'Create New Group'
+	                  'Create Group'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -55393,7 +55406,7 @@
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
 	                  null,
-	                  'Show Members'
+	                  'View Group'
 	                )
 	              )
 	            ),
