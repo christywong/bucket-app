@@ -1,6 +1,5 @@
 import React from 'react';
 var styles = require("../static/styles/main.scss");
-import Navbar from './utilities//Navbar';
 import Main from './Main';
 import uuid from 'uuid';
 import update from 'react-addons-update';

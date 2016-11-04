@@ -78,10 +78,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Navbar = __webpack_require__(35);
-
-	var _Navbar2 = _interopRequireDefault(_Navbar);
-
 	var _Main = __webpack_require__(426);
 
 	var _Main2 = _interopRequireDefault(_Main);
@@ -4532,104 +4528,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactBootstrap = __webpack_require__(36);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (_ref) {
-	  var groups = _ref.groups,
-	      changegroup = _ref.changegroup;
-
-	  return _react2.default.createElement(
-	    _reactBootstrap.Navbar,
-	    { style: { zIndex: 500 }, inverse: true, fluid: true },
-	    _react2.default.createElement(
-	      _reactBootstrap.Navbar.Header,
-	      null,
-	      _react2.default.createElement(
-	        _reactBootstrap.Navbar.Brand,
-	        null,
-	        _react2.default.createElement(
-	          "a",
-	          { href: "/home" },
-	          "Bucket"
-	        )
-	      ),
-	      _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
-	    ),
-	    _react2.default.createElement(
-	      _reactBootstrap.Navbar.Collapse,
-	      null,
-	      _react2.default.createElement(
-	        _reactBootstrap.Nav,
-	        { pullRight: true },
-	        _react2.default.createElement(
-	          _reactBootstrap.NavDropdown,
-	          {
-	            eventKey: 1,
-	            id: "groups-dropdown",
-	            title: "Groups" },
-	          groups.map(function (group) {
-	            return _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              {
-	                onClick: function onClick() {
-	                  changegroup(group.id);
-	                },
-	                eventKey: group.dropdownid,
-
-	                key: group.id.toString() },
-	              group.title
-	            );
-	          }),
-	          _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
-	          _react2.default.createElement(
-	            _reactBootstrap.MenuItem,
-	            { eventKey: 1.3, href: "" },
-	            "Create Group"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 2, href: "/archive.html" },
-	          "Bucket'd"
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavDropdown,
-	          {
-	            eventKey: 3,
-	            title: "Settings",
-	            id: "basic-nav-dropdown" },
-	          _react2.default.createElement(
-	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.1, href: "/settings.html" },
-	            "Account Settings"
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.2, href: "/index.html" },
-	            "Logout"
-	          )
-	        )
-	      )
-	    )
-	  );
-	};
-
-/***/ },
+/* 35 */,
 /* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
