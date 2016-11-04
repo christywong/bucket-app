@@ -3,37 +3,92 @@ html, body {
   height: 100%; }
 
 /*** Login Form ***/
-#login-form {
-  margin-top: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 350px;
-  border: #1F5081 solid 3px;
+.form {
+  position: relative;
+  z-index: 1;
+  background: #147689;
+  max-width: 300px;
+  margin: 0 auto 100px;
   padding: 30px;
-  height: 350px;
-  border-radius: 4px; }
-  #login-form .form-input {
-    padding-left: 5px;
-    margin-top: 7px;
-    height: 25px;
-    width: 100%;
-    font-size: 14px;
-    border: #1F5081 solid 1px; }
-  #login-form .bucket-logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto; }
-  #login-form #login-button {
-    background-color: #1F5081;
-    color: white;
-    border: none;
-    float: right;
-    cursor: pointer;
-    width: 80px;
-    height: 40px;
-    font-size: 18px; }
-  #login-form #login-button:hover {
-    background-color: #184067; }
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center; }
+
+.form .thumbnail {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px;
+  padding: 10px 37px 90px 20px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-sizing: border-box; }
+
+.form .thumbnail img {
+  display: block;
+  width: 100%;
+  padding: 0px 5px; }
+
+.form input {
+  outline: 0;
+  background: #e3e7ea;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px; }
+
+.form button {
+  outline: 0;
+  background: #1F5081;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer; }
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px; }
+
+.form .message a {
+  color: #1F5081;
+  text-decoration: none; }
+
+.form .register-form {
+  display: none; }
+
+body {
+  background: #f4f4f6;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 100%; }
 
 .navbar {
   border-radius: 0 !important; }
@@ -67,9 +122,7 @@ html, body {
   margin-bottom: 0 !important; }
 
 .main-container {
-  top: 50;
   padding-top: 25px;
-  margin-left: 225px;
   display: flex;
   flex-direction: row;
   height: calc(100vh - 60px);
@@ -161,6 +214,13 @@ html, body {
 .modal-body {
   max-height: 420px;
   overflow-y: auto; }
+
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-weight: 1;
+  opacity: .2; }
 
 /***** regular css rules here *******/
 .comment-box {
@@ -271,3 +331,43 @@ html, body {
 
 .card-title {
   color: #1F5081; }
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 12px;
+  z-index: 1000 !important; }
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: white; }
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px; }
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7; }
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding-top: 2.5em;
+  font-size: 1.15em; }
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47; }
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad; }
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3); }

@@ -11,7 +11,12 @@
   $('#save-btn').on('click', function(e){
     event.preventDefault();
     window.location = '/app';
-  })
+  });
+
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+
 
   // $('#btn-to-app').on('click',function(e){
   //   console.log('button clicked');

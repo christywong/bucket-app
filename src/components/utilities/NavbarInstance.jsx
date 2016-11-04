@@ -175,7 +175,7 @@ export default class NavbarInstance extends React.Component {
       <Navbar style={{zIndex: 500}} inverse fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22}}>
+            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22 }}>
               {currentGroupTitle}
             </a>
           </Navbar.Brand>
@@ -189,10 +189,11 @@ export default class NavbarInstance extends React.Component {
               title="Add"
               id="basic-nav-dropdown">
               <OverlayTrigger
+                id="popover-trigger-click-root-close"
                 ref ="overlayAddMember"
                 rootClose
                 trigger="click"
-                placement="left"
+                placement="bottom"
                 overlay={addMemberPopover}>
                 <MenuItem
                   onClick={this.handlePopoverClick}
@@ -201,10 +202,11 @@ export default class NavbarInstance extends React.Component {
                 </MenuItem>
               </OverlayTrigger>
               <OverlayTrigger
+                id="popover-trigger-click-root-close"
                 ref="overlay"
                 trigger="click"
                 rootClose
-                placement="left"
+                placement="bottom"
                 overlay={createBucketPopover}>
                 <MenuItem onClick={this.handleClickBucket}>
                   Add Bucket
@@ -228,7 +230,7 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-              <ButtonToolbar>
+
                 <OverlayTrigger
                   id="popover-trigger-click-root-close"
                   ref="overlayGroup"
@@ -239,7 +241,7 @@ export default class NavbarInstance extends React.Component {
                   <MenuItem
                     onClick={this.handlePopoverClick}
                     id="create-group-button">
-                    Create New Group
+                    Create New Groups
                   </MenuItem>
                 </OverlayTrigger>
 
@@ -248,14 +250,14 @@ export default class NavbarInstance extends React.Component {
                   ref="overlayMember"
                   trigger="click"
                   rootClose
-                  placement="left"
+                  placement="bottom"
                   overlay={showMembersPopover}>
                   <MenuItem>
                     Show Members
                   </MenuItem>
                 </OverlayTrigger>
 
-              </ButtonToolbar>
+
             </NavDropdown>
 
             <NavDropdown

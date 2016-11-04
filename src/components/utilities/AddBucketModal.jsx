@@ -28,24 +28,31 @@ export default class AddModal extends React.Component{
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Header>
+                <Button className="close" onClick = {()=>{
+                  close();
+                  this.setState({showPager:false});
+                }}>&times;</Button>
             <Modal.Title>
-              Search for a Card to Add
+              Search for Your Next Adventure
             </Modal.Title>
+
           </Modal.Header>
           <Modal.Body className="modal-body">
             <div>
+            <label>Find a City</label>
               <input
                 className = 'searchInput'
                 type="text"
                 placeholder="City"
                 name="City"/>
+            <label>Find an Activity</label>
               <input
                 className = 'searchInput'
                 type="text"
                 placeholder="Category"
                 name="Category"/>
             </div>
-            <div style={{marginTop:25, display: 'inline-block'}}>
+            <div style={{marginTop:25}}>
               {this.state.yelpEntries.map((entry) =>
                 <CardEntry
                   addCard = {this.props.addCard}
@@ -56,15 +63,9 @@ export default class AddModal extends React.Component{
               )}
             </div>
 
-
-
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick = {()=>{
-                  close();
-                  this.setState({showPager:false});
-                }}>Close</Button>
-                <Button onClick = {this.searchQuery}> Search </Button>
+                <Button className="btn btn-primary" onClick = {this.searchQuery}> Search </Button>
               </Modal.Footer>
             </Modal.Dialog>
           </div>
