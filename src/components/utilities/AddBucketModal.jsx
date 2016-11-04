@@ -65,6 +65,10 @@ export default class AddModal extends React.Component{
 
             </Modal.Body>
             <Modal.Footer>
+              <Button onClick = {()=>{
+                close();
+                this.setState({showPager:false});
+              }}>Close</Button>
                 <Button className="btn btn-primary" onClick = {this.searchQuery}> Search </Button>
               </Modal.Footer>
             </Modal.Dialog>

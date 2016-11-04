@@ -68,7 +68,7 @@ html, body {
   font-size: 12px; }
 
 .form .message a {
-  color: #1F5081;
+  color: #f4f4f6;
   text-decoration: none; }
 
 .form .register-form {
@@ -328,11 +328,7 @@ body:before {
   padding-bottom: 3px; }
 
 .card-title {
-<<<<<<< HEAD
   color: #147689; }
-=======
-  color: #1F5081; }
->>>>>>> joey-branch
 
 /* Position and sizing of burger button */
 .bm-burger-button {
@@ -345,11 +341,7 @@ body:before {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-<<<<<<< HEAD
   background: #373a47; }
-=======
-  background: white; }
->>>>>>> joey-branch
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
@@ -377,7 +369,6 @@ body:before {
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3); }
-<<<<<<< HEAD
 
 .bm-menu-wrap {
   width: 225px !important; }
@@ -391,5 +382,9 @@ body:before {
 @media (max-width: 768px) {
   .sidebar {
     display: none; } }
-=======
->>>>>>> joey-branch
+
+.btn-primary {
+  background-color: #147689 !important; }
+
+.btn-primary:hover {
+  background-color: #126a7b !important; }

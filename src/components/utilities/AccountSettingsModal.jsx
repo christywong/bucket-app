@@ -14,6 +14,10 @@ export default class AccountSettingsModal extends React.Component{
       <div className="static-modal">
         <Modal.Dialog>
           <Modal.Header>
+            <Button className="close" onClick = {()=>{
+              close();
+              this.setState({showModal:false});
+            }}>&times;</Button>
             <Modal.Title>
               Account Settings
             </Modal.Title>
@@ -58,9 +62,9 @@ export default class AccountSettingsModal extends React.Component{
                   close();
                   this.setState({showModal:false});
                 }}>Close</Button>
-              <Button 
-                className="btn btn-success" 
-                id="save-btn" 
+              <Button
+                className="btn btn-danger"
+                id="save-btn"
                 name="singlebutton"
                 onClick = {()=>{
                   close();

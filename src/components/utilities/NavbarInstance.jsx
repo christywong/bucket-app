@@ -181,11 +181,7 @@ export default class NavbarInstance extends React.Component {
       <Navbar style={{zIndex: 500}} fluid>
         <Navbar.Header>
           <Navbar.Brand>
-<<<<<<< HEAD
             <a href="#" style={{position: "absolute",left: 85, color: "#373a47", fontSize: 22}}>
-=======
-            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22 }}>
->>>>>>> joey-branch
               {currentGroupTitle}
             </a>
           </Navbar.Brand>

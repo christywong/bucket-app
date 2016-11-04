@@ -79,7 +79,7 @@ html,body { height:100%; }
   font-size: 12px;
 }
 .form .message a {
-  color:$primary-blue;
+  color: $white;
   text-decoration: none;
 }
 .form .register-form {
@@ -272,7 +272,7 @@ body:before {
   overflow-y: auto;
   }
 
-.close{ 
+.close{
 float: right;
 font-size: 21px;
 font-weight: 700;
@@ -482,4 +482,13 @@ opacity: .2;
     display: none;
   }
 
+}
+
+.btn-primary{
+  background-color: $hover-blue !important;
+
+}
+
+.btn-primary:hover{
+    background-color: $hover-blue-darken !important;
 }
