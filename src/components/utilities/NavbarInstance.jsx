@@ -1,6 +1,8 @@
 import React from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown } from "react-bootstrap";
 import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
+import AccountSettingsModal from './AccountSettingsModal';
+
 
 export default class NavbarInstance extends React.Component {
   constructor(props) {
@@ -12,7 +14,8 @@ export default class NavbarInstance extends React.Component {
       dropdown: false,
       target:'',
       newBucket:'',
-      newMember: ''
+      newMember: '',
+      showModal: false
     }
 
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
@@ -29,6 +32,7 @@ export default class NavbarInstance extends React.Component {
     //Bind our add member listeners
     this.handleSubmitAddMember = this.handleSubmitAddMember.bind(this);
     this.handleChangeAddMember = this.handleChangeAddMember.bind(this);
+
   }
 
   handleDropdownClick(e) {
@@ -96,6 +100,7 @@ export default class NavbarInstance extends React.Component {
     this.props.addMember(this.state.newMember, this.props.currentGroup.id);
     this.setState({newMember:''});
   }
+
 
 
   render() {
@@ -258,7 +263,9 @@ export default class NavbarInstance extends React.Component {
               eventKey={2}
               title="Settings"
               id="basic-nav-dropdown">
-              <MenuItem eventKey={2.1} href="/settings.html">
+
+
+              <MenuItem eventKey={2.1} onClick={this.props.showSettings}>
                 Account Settings
               </MenuItem>
               <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
@@ -266,6 +273,7 @@ export default class NavbarInstance extends React.Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
     );
   }
 }

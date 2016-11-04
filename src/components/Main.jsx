@@ -20,7 +20,8 @@ export default class Component extends React.Component {
       selectedBucket: {},
       currentBucketId: 0,
       allGroups:[],
-      currentGroupId: 0
+      currentGroupId: 0,
+      showSettingsModal: false
     }
 
     //Bind our functions to the current scope
@@ -30,6 +31,10 @@ export default class Component extends React.Component {
     this.addCard = this.addCard.bind(this);
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+
+        //Bind modal listeners
+    this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
+    this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
   }
 
   componentWillMount(){
@@ -73,6 +78,12 @@ export default class Component extends React.Component {
             : null
           }
 
+          {
+            this.state.showSettingsModal ?
+            <AccountSettingsModal close={this.closeAccountSettingsModal} />
+            : null
+          }
+
           { cardArray.map((cardEntry) => { return(
             <Cards
               key = {cardEntry.id.toString()}
@@ -97,6 +108,14 @@ export default class Component extends React.Component {
 
   closeModal(){
     this.setState({showModal:false});
+  }
+
+  showAccountSettingsModal(){
+    this.setState({showModal: true});
+  }
+
+  closeAccountSettingsModal(){
+    this.setState({showModal: false});
   }
 
   changeState(bucketId) {

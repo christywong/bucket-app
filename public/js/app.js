@@ -98,6 +98,10 @@
 
 	var _NavbarInstance2 = _interopRequireDefault(_NavbarInstance);
 
+	var _AccountSettingsModal = __webpack_require__(516);
+
+	var _AccountSettingsModal2 = _interopRequireDefault(_AccountSettingsModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -108,7 +112,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(516);
+	var styles = __webpack_require__(517);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -125,7 +129,8 @@
 	          buckets: [],
 	          members: []
 	        }
-	      }
+	      },
+	      showModal: false
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -134,6 +139,10 @@
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.addMember = _this.addMember.bind(_this);
+
+	    //Bind modal listeners
+	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
+	    _this.closeAccountSettingsModal = _this.closeAccountSettingsModal.bind(_this);
 	    return _this;
 	  }
 
@@ -154,9 +163,11 @@
 	          changeGroup: this.changeGroup,
 	          addGroup: this.addGroup,
 	          addBucket: this.addBucket,
-	          addMember: this.addMember
+	          addMember: this.addMember,
+	          showSettings: this.showAccountSettingsModal
 
 	        }),
+	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, { close: this.closeAccountSettingsModal }) : null,
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
 	          allGroups: this.state.data.groups,
@@ -283,6 +294,16 @@
 	          data: nextDataState
 	        });
 	      }
+	    }
+	  }, {
+	    key: 'showAccountSettingsModal',
+	    value: function showAccountSettingsModal() {
+	      this.setState({ showModal: true });
+	    }
+	  }, {
+	    key: 'closeAccountSettingsModal',
+	    value: function closeAccountSettingsModal() {
+	      this.setState({ showModal: false });
 	    }
 	  }]);
 
@@ -40579,7 +40600,8 @@
 	      selectedBucket: {},
 	      currentBucketId: 0,
 	      allGroups: [],
-	      currentGroupId: 0
+	      currentGroupId: 0,
+	      showSettingsModal: false
 	    };
 
 	    //Bind our functions to the current scope
@@ -40589,6 +40611,10 @@
 	    _this.addCard = _this.addCard.bind(_this);
 	    _this.moveCard = _this.moveCard.bind(_this);
 	    _this.deleteCard = _this.deleteCard.bind(_this);
+
+	    //Bind modal listeners
+	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
+	    _this.closeAccountSettingsModal = _this.closeAccountSettingsModal.bind(_this);
 	    return _this;
 	  }
 
@@ -40641,6 +40667,7 @@
 	            addBucket: this.createBucket,
 	            bucketTags: this.state.bucketList
 	          }) : null,
+	          this.state.showSettingsModal ? _react2.default.createElement(AccountSettingsModal, { close: this.closeAccountSettingsModal }) : null,
 	          cardArray.map(function (cardEntry) {
 	            return _react2.default.createElement(_Cards2.default, {
 	              key: cardEntry.id.toString(),
@@ -40671,6 +40698,16 @@
 	  }, {
 	    key: 'closeModal',
 	    value: function closeModal() {
+	      this.setState({ showModal: false });
+	    }
+	  }, {
+	    key: 'showAccountSettingsModal',
+	    value: function showAccountSettingsModal() {
+	      this.setState({ showModal: true });
+	    }
+	  }, {
+	    key: 'closeAccountSettingsModal',
+	    value: function closeAccountSettingsModal() {
 	      this.setState({ showModal: false });
 	    }
 	  }, {
@@ -54983,6 +55020,10 @@
 
 	var _reactBootstrap = __webpack_require__(36);
 
+	var _AccountSettingsModal = __webpack_require__(516);
+
+	var _AccountSettingsModal2 = _interopRequireDefault(_AccountSettingsModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55005,7 +55046,8 @@
 	      dropdown: false,
 	      target: '',
 	      newBucket: '',
-	      newMember: ''
+	      newMember: '',
+	      showModal: false
 	    };
 
 	    _this.handleDropdownClick = _this.handleDropdownClick.bind(_this);
@@ -55022,6 +55064,7 @@
 	    //Bind our add member listeners
 	    _this.handleSubmitAddMember = _this.handleSubmitAddMember.bind(_this);
 	    _this.handleChangeAddMember = _this.handleChangeAddMember.bind(_this);
+
 	    return _this;
 	  }
 
@@ -55118,7 +55161,7 @@
 	      var createGroupPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        {
-	          id: 'groups-dropdown',
+	          id: 'popover-trigger-click-root-close',
 	          title: 'Create Group' },
 	        _react2.default.createElement('input', {
 	          type: 'text',
@@ -55301,7 +55344,7 @@
 	                id: 'basic-nav-dropdown' },
 	              _react2.default.createElement(
 	                _reactBootstrap.MenuItem,
-	                { eventKey: 2.1, href: '/settings.html' },
+	                { eventKey: 2.1, onClick: this.props.showSettings },
 	                'Account Settings'
 	              ),
 	              _react2.default.createElement(
@@ -55323,6 +55366,170 @@
 
 /***/ },
 /* 516 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(36);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AccountSettingsModal = function (_React$Component) {
+	  _inherits(AccountSettingsModal, _React$Component);
+
+	  function AccountSettingsModal(props) {
+	    _classCallCheck(this, AccountSettingsModal);
+
+	    var _this = _possibleConstructorReturn(this, (AccountSettingsModal.__proto__ || Object.getPrototypeOf(AccountSettingsModal)).call(this, props));
+
+	    _this.state = {
+	      showModal: 'false'
+	    };
+	    return _this;
+	  }
+
+	  _createClass(AccountSettingsModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var close = this.props.close;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'static-modal' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Dialog,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Account Settings'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            { className: 'modal-body' },
+	            _react2.default.createElement(
+	              'form',
+	              { className: 'form-horizontal' },
+	              _react2.default.createElement(
+	                'fieldset',
+	                null,
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    { className: 'col-md-4 control-label', htmlFor: 'textinput' },
+	                    'Change Name'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-md-4' },
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'textinput', name: 'textinput', placeholder: 'New Name', type: 'text' })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    { className: 'col-md-4 control-label', htmlFor: 'textinput' },
+	                    'Change Email ID'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-md-4' },
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'textinput', name: 'textinput', placeholder: 'New Email', type: 'text' })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    { className: 'col-md-4 control-label', htmlFor: 'passwordinput' },
+	                    'New Password'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-md-4' },
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'passwordinput', placeholder: 'New Password', type: 'password' })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    { className: 'col-md-4 control-label', htmlFor: 'passwordinput' },
+	                    'Confirm Password'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-md-4' },
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'passwordinput', placeholder: 'Confirm Password', type: 'password' })
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  close();
+	                  _this2.setState({ showModal: false });
+	                } },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                className: 'btn btn-success',
+	                id: 'save-btn',
+	                name: 'singlebutton',
+	                onClick: function onClick() {
+	                  close();
+	                  _this2.setState({ showModal: false });
+	                } },
+	              'Save'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return AccountSettingsModal;
+	}(_react2.default.Component);
+
+	exports.default = AccountSettingsModal;
+
+/***/ },
+/* 517 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
