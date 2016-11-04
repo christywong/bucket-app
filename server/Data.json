@@ -2,7 +2,7 @@
     "groups": [{
         "id": 0,
         "title": "My Bucket",
-        "members": ["Alok"],
+        "members": [{"id": 0, "name": "Alok"}],
         "tags": [{
             "id": 0,
             "title": "All Buckets"

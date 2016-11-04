@@ -1,6 +1,16 @@
 /*** Variables ***/
 $primary-blue: #1F5081;
 $primary-blue-hover: #184067;
+$breakpoint-tablet: 768px;
+$breakpoint-phone: 480px;
+$primary-gray: #373a47;
+$aqua: rgb(0, 174, 204);
+$baby-blue: #0059b3;
+$salmon: rgba(239,64,86,0.9);
+$white: #f4f4f6;
+$hover-blue: #147689;
+$hover-blue-darken: #126a7b;
+
 html,body { height:100%; }
 /*** Login Form ***/
 #login-form{
@@ -71,11 +81,16 @@ html,body { height:100%; }
 
 
 #app{
-  background-color: rgb(246,243,238);
+  //background-color: rgb(246,243,238);
+  //background-color: rgb(0, 121, 191);
+  //background-color: $baby-blue;
+  background-color: #f4f4f6;
+  //background-color: $aqua;
   min-height: 100vh;
 }
 .navbar{
   margin-bottom: 0 !important;
+
 }
 .main-container{
   padding-top: 25px;
@@ -135,7 +150,7 @@ html,body { height:100%; }
   position: absolute;
   height: 100%;
   width: 225px;
-  background-color: $primary-blue;
+  background-color: $primary-gray;
   margin: 0;
   overflow: scroll;
   padding-top: 50px;
@@ -238,7 +253,7 @@ html,body { height:100%; }
   position: fixed;
   line-height: 45px;
   text-align: center;
-  background-color: $primary-blue;
+  background-color: $hover-blue;
   color: white;
   cursor: pointer;
   right: 40px;
@@ -250,7 +265,7 @@ html,body { height:100%; }
 }
 
 .add-btn:hover{
-  background-color: $primary-blue-hover;
+  background-color: $hover-blue-darken;
 }
 
 .bucket-tags {
@@ -259,16 +274,18 @@ html,body { height:100%; }
 
 .active{
   background-color: $primary-blue-hover;
+  background-color: #147689;
 }
 
 .bucket-tags:hover {
   background-color: $primary-blue-hover;
+  background-color: #147689;
 }
 
 .bucket-tags h4 {
   margin-left: 20px;
   padding: 15px;
-  color: #fff;
+  color: $white;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -297,11 +314,6 @@ html,body { height:100%; }
   margin: 0;
 }
 
-#create-group-button {
-  outline: none !important;
-  border: none !important;
-}
-
 .tag-list{
   cursor:pointer;
 }
@@ -322,7 +334,7 @@ html,body { height:100%; }
   cursor: pointer;
   margin-left: 2px;
   line-height: 15px;
-  color: $primary-blue;
+  color: $hover-blue;
 
 }
 
@@ -337,7 +349,7 @@ html,body { height:100%; }
 }
 
 .card-title{
-  color: $primary-blue;
+  color: $hover-blue;
 }
 
 /* Position and sizing of burger button */
@@ -352,7 +364,7 @@ html,body { height:100%; }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: white;
+  background: $primary-gray;
 }
 
 /* Position and sizing of clickable cross button */
@@ -369,6 +381,7 @@ html,body { height:100%; }
 /* General sidebar styles */
 .bm-menu {
   background: #373a47;
+
   padding-top: 2.5em;
   font-size: 1.15em;
 }
@@ -390,4 +403,21 @@ html,body { height:100%; }
 
 .bm-menu-wrap{
   width: 225px !important;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .bm-burger-button {
+    display: none;
+  }
+  .main-container{
+    margin-left: 225px;
+  }
+
+}
+
+@media (max-width: $breakpoint-tablet){
+  .sidebar{
+    display: none;
+  }
+
 }

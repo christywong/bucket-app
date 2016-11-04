@@ -27,7 +27,7 @@ export default class SearchEntry extends React.Component {
         lg={6}
         md={6}
         sm={6}
-        xs={6}
+        xs={12}
         style={{marginBottom: 15}}>
         <div
           className="search-entry-card"

@@ -1,7 +1,6 @@
 import React from 'react';
 import CardEntry from './SearchEntry';
 import Bucket from '../buckets/Buckets.jsx';
-var Menu = require('react-burger-menu').push;
 
 export default class Sidebar extends React.Component{
   constructor (props) {
@@ -14,7 +13,7 @@ export default class Sidebar extends React.Component{
   render(){
     var list = this.props.bucketList;
     return(
-      <Menu>
+      <div className='sidebar'>
         {list.map ( (bucket) => { return(
           <Bucket changeStateBucket = {this.props.changeStateBucket}
             key = {bucket.id}
@@ -22,7 +21,7 @@ export default class Sidebar extends React.Component{
             bucketName = {bucket.title}
             active = {this.props.selectedBucket === bucket.id ? "active" : null} />
         )})}
-      </Menu>
+      </div>
     );
   }
 }

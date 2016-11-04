@@ -56,8 +56,6 @@ export default class AddModal extends React.Component{
               )}
             </div>
 
-
-
             </Modal.Body>
             <Modal.Footer>
               <Button onClick = {()=>{

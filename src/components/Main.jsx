@@ -41,8 +41,19 @@ export default class Component extends React.Component {
   }
 
   render() {
-    const cardArray = this.state.selectedBucket.cards;
+    const selectedBucket = this.state.selectedBucket;
+    const cardArray = selectedBucket ? this.state.selectedBucket.cards : null;
+
     const closeModal = () => this.setState({ showModal: false });
+    const groupCards =  cardArray ? cardArray.map((cardEntry) => { return(
+        <Cards
+          key = {cardEntry.id.toString()}
+          activities = {cardEntry}
+          moveCard={this.moveCard}
+          bucketTags = {this.state.bucketList}
+          deleteCard={this.deleteCard}
+          />
+      )}) : null;
 
     return (
       <div id="outer-container">
@@ -56,6 +67,12 @@ export default class Component extends React.Component {
               active = {this.state.currentBucketId === bucket.id ? "active" : null} />
           )})}
         </Menu>
+        <Sidebar
+          selectedBucket = {this.state.currentBucketId}
+          bucketList = {this.state.bucketList}
+          changeStateBucket = {this.changeState}
+        />
+
         <div className="main-container" id="page-wrap">
           {
             this.state.showModal ?
@@ -67,16 +84,7 @@ export default class Component extends React.Component {
               />
             : null
           }
-
-          { cardArray.map((cardEntry) => { return(
-            <Cards
-              key = {cardEntry.id.toString()}
-              activities = {cardEntry}
-              moveCard={this.moveCard}
-              bucketTags = {this.state.bucketList}
-              deleteCard={this.deleteCard}
-              />
-          )})}
+          {groupCards}
           <div
             className='add-btn'
             onClick = {this.showModal}>+</div>
@@ -128,13 +136,12 @@ export default class Component extends React.Component {
     const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
     const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.selectedBucket, {cards: {$push: [newCard]}}) : this.state.selectedBucket;
 
-    this.props.updateAllGroups(newCard, this.state.currentGroupId, bucketId);
-
+    this.props.addCardToGroup(newCard, this.state.currentGroupId, bucketId);
+    console.log('updated group ', updatedGroup, 'selected bucket ', selectedBucket);
     this.setState({
       buckets: updatedGroup,
       selectedBucket: selectedBucket
     });
-
   }
 
   moveCard(card, newTag){
@@ -159,7 +166,6 @@ export default class Component extends React.Component {
       nextSelectedState = this.state.selectedBucket;
     }
 
-    this.props.updateAllGroups(newCard, this.state.currentGroupId, currentBucketId);
     this.setState({
       buckets: update(this.state.buckets, {cards: {$set: nextState}}),
       selectedBucket: nextSelectedState

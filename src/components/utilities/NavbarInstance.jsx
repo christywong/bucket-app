@@ -101,6 +101,7 @@ export default class NavbarInstance extends React.Component {
   render() {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
     const currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
+    const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
 
     const createGroupPopover = (
       <Popover
@@ -158,24 +159,24 @@ export default class NavbarInstance extends React.Component {
         </input>
       </Popover>
     );
-
+    console.log(currentGroupMembers);
     const showMembersPopover = (
-      <Popover id="popover-trigger-click-root-close" onClick = {()=>{
+      <Popover id="popover-trigger-click-root-close" title="Current Members" onClick = {()=>{
           this.refs.overlayMember.hide();
         }}>
-        {this.props.currentGroup.members.map((member) => (
+        {currentGroupMembers ? currentGroupMembers.map((member) => (
           <p key={member.id} onClick = {()=>{
               this.refs.overlayMember.hide();
             }}>{member.name}</p>
-        ))}
+        )) : null}
       </Popover>
     );
 
     return(
-      <Navbar style={{zIndex: 500}} inverse fluid>
+      <Navbar style={{zIndex: 500}} fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22}}>
+            <a href="#" style={{position: "absolute",left: 85, color: "#373a47", fontSize: 22}}>
               {currentGroupTitle}
             </a>
           </Navbar.Brand>
@@ -192,7 +193,7 @@ export default class NavbarInstance extends React.Component {
                 ref ="overlayAddMember"
                 rootClose
                 trigger="click"
-                placement="left"
+                placement="bottom"
                 overlay={addMemberPopover}>
                 <MenuItem
                   onClick={this.handlePopoverClick}
@@ -204,7 +205,7 @@ export default class NavbarInstance extends React.Component {
                 ref="overlay"
                 trigger="click"
                 rootClose
-                placement="left"
+                placement="bottom"
                 overlay={createBucketPopover}>
                 <MenuItem onClick={this.handleClickBucket}>
                   Add Bucket
@@ -228,32 +229,30 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-              <ButtonToolbar>
-                <OverlayTrigger
-                  id="popover-trigger-click-root-close"
-                  ref="overlayGroup"
-                  trigger="click"
-                  rootClose
-                  placement="bottom"
-                  overlay={createGroupPopover}>
-                  <MenuItem
-                    onClick={this.handlePopoverClick}
-                    id="create-group-button">
-                    Create New Group
-                  </MenuItem>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  id="popover-trigger-click-root-close"
-                  ref="overlayMember"
-                  trigger="click"
-                  rootClose
-                  placement="left"
-                  overlay={showMembersPopover}>
-                  <MenuItem>
-                    Show Members
-                  </MenuItem>
-                </OverlayTrigger>
-              </ButtonToolbar>
+
+              <OverlayTrigger
+                id="popover-trigger-click-root-close"
+                ref="overlayGroup"
+                trigger="click"
+                rootClose
+                placement="bottom"
+                overlay={createGroupPopover}>
+                <MenuItem onClick={this.handlePopoverClick}>
+                   Create New Group
+                </MenuItem>
+              </OverlayTrigger>
+
+              <OverlayTrigger
+                id="popover-trigger-click-root-close"
+                ref="overlayMember"
+                trigger="click"
+                rootClose
+                placement="bottom"
+                overlay={showMembersPopover}>
+                <MenuItem>
+                  Show Members
+                </MenuItem>
+              </OverlayTrigger>
             </NavDropdown>
 
             <NavDropdown

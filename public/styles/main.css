@@ -60,7 +60,7 @@ html, body {
   width: 625px; }
 
 #app {
-  background-color: #f6f3ee;
+  background-color: #f4f4f6;
   min-height: 100vh; }
 
 .navbar {
@@ -112,7 +112,7 @@ html, body {
   position: absolute;
   height: 100%;
   width: 225px;
-  background-color: #1F5081;
+  background-color: #373a47;
   margin: 0;
   overflow: scroll;
   padding-top: 50px; }
@@ -187,7 +187,7 @@ html, body {
   position: fixed;
   line-height: 45px;
   text-align: center;
-  background-color: #1F5081;
+  background-color: #147689;
   color: white;
   cursor: pointer;
   right: 40px;
@@ -198,21 +198,23 @@ html, body {
   font-size: 28px; }
 
 .add-btn:hover {
-  background-color: #184067; }
+  background-color: #126a7b; }
 
 .bucket-tags {
   cursor: pointer; }
 
 .active {
-  background-color: #184067; }
+  background-color: #184067;
+  background-color: #147689; }
 
 .bucket-tags:hover {
-  background-color: #184067; }
+  background-color: #184067;
+  background-color: #147689; }
 
 .bucket-tags h4 {
   margin-left: 20px;
   padding: 15px;
-  color: #fff;
+  color: #f4f4f6;
   margin-top: 0px;
   margin-bottom: 0px; }
 
@@ -237,10 +239,6 @@ html, body {
 .p-no-margin {
   margin: 0; }
 
-#create-group-button {
-  outline: none !important;
-  border: none !important; }
-
 .tag-list {
   cursor: pointer; }
 
@@ -258,7 +256,7 @@ html, body {
   cursor: pointer;
   margin-left: 2px;
   line-height: 15px;
-  color: #1F5081; }
+  color: #147689; }
 
 .fa:hover {
   color: #1F5081; }
@@ -268,7 +266,7 @@ html, body {
   padding-bottom: 3px; }
 
 .card-title {
-  color: #1F5081; }
+  color: #147689; }
 
 /* Position and sizing of burger button */
 .bm-burger-button {
@@ -281,7 +279,7 @@ html, body {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: white; }
+  background: #373a47; }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
@@ -312,3 +310,13 @@ html, body {
 
 .bm-menu-wrap {
   width: 225px !important; }
+
+@media (min-width: 768px) {
+  .bm-burger-button {
+    display: none; }
+  .main-container {
+    margin-left: 225px; } }
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none; } }

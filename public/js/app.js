@@ -130,7 +130,7 @@
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
 	    _this.addCardToGroup = _this.addCardToGroup.bind(_this);
-	    _this.addBucketToGroup = _this.addBucketToGroup.bind(_this);
+	    // this.addBucketToGroup = this.addBucketToGroup.bind(this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.addMember = _this.addMember.bind(_this);
@@ -161,7 +161,7 @@
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroup: this.state.data.currentGroup,
 	          allGroups: this.state.data.groups,
-	          updateAllGroups: this.addCardToGroup
+	          addCardToGroup: this.addCardToGroup
 	        })
 	      );
 	    }
@@ -232,10 +232,13 @@
 	        }
 	        return group;
 	      });
+
+	      this.setState({
+	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: nextGroupState } })
+	      });
+
+	      console.log('next group state: ', nextGroupState);
 	    }
-	  }, {
-	    key: 'addBucketToGroup',
-	    value: function addBucketToGroup(bucket, currentGroupId) {}
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name, groupId) {
@@ -263,7 +266,7 @@
 	          console.log(nextData);
 	          _this2.setState({
 	            data: nextData
-	          }, _this2.sendJSONData());
+	          });
 	        })();
 	      }
 	    }
@@ -271,11 +274,22 @@
 	    key: 'addGroup',
 	    value: function addGroup(name) {
 	      if (name != "") {
-	        var groupToAdd = { id: _uuid2.default.v4(), title: name };
+	        var newName = name.charAt(0).toUpperCase() + name.slice(1);
+	        var groupToAdd = {
+	          id: _uuid2.default.v4(),
+	          title: newName,
+	          members: [{ "id": 0, "name": "Alok" }],
+	          tags: [{ "id": 0, "title": "All Buckets" }],
+	          buckets: {
+	            cards: []
+	          }
+	        };
+
 	        var newGroupList = [].concat(_toConsumableArray(this.state.data.groups), [groupToAdd]);
+	        console.log(newGroupList);
 	        this.setState({
 	          data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: newGroupList } })
-	        }, this.sendJSONData());
+	        });
 	      }
 	    }
 	  }, {
@@ -304,7 +318,7 @@
 	        console.log(nextDataState);
 	        this.setState({
 	          data: nextDataState
-	        }, this.sendJSONData());
+	        });
 	      }
 	    }
 	  }]);
@@ -40630,10 +40644,21 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      var cardArray = this.state.selectedBucket.cards;
+	      var selectedBucket = this.state.selectedBucket;
+	      var cardArray = selectedBucket ? this.state.selectedBucket.cards : null;
+
 	      var closeModal = function closeModal() {
 	        return _this2.setState({ showModal: false });
 	      };
+	      var groupCards = cardArray ? cardArray.map(function (cardEntry) {
+	        return _react2.default.createElement(_Cards2.default, {
+	          key: cardEntry.id.toString(),
+	          activities: cardEntry,
+	          moveCard: _this2.moveCard,
+	          bucketTags: _this2.state.bucketList,
+	          deleteCard: _this2.deleteCard
+	        });
+	      }) : null;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -40650,6 +40675,11 @@
 	              active: _this2.state.currentBucketId === bucket.id ? "active" : null });
 	          })
 	        ),
+	        _react2.default.createElement(_Sidebar2.default, {
+	          selectedBucket: this.state.currentBucketId,
+	          bucketList: this.state.bucketList,
+	          changeStateBucket: this.changeState
+	        }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'main-container', id: 'page-wrap' },
@@ -40659,15 +40689,7 @@
 	            addBucket: this.createBucket,
 	            bucketTags: this.state.bucketList
 	          }) : null,
-	          cardArray.map(function (cardEntry) {
-	            return _react2.default.createElement(_Cards2.default, {
-	              key: cardEntry.id.toString(),
-	              activities: cardEntry,
-	              moveCard: _this2.moveCard,
-	              bucketTags: _this2.state.bucketList,
-	              deleteCard: _this2.deleteCard
-	            });
-	          }),
+	          groupCards,
 	          _react2.default.createElement(
 	            'div',
 	            {
@@ -40730,8 +40752,8 @@
 	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $push: [newCard] } });
 	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state.selectedBucket, { cards: { $push: [newCard] } }) : this.state.selectedBucket;
 
-	      this.props.updateAllGroups(newCard, this.state.currentGroupId, bucketId);
-
+	      this.props.addCardToGroup(newCard, this.state.currentGroupId, bucketId);
+	      console.log('updated group ', updatedGroup, 'selected bucket ', selectedBucket);
 	      this.setState({
 	        buckets: updatedGroup,
 	        selectedBucket: selectedBucket
@@ -40761,7 +40783,6 @@
 	        nextSelectedState = this.state.selectedBucket;
 	      }
 
-	      this.props.updateAllGroups(newCard, this.state.currentGroupId, currentBucketId);
 	      this.setState({
 	        buckets: (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $set: nextState } }),
 	        selectedBucket: nextSelectedState
@@ -41072,7 +41093,7 @@
 	          lg: 6,
 	          md: 6,
 	          sm: 6,
-	          xs: 6,
+	          xs: 12,
 	          style: { marginBottom: 15 } },
 	        _react2.default.createElement(
 	          'div',
@@ -41171,8 +41192,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Menu = __webpack_require__(431).push;
-
 	var Sidebar = function (_React$Component) {
 	  _inherits(Sidebar, _React$Component);
 
@@ -41195,8 +41214,8 @@
 
 	      var list = this.props.bucketList;
 	      return _react2.default.createElement(
-	        Menu,
-	        null,
+	        'div',
+	        { className: 'sidebar' },
 	        list.map(function (bucket) {
 	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
 	            key: bucket.id,
@@ -55133,6 +55152,7 @@
 
 	      var currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
 	      var currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
+	      var currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
 
 	      var createGroupPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
@@ -55184,13 +55204,13 @@
 	          value: 'Create',
 	          onClick: this.handleSubmitBucket })
 	      );
-
+	      console.log(currentGroupMembers);
 	      var showMembersPopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', onClick: function onClick() {
+	        { id: 'popover-trigger-click-root-close', title: 'Current Members', onClick: function onClick() {
 	            _this2.refs.overlayMember.hide();
 	          } },
-	        this.props.currentGroup.members.map(function (member) {
+	        currentGroupMembers ? currentGroupMembers.map(function (member) {
 	          return _react2.default.createElement(
 	            'p',
 	            { key: member.id, onClick: function onClick() {
@@ -55198,12 +55218,12 @@
 	              } },
 	            member.name
 	          );
-	        })
+	        }) : null
 	      );
 
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
-	        { style: { zIndex: 500 }, inverse: true, fluid: true },
+	        { style: { zIndex: 500 }, fluid: true },
 	        _react2.default.createElement(
 	          _reactBootstrap.Navbar.Header,
 	          null,
@@ -55212,7 +55232,7 @@
 	            null,
 	            _react2.default.createElement(
 	              'a',
-	              { href: '#', style: { position: "absolute", left: 85, color: "white", fontSize: 22 } },
+	              { href: '#', style: { position: "absolute", left: 85, color: "#373a47", fontSize: 22 } },
 	              currentGroupTitle
 	            )
 	          ),
@@ -55236,7 +55256,7 @@
 	                  ref: 'overlayAddMember',
 	                  rootClose: true,
 	                  trigger: 'click',
-	                  placement: 'left',
+	                  placement: 'bottom',
 	                  overlay: addMemberPopover },
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
@@ -55252,7 +55272,7 @@
 	                  ref: 'overlay',
 	                  trigger: 'click',
 	                  rootClose: true,
-	                  placement: 'left',
+	                  placement: 'bottom',
 	                  overlay: createBucketPopover },
 	                _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
@@ -55282,39 +55302,33 @@
 	              }),
 	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
 	              _react2.default.createElement(
-	                _reactBootstrap.ButtonToolbar,
-	                null,
+	                _reactBootstrap.OverlayTrigger,
+	                {
+	                  id: 'popover-trigger-click-root-close',
+	                  ref: 'overlayGroup',
+	                  trigger: 'click',
+	                  rootClose: true,
+	                  placement: 'bottom',
+	                  overlay: createGroupPopover },
 	                _react2.default.createElement(
-	                  _reactBootstrap.OverlayTrigger,
-	                  {
-	                    id: 'popover-trigger-click-root-close',
-	                    ref: 'overlayGroup',
-	                    trigger: 'click',
-	                    rootClose: true,
-	                    placement: 'bottom',
-	                    overlay: createGroupPopover },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    {
-	                      onClick: this.handlePopoverClick,
-	                      id: 'create-group-button' },
-	                    'Create New Group'
-	                  )
-	                ),
+	                  _reactBootstrap.MenuItem,
+	                  { onClick: this.handlePopoverClick },
+	                  'Create New Group'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.OverlayTrigger,
+	                {
+	                  id: 'popover-trigger-click-root-close',
+	                  ref: 'overlayMember',
+	                  trigger: 'click',
+	                  rootClose: true,
+	                  placement: 'bottom',
+	                  overlay: showMembersPopover },
 	                _react2.default.createElement(
-	                  _reactBootstrap.OverlayTrigger,
-	                  {
-	                    id: 'popover-trigger-click-root-close',
-	                    ref: 'overlayMember',
-	                    trigger: 'click',
-	                    rootClose: true,
-	                    placement: 'left',
-	                    overlay: showMembersPopover },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    'Show Members'
-	                  )
+	                  _reactBootstrap.MenuItem,
+	                  null,
+	                  'Show Members'
 	                )
 	              )
 	            ),

@@ -21,7 +21,7 @@ export default class App extends React.Component{
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addCardToGroup = this.addCardToGroup.bind(this);
-    this.addBucketToGroup = this.addBucketToGroup.bind(this);
+    // this.addBucketToGroup = this.addBucketToGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
@@ -49,7 +49,7 @@ export default class App extends React.Component{
           {this.state.data.currentGroup}
           allGroups =
           {this.state.data.groups}
-          updateAllGroups = {this.addCardToGroup}
+          addCardToGroup = {this.addCardToGroup}
           />
       </div>
     );
@@ -115,10 +115,12 @@ export default class App extends React.Component{
       }
       return group;
     });
-  }
 
-  addBucketToGroup(bucket, currentGroupId){
+    this.setState({
+      data: update(this.state.data, {groups: {$set: nextGroupState}})
+    })
 
+    console.log('next group state: ', nextGroupState);
   }
 
   addBucket(name, groupId) {
@@ -140,17 +142,28 @@ export default class App extends React.Component{
       console.log(nextData);
       this.setState({
         data: nextData
-      },this.sendJSONData());
+      });
     }
   }
 
   addGroup(name) {
     if (name != "") {
-      var groupToAdd = {id: uuid.v4(), title: name};
+      var newName = name.charAt(0).toUpperCase() + name.slice(1)
+      var groupToAdd = {
+        id: uuid.v4(),
+        title: newName,
+        members: [{"id": 0, "name" : "Alok"}],
+        tags: [{"id": 0, "title": "All Buckets"}],
+        buckets:{
+          cards:[]
+        }
+      };
+
       var newGroupList = [...this.state.data.groups, groupToAdd];
+      console.log(newGroupList);
       this.setState({
         data: update(this.state.data, {groups: {$set: newGroupList}})
-      },this.sendJSONData());
+      });
     }
   }
 
@@ -178,7 +191,7 @@ export default class App extends React.Component{
       console.log(nextDataState);
       this.setState({
         data: nextDataState
-      },this.sendJSONData());
+      });
     }
   }
 
