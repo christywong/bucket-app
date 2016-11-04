@@ -104,7 +104,7 @@ export default class NavbarInstance extends React.Component {
 
     const createGroupPopover = (
       <Popover
-        id="groups-dropdown"
+        id="popover-trigger-click-root-close"
         title="Create Group">
         <input
           type="text"
