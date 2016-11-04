@@ -55242,7 +55242,7 @@
 	        _react2.default.createElement('input', {
 	          type: 'text',
 	          id: 'email-input',
-	          placeholder: 'Email',
+	          placeholder: 'Name',
 	          onChange: this.handleChangeAddMember }),
 	        _react2.default.createElement('input', {
 	          type: 'submit',

@@ -134,7 +134,7 @@ export default class NavbarInstance extends React.Component {
         <input
           type="text"
           id="email-input"
-          placeholder="Email"
+          placeholder="Name"
           onChange={this.handleChangeAddMember}>
         </input>
         <input
