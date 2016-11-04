@@ -104,7 +104,7 @@ export default class NavbarInstance extends React.Component {
 
     const createGroupPopover = (
       <Popover
-        id="popover-trigger-click-root-close"
+        id="groups-dropdown"
         title="Create Group">
         <input
           type="text"
@@ -228,34 +228,30 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-              <ButtonToolbar>
-                <OverlayTrigger
-                  id="popover-trigger-click-root-close"
-                  ref="overlayGroup"
-                  trigger="click"
-                  rootClose
-                  placement="bottom"
-                  overlay={createGroupPopover}>
-                  <MenuItem
-                    onClick={this.handlePopoverClick}
-                    id="create-group-button">
-                    Create New Group
-                  </MenuItem>
-                </OverlayTrigger>
 
-                <OverlayTrigger
-                  id="popover-trigger-click-root-close"
-                  ref="overlayMember"
-                  trigger="click"
-                  rootClose
-                  placement="left"
-                  overlay={showMembersPopover}>
-                  <MenuItem>
-                    Show Members
-                  </MenuItem>
-                </OverlayTrigger>
+              <OverlayTrigger
+                id="popover-trigger-click-root-close"
+                ref="overlayGroup"
+                trigger="click"
+                rootClose
+                placement="bottom"
+                overlay={createGroupPopover}>
+                <MenuItem onClick={this.handlePopoverClick}>
+                   Create New Group
+                </MenuItem>
+              </OverlayTrigger>
 
-              </ButtonToolbar>
+              <OverlayTrigger
+                id="popover-trigger-click-root-close"
+                ref="overlayMember"
+                trigger="click"
+                rootClose
+                placement="left"
+                overlay={showMembersPopover}>
+                <MenuItem>
+                  Show Members
+                </MenuItem>
+              </OverlayTrigger>
             </NavDropdown>
 
             <NavDropdown
