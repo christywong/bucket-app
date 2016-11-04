@@ -181,7 +181,11 @@ export default class NavbarInstance extends React.Component {
       <Navbar style={{zIndex: 500}} fluid>
         <Navbar.Header>
           <Navbar.Brand>
+<<<<<<< HEAD
             <a href="#" style={{position: "absolute",left: 85, color: "#373a47", fontSize: 22}}>
+=======
+            <a href="#" style={{position: "absolute",left: 85, color: "white", fontSize: 22 }}>
+>>>>>>> joey-branch
               {currentGroupTitle}
             </a>
           </Navbar.Brand>
@@ -195,6 +199,7 @@ export default class NavbarInstance extends React.Component {
               title="Add"
               id="basic-nav-dropdown">
               <OverlayTrigger
+                id="popover-trigger-click-root-close"
                 ref ="overlayAddMember"
                 rootClose
                 trigger="click"
@@ -207,6 +212,7 @@ export default class NavbarInstance extends React.Component {
                 </MenuItem>
               </OverlayTrigger>
               <OverlayTrigger
+                id="popover-trigger-click-root-close"
                 ref="overlay"
                 trigger="click"
                 rootClose
@@ -234,7 +240,6 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-
               <OverlayTrigger
                 id="popover-trigger-click-root-close"
                 ref="overlayGroup"
