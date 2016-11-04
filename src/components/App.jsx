@@ -5,6 +5,8 @@ import Main from './Main';
 import uuid from 'uuid';
 import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
+import AccountSettingsModal from './utilities/AccountSettingsModal';
+
 
 export default class App extends React.Component{
   constructor(props) {
@@ -16,7 +18,8 @@ export default class App extends React.Component{
           buckets: [],
           members: []
         }
-      }
+      },
+      showModal: false
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -25,7 +28,14 @@ export default class App extends React.Component{
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
+
     this.sendJSONData = this.sendJSONData.bind(this);
+
+
+    //Bind modal listeners
+    this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
+    this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
+
   }
 
   componentDidMount() {
@@ -34,6 +44,7 @@ export default class App extends React.Component{
 
   render(){
     return (
+
       <div>
         <NavbarInstance
           currentGroup ={this.state.data.currentGroup}
@@ -42,8 +53,15 @@ export default class App extends React.Component{
           addGroup = {this.addGroup}
           addBucket = {this.addBucket}
           addMember = {this.addMember}
+          showSettings = {this.showAccountSettingsModal}
 
           />
+
+        {
+          this.state.showModal ?
+          <AccountSettingsModal close={this.closeAccountSettingsModal} />
+          : null
+        }
         <Main
           currentGroup =
           {this.state.data.currentGroup}
@@ -193,6 +211,14 @@ export default class App extends React.Component{
         data: nextDataState
       });
     }
+  }
+
+  showAccountSettingsModal(){
+    this.setState({showModal: true});
+  }
+
+  closeAccountSettingsModal(){
+    this.setState({showModal: false});
   }
 
 }
