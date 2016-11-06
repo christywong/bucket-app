@@ -3,10 +3,12 @@ const express = require('express'),
       path = require('path'),
       handlebars = require('express3-handlebars');
       mongoose = require('mongoose');
+      config = require('config');
+
 const app = express();
 
 var JSONDATA = path.join(__dirname, './server/Data.json');
-
+var DB_URL = config.get('db_url');
 const port = process.env.PORT || 8080;
 
 app.engine('handlebars', handlebars());
@@ -43,7 +45,7 @@ app.use(function(req,res,next){
   res.sendFile(path.join(__dirname, '/public/404.html'));
 });
 
-mongoose.connect('mongodb://cse170:password@ds145997.mlab.com:45997/cse170');
+mongoose.connect(DB_URL);
 
 app.listen(port, function(){
   console.log('connected to port 8080');
