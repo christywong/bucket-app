@@ -22,12 +22,11 @@ var GroupSchema = new Schema({
   ]
 });
 
-var Groups = mongoose.model('groups', GroupSchema);
+var Groups = mongoose.model('bucketgroups', GroupSchema);
 
 module.exports.actions = {};
 
 module.exports.actions.getGroup = function(req,res){
-  console.log('searching for a group');
   Groups.find({
   }, function(err, group){
     if(err){

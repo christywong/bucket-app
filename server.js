@@ -43,7 +43,7 @@ app.use(function(req,res,next){
   res.sendFile(path.join(__dirname, '/public/404.html'));
 });
 
-mongoose.connect('mongodb://localhost:27017/cse170');
+mongoose.connect('mongodb://cse170:password@ds145997.mlab.com:45997/cse170');
 
 app.listen(port, function(){
   console.log('connected to port 8080');
