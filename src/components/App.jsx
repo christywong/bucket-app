@@ -12,11 +12,6 @@ export default class App extends React.Component{
     super(props);
     this.state = {
       data: {
-        groups: [],
-        currentGroup: {
-          buckets: [],
-          members: []
-        }
       },
       showModal: false,
       currentBucket: 0
@@ -47,8 +42,8 @@ export default class App extends React.Component{
 
       <div>
         <NavbarInstance
-          currentGroup ={this.state.data.currentGroup}
-          groups = {this.state.data.groups}
+          currentGroup ={this.state.data}
+          groups = {this.state.data.tags}
           changeGroup = {this.changeGroup}
           addGroup = {this.addGroup}
           addBucket = {this.addBucket}
@@ -62,10 +57,10 @@ export default class App extends React.Component{
           : null
         }
         <Main
-          currentGroup =
-          {this.state.data.currentGroup}
+          currentGroupData =
+          {this.state.data}
           allGroups =
-          {this.state.data.groups}
+          {this.state.data.tags}
           addCardToGroup = {this.addCardToGroup}
           currentBucketId = {this.state.currentBucket}
           />
@@ -74,15 +69,17 @@ export default class App extends React.Component{
   }
 
   loadJSONData(){
+    console.log('loading data');
     var me = this;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           //set application state here
-          var result = xhr.response;
-          var selectedGroup = result.groups[0];
-          result.currentGroup = selectedGroup;
+          var result = xhr.response[0];
+          // var selectedGroup = result.groups;
+          // result.currentGroup = selectedGroup;
+          console.log('result is ', result);
 
           me.setState({
             data: result
@@ -92,7 +89,8 @@ export default class App extends React.Component{
         }
       }
     }
-    xhr.open('GET', '/api/getData');
+    console.log('getting data from server');
+    xhr.open('GET', '/api/getGroup/' + this.state.currentBucket);
     xhr.responseType = 'json'
     xhr.send();
   }

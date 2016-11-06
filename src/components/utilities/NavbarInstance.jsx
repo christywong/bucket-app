@@ -107,6 +107,7 @@ export default class NavbarInstance extends React.Component {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
     const currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
     const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
+    const currentGroup = this.props.groups ? this.props.groups : [];
 
     const createGroupPopover = (
       <Popover
@@ -164,7 +165,7 @@ export default class NavbarInstance extends React.Component {
         </input>
       </Popover>
     );
-    console.log(currentGroupMembers);
+
     const showMembersPopover = (
       <Popover id="popover-trigger-click-root-close" title="Friends" onClick = {()=>{
           this.refs.overlayMember.hide();
@@ -224,7 +225,7 @@ export default class NavbarInstance extends React.Component {
               eventKey={1}
               id="groups-dropdown"
               title="Groups">
-              {this.props.groups.map((group)=>{
+              {currentGroup.map((group)=>{
                 return (
                   <MenuItem
                     eventKey={group.dropdownid}

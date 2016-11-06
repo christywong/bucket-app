@@ -2,6 +2,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       path = require('path'),
       handlebars = require('express3-handlebars');
+      mongoose = require('mongoose');
 const app = express();
 
 var JSONDATA = path.join(__dirname, './server/Data.json');
@@ -41,6 +42,8 @@ app.post('/api/postData', function(req,res){
 app.use(function(req,res,next){
   res.sendFile(path.join(__dirname, '/public/404.html'));
 });
+
+mongoose.connect('mongodb://localhost:27017/cse170');
 
 app.listen(port, function(){
   console.log('connected to port 8080');

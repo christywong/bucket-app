@@ -17,9 +17,8 @@ export default class Component extends React.Component {
       showModal : false,
       bucketList: [],
       buckets: [],
-      selectedBucket: {},
+      filteredCards: {},
       currentBucketId: 0,
-      allGroups:[],
       currentGroupId: 0,
       showSettingsModal: false
     }
@@ -32,23 +31,26 @@ export default class Component extends React.Component {
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
 
-        //Bind modal listeners
+    //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
     this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
   }
 
+  //Initialize the Main component on start or whenever this component recieves props
   componentWillMount(){
-    this.initializeBucket(this.props.currentGroup.buckets);
+    this.initializeBucket(this.props.currentGroupData);
   }
-
   componentWillReceiveProps(nextProps){
     this.initializeBucket(nextProps);
   }
 
   render() {
-    const selectedBucket = this.state.selectedBucket;
-    const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId).cards : null;
-    const closeModal = () => this.setState({ showModal: false });
+
+    //Filter our cards with the specific group tag
+    const selectedBucket = this.state.allCards;
+    const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
+
+    //Card components to get injected into our view
     const groupCards =  cardArray ? cardArray.map((cardEntry) => { return(
         <Cards
           key = {cardEntry.id.toString()}
@@ -105,7 +107,7 @@ export default class Component extends React.Component {
     )
   }
 
-  //Functions for Buckets and stuff
+  // Listener to change the state of our modal
   showModal(){
     this.setState({showModal: true})
   }
@@ -122,33 +124,26 @@ export default class Component extends React.Component {
     this.setState({showModal: false});
   }
 
+  // Filter the cards by the selected Tags
   filterTags(bucketId){
-    const bucketArray = this.state.buckets ? this.state.buckets.cards : [];
+    const bucketArray = this.state.allCards ? this.state.allCards : [];
     const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
-
-    const changeBucket = {
-      cards: nextBucket
-    }
-
-    return changeBucket;
+    return nextBucket;
   }
 
+  //Listener to change the state of which cards are selected
   changeState(bucketId) {
-    // const bucketArray = this.state.buckets.cards;
-    // const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
-    //
-    // const changeBucket = {
-    //   cards: nextBucket
-    // }
     const changeBucket = this.filterTags(bucketId);
-
     this.setState({
-      selectedBucket: changeBucket,
+      filteredCards: changeBucket,
       currentBucketId: bucketId
     });
   }
 
+  //Creates a card and adds it to the specified bucket
   addCard(card, bucketId){
+
+    //Build the new Card we want to Add
     const newCard = {
       id: uuid.v4(),
       yelpId: card.id,
@@ -163,23 +158,25 @@ export default class Component extends React.Component {
     const currentBucketId = this.state.currentBucketId;
     const currentBucket = this.state.buckets.cards;
     const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
-    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.selectedBucket, {cards: {$push: [newCard]}}) : this.state.selectedBucket;
+    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.filteredCards, {cards: {$push: [newCard]}}) : this.state.filteredCards;
 
-    this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
-    console.log('updated group ', updatedGroup, 'selected bucket ', selectedBucket);
+    //Add cards to the state in APP
+    //TODO Remove when we get our Rest API up
+
+    //this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
     this.setState({
       buckets: updatedGroup,
-      selectedBucket: selectedBucket
+      filteredCards: selectedBucket
     });
   }
 
+  // Moves a card to the specified bucket
   moveCard(card, newTag){
-    console.log('moving card ', card , ' to bucket ', newTag);
     card.tags[0] = newTag;
     var nextSelectedState ={};
     const currentBucketId = this.state.currentBucketId
     const newCard = card;
-    const nextState = this.state.buckets.cards.map((oldCard) => {
+    const nextState = this.state.allCards.map((oldCard) => {
       if(oldCard === card.id){
         return card;
       }
@@ -189,44 +186,47 @@ export default class Component extends React.Component {
     });
 
     if(newTag !== this.state.currentBucketId && this.state.currentBucketId != 0){
-      nextSelectedState.cards = this.state.selectedBucket.cards.filter((oldCard)=>(oldCard.id !== card.id));
+      nextSelectedState = this.state.filteredCards.filter((oldCard)=>(oldCard.id !== card.id));
     }
     else{
-      nextSelectedState = this.state.selectedBucket;
+      nextSelectedState = this.state.filteredCards;
     }
 
+    // TODO Add a Move Card API call when we get our Rest API up
     this.setState({
       buckets: update(this.state.buckets, {cards: {$set: nextState}}),
-      selectedBucket: nextSelectedState
+      filteredCards: nextSelectedState
     });
   }
 
+  // Deletes a card
   deleteCard(cardId){
     console.log('deleting ', cardId);
-    const selectedBucketNextState = this.state.selectedBucket.cards.filter((oldCard)=>(oldCard.id!==cardId));
-    const bucketNextState = this.state.buckets.cards.filter((oldCard)=>(oldCard.id!==cardId));
+    const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
+    const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
 
+    // TODO Add a delete Card API call when we get our Rest API up
     this.setState({
-      buckets: update(this.state.buckets, {cards: {$set: bucketNextState}}),
-      selectedBucket: update(this.state.selectedBucket, {cards: {$set: selectedBucketNextState}})
+      allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
+      filteredCards: filteredCardsNextState
     })
   }
 
+  //Initialize our State whenever we update a prop from App.
+  //This will keep the Main Component updated with whatever changes were made to App
   initializeBucket(buckets){
-    console.log('initializing buckets ', buckets);
-    const currentBucket = buckets.currentGroup;
-    const selected = currentBucket ? currentBucket.buckets : {cards:[]}
+
+    const currentBucket = buckets.currentGroupData;
+    const selected = currentBucket ? currentBucket.activities : null;
     const listOfBuckets = currentBucket ? currentBucket.tags : []
-    const allBuckets = currentBucket ? currentBucket.buckets : null;
-    const currentGroup = currentBucket ? buckets.currentGroup.id : 0;
-    console.log('intializing current group ', currentGroup)
+    const currentGroup = currentBucket ? currentBucket.id : 0;
+
     this.setState({
-      bucketList: listOfBuckets,
-      buckets: allBuckets,
-      selectedBucket: selected,
-      allGroups: buckets.allGroups,
-      currentGroupId: currentGroup,
-      currentBucketId: buckets.currentBucketId
+      bucketList      : listOfBuckets,
+      filteredCards   : selected,
+      allCards        : selected,
+      currentGroupId  : currentGroup,
+      currentBucketId : buckets.currentBucketId
     });
   }
 

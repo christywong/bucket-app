@@ -3,7 +3,8 @@ var bucketHome = require('./controllers/bucket-group.js');
 var fs = require('fs');
 var path = require('path');
 var JSONDATA = path.join(__dirname, 'Data.json');
-//var TEST = path.join(__dirname, 'Data.json');
+var Group = require('./models/BucketGroup.js');
+
 
 //TODO Our API to do stuff
 module.exports = function (app){
@@ -35,4 +36,7 @@ module.exports = function (app){
       }
     })
   });
+
+  app.get('/api/getGroup/:groupId', Group.actions.getGroup);
+
 }

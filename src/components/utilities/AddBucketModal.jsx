@@ -93,22 +93,6 @@ export default class AddModal extends React.Component{
         }
       }
 
-      // searchNext(){
-      //   const nextPage = this.state.pageOffset + 6;
-      //   this.setState({pageOffset: nextPage});
-      //   var cityValue = this.state.citySearch;
-      //   var categoryValue = this.state.categoryValue;
-      //   console.log(nextPage);
-      //   this.getYelpData(cityValue, categoryValue, nextPage);
-      // }
-      // {this.state.showPager ?
-      //   <Pager>
-      //     <Pager.Item href="#">Previous</Pager.Item>
-      //     {' '}
-      //     <Pager.Item onClick = {this.searchNext} href="#">Next</Pager.Item>
-      //   </Pager>
-      //   : null }
-
       getYelpData(cityValue, categoryValue, offSet){
         var me = this;
         var xhr = new XMLHttpRequest();
