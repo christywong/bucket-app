@@ -101,8 +101,6 @@ export default class NavbarInstance extends React.Component {
     this.setState({newMember:''});
   }
 
-
-
   render() {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
     const currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
@@ -228,9 +226,9 @@ export default class NavbarInstance extends React.Component {
               {currentGroup.map((group)=>{
                 return (
                   <MenuItem
-                    eventKey={group.id}
-                    key={group.id.toString()}
-                    onClick={()=>{this.props.changeGroup(group.id)}}
+                    eventKey={group._id}
+                    key={group._id.toString()}
+                    onClick={()=>{this.props.changeGroup(group._id)}}
                     >
                     {group.title}
                   </MenuItem>
@@ -266,8 +264,6 @@ export default class NavbarInstance extends React.Component {
               eventKey={2}
               title="Settings"
               id="basic-nav-dropdown">
-
-
               <MenuItem eventKey={2.1} onClick={this.props.showSettings}>
                 Account Settings
               </MenuItem>

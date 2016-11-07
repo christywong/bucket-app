@@ -3,9 +3,9 @@ const mongoose = require('mongoose'),
       uuid     = require('uuid');
 
 var GroupSchema = new Schema({
-  id: Number,
+  groupId: String,
   title: String,
-  tags: [{id: Number, title: String}],
+  tags: [{id: String, title: String}],
   members: [String],
   activities:[
     {
@@ -27,7 +27,7 @@ var Groups = mongoose.model('bucketgroups', GroupSchema);
 module.exports.actions = {};
 
 module.exports.actions.getGroup = function(req,res){
-  Groups.findOne({"id":req.params.groupId
+  Groups.findOne({"_id":req.params.groupId
   }, function(err, group){
     if(err){
       console.log('an error occured');
@@ -55,7 +55,7 @@ module.exports.actions.createCard = function(req,res){
     tags: req.body.tags
   }
 
-  Groups.findOneAndUpdate({'id':req.body.groupId}, {$push: {activities: newCard}},{new: true}, function(err, data){
+  Groups.findOneAndUpdate({'_id':req.body.groupId}, {$push: {activities: newCard}},{new: true}, function(err, data){
     if(err){
       console.log('oh no something went wrong');
       return err;
@@ -72,7 +72,7 @@ module.exports.actions.deleteCard = function(req, res){
   console.log('deleteing a card');
   var groupId = req.body.groupId;
   var cardId = req.body.cardId;
-  Groups.findOneAndUpdate({'id':groupId},{$pull:{activities: {'id': cardId}}},{new:true},function(err,data){
+  Groups.findOneAndUpdate({'_id':groupId},{$pull:{activities: {'id': cardId}}},{new:true},function(err,data){
     if(err){
       console.log('oh no something went wrong');
       return err;
@@ -90,11 +90,12 @@ module.exports.actions.moveCard = function(req,res){
   var newTag = req.body.tags;
     console.log('moving a card: ',cardId);
 
-  Groups.findOneAndUpdate({'id': groupId, 'activities.id': cardId},{$set :{
+  Groups.findOneAndUpdate({'_id': groupId, 'activities.id': cardId},{$set :{
     'activities.$.tags': newTag
   }}, function(err,data){
     if(err){
       console.log('oh no something went wrong');
+      console.log(err);
       return err;
     }
     else{
@@ -105,13 +106,37 @@ module.exports.actions.moveCard = function(req,res){
 }
 
 module.exports.actions.getAllGroups = function(req,res){
-  Groups.find({},'id title', function(err, listOfGroups){
+  Groups.find({},'_id title', function(err, listOfGroups){
     if(err){
       console.log('oh no something went wrong');
       return err;
     }
     else{
       return res.status(200).json(listOfGroups);
+    }
+  })
+}
+
+module.exports.actions.createGroup = function(req,res){
+  console.log('creating a new group :)');
+  console.log(req.body);
+  var newGroup = new Groups({
+    title   : req.body.title,
+    members : req.body.members,
+    tags    : [{id: req.body.tagId, title: req.body.tagTitle}]
+  });
+
+  console.log('new group ', newGroup);
+  newGroup.save(function(err,group){
+    if(err){
+      console.log('oh no something went wrong');
+      console.log(err);
+      return err;
+    }
+    else{
+      console.log(group);
+      console.log('new group added to the db ');
+      return res.status(200).json(group);
     }
   })
 }

@@ -130,7 +130,7 @@ export default class Component extends React.Component {
    */
   filterTags(bucketId){
     const bucketArray = this.state.allCards ? this.state.allCards : [];
-    const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+    const nextBucket = bucketId !== "0" ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
     return nextBucket;
   }
 
@@ -251,7 +251,7 @@ export default class Component extends React.Component {
     });
   }
 
-  // API CALLS 
+  // API CALLS
   apiCreateCard(newCard, groupId){
     var me = this;
     var xhr = new XMLHttpRequest();
@@ -311,7 +311,7 @@ export default class Component extends React.Component {
     }
 
     xhr.open('PUT', '/api/moveCard');
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     console.log(payload);
     xhr.send(payload);
   }

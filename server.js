@@ -45,6 +45,7 @@ app.use(function(req,res,next){
   res.sendFile(path.join(__dirname, '/public/404.html'));
 });
 
+mongoose.Promise = global.Promise;
 mongoose.connect(DB_URL);
 
 app.listen(port, function(){
