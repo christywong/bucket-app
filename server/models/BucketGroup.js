@@ -3,7 +3,6 @@ const mongoose = require('mongoose'),
       uuid     = require('uuid');
 
 var GroupSchema = new Schema({
-  groupId: String,
   title: String,
   tags: [{id: String, title: String}],
   members: [String],
@@ -31,6 +30,7 @@ module.exports.actions.getGroup = function(req,res){
   }, function(err, group){
     if(err){
       console.log('an error occured');
+      console.log(err);
       return err;
     }
     else{
@@ -58,6 +58,7 @@ module.exports.actions.createCard = function(req,res){
   Groups.findOneAndUpdate({'_id':req.body.groupId}, {$push: {activities: newCard}},{new: true}, function(err, data){
     if(err){
       console.log('oh no something went wrong');
+      console.log(err);
       return err;
     }
     else{
@@ -88,8 +89,8 @@ module.exports.actions.moveCard = function(req,res){
   var groupId = req.body.groupId;
   var cardId = req.body.cardId;
   var newTag = req.body.tags;
-    console.log('moving a card: ',cardId);
-
+  console.log('moving a card: ',cardId);
+  console.log(groupId);
   Groups.findOneAndUpdate({'_id': groupId, 'activities.id': cardId},{$set :{
     'activities.$.tags': newTag
   }}, function(err,data){

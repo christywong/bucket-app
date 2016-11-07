@@ -31,7 +31,7 @@ export default class App extends React.Component{
   }
 
   componentDidMount() {
-    this.loadJSONData();
+    this.loadJSONData(this.state.currentGroup);
     this.getAllGroups();
   }
 
@@ -64,13 +64,15 @@ export default class App extends React.Component{
     );
   }
 
-  changeGroup(currentGroupId){
-    console.log(currentGroupId);
-    const newGroup = this.state.data.groups.filter((group)=>(currentGroupId===group.id))[0];
-    this.setState({
-      data: update(this.state.data, {currentGroup: {$set: newGroup}}),
-      currentBucket: 0
-    });
+  changeGroup(newGroupId){
+    console.log(newGroupId);
+    const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
+    this.loadJSONData(newGroupId);
+
+    // this.setState({
+    //   data:
+    //   currentBucket: 0
+    // });
   }
 
   addBucket(name, groupId) {
@@ -156,7 +158,7 @@ export default class App extends React.Component{
   }
 
   //API call to initialize our Application
-  loadJSONData(){
+  loadJSONData(currentGroup){
     var me = this;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -172,7 +174,7 @@ export default class App extends React.Component{
       }
     }
     console.log('getting data from server');
-    xhr.open('GET', '/api/getGroup/' + this.state.currentGroup);
+    xhr.open('GET', '/api/getGroup/' + currentGroup);
     xhr.responseType = 'json'
     xhr.send();
   }

@@ -16,7 +16,6 @@ export default class Component extends React.Component {
     this.state = {
       showModal : false,
       bucketList: [],
-      buckets: [],
       filteredCards: {},
       currentBucketId: 0,
       currentGroupId: 0,
@@ -152,6 +151,8 @@ export default class Component extends React.Component {
    * @param {number} bucketId - The id of the bucket that the card will be added too.
    */
   addCard(card, bucketId){
+    var tagId = bucketId !== "0" ? bucketId : null;
+    console.log('adding a new card');
     //Build the new Card we want to Add
     const newCard = {
       id: uuid.v4(),
@@ -164,16 +165,18 @@ export default class Component extends React.Component {
       title: card.name,
       tags: [bucketId]
     }
-    const currentBucketId = this.state.currentBucketId;
-    const updatedGroup = this.state.allCards.push(newCard);
-    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? this.state.filteredCards.push(newCard) : this.state.filteredCards;
 
+    const currentBucketId = this.state.currentBucketId;
+    const updatedGroup = update(this.state, {allCards: {$push: [newCard]}});
+    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state, {filteredCards: {$push: [newCard]}}) : this.state.filteredCards;
+    console.log('updated group ', updatedGroup);
+    console.log('selectedBucketId ', selectedBucket);
     //Add cards to the state in APP
     this.apiCreateCard(newCard, this.state.currentGroupId);
 
     this.setState({
-      buckets: updatedGroup,
-      filteredCards: selectedBucket
+      allCards: updatedGroup.allCards,
+      filteredCards: selectedBucket.filteredCards
     });
   }
 
@@ -198,7 +201,7 @@ export default class Component extends React.Component {
     });
 
     //Want to filter out the card we are moving from the old view
-    if(newTag !== this.state.currentBucketId && this.state.currentBucketId != 0){
+    if(newTag !== this.state.currentBucketId && this.state.currentBucketId != "0"){
       nextSelectedState = this.state.filteredCards.filter((oldCard)=>(oldCard.id !== card.id));
     }
     else{
@@ -207,10 +210,10 @@ export default class Component extends React.Component {
 
     //make a call to our api
     this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
-
+    const nextAllCardsState = update(this.state, {allCards: {$set: nextState}})
     //set our new state
     this.setState({
-      buckets: update(this.state.buckets, {cards: {$set: nextState}}),
+      allCards: nextAllCardsState.allCards,
       filteredCards: nextSelectedState
     });
   }
@@ -239,7 +242,7 @@ export default class Component extends React.Component {
     const currentBucket = buckets.currentGroupData;
     const selected = currentBucket ? currentBucket.activities : null;
     const listOfBuckets = currentBucket ? currentBucket.tags : []
-    const currentGroup = currentBucket ? currentBucket.id : 0;
+    const currentGroup = currentBucket ? currentBucket._id : 0;
 
     //set our state initially
     this.setState({
@@ -247,7 +250,7 @@ export default class Component extends React.Component {
       filteredCards   : selected,
       allCards        : selected,
       currentGroupId  : currentGroup,
-      currentBucketId : buckets.currentBucketId
+      currentBucketId : buckets.currentBucketId,
     });
   }
 
