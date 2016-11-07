@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
 import AccountSettingsModal from './utilities/AccountSettingsModal';
+import {Modal,Button} from "react-bootstrap";
 
 
 export default class App extends React.Component{
@@ -14,6 +15,7 @@ export default class App extends React.Component{
       data: {
       },
       showModal: false,
+      showModal2: false,
       currentBucket: 0
     }
 
@@ -35,9 +37,10 @@ export default class App extends React.Component{
 
   componentDidMount() {
     this.loadJSONData();
-  }
+  } 
 
   render(){
+let close = () => this.setState({ showModal2: false});
     return (
 
       <div>
@@ -64,6 +67,121 @@ export default class App extends React.Component{
           addCardToGroup = {this.addCardToGroup}
           currentBucketId = {this.state.currentBucket}
           />
+
+          //Modals
+//add modal for addGroup
+      <div className="static-modal">
+        <Modal.Dialog>
+          <Modal.Header>
+            <Button className="close" onClick = {()=>{
+                close();
+                this.setState({showPager:false});
+              }}>&times;</Button>
+            <Modal.Title>
+              Create Group
+            </Modal.Title>
+
+          </Modal.Header>
+        <Modal.Body className="modal-body">
+            <div>
+            <label>Name Your Group</label>
+              <input
+                className = 'addInput'
+                type="text"
+                placeholder="Group Name"
+                name="Group Name"/>
+            </div>
+
+          </Modal.Body>
+        <Modal.Footer>
+            <Button onClick = {()=>{
+              close();
+              this.setState({showPager:false});
+              }}>Close</Button>
+            <Button className="btn btn-primary" onClick = {this.addGroup}>Create</Button>
+          </Modal.Footer>
+            </Modal.Dialog>
+      </div>
+
+//add modal for addBucket
+      <div className="static-modal">
+        <Modal.Dialog>
+          <Modal.Header>
+            <Button className="close" onClick = {()=>{
+                close();
+                this.setState({showPager:false});
+              }}>&times;</Button>
+            <Modal.Title>
+              Add Bucket
+            </Modal.Title>
+
+          </Modal.Header>
+        <Modal.Body className="modal-body">
+            <div>
+            <label>Name Your Bucket</label>
+              <input
+                className = 'addInput'
+                type="text"
+                placeholder="Bucket Name"
+                name="Bucket Name"/>
+            </div>
+
+          </Modal.Body>
+        <Modal.Footer>
+            <Button onClick = {()=>{
+              close();
+              this.setState({showPager:false});
+              }}>Close</Button>
+            <Button className="btn btn-primary" onClick = {this.addBucket}>Add</Button>
+          </Modal.Footer>
+            </Modal.Dialog>
+      </div>
+
+
+//add modal for addMember
+
+   <div className="static-modal">  
+          <Modal
+          show={this.state.showModal2}
+          onHide={close}
+          container={this}
+          >
+            
+        <Modal.Dialog>
+          <Modal.Header>
+            <Button className="close" onClick = {()=>{
+                close();
+                this.setState({showPager:false});
+              }}>&times;</Button>
+            <Modal.Title>
+              Add Friends
+            </Modal.Title>
+
+          </Modal.Header>
+        <Modal.Body className="modal-body">
+            <div>
+            <label>Add a Friend</label>
+              <input
+                className = 'addInput'
+                type="text"
+                placeholder="Friend's Name"
+                name="Friend's Name"/>
+            </div>
+
+          </Modal.Body>
+        <Modal.Footer>
+            <Button onClick = {()=>{
+              close();
+              this.setState({showPager:false});
+              }}>Close</Button>
+            <Button className="btn btn-primary" onClick = {this.addMember}>Add</Button>
+          </Modal.Footer>
+            </Modal.Dialog>
+            </Modal>
+      </div>
+
+   
+      // end of where I should add modals    
       </div>
     );
   }

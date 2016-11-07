@@ -33,7 +33,7 @@ export default class AddModal extends React.Component{
                   this.setState({showPager:false});
                 }}>&times;</Button>
             <Modal.Title>
-              Search for Your Next Adventure
+              Create Your Next Adventure
             </Modal.Title>
 
           </Modal.Header>

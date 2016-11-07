@@ -230,4 +230,14 @@ export default class Component extends React.Component {
     });
   }
 
+//const Trigger{ 
+//  getInitialState() {
+//  return {show: false};
+// } 
+// }
+
+//const Trigger = React.createClass({
+//  getInitialState() {
+//    return { show: false };
+//  },  
 }

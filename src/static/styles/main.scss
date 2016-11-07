@@ -492,3 +492,20 @@ opacity: .2;
 .btn-primary:hover{
     background-color: $hover-blue-darken !important;
 }
+
+.addInput{
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3;
+}
+
+.modal-container {
+ position: relative;
+ }
+
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+  }
