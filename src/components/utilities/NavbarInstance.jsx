@@ -103,8 +103,9 @@ export default class NavbarInstance extends React.Component {
 
   render() {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
-    const currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
+    const currentGroupTitle =  this.props.currentGroup.title ? this.props.currentGroup.title : " ";
     const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
+    console.log(currentGroupMembers);
     const currentGroup = this.props.groups ? this.props.groups : [];
 
     const createGroupPopover = (
@@ -169,65 +170,38 @@ export default class NavbarInstance extends React.Component {
           this.refs.overlayMember.hide();
         }}>
         {currentGroupMembers ? currentGroupMembers.map((member) => (
-          <p key={member.id} onClick = {()=>{
+          <p key={member._id} onClick = {()=>{
               this.refs.overlayMember.hide();
             }}>{member.name}</p>
         )) : null}
       </Popover>
     );
 
+    //What we are returning
     return(
       <Navbar style={{zIndex: 500}} fluid>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#" style={{position: "absolute",left: 85, color: "#373a47", fontSize: 22}}>
-              {currentGroupTitle}
-            </a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-
+        <Nav>
+          <NavDropdown eventKey={1} id="group-title-nav" title= {currentGroupTitle} style={{position: "absolute", fontSize: 22, color: "#373a47"}}>
+            <MenuItem eventKey={1.1} id="submit-member">
+              View & Add Friend
+            </MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey={1.2} onClick={this.props.showSettings}>
+              Account Settings
+            </MenuItem>
+            <MenuItem eventKey={1.3} href="/index.html">Logout</MenuItem>
+          </NavDropdown>
+        </Nav>
         <Navbar.Collapse>
           <Nav pullRight>
             <NavDropdown
-              eventKey={1}
-              title="Add"
-              id="basic-nav-dropdown">
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref ="overlayAddMember"
-                rootClose
-                trigger="click"
-                placement="bottom"
-                overlay={addMemberPopover}>
-                <MenuItem
-                  onClick={this.handlePopoverClick}
-                  id="submit-member">
-                  Add Friend
-                </MenuItem>
-              </OverlayTrigger>
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref="overlay"
-                trigger="click"
-                rootClose
-                placement="bottom"
-                overlay={createBucketPopover}>
-                <MenuItem onClick={this.handleClickBucket}>
-                  Add Bucket
-                </MenuItem>
-              </OverlayTrigger>
-            </NavDropdown>
-
-            <NavDropdown
-              eventKey={1}
+              eventKey={2}
               id="groups-dropdown"
               title="Groups">
               {currentGroup.map((group)=>{
                 return (
                   <MenuItem
-                    eventKey={group._id}
-                    key={group._id.toString()}
+                    key={group._id}
                     onClick={()=>{this.props.changeGroup(group._id)}}
                     >
                     {group.title}
@@ -258,16 +232,6 @@ export default class NavbarInstance extends React.Component {
                   View Group
                 </MenuItem>
               </OverlayTrigger>
-            </NavDropdown>
-
-            <NavDropdown
-              eventKey={2}
-              title="Settings"
-              id="basic-nav-dropdown">
-              <MenuItem eventKey={2.1} onClick={this.props.showSettings}>
-                Account Settings
-              </MenuItem>
-              <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

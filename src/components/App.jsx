@@ -47,7 +47,6 @@ export default class App extends React.Component{
           addMember = {this.addMember}
           showSettings = {this.showAccountSettingsModal}
           />
-
         {
           this.state.showModal ?
           <AccountSettingsModal close={this.closeAccountSettingsModal} />

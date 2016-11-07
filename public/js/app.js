@@ -120,18 +120,17 @@
 
 	    _this.state = {
 	      data: {},
+	      listOfGroups: [],
 	      showModal: false,
-	      currentBucket: 0
+	      currentBucket: "0",
+	      currentGroup: '581fcd1fdcba0f6bf2649630',
+	      currentUser: 'Alok'
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
-	    // this.addCardToGroup = this.addCardToGroup.bind(this);
-	    // this.addBucketToGroup = this.addBucketToGroup.bind(this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.addMember = _this.addMember.bind(_this);
-
-	    _this.sendJSONData = _this.sendJSONData.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -143,7 +142,8 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.loadJSONData();
+	      this.loadJSONData(this.state.currentGroup);
+	      this.getAllGroups();
 	    }
 	  }, {
 	    key: 'render',
@@ -153,7 +153,7 @@
 	        null,
 	        _react2.default.createElement(_NavbarInstance2.default, {
 	          currentGroup: this.state.data,
-	          groups: this.state.data.tags,
+	          groups: this.state.listOfGroups,
 	          changeGroup: this.changeGroup,
 	          addGroup: this.addGroup,
 	          addBucket: this.addBucket,
@@ -169,85 +169,19 @@
 	      );
 	    }
 	  }, {
-	    key: 'loadJSONData',
-	    value: function loadJSONData() {
-	      console.log('loading data');
-	      var me = this;
-	      var xhr = new XMLHttpRequest();
-	      xhr.onreadystatechange = function () {
-	        if (xhr.readyState === 4) {
-	          if (xhr.status === 200) {
-	            //set application state here
-	            var result = xhr.response;
-	            // var selectedGroup = result.groups;
-	            // result.currentGroup = selectedGroup;
-	            console.log('result is ', result);
-
-	            me.setState({
-	              data: result
-	            });
-	          } else {
-	            console.log('Ooops an error occured');
-	          }
-	        }
-	      };
-	      console.log('getting data from server');
-	      xhr.open('GET', '/api/getGroup/' + this.state.currentBucket);
-	      xhr.responseType = 'json';
-	      xhr.send();
-	    }
-	  }, {
-	    key: 'sendJSONData',
-	    value: function sendJSONData() {
-	      console.log('sending json data');
-	      var me = this;
-	      var xhr = new XMLHttpRequest();
-	      xhr.onreadystatechange = function () {
-	        if (xhr.readyState === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	            console.log(xhr.response);
-	          } else {
-	            console.log('Ooops an error occured');
-	          }
-	        }
-	      };
-	      xhr.open('POST', '/api/postData', true);
-	      console.log(this.state.data);
-	      console.log('sending over ', JSON.stringify(this.state.data));
-	      xhr.send(JSON.stringify(this.state.data));
-	    }
-	  }, {
 	    key: 'changeGroup',
-	    value: function changeGroup(currentGroupId) {
-	      console.log(currentGroupId);
-	      var newGroup = this.state.data.groups.filter(function (group) {
-	        return currentGroupId === group.id;
+	    value: function changeGroup(newGroupId) {
+	      console.log(newGroupId);
+	      var newGroup = this.state.listOfGroups.filter(function (group) {
+	        return newGroupId === group.id;
 	      })[0];
-	      this.setState({
-	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { currentGroup: { $set: newGroup } }),
-	        currentBucket: 0
-	      });
+	      this.loadJSONData(newGroupId);
+
+	      // this.setState({
+	      //   data:
+	      //   currentBucket: 0
+	      // });
 	    }
-
-	    // addCardToGroup(card, groupId, bucketId){
-	    //   console.log('adding card from bucket id ', bucketId);
-	    //   const nextGroupState = this.state.data.groups.map((group) =>{
-	    //     if(group.id ===  groupId){
-	    //       console.log('matching group id');
-	    //       group.buckets.cards.push(card);
-	    //     }
-	    //     return group;
-	    //   });
-	    //
-	    //   this.setState({
-	    //     data: update(this.state.data, {groups: {$set: nextGroupState}}),
-	    //     currentBucket: bucketId
-	    //   })
-	    //
-	    //   console.log('next group state: ', nextGroupState);
-	    // }
-
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name, groupId) {
@@ -282,23 +216,25 @@
 	  }, {
 	    key: 'addGroup',
 	    value: function addGroup(name) {
+	      console.log('name of new group ', name);
 	      if (name != "") {
 	        var newName = name.charAt(0).toUpperCase() + name.slice(1);
-	        var groupToAdd = {
+
+	        var newGroup = {
 	          id: _uuid2.default.v4(),
 	          title: newName,
-	          members: [{ "id": 0, "name": "Alok" }],
-	          tags: [{ "id": 0, "title": "All Buckets" }],
-	          buckets: {
-	            cards: []
-	          }
+	          members: [this.state.currentUser],
+	          tags: [{ "id": "0", "title": "All" }],
+	          activities: []
 	        };
 
-	        var newGroupList = [].concat(_toConsumableArray(this.state.data.groups), [groupToAdd]);
-	        console.log(newGroupList);
-	        this.setState({
-	          data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: newGroupList } })
-	        });
+	        var newGroupList = [].concat(_toConsumableArray(this.state.listOfGroups), [newGroup]);
+	        //  console.log(newGroupList);
+	        this.apiCreateGroup(newGroup);
+
+	        // this.setState({
+	        //   listOfGroups: newGroupList
+	        // });
 	      }
 	    }
 	  }, {
@@ -339,6 +275,80 @@
 	    key: 'closeAccountSettingsModal',
 	    value: function closeAccountSettingsModal() {
 	      this.setState({ showModal: false });
+	    }
+
+	    //API call to initialize our Application
+
+	  }, {
+	    key: 'loadJSONData',
+	    value: function loadJSONData(currentGroup) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            me.setState({
+	              data: result
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      console.log('getting data from server');
+	      xhr.open('GET', '/api/getGroup/' + currentGroup);
+	      xhr.responseType = 'json';
+	      xhr.send();
+	    }
+	  }, {
+	    key: 'getAllGroups',
+	    value: function getAllGroups() {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            me.setState({
+	              listOfGroups: result
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      console.log('getting data from server');
+	      xhr.open('GET', '/api/getAllGroups/');
+	      xhr.responseType = 'json';
+	      xhr.send();
+	    }
+	  }, {
+	    key: 'apiCreateGroup',
+	    value: function apiCreateGroup(newGroup) {
+	      var me = this;
+	      var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
+	      var xhr = new XMLHttpRequest();
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            console.log('result from adding a group ', result);
+	            console.log('list of groups ', me.state.listOfGroups);
+	            var newGroupList = [].concat(_toConsumableArray(me.state.listOfGroups), [result]);
+	            me.setState({
+	              listOfGroups: newGroupList
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      console.log('getting data from server');
+	      xhr.open('POST', '/api/createGroup');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
 	    }
 	  }]);
 
@@ -4586,7 +4596,6 @@
 	    _this.state = {
 	      showModal: false,
 	      bucketList: [],
-	      buckets: [],
 	      filteredCards: {},
 	      currentBucketId: 0,
 	      currentGroupId: 0,
@@ -4705,19 +4714,25 @@
 	      this.setState({ showModal: false });
 	    }
 
-	    // Filter the cards by the selected Tags
+	    /**
+	     * Filter the cards by the selected Tags
+	     * @param bucketId - The id of the bucket that will filter the cards.
+	     */
 
 	  }, {
 	    key: 'filterTags',
 	    value: function filterTags(bucketId) {
 	      var bucketArray = this.state.allCards ? this.state.allCards : [];
-	      var nextBucket = bucketId !== 0 ? bucketArray.filter(function (bucket) {
+	      var nextBucket = bucketId !== "0" ? bucketArray.filter(function (bucket) {
 	        return bucket.tags[0] == bucketId;
 	      }) : bucketArray;
 	      return nextBucket;
 	    }
 
-	    //Listener to change the state of which cards are selected
+	    /**
+	     * Changes the state of the cards based on which bucket is selected.
+	     * @param {number} bucketId - The id of the bucket that is to be selected.
+	     */
 
 	  }, {
 	    key: 'changeState',
@@ -4729,11 +4744,17 @@
 	      });
 	    }
 
-	    //Creates a card and adds it to the specified bucket
+	    /**
+	     * Creates a card in the specified Bucket.
+	     * @param {object} card - Information from yelp results in order to build a new card.
+	     * @param {number} bucketId - The id of the bucket that the card will be added too.
+	     */
 
 	  }, {
 	    key: 'addCard',
 	    value: function addCard(card, bucketId) {
+	      var tagId = bucketId !== "0" ? bucketId : null;
+	      console.log('adding a new card');
 	      //Build the new Card we want to Add
 	      var newCard = {
 	        id: _uuid2.default.v4(),
@@ -4746,26 +4767,31 @@
 	        title: card.name,
 	        tags: [bucketId]
 	      };
-	      var currentBucketId = this.state.currentBucketId;
-	      //const currentBucket = this.state.buckets.cards;
-	      var updatedGroup = this.state.allCards.push(newCard);
-	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? this.state.filteredCards.push(newCard) : this.state.filteredCards;
 
-	      //Add cards to the state in APP
-	      //TODO Remove when we get our Rest API up
-	      this.apiCreateCard(newCard, this.state.currentGroupId);
+	      var currentBucketId = this.state.currentBucketId;
+	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state, { allCards: { $push: [newCard] } });
+	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state, { filteredCards: { $push: [newCard] } }) : this.state.filteredCards;
 	      console.log('updated group ', updatedGroup);
+	      console.log('selectedBucketId ', selectedBucket);
+	      //Add cards to the state in APP
+	      this.apiCreateCard(newCard, this.state.currentGroupId);
+
 	      this.setState({
-	        buckets: updatedGroup,
-	        filteredCards: selectedBucket
+	        allCards: updatedGroup.allCards,
+	        filteredCards: selectedBucket.filteredCards
 	      });
 	    }
 
-	    // Moves a card to the specified bucket
+	    /**
+	     * Moves a card to a new bucket.
+	     * @param {object} card - The selected card that we want to move
+	     * @param {Number} newTag - The new bucket that we want to move the card too
+	     */
 
 	  }, {
 	    key: 'moveCard',
 	    value: function moveCard(card, newTag) {
+
 	      card.tags[0] = newTag;
 	      var nextSelectedState = {};
 	      var currentBucketId = this.state.currentBucketId;
@@ -4778,7 +4804,8 @@
 	        }
 	      });
 
-	      if (newTag !== this.state.currentBucketId && this.state.currentBucketId != 0) {
+	      //Want to filter out the card we are moving from the old view
+	      if (newTag !== this.state.currentBucketId && this.state.currentBucketId != "0") {
 	        nextSelectedState = this.state.filteredCards.filter(function (oldCard) {
 	          return oldCard.id !== card.id;
 	        });
@@ -4786,20 +4813,24 @@
 	        nextSelectedState = this.state.filteredCards;
 	      }
 
-	      // TODO Add a Move Card API call when we get our Rest API up
+	      //make a call to our api
 	      this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
+	      var nextAllCardsState = (0, _reactAddonsUpdate2.default)(this.state, { allCards: { $set: nextState } });
+	      //set our new state
 	      this.setState({
-	        buckets: (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $set: nextState } }),
+	        allCards: nextAllCardsState.allCards,
 	        filteredCards: nextSelectedState
 	      });
 	    }
 
-	    // Deletes a card
+	    /**
+	     * Deletes a card from a group.
+	     * @param {Number} cardId - The id of the card that we want to remove.
+	     */
 
 	  }, {
 	    key: 'deleteCard',
 	    value: function deleteCard(cardId) {
-	      console.log('deleting ', cardId);
 	      var filteredCardsNextState = this.state.filteredCards.filter(function (oldCard) {
 	        return oldCard.id !== cardId;
 	      });
@@ -4807,8 +4838,10 @@
 	        return oldCard.id !== cardId;
 	      });
 
-	      // TODO Add a delete Card API call when we get our Rest API up
+	      //make a call to our api
 	      this.apiDeleteCard(cardId, this.state.currentGroupId);
+
+	      //set our new state
 	      this.setState({
 	        allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
 	        filteredCards: filteredCardsNextState
@@ -4821,12 +4854,12 @@
 	  }, {
 	    key: 'initializeBucket',
 	    value: function initializeBucket(buckets) {
-
 	      var currentBucket = buckets.currentGroupData;
 	      var selected = currentBucket ? currentBucket.activities : null;
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
-	      var currentGroup = currentBucket ? currentBucket.id : 0;
+	      var currentGroup = currentBucket ? currentBucket._id : 0;
 
+	      //set our state initially
 	      this.setState({
 	        bucketList: listOfBuckets,
 	        filteredCards: selected,
@@ -4835,6 +4868,9 @@
 	        currentBucketId: buckets.currentBucketId
 	      });
 	    }
+
+	    // API CALLS
+
 	  }, {
 	    key: 'apiCreateCard',
 	    value: function apiCreateCard(newCard, groupId) {
@@ -55184,8 +55220,9 @@
 	      var _this2 = this;
 
 	      var currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
-	      var currentGroupTitle = this.props.currentGroup ? this.props.currentGroup.title : null;
+	      var currentGroupTitle = this.props.currentGroup.title ? this.props.currentGroup.title : " ";
 	      var currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
+	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
 
 	      var createGroupPopover = _react2.default.createElement(
@@ -55247,7 +55284,7 @@
 	        currentGroupMembers ? currentGroupMembers.map(function (member) {
 	          return _react2.default.createElement(
 	            'p',
-	            { key: member.id, onClick: function onClick() {
+	            { key: member._id, onClick: function onClick() {
 	                _this2.refs.overlayMember.hide();
 	              } },
 	            member.name
@@ -55255,22 +55292,33 @@
 	        }) : null
 	      );
 
+	      //What we are returning
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        { style: { zIndex: 500 }, fluid: true },
 	        _react2.default.createElement(
-	          _reactBootstrap.Navbar.Header,
+	          _reactBootstrap.Nav,
 	          null,
 	          _react2.default.createElement(
-	            _reactBootstrap.Navbar.Brand,
-	            null,
+	            _reactBootstrap.NavDropdown,
+	            { eventKey: 1, id: 'group-title-nav', title: currentGroupTitle, style: { position: "absolute", fontSize: 22, color: "#373a47" } },
 	            _react2.default.createElement(
-	              'a',
-	              { href: '#', style: { position: "absolute", left: 85, color: "#373a47", fontSize: 22 } },
-	              currentGroupTitle
+	              _reactBootstrap.MenuItem,
+	              { eventKey: 1.1, id: 'submit-member' },
+	              'View & Add Friend'
+	            ),
+	            _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
+	            _react2.default.createElement(
+	              _reactBootstrap.MenuItem,
+	              { eventKey: 1.2, onClick: this.props.showSettings },
+	              'Account Settings'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.MenuItem,
+	              { eventKey: 1.3, href: '/index.html' },
+	              'Logout'
 	            )
-	          ),
-	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Navbar.Collapse,
@@ -55281,56 +55329,16 @@
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
 	              {
-	                eventKey: 1,
-	                title: 'Add',
-	                id: 'basic-nav-dropdown' },
-	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlayAddMember',
-	                  rootClose: true,
-	                  trigger: 'click',
-	                  placement: 'bottom',
-	                  overlay: addMemberPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  {
-	                    onClick: this.handlePopoverClick,
-	                    id: 'submit-member' },
-	                  'Add Friend'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlay',
-	                  trigger: 'click',
-	                  rootClose: true,
-	                  placement: 'bottom',
-	                  overlay: createBucketPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onClick: this.handleClickBucket },
-	                  'Add Bucket'
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              {
-	                eventKey: 1,
+	                eventKey: 2,
 	                id: 'groups-dropdown',
 	                title: 'Groups' },
 	              currentGroup.map(function (group) {
 	                return _react2.default.createElement(
 	                  _reactBootstrap.MenuItem,
 	                  {
-	                    eventKey: group.dropdownid,
-	                    key: group.id.toString(),
+	                    key: group._id,
 	                    onClick: function onClick() {
-	                      _this2.props.changeGroup(group.id);
+	                      _this2.props.changeGroup(group._id);
 	                    }
 	                  },
 	                  group.title
@@ -55366,23 +55374,6 @@
 	                  null,
 	                  'View Group'
 	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              {
-	                eventKey: 2,
-	                title: 'Settings',
-	                id: 'basic-nav-dropdown' },
-	              _react2.default.createElement(
-	                _reactBootstrap.MenuItem,
-	                { eventKey: 2.1, onClick: this.props.showSettings },
-	                'Account Settings'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.MenuItem,
-	                { eventKey: 2.2, href: '/index.html' },
-	                'Logout'
 	              )
 	            )
 	          )

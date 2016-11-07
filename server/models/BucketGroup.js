@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 var GroupSchema = new Schema({
   title: String,
   tags: [{id: String, title: String}],
-  members: [String],
+  members: [{id: String, name: String}],
   activities:[
     {
       id: String,
@@ -123,7 +123,7 @@ module.exports.actions.createGroup = function(req,res){
   console.log(req.body);
   var newGroup = new Groups({
     title   : req.body.title,
-    members : req.body.members,
+    members : {name: req.body.members},
     tags    : [{id: req.body.tagId, title: req.body.tagTitle}]
   });
 
