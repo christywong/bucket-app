@@ -27,7 +27,7 @@ var Groups = mongoose.model('bucketgroups', GroupSchema);
 module.exports.actions = {};
 
 module.exports.actions.getGroup = function(req,res){
-  Groups.find({
+  Groups.findOne({"id":req.params.groupId
   }, function(err, group){
     if(err){
       console.log('an error occured');
@@ -37,6 +37,67 @@ module.exports.actions.getGroup = function(req,res){
       console.log(group);
       return res.status(200).json(group);
       ;
+    }
+  })
+}
+
+module.exports.actions.createCard = function(req,res){
+  console.log('creating a card');
+  var newCard = {
+    id: req.body.id,
+    yelpId: req.body.yelpId,
+    yelpUrl: req.body.yelpUrl,
+    img: req.body.img,
+    rating: req.body.rating,
+    city: req.body.city,
+    reviewCount: req.body.reviewCount,
+    title: req.body.title,
+    tags: req.body.tags
+  }
+
+  Groups.findOneAndUpdate({'id':req.body.groupId}, {$push: {activities: newCard}},{new: true}, function(err, data){
+    if(err){
+      console.log('oh no something went wrong');
+      return err;
+    }
+    else{
+      console.log(data);
+    }
+  })
+
+};
+
+module.exports.actions.deleteCard = function(req, res){
+  console.log('deleteing a card');
+  var groupId = req.body.groupId;
+  var cardId = req.body.cardId;
+  Groups.findOneAndUpdate({'id':groupId},{$pull:{activities: {'id': cardId}}},{new:true},function(err,data){
+    if(err){
+      console.log('oh no something went wrong');
+      return err;
+    }
+    else{
+      console.log(data);
+    }
+  })
+}
+
+module.exports.actions.moveCard = function(req,res){
+
+  var groupId = req.body.groupId;
+  var cardId = req.body.cardId;
+  var newTag = req.body.tags;
+    console.log('moving a card: ',cardId);
+
+  Groups.findOneAndUpdate({'id': groupId, 'activities.id': cardId},{$set :{
+    'activities.$.tags': newTag
+  }}, function(err,data){
+    if(err){
+      console.log('oh no something went wrong');
+      return err;
+    }
+    else{
+      console.log(data);
     }
   })
 }

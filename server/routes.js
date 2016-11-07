@@ -38,5 +38,8 @@ module.exports = function (app){
   });
 
   app.get('/api/getGroup/:groupId', Group.actions.getGroup);
+  app.post('/api/createCard', Group.actions.createCard);
+  app.delete('/api/deleteCard', Group.actions.deleteCard);
+  app.put('/api/moveCard', Group.actions.moveCard);
 
 }

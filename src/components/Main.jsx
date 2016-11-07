@@ -142,11 +142,11 @@ export default class Component extends React.Component {
 
   //Creates a card and adds it to the specified bucket
   addCard(card, bucketId){
-
     //Build the new Card we want to Add
     const newCard = {
       id: uuid.v4(),
       yelpId: card.id,
+      yelpUrl: card.url,
       img: card.image_url,
       rating: card.rating_img_url,
       city: card.location.city,
@@ -154,16 +154,15 @@ export default class Component extends React.Component {
       title: card.name,
       tags: [bucketId]
     }
-
     const currentBucketId = this.state.currentBucketId;
-    const currentBucket = this.state.buckets.cards;
-    const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
-    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.filteredCards, {cards: {$push: [newCard]}}) : this.state.filteredCards;
+    //const currentBucket = this.state.buckets.cards;
+    const updatedGroup = this.state.allCards.push(newCard);
+    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? this.state.filteredCards.push(newCard) : this.state.filteredCards;
 
     //Add cards to the state in APP
     //TODO Remove when we get our Rest API up
-
-    //this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
+    this.apiCreateCard(newCard, this.state.currentGroupId);
+    console.log('updated group ', updatedGroup);
     this.setState({
       buckets: updatedGroup,
       filteredCards: selectedBucket
@@ -193,6 +192,7 @@ export default class Component extends React.Component {
     }
 
     // TODO Add a Move Card API call when we get our Rest API up
+    this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
     this.setState({
       buckets: update(this.state.buckets, {cards: {$set: nextState}}),
       filteredCards: nextSelectedState
@@ -206,6 +206,7 @@ export default class Component extends React.Component {
     const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
 
     // TODO Add a delete Card API call when we get our Rest API up
+    this.apiDeleteCard(cardId, this.state.currentGroupId);
     this.setState({
       allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
       filteredCards: filteredCardsNextState
@@ -228,6 +229,71 @@ export default class Component extends React.Component {
       currentGroupId  : currentGroup,
       currentBucketId : buckets.currentBucketId
     });
+  }
+
+
+  apiCreateCard(newCard, groupId){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+    xhr.open('POST', '/api/createCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    console.log(payload);
+    xhr.send(payload);
+  }
+
+  apiDeleteCard(cardId, groupId){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+
+    xhr.open('DELETE', '/api/deleteCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    console.log(payload);
+    xhr.send(payload);
+  }
+
+  apiMoveCard(cardId,groupId, newTag){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'cardId=' + cardId + '&groupId=' + groupId + '&tags=' + newTag;
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+
+    xhr.open('PUT', '/api/moveCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    console.log(payload);
+    xhr.send(payload);
   }
 
 }

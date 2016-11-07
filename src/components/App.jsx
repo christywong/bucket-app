@@ -18,7 +18,7 @@ export default class App extends React.Component{
     }
 
     this.changeGroup = this.changeGroup.bind(this);
-    this.addCardToGroup = this.addCardToGroup.bind(this);
+    // this.addCardToGroup = this.addCardToGroup.bind(this);
     // this.addBucketToGroup = this.addBucketToGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
@@ -61,7 +61,6 @@ export default class App extends React.Component{
           {this.state.data}
           allGroups =
           {this.state.data.tags}
-          addCardToGroup = {this.addCardToGroup}
           currentBucketId = {this.state.currentBucket}
           />
       </div>
@@ -76,7 +75,7 @@ export default class App extends React.Component{
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           //set application state here
-          var result = xhr.response[0];
+          var result = xhr.response;
           // var selectedGroup = result.groups;
           // result.currentGroup = selectedGroup;
           console.log('result is ', result);
@@ -124,23 +123,23 @@ export default class App extends React.Component{
     });
   }
 
-  addCardToGroup(card, groupId, bucketId){
-    console.log('adding card from bucket id ', bucketId);
-    const nextGroupState = this.state.data.groups.map((group) =>{
-      if(group.id ===  groupId){
-        console.log('matching group id');
-        group.buckets.cards.push(card);
-      }
-      return group;
-    });
-
-    this.setState({
-      data: update(this.state.data, {groups: {$set: nextGroupState}}),
-      currentBucket: bucketId
-    })
-
-    console.log('next group state: ', nextGroupState);
-  }
+  // addCardToGroup(card, groupId, bucketId){
+  //   console.log('adding card from bucket id ', bucketId);
+  //   const nextGroupState = this.state.data.groups.map((group) =>{
+  //     if(group.id ===  groupId){
+  //       console.log('matching group id');
+  //       group.buckets.cards.push(card);
+  //     }
+  //     return group;
+  //   });
+  //
+  //   this.setState({
+  //     data: update(this.state.data, {groups: {$set: nextGroupState}}),
+  //     currentBucket: bucketId
+  //   })
+  //
+  //   console.log('next group state: ', nextGroupState);
+  // }
 
   addBucket(name, groupId) {
     console.log('adding bucket ', this.state.data.currentGroup.tags);

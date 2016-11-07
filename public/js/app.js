@@ -125,7 +125,7 @@
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
-	    _this.addCardToGroup = _this.addCardToGroup.bind(_this);
+	    // this.addCardToGroup = this.addCardToGroup.bind(this);
 	    // this.addBucketToGroup = this.addBucketToGroup.bind(this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
@@ -164,7 +164,6 @@
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroupData: this.state.data,
 	          allGroups: this.state.data.tags,
-	          addCardToGroup: this.addCardToGroup,
 	          currentBucketId: this.state.currentBucket
 	        })
 	      );
@@ -179,7 +178,7 @@
 	        if (xhr.readyState === 4) {
 	          if (xhr.status === 200) {
 	            //set application state here
-	            var result = xhr.response[0];
+	            var result = xhr.response;
 	            // var selectedGroup = result.groups;
 	            // result.currentGroup = selectedGroup;
 	            console.log('result is ', result);
@@ -230,25 +229,25 @@
 	        currentBucket: 0
 	      });
 	    }
-	  }, {
-	    key: 'addCardToGroup',
-	    value: function addCardToGroup(card, groupId, bucketId) {
-	      console.log('adding card from bucket id ', bucketId);
-	      var nextGroupState = this.state.data.groups.map(function (group) {
-	        if (group.id === groupId) {
-	          console.log('matching group id');
-	          group.buckets.cards.push(card);
-	        }
-	        return group;
-	      });
 
-	      this.setState({
-	        data: (0, _reactAddonsUpdate2.default)(this.state.data, { groups: { $set: nextGroupState } }),
-	        currentBucket: bucketId
-	      });
+	    // addCardToGroup(card, groupId, bucketId){
+	    //   console.log('adding card from bucket id ', bucketId);
+	    //   const nextGroupState = this.state.data.groups.map((group) =>{
+	    //     if(group.id ===  groupId){
+	    //       console.log('matching group id');
+	    //       group.buckets.cards.push(card);
+	    //     }
+	    //     return group;
+	    //   });
+	    //
+	    //   this.setState({
+	    //     data: update(this.state.data, {groups: {$set: nextGroupState}}),
+	    //     currentBucket: bucketId
+	    //   })
+	    //
+	    //   console.log('next group state: ', nextGroupState);
+	    // }
 
-	      console.log('next group state: ', nextGroupState);
-	    }
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name, groupId) {
@@ -4735,11 +4734,11 @@
 	  }, {
 	    key: 'addCard',
 	    value: function addCard(card, bucketId) {
-
 	      //Build the new Card we want to Add
 	      var newCard = {
 	        id: _uuid2.default.v4(),
 	        yelpId: card.id,
+	        yelpUrl: card.url,
 	        img: card.image_url,
 	        rating: card.rating_img_url,
 	        city: card.location.city,
@@ -4747,16 +4746,15 @@
 	        title: card.name,
 	        tags: [bucketId]
 	      };
-
 	      var currentBucketId = this.state.currentBucketId;
-	      var currentBucket = this.state.buckets.cards;
-	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $push: [newCard] } });
-	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state.filteredCards, { cards: { $push: [newCard] } }) : this.state.filteredCards;
+	      //const currentBucket = this.state.buckets.cards;
+	      var updatedGroup = this.state.allCards.push(newCard);
+	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? this.state.filteredCards.push(newCard) : this.state.filteredCards;
 
 	      //Add cards to the state in APP
 	      //TODO Remove when we get our Rest API up
-
-	      //this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
+	      this.apiCreateCard(newCard, this.state.currentGroupId);
+	      console.log('updated group ', updatedGroup);
 	      this.setState({
 	        buckets: updatedGroup,
 	        filteredCards: selectedBucket
@@ -4789,6 +4787,7 @@
 	      }
 
 	      // TODO Add a Move Card API call when we get our Rest API up
+	      this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
 	      this.setState({
 	        buckets: (0, _reactAddonsUpdate2.default)(this.state.buckets, { cards: { $set: nextState } }),
 	        filteredCards: nextSelectedState
@@ -4809,6 +4808,7 @@
 	      });
 
 	      // TODO Add a delete Card API call when we get our Rest API up
+	      this.apiDeleteCard(cardId, this.state.currentGroupId);
 	      this.setState({
 	        allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
 	        filteredCards: filteredCardsNextState
@@ -4834,6 +4834,73 @@
 	        currentGroupId: currentGroup,
 	        currentBucketId: buckets.currentBucketId
 	      });
+	    }
+	  }, {
+	    key: 'apiCreateCard',
+	    value: function apiCreateCard(newCard, groupId) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readystate === 4) {
+	          if (xhr.status === 200) {
+	            console.log('success!');
+	            console.log(xhr.response);
+	          } else {
+	            console.log('oops there was an error');
+	          }
+	        }
+	      };
+	      xhr.open('POST', '/api/createCard');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      console.log(payload);
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiDeleteCard',
+	    value: function apiDeleteCard(cardId, groupId) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readystate === 4) {
+	          if (xhr.status === 200) {
+	            console.log('success!');
+	            console.log(xhr.response);
+	          } else {
+	            console.log('oops there was an error');
+	          }
+	        }
+	      };
+
+	      xhr.open('DELETE', '/api/deleteCard');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      console.log(payload);
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiMoveCard',
+	    value: function apiMoveCard(cardId, groupId, newTag) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'cardId=' + cardId + '&groupId=' + groupId + '&tags=' + newTag;
+
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readystate === 4) {
+	          if (xhr.status === 200) {
+	            console.log('success!');
+	            console.log(xhr.response);
+	          } else {
+	            console.log('oops there was an error');
+	          }
+	        }
+	      };
+
+	      xhr.open('PUT', '/api/moveCard');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      console.log(payload);
+	      xhr.send(payload);
 	    }
 	  }]);
 
