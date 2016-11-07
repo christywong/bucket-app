@@ -180,19 +180,22 @@ export default class NavbarInstance extends React.Component {
 
     return(
       <Navbar style={{zIndex: 500}} fluid>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#" style={{position: "absolute",left: 85, color: "#373a47", fontSize: 22}}>
-              {currentGroupTitle}
-            </a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-
+        <Nav>
+          <NavDropdown eventKey={1} id="group-title-nav" title={currentGroupTitle} style={{position: "absolute", fontSize: 22, color: "#373a47"}}>
+            <MenuItem eventKey={1.1} id="submit-member">
+              View & Add Friend
+            </MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey={1.2} onClick={this.props.showSettings}>
+              Account Settings
+            </MenuItem>
+            <MenuItem eventKey={1.3} href="/index.html">Logout</MenuItem>
+          </NavDropdown>
+        </Nav>
         <Navbar.Collapse>
           <Nav pullRight>
             <NavDropdown
-              eventKey={1}
+              eventKey={2}
               title="Add"
               id="basic-nav-dropdown">
               <OverlayTrigger
@@ -222,7 +225,7 @@ export default class NavbarInstance extends React.Component {
             </NavDropdown>
 
             <NavDropdown
-              eventKey={1}
+              eventKey={3}
               id="groups-dropdown"
               title="Groups">
               {currentGroup.map((group)=>{
@@ -263,15 +266,13 @@ export default class NavbarInstance extends React.Component {
             </NavDropdown>
 
             <NavDropdown
-              eventKey={2}
+              eventKey={4}
               title="Settings"
               id="basic-nav-dropdown">
-
-
-              <MenuItem eventKey={2.1} onClick={this.props.showSettings}>
+              <MenuItem eventKey={4.1} onClick={this.props.showSettings}>
                 Account Settings
               </MenuItem>
-              <MenuItem eventKey={2.2} href="/index.html">Logout</MenuItem>
+              <MenuItem eventKey={4.2} href="/index.html">Logout</MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
