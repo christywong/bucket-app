@@ -62,6 +62,7 @@ module.exports.actions.createCard = function(req,res){
     }
     else{
       console.log(data);
+      return res.status(200);
     }
   })
 
@@ -78,12 +79,12 @@ module.exports.actions.deleteCard = function(req, res){
     }
     else{
       console.log(data);
+      return res.status(200);
     }
   })
 }
 
 module.exports.actions.moveCard = function(req,res){
-
   var groupId = req.body.groupId;
   var cardId = req.body.cardId;
   var newTag = req.body.tags;
@@ -98,6 +99,19 @@ module.exports.actions.moveCard = function(req,res){
     }
     else{
       console.log(data);
+      return res.status(200);
+    }
+  })
+}
+
+module.exports.actions.getAllGroups = function(req,res){
+  Groups.find({},'id title', function(err, listOfGroups){
+    if(err){
+      console.log('oh no something went wrong');
+      return err;
+    }
+    else{
+      return res.status(200).json(listOfGroups);
     }
   })
 }

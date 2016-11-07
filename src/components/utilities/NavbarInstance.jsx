@@ -228,7 +228,7 @@ export default class NavbarInstance extends React.Component {
               {currentGroup.map((group)=>{
                 return (
                   <MenuItem
-                    eventKey={group.dropdownid}
+                    eventKey={group.id}
                     key={group.id.toString()}
                     onClick={()=>{this.props.changeGroup(group.id)}}
                     >

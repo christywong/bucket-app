@@ -37,9 +37,15 @@ module.exports = function (app){
     })
   });
 
+  //List the current group
   app.get('/api/getGroup/:groupId', Group.actions.getGroup);
+  //Create a card
   app.post('/api/createCard', Group.actions.createCard);
+  //Delete a card
   app.delete('/api/deleteCard', Group.actions.deleteCard);
+  //Move a card
   app.put('/api/moveCard', Group.actions.moveCard);
+  //Return a list of all the groups
+  app.get('/api/getAllGroups', Group.actions.getAllGroups);
 
 }

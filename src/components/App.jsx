@@ -11,21 +11,16 @@ export default class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      data: {
-      },
+      data: {},
+      listOfGroups:[],
       showModal: false,
       currentBucket: 0
     }
 
     this.changeGroup = this.changeGroup.bind(this);
-    // this.addCardToGroup = this.addCardToGroup.bind(this);
-    // this.addBucketToGroup = this.addBucketToGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
-
-    this.sendJSONData = this.sendJSONData.bind(this);
-
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -35,15 +30,15 @@ export default class App extends React.Component{
 
   componentDidMount() {
     this.loadJSONData();
+    this.getAllGroups();
   }
 
   render(){
     return (
-
       <div>
         <NavbarInstance
           currentGroup ={this.state.data}
-          groups = {this.state.data.tags}
+          groups = {this.state.listOfGroups}
           changeGroup = {this.changeGroup}
           addGroup = {this.addGroup}
           addBucket = {this.addBucket}
@@ -67,53 +62,6 @@ export default class App extends React.Component{
     );
   }
 
-  loadJSONData(){
-    console.log('loading data');
-    var me = this;
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          //set application state here
-          var result = xhr.response;
-          // var selectedGroup = result.groups;
-          // result.currentGroup = selectedGroup;
-          console.log('result is ', result);
-
-          me.setState({
-            data: result
-          });
-        } else{
-          console.log('Ooops an error occured');
-        }
-      }
-    }
-    console.log('getting data from server');
-    xhr.open('GET', '/api/getGroup/' + this.state.currentBucket);
-    xhr.responseType = 'json'
-    xhr.send();
-  }
-
-  sendJSONData(){
-    console.log('sending json data')
-    var me = this;
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          console.log('success!');
-          console.log(xhr.response);
-        } else{
-          console.log('Ooops an error occured');
-        }
-      }
-    }
-    xhr.open('POST', '/api/postData', true);
-    console.log(this.state.data);
-    console.log('sending over ', JSON.stringify(this.state.data));
-    xhr.send(JSON.stringify(this.state.data));
-  }
-
   changeGroup(currentGroupId){
     console.log(currentGroupId);
     const newGroup = this.state.data.groups.filter((group)=>(currentGroupId===group.id))[0];
@@ -122,24 +70,6 @@ export default class App extends React.Component{
       currentBucket: 0
     });
   }
-
-  // addCardToGroup(card, groupId, bucketId){
-  //   console.log('adding card from bucket id ', bucketId);
-  //   const nextGroupState = this.state.data.groups.map((group) =>{
-  //     if(group.id ===  groupId){
-  //       console.log('matching group id');
-  //       group.buckets.cards.push(card);
-  //     }
-  //     return group;
-  //   });
-  //
-  //   this.setState({
-  //     data: update(this.state.data, {groups: {$set: nextGroupState}}),
-  //     currentBucket: bucketId
-  //   })
-  //
-  //   console.log('next group state: ', nextGroupState);
-  // }
 
   addBucket(name, groupId) {
     console.log('adding bucket ', this.state.data.currentGroup.tags);
@@ -219,6 +149,49 @@ export default class App extends React.Component{
 
   closeAccountSettingsModal(){
     this.setState({showModal: false});
+  }
+
+  //API call to initialize our Application
+  loadJSONData(){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          me.setState({
+            data: result
+          });
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+    console.log('getting data from server');
+    xhr.open('GET', '/api/getGroup/' + this.state.currentBucket);
+    xhr.responseType = 'json'
+    xhr.send();
+  }
+
+  getAllGroups(){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          me.setState({
+            listOfGroups: result
+          });
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+    console.log('getting data from server');
+    xhr.open('GET', '/api/getAllGroups/');
+    xhr.responseType = 'json'
+    xhr.send();
   }
 
 }

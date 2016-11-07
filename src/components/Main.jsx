@@ -124,14 +124,20 @@ export default class Component extends React.Component {
     this.setState({showModal: false});
   }
 
-  // Filter the cards by the selected Tags
+  /**
+   * Filter the cards by the selected Tags
+   * @param bucketId - The id of the bucket that will filter the cards.
+   */
   filterTags(bucketId){
     const bucketArray = this.state.allCards ? this.state.allCards : [];
     const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
     return nextBucket;
   }
 
-  //Listener to change the state of which cards are selected
+  /**
+   * Changes the state of the cards based on which bucket is selected.
+   * @param {number} bucketId - The id of the bucket that is to be selected.
+   */
   changeState(bucketId) {
     const changeBucket = this.filterTags(bucketId);
     this.setState({
@@ -140,7 +146,11 @@ export default class Component extends React.Component {
     });
   }
 
-  //Creates a card and adds it to the specified bucket
+  /**
+   * Creates a card in the specified Bucket.
+   * @param {object} card - Information from yelp results in order to build a new card.
+   * @param {number} bucketId - The id of the bucket that the card will be added too.
+   */
   addCard(card, bucketId){
     //Build the new Card we want to Add
     const newCard = {
@@ -155,22 +165,25 @@ export default class Component extends React.Component {
       tags: [bucketId]
     }
     const currentBucketId = this.state.currentBucketId;
-    //const currentBucket = this.state.buckets.cards;
     const updatedGroup = this.state.allCards.push(newCard);
     const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? this.state.filteredCards.push(newCard) : this.state.filteredCards;
 
     //Add cards to the state in APP
-    //TODO Remove when we get our Rest API up
     this.apiCreateCard(newCard, this.state.currentGroupId);
-    console.log('updated group ', updatedGroup);
+
     this.setState({
       buckets: updatedGroup,
       filteredCards: selectedBucket
     });
   }
 
-  // Moves a card to the specified bucket
+  /**
+   * Moves a card to a new bucket.
+   * @param {object} card - The selected card that we want to move
+   * @param {Number} newTag - The new bucket that we want to move the card too
+   */
   moveCard(card, newTag){
+
     card.tags[0] = newTag;
     var nextSelectedState ={};
     const currentBucketId = this.state.currentBucketId
@@ -184,6 +197,7 @@ export default class Component extends React.Component {
       }
     });
 
+    //Want to filter out the card we are moving from the old view
     if(newTag !== this.state.currentBucketId && this.state.currentBucketId != 0){
       nextSelectedState = this.state.filteredCards.filter((oldCard)=>(oldCard.id !== card.id));
     }
@@ -191,22 +205,28 @@ export default class Component extends React.Component {
       nextSelectedState = this.state.filteredCards;
     }
 
-    // TODO Add a Move Card API call when we get our Rest API up
+    //make a call to our api
     this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
+
+    //set our new state
     this.setState({
       buckets: update(this.state.buckets, {cards: {$set: nextState}}),
       filteredCards: nextSelectedState
     });
   }
 
-  // Deletes a card
+  /**
+   * Deletes a card from a group.
+   * @param {Number} cardId - The id of the card that we want to remove.
+   */
   deleteCard(cardId){
-    console.log('deleting ', cardId);
     const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
     const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
 
-    // TODO Add a delete Card API call when we get our Rest API up
+    //make a call to our api
     this.apiDeleteCard(cardId, this.state.currentGroupId);
+
+    //set our new state
     this.setState({
       allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
       filteredCards: filteredCardsNextState
@@ -216,12 +236,12 @@ export default class Component extends React.Component {
   //Initialize our State whenever we update a prop from App.
   //This will keep the Main Component updated with whatever changes were made to App
   initializeBucket(buckets){
-
     const currentBucket = buckets.currentGroupData;
     const selected = currentBucket ? currentBucket.activities : null;
     const listOfBuckets = currentBucket ? currentBucket.tags : []
     const currentGroup = currentBucket ? currentBucket.id : 0;
 
+    //set our state initially
     this.setState({
       bucketList      : listOfBuckets,
       filteredCards   : selected,
@@ -231,7 +251,7 @@ export default class Component extends React.Component {
     });
   }
 
-
+  // API CALLS 
   apiCreateCard(newCard, groupId){
     var me = this;
     var xhr = new XMLHttpRequest();
