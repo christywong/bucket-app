@@ -225,4 +225,26 @@ export default class App extends React.Component{
     xhr.send(payload);
   }
 
+  apiAddFriend(newFriend){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = "person="+newFriend + "&groupId=" + this.state.currentGroup;
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          me.setState({
+            data : result
+          });
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+    xhr.open('POST', '/api/addFriend');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.responseType = 'json'
+    xhr.send(payload);
+  }
+
 }

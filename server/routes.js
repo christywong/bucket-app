@@ -49,5 +49,7 @@ module.exports = function (app){
   app.get('/api/getAllGroups', Group.actions.getAllGroups);
   //Creates a new group in the database
   app.post('/api/createGroup', Group.actions.createGroup);
+  //add a friend to the group
+  app.post('/api/addFriend', Group.actions.addFriend);
 
 }

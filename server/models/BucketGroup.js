@@ -141,3 +141,25 @@ module.exports.actions.createGroup = function(req,res){
     }
   })
 }
+
+module.exports.actions.addFriend = function(req,res){
+  var groupId = req.body.groupId;
+  var person = req.body.person;
+
+  var newFriend = {
+    name: person
+  }
+  console.log(newFriend);
+  Groups.findOneAndUpdate({'id': groupId},{$push:{members: newFriend}},{new: true}, function(err,group){
+    if(err){
+      console.log('oh no something went wrong');
+      console.log(err);
+      return err;
+    }
+    else{
+      console.log(group);
+      console.log('new friend added');
+      return res.status(200).json(group);
+    }
+  });
+}
