@@ -178,6 +178,29 @@ body:before {
     }
     .card-left{
       float:left;
+      background-color: $primary-blue;
+      position: relative;
+      img:hover{
+        opacity: 0.4;
+      }
+
+      img:hover + p{
+        visibility: visible;
+      }
+
+      p{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        color: white;
+        font-size: 14px;
+        width: 50px;
+        text-align: center;
+        line-height: 1.0;
+        pointer-events: none;
+        visibility: hidden;
+      }
     }
     .card-right{
       margin-left:75px;

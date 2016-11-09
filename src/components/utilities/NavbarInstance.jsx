@@ -137,7 +137,7 @@ export default class NavbarInstance extends React.Component {
                   </MenuItem>
                 )
               })}
-              <MenuItem divider />
+              <MenuItem divider/>
                 <MenuItem onClick={this.handlePopoverClick}>
                    Create Group
                 </MenuItem>
@@ -145,6 +145,7 @@ export default class NavbarInstance extends React.Component {
 
             <NavDropdown
               eventKey={4}
+              id="settings-dropdown"
               title="Settings">
               <MenuItem eventKey={4.1} onClick={this.props.showSettings}>
                 Account Settings
