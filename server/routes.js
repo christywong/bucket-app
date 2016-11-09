@@ -46,10 +46,11 @@ module.exports = function (app){
   //Move a card
   app.put('/api/moveCard', Group.actions.moveCard);
 
+  //TODO
   //Create a new Bucket
-  app.post('/api/createBucket');
+  app.post('/api/createBucket', Group.actions.createBucket);
   //Delete a Bucket
-  app.post('/api/deleteBucket');
+  app.post('/api/deleteBucket', Group.actions.deleteBucket);
 
 
   //Return a list of all the groups

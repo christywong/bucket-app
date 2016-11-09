@@ -150,7 +150,7 @@ module.exports.actions.addFriend = function(req,res){
     name: person
   }
   console.log(newFriend);
-  Groups.findOneAndUpdate({'id': groupId},{$push:{members: newFriend}},{new: true}, function(err,group){
+  Groups.findOneAndUpdate({'_id': groupId},{$push:{members: newFriend}},{new: true}, function(err,group){
     if(err){
       console.log('oh no something went wrong');
       console.log(err);
@@ -162,4 +162,30 @@ module.exports.actions.addFriend = function(req,res){
       return res.status(200).json(group);
     }
   });
+}
+
+module.exports.actions.createBucket = function(req,res){
+  //id of group we want to add the bucket too
+  console.log('adding a bucket');
+
+  var groupId = req.body.groupId;
+  //name of new bucket
+  var bucketTitle = req.body.bucket;
+  var newBucket = {
+    title : bucketTitle
+  }
+  console.log('bucket title ', bucketTitle, 'groupId ', groupId);
+  Groups.findOneAndUpdate({'_id':groupId},{$push: {tags: newBucket}},{new: true},
+    function(err,group){
+      if(err){
+        console.log(err);
+        return err;
+      }
+      console.log('new group ', group);
+      return res.status(200).json(group);
+  })
+}
+
+module.exports.actions.deleteBucket = function(req,res){
+
 }
