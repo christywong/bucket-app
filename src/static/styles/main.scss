@@ -178,7 +178,7 @@ body:before {
     }
     .card-left{
       float:left;
-      background-color: $hover-blue;
+      background-color: $primary-blue;
       position: relative;
       img:hover{
         opacity: 0.4;
@@ -190,7 +190,7 @@ body:before {
 
       p{
         position: absolute;
-        top: 35%;
+        top: 20%;
         left: 50%;
         transform: translate(-50%, 0);
         color: white;
