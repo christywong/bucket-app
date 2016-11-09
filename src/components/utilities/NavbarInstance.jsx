@@ -111,14 +111,13 @@ export default class NavbarInstance extends React.Component {
     return(
       <Navbar style={{zIndex: 500}} fluid>
         <Navbar.Header>
-          <Navbar.Brand style={{position:'absolute',left: 75}}>
+          <Navbar.Brand style={{position:'absolute',left: 35}} id="group-title-nav">
             {currentGroupTitle}
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>
-
           <Nav pullRight>
             <NavItem eventKey={2} id="submit-member">
               Friends
@@ -142,9 +141,6 @@ export default class NavbarInstance extends React.Component {
                 <MenuItem onClick={this.handlePopoverClick}>
                    Create Group
                 </MenuItem>
-                <MenuItem>
-                  View Group
-                </MenuItem>
             </NavDropdown>
 
             <NavDropdown
@@ -156,7 +152,6 @@ export default class NavbarInstance extends React.Component {
               <MenuItem eventKey={4.2} href="/index.html">Logout</MenuItem>
             </NavDropdown>
           </Nav>
-
         </Navbar.Collapse>
       </Navbar>
 
