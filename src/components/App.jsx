@@ -4,7 +4,7 @@ import Main from './Main';
 import uuid from 'uuid';
 import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
-import AccountSettingsModal from './utilities/AccountSettingsModal';
+import AccountSettingsModal from './modals/AccountSettingsModal';
 
 
 export default class App extends React.Component{
