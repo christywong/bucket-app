@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown } from "react-bootstrap";
 import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
-import AccountSettingsModal from './AccountSettingsModal';
+import AccountSettingsModal from '../modals/AccountSettingsModal';
 
 
 export default class NavbarInstance extends React.Component {

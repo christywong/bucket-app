@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
-import CardEntry from './SearchEntry';
+import CardEntry from '../utilities/SearchEntry';
 
 // export default ({close, createBucket}) => {
 export default class AddModal extends React.Component{
