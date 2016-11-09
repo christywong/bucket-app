@@ -37,6 +37,26 @@ module.exports = function (app){
     })
   });
 
+  //List the current group
   app.get('/api/getGroup/:groupId', Group.actions.getGroup);
+  //Create a card
+  app.post('/api/createCard', Group.actions.createCard);
+  //Delete a card
+  app.delete('/api/deleteCard', Group.actions.deleteCard);
+  //Move a card
+  app.put('/api/moveCard', Group.actions.moveCard);
+
+  //Create a new Bucket
+  app.post('/api/createBucket');
+  //Delete a Bucket
+  app.post('/api/deleteBucket');
+
+
+  //Return a list of all the groups
+  app.get('/api/getAllGroups', Group.actions.getAllGroups);
+  //Creates a new group in the database
+  app.post('/api/createGroup', Group.actions.createGroup);
+  //add a friend to the group
+  app.post('/api/addFriend', Group.actions.addFriend);
 
 }

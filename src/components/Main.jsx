@@ -16,7 +16,6 @@ export default class Component extends React.Component {
     this.state = {
       showModal : false,
       bucketList: [],
-      buckets: [],
       filteredCards: {},
       currentBucketId: 0,
       currentGroupId: 0,
@@ -51,7 +50,7 @@ export default class Component extends React.Component {
     const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
 
     //Card components to get injected into our view
-    const groupCards =  cardArray ? cardArray.map((cardEntry) => { return(
+    const filteredCards =  cardArray ? cardArray.map((cardEntry) => { return(
         <Cards
           key = {cardEntry.id.toString()}
           activities = {cardEntry}
@@ -59,7 +58,9 @@ export default class Component extends React.Component {
           bucketTags = {this.state.bucketList}
           deleteCard={this.deleteCard}
           />
-      )}) : null;
+      )}) : [];
+
+      const groupCards = filteredCards.length > 0 ? filteredCards : (<h2 className="empty-bucket-msg"> There are no cards in this bucket :( </h2>);
 
     return (
       <div id="outer-container">
@@ -90,15 +91,12 @@ export default class Component extends React.Component {
               />
             : null
           }
-
           {groupCards}
-
           {
             this.state.showSettingsModal ?
             <AccountSettingsModal close={this.closeAccountSettingsModal} />
             : null
           }
-
           <div
             className='add-btn'
             onClick = {this.showModal}>+</div>
@@ -124,14 +122,20 @@ export default class Component extends React.Component {
     this.setState({showModal: false});
   }
 
-  // Filter the cards by the selected Tags
+  /**
+   * Filter the cards by the selected Tags
+   * @param bucketId - The id of the bucket that will filter the cards.
+   */
   filterTags(bucketId){
     const bucketArray = this.state.allCards ? this.state.allCards : [];
-    const nextBucket = bucketId !== 0 ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+    const nextBucket = bucketId !== "0" ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
     return nextBucket;
   }
 
-  //Listener to change the state of which cards are selected
+  /**
+   * Changes the state of the cards based on which bucket is selected.
+   * @param {number} bucketId - The id of the bucket that is to be selected.
+   */
   changeState(bucketId) {
     const changeBucket = this.filterTags(bucketId);
     this.setState({
@@ -140,13 +144,19 @@ export default class Component extends React.Component {
     });
   }
 
-  //Creates a card and adds it to the specified bucket
+  /**
+   * Creates a card in the specified Bucket.
+   * @param {object} card - Information from yelp results in order to build a new card.
+   * @param {number} bucketId - The id of the bucket that the card will be added too.
+   */
   addCard(card, bucketId){
-
+    var tagId = bucketId !== "0" ? bucketId : null;
+    console.log('adding a new card');
     //Build the new Card we want to Add
     const newCard = {
       id: uuid.v4(),
       yelpId: card.id,
+      yelpUrl: card.url,
       img: card.image_url,
       rating: card.rating_img_url,
       city: card.location.city,
@@ -156,22 +166,26 @@ export default class Component extends React.Component {
     }
 
     const currentBucketId = this.state.currentBucketId;
-    const currentBucket = this.state.buckets.cards;
-    const updatedGroup = update(this.state.buckets, {cards: {$push: [newCard]}});
-    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state.filteredCards, {cards: {$push: [newCard]}}) : this.state.filteredCards;
-
+    const updatedGroup = update(this.state, {allCards: {$push: [newCard]}});
+    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state, {filteredCards: {$push: [newCard]}}) : this.state.filteredCards;
+    console.log('updated group ', updatedGroup);
+    console.log('selectedBucketId ', selectedBucket);
     //Add cards to the state in APP
-    //TODO Remove when we get our Rest API up
+    this.apiCreateCard(newCard, this.state.currentGroupId);
 
-    //this.props.addCardToGroup(newCard, this.state.currentGroupId, this.state.currentBucketId);
     this.setState({
-      buckets: updatedGroup,
-      filteredCards: selectedBucket
+      allCards: updatedGroup.allCards,
+      filteredCards: selectedBucket.filteredCards
     });
   }
 
-  // Moves a card to the specified bucket
+  /**
+   * Moves a card to a new bucket.
+   * @param {object} card - The selected card that we want to move
+   * @param {Number} newTag - The new bucket that we want to move the card too
+   */
   moveCard(card, newTag){
+
     card.tags[0] = newTag;
     var nextSelectedState ={};
     const currentBucketId = this.state.currentBucketId
@@ -185,27 +199,36 @@ export default class Component extends React.Component {
       }
     });
 
-    if(newTag !== this.state.currentBucketId && this.state.currentBucketId != 0){
+    //Want to filter out the card we are moving from the old view
+    if(newTag !== this.state.currentBucketId && this.state.currentBucketId != "0"){
       nextSelectedState = this.state.filteredCards.filter((oldCard)=>(oldCard.id !== card.id));
     }
     else{
       nextSelectedState = this.state.filteredCards;
     }
 
-    // TODO Add a Move Card API call when we get our Rest API up
+    //make a call to our api
+    this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
+    const nextAllCardsState = update(this.state, {allCards: {$set: nextState}})
+    //set our new state
     this.setState({
-      buckets: update(this.state.buckets, {cards: {$set: nextState}}),
+      allCards: nextAllCardsState.allCards,
       filteredCards: nextSelectedState
     });
   }
 
-  // Deletes a card
+  /**
+   * Deletes a card from a group.
+   * @param {Number} cardId - The id of the card that we want to remove.
+   */
   deleteCard(cardId){
-    console.log('deleting ', cardId);
     const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
     const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
 
-    // TODO Add a delete Card API call when we get our Rest API up
+    //make a call to our api
+    this.apiDeleteCard(cardId, this.state.currentGroupId);
+
+    //set our new state
     this.setState({
       allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
       filteredCards: filteredCardsNextState
@@ -215,29 +238,84 @@ export default class Component extends React.Component {
   //Initialize our State whenever we update a prop from App.
   //This will keep the Main Component updated with whatever changes were made to App
   initializeBucket(buckets){
-
     const currentBucket = buckets.currentGroupData;
     const selected = currentBucket ? currentBucket.activities : null;
     const listOfBuckets = currentBucket ? currentBucket.tags : []
-    const currentGroup = currentBucket ? currentBucket.id : 0;
+    const currentGroup = currentBucket ? currentBucket._id : 0;
 
+    //set our state initially
     this.setState({
       bucketList      : listOfBuckets,
       filteredCards   : selected,
       allCards        : selected,
       currentGroupId  : currentGroup,
-      currentBucketId : buckets.currentBucketId
+      currentBucketId : buckets.currentBucketId,
     });
   }
 
-//const Trigger{ 
-//  getInitialState() {
-//  return {show: false};
-// } 
-// }
+  // API CALLS
+  apiCreateCard(newCard, groupId){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+    xhr.open('POST', '/api/createCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    console.log(payload);
+    xhr.send(payload);
+  }
 
-//const Trigger = React.createClass({
-//  getInitialState() {
-//    return { show: false };
-//  },  
+  apiDeleteCard(cardId, groupId){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+
+    xhr.open('DELETE', '/api/deleteCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    console.log(payload);
+    xhr.send(payload);
+  }
+
+  apiMoveCard(cardId,groupId, newTag){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'cardId=' + cardId + '&groupId=' + groupId + '&tags=' + newTag;
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readystate === 4){
+        if(xhr.status === 200){
+          console.log('success!');
+          console.log(xhr.response);
+        } else{
+          console.log('oops there was an error');
+        }
+      }
+    }
+
+    xhr.open('PUT', '/api/moveCard');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log(payload);
+    xhr.send(payload);
+  }
+
 }
