@@ -16,7 +16,7 @@ var GroupSchema = new Schema({
       city: String,
       reviewCount: Number,
       title: String,
-      tags: [Number]
+      tags: [String]
     }
   ]
 });
@@ -172,6 +172,7 @@ module.exports.actions.createBucket = function(req,res){
   //name of new bucket
   var bucketTitle = req.body.bucket;
   var newBucket = {
+    id : uuid.v4(),
     title : bucketTitle
   }
   console.log('bucket title ', bucketTitle, 'groupId ', groupId);

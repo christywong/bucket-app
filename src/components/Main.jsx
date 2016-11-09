@@ -185,7 +185,6 @@ export default class Component extends React.Component {
    * @param {Number} newTag - The new bucket that we want to move the card too
    */
   moveCard(card, newTag){
-
     card.tags[0] = newTag;
     var nextSelectedState ={};
     const currentBucketId = this.state.currentBucketId
