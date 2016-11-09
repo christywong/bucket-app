@@ -150,7 +150,25 @@ body:before {
       padding-bottom: 10px;
       margin-bottom: 10px; }
     .main-container .card-style .card-left {
-      float: left; }
+      float: left;
+      background-color: #1F5081;
+      position: relative; }
+      .main-container .card-style .card-left img:hover {
+        opacity: 0.4; }
+      .main-container .card-style .card-left img:hover + p {
+        visibility: visible; }
+      .main-container .card-style .card-left p {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        color: white;
+        font-size: 14px;
+        width: 50px;
+        text-align: center;
+        line-height: 1.0;
+        pointer-events: none;
+        visibility: hidden; }
     .main-container .card-style .card-right {
       margin-left: 75px;
       padding-left: 5px; }
@@ -400,13 +418,6 @@ body:before {
 .btn-primary:hover {
   background-color: #126a7b !important; }
 
-/* Overriding bootstrap styles */
-/*@media (max-width: 767px) {
-  .navbar-nav .open .dropdown-menu {
-    background-color: #fff !important;
-    border: 1px solid rgba(0,0,0,.15) !important;
-  }
-}*/
 .fa-gear {
   color: #373a47; }
 

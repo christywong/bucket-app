@@ -41482,9 +41482,14 @@
 	          { className: 'card-left' },
 	          _react2.default.createElement(
 	            'a',
-	            { href: 'https://www.yelp.com/biz/vallarta-express-mexican-eatery-san-diego?adjust_creative=SpLSZTvEK8wLBqyuM71G_g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=SpLSZTvEK8wLBqyuM71G_g', target: '_blank' },
+	            { href: card.yelpUrl, target: '_blank' },
 	            _react2.default.createElement('img', { src: card.img,
-	              width: '75' })
+	              width: '75' }),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'View on Yelp'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -55300,6 +55305,7 @@
 	              _reactBootstrap.NavDropdown,
 	              {
 	                eventKey: 4,
+	                id: 'settings-dropdown',
 	                title: 'Settings' },
 	              _react2.default.createElement(
 	                _reactBootstrap.MenuItem,

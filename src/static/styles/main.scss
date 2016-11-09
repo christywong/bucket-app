@@ -529,18 +529,11 @@ opacity: .2;
     background-color: $hover-blue-darken !important;
 }
 
-/* Overriding bootstrap styles */
-/*@media (max-width: 767px) {
-  .navbar-nav .open .dropdown-menu {
-    background-color: #fff !important;
-    border: 1px solid rgba(0,0,0,.15) !important;
-  }
-}*/
 
 .fa-gear {
-  color: #373a47;
+  color: $primary-gray;
 }
 
 .fa-gear:hover {
-  color: #373a47;
+  color: $primary-gray;
 }
