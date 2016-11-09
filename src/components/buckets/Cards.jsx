@@ -46,10 +46,12 @@ export default class Cards extends React.Component{
         </div>
 
         <div className="card-left">
-          <a href="https://www.yelp.com/biz/vallarta-express-mexican-eatery-san-diego?adjust_creative=SpLSZTvEK8wLBqyuM71G_g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=SpLSZTvEK8wLBqyuM71G_g" target="_blank">
+          <a href={card.yelpUrl} target="_blank">
             <img src={card.img}
               width= '75'/>
+              <p>View on Yelp</p>
           </a>
+
         </div>
 
         <div className="card-right">
