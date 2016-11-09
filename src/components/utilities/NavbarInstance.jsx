@@ -209,29 +209,12 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref="overlayGroup"
-                trigger="click"
-                rootClose
-                placement="bottom"
-                overlay={createGroupPopover}>
-                <MenuItem onClick={this.handlePopoverClick}>
+                <MenuItem eventKey={2.3} onClick={this.props.showGroups}>
                    Create Group
                 </MenuItem>
-              </OverlayTrigger>
-
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref="overlayMember"
-                trigger="click"
-                rootClose
-                placement="bottom"
-                overlay={showMembersPopover}>
-                <MenuItem>
-                  View Group
+                <MenuItem eventKey={2.4} onClick={this.props.showMember}>
+                  Add Friend
                 </MenuItem>
-              </OverlayTrigger>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

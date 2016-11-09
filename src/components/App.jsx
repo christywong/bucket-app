@@ -6,6 +6,9 @@ import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
 import AccountSettingsModal from './modals/AccountSettingsModal';
 import {Modal,Button} from "react-bootstrap";
+import AddGroupModal from './modals/AddGroupModal';
+//import AddMemberModal from './modals/AddMemberModal';
+//import AddBucketModal from './modals/AddBucketModal';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -14,7 +17,6 @@ export default class App extends React.Component{
       data: {},
       listOfGroups:[],
       showModal: false,
-      showModal2: false,
       currentBucket: "0",
       currentGroup: '581fcd1fdcba0f6bf2649630',
       currentUser: 'Alok'
@@ -29,7 +31,14 @@ export default class App extends React.Component{
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
     this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
+    this.showAddGroupModal = this.showAddGroupModal.bind(this);
+    this.closeAddGroupModal = this.closeAddGroupModal.bind(this);
+    this.showAddMemberModal = this.showAddMemberModal.bind(this);
+    this.closeAddMemberModal = this.closeAddMemberModal.bind(this);
+    this.showAddBucketModal = this.showAddBucketModal.bind(this);
+    this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
 
+   
   }
 
   componentDidMount() {
@@ -40,7 +49,7 @@ export default class App extends React.Component{
 
 
   render(){
-let close = () => this.setState({ showModal2: false});
+    let close = () => this.setState({ showModal2: false});
     return (
       <div>
         <NavbarInstance
@@ -51,12 +60,32 @@ let close = () => this.setState({ showModal2: false});
           addBucket = {this.addBucket}
           addMember = {this.addMember}
           showSettings = {this.showAccountSettingsModal}
-          />
+          showGroups = {this.showAddGroupModal}
+          showMember = {this.showAddMemberModal}
+          showBucket = {this.showAddBucketModal}
+        />
+
         {
           this.state.showModal ?
           <AccountSettingsModal close={this.closeAccountSettingsModal} />
-          : null
+          :null
         }
+        {
+          this.state.showGroupModal ?
+          <AddGroupModal close={this.closeAddGroupModal} />
+          :null
+        }
+        {
+          this.state.showMemberModal ?
+          <AddGroupModal close={this.closeAddMemberModal} />
+          :null
+        }
+        {
+          this.state.showBucketModal ?
+          <AddGroupModal close={this.closeAddBucketModal} />
+          :null
+        }
+
         <Main
           currentGroupData =
           {this.state.data}
@@ -66,118 +95,6 @@ let close = () => this.setState({ showModal2: false});
           />
 
           //Modals
-//add modal for addGroup
-      <div className="static-modal">
-        <Modal.Dialog>
-          <Modal.Header>
-            <Button className="close" onClick = {()=>{
-                close();
-                this.setState({showPager:false});
-              }}>&times;</Button>
-            <Modal.Title>
-              Create Group
-            </Modal.Title>
-
-          </Modal.Header>
-        <Modal.Body className="modal-body">
-            <div>
-            <label>Name Your Group</label>
-              <input
-                className = 'addInput'
-                type="text"
-                placeholder="Group Name"
-                name="Group Name"/>
-            </div>
-
-          </Modal.Body>
-        <Modal.Footer>
-            <Button onClick = {()=>{
-              close();
-              this.setState({showPager:false});
-              }}>Close</Button>
-            <Button className="btn btn-primary" onClick = {this.addGroup}>Create</Button>
-          </Modal.Footer>
-            </Modal.Dialog>
-      </div>
-
-//add modal for addBucket
-      <div className="static-modal">
-        <Modal.Dialog>
-          <Modal.Header>
-            <Button className="close" onClick = {()=>{
-                close();
-                this.setState({showPager:false});
-              }}>&times;</Button>
-            <Modal.Title>
-              Add Bucket
-            </Modal.Title>
-
-          </Modal.Header>
-        <Modal.Body className="modal-body">
-            <div>
-            <label>Name Your Bucket</label>
-              <input
-                className = 'addInput'
-                type="text"
-                placeholder="Bucket Name"
-                name="Bucket Name"/>
-            </div>
-
-          </Modal.Body>
-        <Modal.Footer>
-            <Button onClick = {()=>{
-              close();
-              this.setState({showPager:false});
-              }}>Close</Button>
-            <Button className="btn btn-primary" onClick = {this.addBucket}>Add</Button>
-          </Modal.Footer>
-            </Modal.Dialog>
-      </div>
-
-
-//add modal for addMember
-
-   <div className="static-modal">
-          <Modal
-          show={this.state.showModal2}
-          onHide={close}
-          container={this}
-          >
-
-        <Modal.Dialog>
-          <Modal.Header>
-            <Button className="close" onClick = {()=>{
-                close();
-                this.setState({showPager:false});
-              }}>&times;</Button>
-            <Modal.Title>
-              Add Friends
-            </Modal.Title>
-
-          </Modal.Header>
-        <Modal.Body className="modal-body">
-            <div>
-            <label>Add a Friend</label>
-              <input
-                className = 'addInput'
-                type="text"
-                placeholder="Friend's Name"
-                name="Friend's Name"/>
-            </div>
-
-          </Modal.Body>
-        <Modal.Footer>
-            <Button onClick = {()=>{
-              close();
-              this.setState({showPager:false});
-              }}>Close</Button>
-            <Button className="btn btn-primary" onClick = {this.addMember}>Add</Button>
-          </Modal.Footer>
-            </Modal.Dialog>
-            </Modal>
-      </div>
-
-
       // end of where I should add modals
       </div>
     );
@@ -270,6 +187,30 @@ let close = () => this.setState({ showModal2: false});
 
   closeAccountSettingsModal(){
     this.setState({showModal: false});
+  }
+
+  showAddGroupModal(){
+    this.setState({showGroupModal:true});
+  }
+
+  closeAddGroupModal(){
+    this.setState({showGroupModal:false});
+  }
+
+  showAddMemberModal(){
+    this.setState({showMemberModal:true});
+  }
+
+  closeAddMemberModal(){
+    this.setState({showMemberModal:false});
+  }
+
+  showAddBucketModal(){
+    this.setState({showBucketModal:true});
+  }
+
+  closeAddBucketModal(){
+    this.setState({showBucketModal:false});
   }
 
   //API call to initialize our Application

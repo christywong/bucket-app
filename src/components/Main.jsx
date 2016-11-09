@@ -1,5 +1,5 @@
 import React from 'react';
-import AddModal from './modals/AddBucketModal';
+import AddModal from './modals/AddCardModal';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';

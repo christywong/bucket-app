@@ -1,9 +1,15 @@
 import React from 'react';
 import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
 
+export default class AddGroupModal extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      showGroupModal: 'false'
+    }
+  }
 
-let rand = ()=> (Math.floor(Math.random() * 20) - 10);
-
+  render() {
 const modalStyle = {
   position: 'fixed',
   zIndex: 1040,
@@ -11,17 +17,16 @@ const modalStyle = {
 };
 
 const backdropStyle = {
-  ...modalStyle,
   zIndex: 'auto',
   backgroundColor: '#000',
   opacity: 0.5
 };
 
 const dialogStyle = function() {
-  // we use some psuedo random coords so nested modals
-  // don't sit right on top of each other.
-  let top = 50 + rand();
-  let left = 50 + rand();
+
+
+  let top = 50 + (Math.floor(Math.random() * 20) - 10);
+  let left = 50 + (Math.floor(Math.random() * 20) - 10);
 
   return {
 
@@ -36,23 +41,14 @@ const dialogStyle = function() {
   };
 };
 
-
-const ModalExample = React.createClass({
-
-  getInitialState(){
-    return { showModal: false };
-  },
-
-  render() {
-
     return (
       <div className="static-modal">
           <Modal
           aria-labelledby='modal-label'
           style={modalStyle}
           backdropStyle={backdropStyle}
-          show={this.state.showModal}
-          onHide={this.close}
+          show={this.state.showGroupModal}
+         
         >
 
         <Modal.Dialog>
@@ -88,15 +84,7 @@ const ModalExample = React.createClass({
             </Modal>
       </div>
     );
-  },
-
-  close(){
-    this.setState({ showModal: false });
-  },
-
-  open(){
-    this.setState({ showModal: true });
   }
-});
+}
 
-ReactDOM.render(<ModalExample/>, mountNode);
+

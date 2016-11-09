@@ -1,9 +1,15 @@
 import React from 'react';
 import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
 
+export default class AddMemberModal extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      showMemberModal: 'false'
+    }
+  }
 
-let rand = ()=> (Math.floor(Math.random() * 20) - 10);
-
+  render() {
 const modalStyle = {
   position: 'fixed',
   zIndex: 1040,
@@ -11,7 +17,6 @@ const modalStyle = {
 };
 
 const backdropStyle = {
-  ...modalStyle,
   zIndex: 'auto',
   backgroundColor: '#000',
   opacity: 0.5
@@ -20,8 +25,8 @@ const backdropStyle = {
 const dialogStyle = function() {
   // we use some psuedo random coords so nested modals
   // don't sit right on top of each other.
-  let top = 50 + rand();
-  let left = 50 + rand();
+  let top = 50 + (Math.floor(Math.random() * 20) - 10);
+  let left = 50 + (Math.floor(Math.random() * 20) - 10);
 
   return {
 
@@ -36,22 +41,13 @@ const dialogStyle = function() {
   };
 };
 
-
-const ModalExample = React.createClass({
-
-  getInitialState(){
-    return { showModal: false };
-  },
-
-  render() {
-
     return (
       <div className="static-modal">
           <Modal
           aria-labelledby='modal-label'
           style={modalStyle}
           backdropStyle={backdropStyle}
-          show={this.state.showModal}
+          show={this.state.showMemberModal}
           onHide={this.close}
         >
 
@@ -62,18 +58,18 @@ const ModalExample = React.createClass({
                 this.setState({showPager:false});
               }}>&times;</Button>
             <Modal.Title>
-              Create Group
+              Add Friends
             </Modal.Title>
 
           </Modal.Header>
         <Modal.Body className="modal-body">
             <div>
-            <label>Name Your Group</label>
+            <label>Add Friend</label>
               <input
                 className = 'addInput'
                 type="text"
-                placeholder="Group Name"
-                name="Group Name"/>
+                placeholder="Friend Name"
+                name="Friend Name"/>
             </div>
 
           </Modal.Body>
@@ -82,21 +78,11 @@ const ModalExample = React.createClass({
               close();
               this.setState({showPager:false});
               }}>Close</Button>
-            <Button className="btn btn-primary" onClick = {this.addGroup}>Create</Button>
+            <Button className="btn btn-primary" onClick = {this.addMember}>Add</Button>
           </Modal.Footer>
             </Modal.Dialog>
             </Modal>
       </div>
     );
-  },
-
-  close(){
-    this.setState({ showModal: false });
-  },
-
-  open(){
-    this.setState({ showModal: true });
   }
-});
-
-ReactDOM.render(<ModalExample/>, mountNode);
+}

@@ -100,6 +100,10 @@
 
 	var _reactBootstrap = __webpack_require__(37);
 
+	var _AddGroupModal = __webpack_require__(516);
+
+	var _AddGroupModal2 = _interopRequireDefault(_AddGroupModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -110,7 +114,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(516);
+	var styles = __webpack_require__(517);
+
+	//import AddMemberModal from './modals/AddMemberModal';
+	//import AddBucketModal from './modals/AddBucketModal';
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -124,7 +131,6 @@
 	      data: {},
 	      listOfGroups: [],
 	      showModal: false,
-	      showModal2: false,
 	      currentBucket: "0",
 	      currentGroup: '581fcd1fdcba0f6bf2649630',
 	      currentUser: 'Alok'
@@ -139,6 +145,12 @@
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
 	    _this.closeAccountSettingsModal = _this.closeAccountSettingsModal.bind(_this);
+	    _this.showAddGroupModal = _this.showAddGroupModal.bind(_this);
+	    _this.closeAddGroupModal = _this.closeAddGroupModal.bind(_this);
+	    _this.showAddMemberModal = _this.showAddMemberModal.bind(_this);
+	    _this.closeAddMemberModal = _this.closeAddMemberModal.bind(_this);
+	    _this.showAddBucketModal = _this.showAddBucketModal.bind(_this);
+	    _this.closeAddBucketModal = _this.closeAddBucketModal.bind(_this);
 
 	    return _this;
 	  }
@@ -168,206 +180,21 @@
 	          addGroup: this.addGroup,
 	          addBucket: this.addBucket,
 	          addMember: this.addMember,
-	          showSettings: this.showAccountSettingsModal
+	          showSettings: this.showAccountSettingsModal,
+	          showGroups: this.showAddGroupModal,
+	          showMember: this.showAddMemberModal,
+	          showBucket: this.showAddBucketModal
 	        }),
 	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, { close: this.closeAccountSettingsModal }) : null,
+	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddGroupModal }) : null,
+	        this.state.showMemberModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddMemberModal }) : null,
+	        this.state.showBucketModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddBucketModal }) : null,
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroupData: this.state.data,
 	          allGroups: this.state.data.tags,
 	          currentBucketId: this.state.currentBucket
 	        }),
-	        '//Modals //add modal for addGroup',
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'static-modal' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Dialog,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Header,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'close', onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                '\xD7'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Title,
-	                null,
-	                'Create Group'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Body,
-	              { className: 'modal-body' },
-	              _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Name Your Group'
-	                ),
-	                _react2.default.createElement('input', {
-	                  className: 'addInput',
-	                  type: 'text',
-	                  placeholder: 'Group Name',
-	                  name: 'Group Name' })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Footer,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                'Close'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'btn btn-primary', onClick: this.addGroup },
-	                'Create'
-	              )
-	            )
-	          )
-	        ),
-	        '//add modal for addBucket',
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'static-modal' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Dialog,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Header,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'close', onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                '\xD7'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Title,
-	                null,
-	                'Add Bucket'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Body,
-	              { className: 'modal-body' },
-	              _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Name Your Bucket'
-	                ),
-	                _react2.default.createElement('input', {
-	                  className: 'addInput',
-	                  type: 'text',
-	                  placeholder: 'Bucket Name',
-	                  name: 'Bucket Name' })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Footer,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                'Close'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'btn btn-primary', onClick: this.addBucket },
-	                'Add'
-	              )
-	            )
-	          )
-	        ),
-	        '//add modal for addMember',
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'static-modal' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal,
-	            {
-	              show: this.state.showModal2,
-	              onHide: close,
-	              container: this
-	            },
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Dialog,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Header,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { className: 'close', onClick: function onClick() {
-	                      close();
-	                      _this2.setState({ showPager: false });
-	                    } },
-	                  '\xD7'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Modal.Title,
-	                  null,
-	                  'Add Friends'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Body,
-	                { className: 'modal-body' },
-	                _react2.default.createElement(
-	                  'div',
-	                  null,
-	                  _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Add a Friend'
-	                  ),
-	                  _react2.default.createElement('input', {
-	                    className: 'addInput',
-	                    type: 'text',
-	                    placeholder: 'Friend\'s Name',
-	                    name: 'Friend\'s Name' })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Footer,
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { onClick: function onClick() {
-	                      close();
-	                      _this2.setState({ showPager: false });
-	                    } },
-	                  'Close'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { className: 'btn btn-primary', onClick: this.addMember },
-	                  'Add'
-	                )
-	              )
-	            )
-	          )
-	        ),
-	        '// end of where I should add modals'
+	        '//Modals // end of where I should add modals'
 	      );
 	    }
 	  }, {
@@ -472,6 +299,36 @@
 	    key: 'closeAccountSettingsModal',
 	    value: function closeAccountSettingsModal() {
 	      this.setState({ showModal: false });
+	    }
+	  }, {
+	    key: 'showAddGroupModal',
+	    value: function showAddGroupModal() {
+	      this.setState({ showGroupModal: true });
+	    }
+	  }, {
+	    key: 'closeAddGroupModal',
+	    value: function closeAddGroupModal() {
+	      this.setState({ showGroupModal: false });
+	    }
+	  }, {
+	    key: 'showAddMemberModal',
+	    value: function showAddMemberModal() {
+	      this.setState({ showMemberModal: true });
+	    }
+	  }, {
+	    key: 'closeAddMemberModal',
+	    value: function closeAddMemberModal() {
+	      this.setState({ showMemberModal: false });
+	    }
+	  }, {
+	    key: 'showAddBucketModal',
+	    value: function showAddBucketModal() {
+	      this.setState({ showBucketModal: true });
+	    }
+	  }, {
+	    key: 'closeAddBucketModal',
+	    value: function closeAddBucketModal() {
+	      this.setState({ showBucketModal: false });
 	    }
 
 	    //API call to initialize our Application
@@ -4769,9 +4626,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _AddBucketModal = __webpack_require__(36);
+	var _AddCardModal = __webpack_require__(36);
 
-	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
+	var _AddCardModal2 = _interopRequireDefault(_AddCardModal);
 
 	var _reactBootstrap = __webpack_require__(37);
 
@@ -4898,7 +4755,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'main-container', id: 'page-wrap' },
-	          this.state.showModal ? _react2.default.createElement(_AddBucketModal2.default, {
+	          this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
 	            addCard: this.addCard,
 	            close: this.closeModal,
 	            addBucket: this.createBucket,
@@ -55591,34 +55448,14 @@
 	              }),
 	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
 	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlayGroup',
-	                  trigger: 'click',
-	                  rootClose: true,
-	                  placement: 'bottom',
-	                  overlay: createGroupPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onClick: this.handlePopoverClick },
-	                  'Create Group'
-	                )
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 2.3, onClick: this.props.showGroups },
+	                'Create Group'
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlayMember',
-	                  trigger: 'click',
-	                  rootClose: true,
-	                  placement: 'bottom',
-	                  overlay: showMembersPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  null,
-	                  'View Group'
-	                )
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 2.4, onClick: this.props.showMember },
+	                'Add Friend'
 	              )
 	            )
 	          )
@@ -55806,6 +55643,159 @@
 
 /***/ },
 /* 516 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddGroupModal = function (_React$Component) {
+	  _inherits(AddGroupModal, _React$Component);
+
+	  function AddGroupModal(props) {
+	    _classCallCheck(this, AddGroupModal);
+
+	    var _this = _possibleConstructorReturn(this, (AddGroupModal.__proto__ || Object.getPrototypeOf(AddGroupModal)).call(this, props));
+
+	    _this.state = {
+	      showGroupModal: 'false'
+	    };
+	    return _this;
+	  }
+
+	  _createClass(AddGroupModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var modalStyle = {
+	        position: 'fixed',
+	        zIndex: 1040,
+	        top: 0, bottom: 0, left: 0, right: 0
+	      };
+
+	      var backdropStyle = {
+	        zIndex: 'auto',
+	        backgroundColor: '#000',
+	        opacity: 0.5
+	      };
+
+	      var dialogStyle = function dialogStyle() {
+
+	        var top = 50 + (Math.floor(Math.random() * 20) - 10);
+	        var left = 50 + (Math.floor(Math.random() * 20) - 10);
+
+	        return {
+
+	          position: 'absolute',
+	          width: 400,
+	          top: top + '%', left: left + '%',
+	          transform: 'translate(-' + top + '%, -' + left + '%)',
+	          border: '1px solid #e5e5e5',
+	          backgroundColor: 'white',
+	          boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+	          padding: 20
+	        };
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'static-modal' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            'aria-labelledby': 'modal-label',
+	            style: modalStyle,
+	            backdropStyle: backdropStyle,
+	            show: this.state.showGroupModal
+
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Dialog,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Header,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { className: 'close', onClick: function onClick() {
+	                    close();
+	                    _this2.setState({ showPager: false });
+	                  } },
+	                '\xD7'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Modal.Title,
+	                null,
+	                'Create Group'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Body,
+	              { className: 'modal-body' },
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                  'label',
+	                  null,
+	                  'Name Your Group'
+	                ),
+	                _react2.default.createElement('input', {
+	                  className: 'addInput',
+	                  type: 'text',
+	                  placeholder: 'Group Name',
+	                  name: 'Group Name' })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Footer,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { onClick: function onClick() {
+	                    close();
+	                    _this2.setState({ showPager: false });
+	                  } },
+	                'Close'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { className: 'btn btn-primary', onClick: this.addGroup },
+	                'Create'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return AddGroupModal;
+	}(_react2.default.Component);
+
+	exports.default = AddGroupModal;
+
+/***/ },
+/* 517 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
