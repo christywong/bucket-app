@@ -107,95 +107,25 @@ export default class NavbarInstance extends React.Component {
     const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
     console.log(currentGroupMembers);
     const currentGroup = this.props.groups ? this.props.groups : [];
-
-    const createGroupPopover = (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Create Group">
-        <input
-          type="text"
-          id="group-name-input"
-          placeholder="Group Name"
-          onChange={this.handleChange}>
-        </input>
-        <input
-          type="submit"
-          id="submit-new-group"
-          value="Create"
-          onClick={this.handleSubmitGroup}>
-        </input>
-      </Popover>
-    );
-
-    const addMemberPopover= (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Add Friend">
-        <input
-          type="text"
-          id="email-input"
-          placeholder="Name"
-          onChange={this.handleChangeAddMember}>
-        </input>
-        <input
-          type="submit"
-          id="submit-member"
-          value="Add"
-          onClick={this.handleSubmitAddMember}>
-        </input>
-      </Popover>
-    );
-
-    const createBucketPopover = (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Add Bucket">
-        <input
-          type="text"
-          id="bucket-name-input"
-          placeholder="Bucket Name"
-          onChange={this.handleChangeBucket}>
-        </input>
-        <input
-          type="submit"
-          id="submit-new-bucket"
-          value="Add"
-          onClick={this.handleSubmitBucket}>
-        </input>
-      </Popover>
-    );
-
-    const showMembersPopover = (
-      <Popover id="popover-trigger-click-root-close" title="Friends" onClick = {()=>{
-          this.refs.overlayMember.hide();
-        }}>
-        {currentGroupMembers ? currentGroupMembers.map((member) => (
-          <p key={member._id} onClick = {()=>{
-              this.refs.overlayMember.hide();
-            }}>{member.name}</p>
-        )) : null}
-      </Popover>
-    );
-
     //What we are returning
     return(
       <Navbar style={{zIndex: 500}} fluid>
-        <Nav>
-          <NavDropdown eventKey={1} id="group-title-nav" title= {currentGroupTitle} style={{position: "absolute", fontSize: 22, color: "#373a47"}}>
-            <MenuItem eventKey={1.1} id="submit-member">
-              View & Add Friend
-            </MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={1.2} onClick={this.props.showSettings}>
-              Account Settings
-            </MenuItem>
-            <MenuItem eventKey={1.3} href="/index.html">Logout</MenuItem>
-          </NavDropdown>
-        </Nav>
+        <Navbar.Header>
+          <Navbar.Brand style={{position:'absolute',left: 75}}>
+            {currentGroupTitle}
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+
         <Navbar.Collapse>
+
           <Nav pullRight>
+            <NavItem eventKey={2} id="submit-member">
+              Friends
+            </NavItem>
+
             <NavDropdown
-              eventKey={2}
+              eventKey={3}
               id="groups-dropdown"
               title="Groups">
               {currentGroup.map((group)=>{
@@ -209,31 +139,24 @@ export default class NavbarInstance extends React.Component {
                 )
               })}
               <MenuItem divider />
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref="overlayGroup"
-                trigger="click"
-                rootClose
-                placement="bottom"
-                overlay={createGroupPopover}>
                 <MenuItem onClick={this.handlePopoverClick}>
                    Create Group
                 </MenuItem>
-              </OverlayTrigger>
-
-              <OverlayTrigger
-                id="popover-trigger-click-root-close"
-                ref="overlayMember"
-                trigger="click"
-                rootClose
-                placement="bottom"
-                overlay={showMembersPopover}>
                 <MenuItem>
                   View Group
                 </MenuItem>
-              </OverlayTrigger>
+            </NavDropdown>
+
+            <NavDropdown
+              eventKey={4}
+              title="Settings">
+              <MenuItem eventKey={4.1} onClick={this.props.showSettings}>
+                Account Settings
+              </MenuItem>
+              <MenuItem eventKey={4.2} href="/index.html">Logout</MenuItem>
             </NavDropdown>
           </Nav>
+
         </Navbar.Collapse>
       </Navbar>
 
