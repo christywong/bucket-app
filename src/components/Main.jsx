@@ -50,7 +50,7 @@ export default class Component extends React.Component {
     const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
 
     //Card components to get injected into our view
-    const groupCards =  cardArray ? cardArray.map((cardEntry) => { return(
+    const filteredCards =  cardArray ? cardArray.map((cardEntry) => { return(
         <Cards
           key = {cardEntry.id.toString()}
           activities = {cardEntry}
@@ -58,7 +58,9 @@ export default class Component extends React.Component {
           bucketTags = {this.state.bucketList}
           deleteCard={this.deleteCard}
           />
-      )}) : null;
+      )}) : [];
+
+      const groupCards = filteredCards.length > 0 ? filteredCards : (<h2 className="empty-bucket-msg"> There are no cards in this bucket :( </h2>);
 
     return (
       <div id="outer-container">
@@ -89,15 +91,12 @@ export default class Component extends React.Component {
               />
             : null
           }
-
           {groupCards}
-
           {
             this.state.showSettingsModal ?
             <AccountSettingsModal close={this.closeAccountSettingsModal} />
             : null
           }
-
           <div
             className='add-btn'
             onClick = {this.showModal}>+</div>

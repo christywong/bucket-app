@@ -68,10 +68,6 @@ export default class App extends React.Component{
     const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
     this.loadJSONData(newGroupId);
 
-    // this.setState({
-    //   data:
-    //   currentBucket: 0
-    // });
   }
 
   addBucket(name, groupId) {
