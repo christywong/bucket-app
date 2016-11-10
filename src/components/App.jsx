@@ -15,7 +15,7 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '581fcd1fdcba0f6bf2649630',
+      currentGroup: '5822d9275328dbcd7ba033d6',
       currentUser: 'Alok'
     }
 
@@ -23,6 +23,7 @@ export default class App extends React.Component{
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
+    this.deleteBucket = this.deleteBucket.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -43,7 +44,6 @@ export default class App extends React.Component{
           groups = {this.state.listOfGroups}
           changeGroup = {this.changeGroup}
           addGroup = {this.addGroup}
-          addBucket = {this.addBucket}
           addMember = {this.addMember}
           showSettings = {this.showAccountSettingsModal}
           />
@@ -53,11 +53,12 @@ export default class App extends React.Component{
           : null
         }
         <Main
-          currentGroupData =
-          {this.state.data}
-          allGroups =
-          {this.state.data.tags}
+          currentGroupData ={this.state.data}
+          allGroups = {this.state.data.tags}
           currentBucketId = {this.state.currentBucket}
+          addBucket = {this.addBucket}
+          currentGroup = {this.state.currentGroup}
+          deleteBucket = {this.deleteBucket}
           />
       </div>
     );
@@ -71,26 +72,32 @@ export default class App extends React.Component{
   }
 
   addBucket(name, groupId) {
-    console.log('adding bucket ', this.state.data.currentGroup.tags);
-    console.log(name);
+    //console.log('adding bucket ', this.state.data.currentGroup.tags);
+    console.log(name, groupId);
 
-    if (name != "") {
+    //if (name != "") {
       var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
       const newBucket = {id: uuid.v4(), title: newBucketName};
-      const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
-      const nextGroup = this.state.data.groups.map((group)=>{
-        if(group.id === groupId){
-          group.tags.push(newBucket);
-        }
-        return group;
-      })
+      // const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
+      // const nextGroup = this.state.data.groups.map((group)=>{
+      //   if(group.id === groupId){
+      //     group.tags.push(newBucket);
+      //   }
+      //   return group;
+      // })
 
-      const nextData = {groups: nextGroup, currentGroup: nextCurrentGroupState};
-      console.log(nextData);
-      this.setState({
-        data: nextData
-      });
-    }
+      // const nextData = {groups: nextGroup, currentGroup: nextCurrentGroupState};
+      // console.log(nextData);
+      // this.setState({
+      //   data: nextData
+      // });
+
+      this.apiCreateBucket(newBucket);
+   // }
+  }
+
+  deleteBucket(bucketId) {
+    this.apiDeleteBucket(bucketId);
   }
 
   addGroup(name) {
@@ -238,6 +245,53 @@ export default class App extends React.Component{
       }
     }
     xhr.open('POST', '/api/addFriend');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.responseType = 'json'
+    xhr.send(payload);
+  }
+
+  apiCreateBucket(newBucket) {
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = "bucket=" + newBucket.title + "&groupId=" + this.state.currentGroup;
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === 4) {
+        if(xhr.status === 200) {
+          var result = xhr.response;
+          me.setState({
+            data: result
+          });
+          console.log('result from create bucket: ', result);
+        } else {
+          console.log('Oops an error occurred');
+        }
+      }
+    }
+    xhr.open('POST', '/api/createBucket');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.responseType = 'json'
+    xhr.send(payload);
+  }
+
+  apiDeleteBucket(bucketId) {
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'bucketId=' + bucketId + '&groupId=' + this.state.currentGroup;
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          me.setState({
+            data: result
+          });
+          console.log('result: ', result);
+        } else{
+          console.log('Oops an error occurred');
+        }
+      }
+    }
+
+    xhr.open('DELETE', '/api/deleteBucket');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.responseType = 'json'
     xhr.send(payload);

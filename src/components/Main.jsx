@@ -78,6 +78,9 @@ export default class Component extends React.Component {
           selectedBucket = {this.state.currentBucketId}
           bucketList = {this.state.bucketList}
           changeStateBucket = {this.changeState}
+          addBucket = {this.props.addBucket}
+          currentGroup = {this.props.currentGroup}
+          deleteBucket = {this.props.deleteBucket}
         />
 
         <div className="main-container" id="page-wrap">
@@ -238,6 +241,7 @@ export default class Component extends React.Component {
   //Initialize our State whenever we update a prop from App.
   //This will keep the Main Component updated with whatever changes were made to App
   initializeBucket(buckets){
+    console.log(buckets.currentGroupData);
     const currentBucket = buckets.currentGroupData;
     const selected = currentBucket ? currentBucket.activities : null;
     const listOfBuckets = currentBucket ? currentBucket.tags : []
@@ -251,6 +255,8 @@ export default class Component extends React.Component {
       currentGroupId  : currentGroup,
       currentBucketId : buckets.currentBucketId,
     });
+
+
   }
 
   // API CALLS

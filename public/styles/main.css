@@ -423,3 +423,7 @@ body:before {
 
 .fa-gear:hover {
   color: #373a47; }
+
+#delete-bucket-icon {
+  color: #fff;
+  float: right; }
