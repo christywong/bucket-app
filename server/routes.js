@@ -60,6 +60,9 @@ module.exports = function (app){
   //add a friend to the group
   app.post('/api/addFriend', Group.actions.addFriend);
 
+  //Routes for changing Members
   app.post('/api/createMember', Member.actions.createMember);
+  app.post('/api/searchMember', Member.actions.searchMember);
+  app.post('/api/changePassword', Member.actions.changePassword);
 
 }

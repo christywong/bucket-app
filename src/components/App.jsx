@@ -21,20 +21,19 @@ export default class App extends React.Component{
       currentBucket: "0",
       currentGroup: '5822d9275328dbcd7ba033d6',
       currentUser: 'Daniel',
+      currentUserId: '58240dbb14ffca2cd946d0f6',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
       showHelpModal: false
-
-      }
-
+    }
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
     this.deleteBucket = this.deleteBucket.bind(this);
-
+    this.changePassword = this.changePassword.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -52,11 +51,9 @@ export default class App extends React.Component{
   }
 
   componentDidMount() {
-
     this.loadJSONData(this.state.currentGroup);
     this.getAllGroups();
   }
-
 
   render(){
     let close = () => this.setState({ showModal2: false});
@@ -77,19 +74,28 @@ export default class App extends React.Component{
 
         {
           this.state.showModal ?
-          <AccountSettingsModal close={this.closeAccountSettingsModal} />
+          <AccountSettingsModal
+            close={this.closeAccountSettingsModal}
+            changePassword={this.changePassword}
+            />
           :null
         }
         {
           this.state.showGroupModal ?
-          <AddGroupModal close={this.closeAddGroupModal}
-          visibility={this.state.showGroupModal}/>
+          <AddGroupModal
+            close={this.closeAddGroupModal}
+            visibility={this.state.showGroupModal}
+            addGroup={this.addGroup}
+            />
           :null
         }
         {
           this.state.showMemberModal ?
-          <AddMemberModal close={this.closeAddMemberModal}
-          visibility={this.state.showMemberModal}/>
+          <AddMemberModal
+            close={this.closeAddMemberModal}
+            visibility={this.state.showMemberModal}
+            addMember = {this.addMember}
+            friendsList ={this.state.data.members}/>
           :null
         }
         {
@@ -103,8 +109,9 @@ export default class App extends React.Component{
 
         {
           this.state.showHelpModal ?
-          <HelpModal close={this.closeHelpModal}
-          visibility={this.state.showHelpModal}/>
+          <HelpModal
+            close={this.closeHelpModal}
+            visibility={this.state.showHelpModal}/>
           :null
         }
 
@@ -138,28 +145,11 @@ export default class App extends React.Component{
    * @param groupId {string} Id of the group to put the bucket in
    **/
   addBucket(name) {
-    //console.log('adding bucket ', this.state.data.currentGroup.tags);
-    //console.log(name, groupId);
-
-    //if (name != "") {
+    if (name != "") {
       var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
       const newBucket = {id: uuid.v4(), title: newBucketName};
-      // const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
-      // const nextGroup = this.state.data.groups.map((group)=>{
-      //   if(group.id === groupId){
-      //     group.tags.push(newBucket);
-      //   }
-      //   return group;
-      // })
-
-      // const nextData = {groups: nextGroup, currentGroup: nextCurrentGroupState};
-      // console.log(nextData);
-      // this.setState({
-      //   data: nextData
-      // });
-
       this.apiCreateBucket(newBucket);
-   // }
+    }
   }
 
   deleteBucket(bucketId) {
@@ -194,31 +184,10 @@ export default class App extends React.Component{
    * @param name {string} Name of the member to be added to the group
    * @param currentGroupId {string} Id of the group that member is to be added to
    **/
-  addMember(name, currentGroupId){
-    console.log(name);
+  addMember(name){
     if (name != ""){
-      var newMember = {
-        id: uuid.v4(),
-        name: name.charAt(0).toUpperCase() + name.slice(1)
-      }
-      var newMemberArray = [...this.state.data.currentGroup.members, newMember];
-      const nextState = update(this.state.data.currentGroup, {members: {$set: newMemberArray}});
-
-      const nextGroupState = this.state.data.groups.map((group) => {
-        if(group.id === currentGroupId){
-          group.members.push(newMember);
-        }
-        return group;
-      });
-
-      const nextDataState = {
-        groups: nextGroupState,
-        currentGroup: nextState
-      }
-      console.log(nextDataState);
-      this.setState({
-        data: nextDataState
-      });
+      var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+      this.apiAddFriend(newMember);
     }
   }
 
@@ -310,6 +279,12 @@ export default class App extends React.Component{
     xhr.open('GET', '/api/getAllGroups/');
     xhr.responseType = 'json'
     xhr.send();
+  }
+
+  changePassword(newPassword){
+    if(newPassword.length > 3){
+      this.apiChangePassword(this.state.currentUserId, newPassword);
+    }
   }
 
   /**
@@ -408,6 +383,27 @@ export default class App extends React.Component{
     }
 
     xhr.open('DELETE', '/api/deleteBucket');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.responseType = 'json'
+    xhr.send(payload);
+  }
+
+  apiChangePassword(memberId, newPassword){
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'memberId=' + memberId + '&newPassword=' + newPassword;
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          console.log('result: ', result);
+        } else{
+          console.log('Oops an error occurred');
+        }
+      }
+    }
+
+    xhr.open('POST', '/api/changePassword');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.responseType = 'json'
     xhr.send(payload);

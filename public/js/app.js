@@ -143,11 +143,11 @@
 	      currentBucket: "0",
 	      currentGroup: '5822d9275328dbcd7ba033d6',
 	      currentUser: 'Daniel',
+	      currentUserId: '58240dbb14ffca2cd946d0f6',
 	      showBucketModal: false,
 	      showGroupModal: false,
 	      showMemberModal: false,
 	      showHelpModal: false
-
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -155,6 +155,7 @@
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.addMember = _this.addMember.bind(_this);
 	    _this.deleteBucket = _this.deleteBucket.bind(_this);
+	    _this.changePassword = _this.changePassword.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -174,7 +175,6 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-
 	      this.loadJSONData(this.state.currentGroup);
 	      this.getAllGroups();
 	    }
@@ -201,16 +201,26 @@
 	          showBucket: this.showAddBucketModal,
 	          showHelp: this.showHelpModal
 	        }),
-	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, { close: this.closeAccountSettingsModal }) : null,
-	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddGroupModal,
-	          visibility: this.state.showGroupModal }) : null,
-	        this.state.showMemberModal ? _react2.default.createElement(_AddMemberModal2.default, { close: this.closeAddMemberModal,
-	          visibility: this.state.showMemberModal }) : null,
+	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, {
+	          close: this.closeAccountSettingsModal,
+	          changePassword: this.changePassword
+	        }) : null,
+	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, {
+	          close: this.closeAddGroupModal,
+	          visibility: this.state.showGroupModal,
+	          addGroup: this.addGroup
+	        }) : null,
+	        this.state.showMemberModal ? _react2.default.createElement(_AddMemberModal2.default, {
+	          close: this.closeAddMemberModal,
+	          visibility: this.state.showMemberModal,
+	          addMember: this.addMember,
+	          friendsList: this.state.data.members }) : null,
 	        this.state.showBucketModal ? _react2.default.createElement(_AddBucketModal2.default, {
 	          close: this.closeAddBucketModal,
 	          visibility: this.state.showBucketModal,
 	          addBucket: this.addBucket }) : null,
-	        this.state.showHelpModal ? _react2.default.createElement(_HelpModal2.default, { close: this.closeHelpModal,
+	        this.state.showHelpModal ? _react2.default.createElement(_HelpModal2.default, {
+	          close: this.closeHelpModal,
 	          visibility: this.state.showHelpModal }) : null,
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroupData: this.state.data,
@@ -247,28 +257,11 @@
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name) {
-	      //console.log('adding bucket ', this.state.data.currentGroup.tags);
-	      //console.log(name, groupId);
-
-	      //if (name != "") {
-	      var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
-	      var newBucket = { id: _uuid2.default.v4(), title: newBucketName };
-	      // const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
-	      // const nextGroup = this.state.data.groups.map((group)=>{
-	      //   if(group.id === groupId){
-	      //     group.tags.push(newBucket);
-	      //   }
-	      //   return group;
-	      // })
-
-	      // const nextData = {groups: nextGroup, currentGroup: nextCurrentGroupState};
-	      // console.log(nextData);
-	      // this.setState({
-	      //   data: nextData
-	      // });
-
-	      this.apiCreateBucket(newBucket);
-	      // }
+	      if (name != "") {
+	        var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
+	        var newBucket = { id: _uuid2.default.v4(), title: newBucketName };
+	        this.apiCreateBucket(newBucket);
+	      }
 	    }
 	  }, {
 	    key: 'deleteBucket',
@@ -309,31 +302,10 @@
 
 	  }, {
 	    key: 'addMember',
-	    value: function addMember(name, currentGroupId) {
-	      console.log(name);
+	    value: function addMember(name) {
 	      if (name != "") {
-	        var newMember = {
-	          id: _uuid2.default.v4(),
-	          name: name.charAt(0).toUpperCase() + name.slice(1)
-	        };
-	        var newMemberArray = [].concat(_toConsumableArray(this.state.data.currentGroup.members), [newMember]);
-	        var nextState = (0, _reactAddonsUpdate2.default)(this.state.data.currentGroup, { members: { $set: newMemberArray } });
-
-	        var nextGroupState = this.state.data.groups.map(function (group) {
-	          if (group.id === currentGroupId) {
-	            group.members.push(newMember);
-	          }
-	          return group;
-	        });
-
-	        var nextDataState = {
-	          groups: nextGroupState,
-	          currentGroup: nextState
-	        };
-	        console.log(nextDataState);
-	        this.setState({
-	          data: nextDataState
-	        });
+	        var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+	        this.apiAddFriend(newMember);
 	      }
 	    }
 
@@ -444,6 +416,13 @@
 	      xhr.responseType = 'json';
 	      xhr.send();
 	    }
+	  }, {
+	    key: 'changePassword',
+	    value: function changePassword(newPassword) {
+	      if (newPassword.length > 3) {
+	        this.apiChangePassword(this.state.currentUserId, newPassword);
+	      }
+	    }
 
 	    /**
 	     * API call to create a new Group
@@ -549,6 +528,28 @@
 	      };
 
 	      xhr.open('DELETE', '/api/deleteBucket');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiChangePassword',
+	    value: function apiChangePassword(memberId, newPassword) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'memberId=' + memberId + '&newPassword=' + newPassword;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            console.log('result: ', result);
+	          } else {
+	            console.log('Oops an error occurred');
+	          }
+	        }
+	      };
+
+	      xhr.open('POST', '/api/changePassword');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	      xhr.responseType = 'json';
 	      xhr.send(payload);
@@ -55667,6 +55668,18 @@
 	  }
 
 	  _createClass(AccountSettingsModal, [{
+	    key: 'changePassword',
+	    value: function changePassword() {
+	      var password = document.getElementsByName('password')[0].value;
+	      var confirmPassword = document.getElementsByName('confirm-password')[0].value;
+
+	      if (password === confirmPassword) {
+	        this.props.changePassword(password);
+	        this.props.close();
+	        alert('Password Changed');
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -55710,41 +55723,13 @@
 	                  { className: 'form-group' },
 	                  _react2.default.createElement(
 	                    'label',
-	                    { className: 'col-md-4 control-label', htmlFor: 'textinput' },
-	                    'Change Name'
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-md-4' },
-	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'textinput', name: 'textinput', placeholder: 'New Name', type: 'text' })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
-	                    { className: 'col-md-4 control-label', htmlFor: 'textinput' },
-	                    'Change Email ID'
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-md-4' },
-	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'textinput', name: 'textinput', placeholder: 'New Email', type: 'text' })
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'form-group' },
-	                  _react2.default.createElement(
-	                    'label',
 	                    { className: 'col-md-4 control-label', htmlFor: 'passwordinput' },
 	                    'New Password'
 	                  ),
 	                  _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-md-4' },
-	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'passwordinput', placeholder: 'New Password', type: 'password' })
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'password', placeholder: 'New Password', type: 'password' })
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -55758,7 +55743,7 @@
 	                  _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-md-4' },
-	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'passwordinput', placeholder: 'Confirm Password', type: 'password' })
+	                    _react2.default.createElement('input', { className: 'form-control input-md', id: 'passwordinput', name: 'confirm-password', placeholder: 'Confirm Password', type: 'password' })
 	                  )
 	                )
 	              )
@@ -55782,7 +55767,7 @@
 	                id: 'save-btn',
 	                name: 'singlebutton',
 	                onClick: function onClick() {
-	                  close();
+	                  _this2.changePassword();
 	                  _this2.setState({ showModal: false });
 	                } },
 	              'Save'
@@ -55830,10 +55815,20 @@
 	  function AddGroupModal(props) {
 	    _classCallCheck(this, AddGroupModal);
 
-	    return _possibleConstructorReturn(this, (AddGroupModal.__proto__ || Object.getPrototypeOf(AddGroupModal)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (AddGroupModal.__proto__ || Object.getPrototypeOf(AddGroupModal)).call(this, props));
+
+	    _this.createGroup = _this.createGroup.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(AddGroupModal, [{
+	    key: 'createGroup',
+	    value: function createGroup() {
+	      var groupName = document.getElementsByName('Group-Name')[0].value;
+	      this.props.addGroup(groupName);
+	      this.props.close();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -55859,7 +55854,9 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'close', onClick: function onClick() {
+	              {
+	                className: 'close',
+	                onClick: function onClick() {
 	                  _this2.props.close();
 	                } },
 	              '\xD7'
@@ -55885,7 +55882,7 @@
 	                className: 'addInput',
 	                type: 'text',
 	                placeholder: 'Group Name',
-	                name: 'Group Name' })
+	                name: 'Group-Name' })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -55900,7 +55897,9 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'btn btn-primary', onClick: this.addGroup },
+	              {
+	                className: 'btn btn-primary',
+	                onClick: this.createGroup },
 	              'Create'
 	            )
 	          )
@@ -55946,10 +55945,20 @@
 	  function AddMemberModal(props) {
 	    _classCallCheck(this, AddMemberModal);
 
-	    return _possibleConstructorReturn(this, (AddMemberModal.__proto__ || Object.getPrototypeOf(AddMemberModal)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (AddMemberModal.__proto__ || Object.getPrototypeOf(AddMemberModal)).call(this, props));
+
+	    _this.addMember = _this.addMember.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(AddMemberModal, [{
+	    key: 'addMember',
+	    value: function addMember() {
+	      var newMember = document.getElementsByName('new-member-name')[0].value;
+	      this.props.addMember(newMember);
+	      document.getElementsByName('new-member-name')[0].value = '';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -55975,7 +55984,9 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'close', onClick: function onClick() {
+	              {
+	                className: 'close',
+	                onClick: function onClick() {
 	                  _this2.props.close();
 	                } },
 	              '\xD7'
@@ -56001,7 +56012,23 @@
 	                className: 'addInput',
 	                type: 'text',
 	                placeholder: 'Friend Name',
-	                name: 'Friend Name' })
+	                name: 'new-member-name' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Friends List'
+	              ),
+	              this.props.friendsList.map(function (friend) {
+	                return _react2.default.createElement(
+	                  'p',
+	                  { key: friend._id },
+	                  friend.name
+	                );
+	              })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -56016,7 +56043,9 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'btn btn-primary', onClick: this.addMember },
+	              {
+	                className: 'btn btn-primary',
+	                onClick: this.addMember },
 	              'Add'
 	            )
 	          )

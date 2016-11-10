@@ -16,7 +16,8 @@ module.exports.actions ={};
 module.exports.actions.createMember = function(req,res){
   var person = new Member ({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    firstTimeUser: true
   });
 
   person.save(function(err,member){
@@ -32,7 +33,7 @@ module.exports.actions.createMember = function(req,res){
   })
 }
 
-module.exports.actions.searchmember = function(req,res){
+module.exports.actions.searchMember = function(req,res){
   var username = req.body.username;
   var password = req.body.password;
   Member.findOne({'username': username, 'password': password}, function(err,member){
@@ -42,7 +43,23 @@ module.exports.actions.searchmember = function(req,res){
     }
     else{
       console.log(member);
-      return res.stats(200).json({'found': 'true', 'firstTimeUser': member.firstTimeUser});
+      return res.status(200).json(
+        {'found': 'true','firstTimeUser': member.firstTimeUser});
+    }
+  })
+}
+
+module.exports.actions.changePassword = function(req, res){
+  var newPassword = req.body.newPassword;
+  var memberId = req.body.memberId;
+  Member.findOneAndUpdate({'_id': memberId},{'password': newPassword}, {new:true}, function(err,data){
+    if(err){
+      console.log(err);
+      return err;
+    }
+    else{
+      console.log(data);
+      return res.status(200).json({'success': true})
     }
   })
 }
