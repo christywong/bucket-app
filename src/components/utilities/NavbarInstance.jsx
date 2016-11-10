@@ -176,12 +176,6 @@ export default class NavbarInstance extends React.Component {
                 Create Group
               </MenuItem>
 
-              <MenuItem
-                eventKey={3.2}
-                onClick={this.props.showBucket}>
-                Add Bucket
-              </MenuItem>
-
             </NavDropdown>
 
             <NavDropdown

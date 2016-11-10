@@ -1,6 +1,6 @@
 import React from 'react';
 import AddModal from './modals/AddCardModal';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Popover, OverlayTrigger, Button} from 'react-bootstrap';
 import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';
 import uuid from 'uuid';
@@ -19,7 +19,8 @@ export default class Component extends React.Component {
       filteredCards: {},
       currentBucketId: 0,
       currentGroupId: 0,
-      showSettingsModal: false
+      showSettingsModal: false,
+      newBucket: ''
     }
 
     //Bind our functions to the current scope
@@ -29,6 +30,7 @@ export default class Component extends React.Component {
     this.addCard = this.addCard.bind(this);
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.handleDeleteBucket = this.handleDeleteBucket.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -41,6 +43,11 @@ export default class Component extends React.Component {
   }
   componentWillReceiveProps(nextProps){
     this.initializeBucket(nextProps);
+  }
+
+  // Handler for deleting a bucket
+  handleDeleteBucket() {
+    this.props.deleteBucket(this.state.currentBucketId);
   }
 
   render() {
@@ -60,20 +67,40 @@ export default class Component extends React.Component {
           />
       )}) : [];
 
-      const groupCards = filteredCards.length > 0 ? filteredCards : (<h2 className="empty-bucket-msg"> There are no cards in this bucket :( </h2>);
+    const groupCards = filteredCards.length > 0 ? filteredCards : (<h2 className="empty-bucket-msg"> There are no cards in this bucket :( </h2>);
+
+    // Popover for deleting buckets
+    const deletePopover = (
+      <Popover id="popover-trigger-click-root-close" title="Are you sure?">
+        <Button bsStyle="danger" bsSize="small" onClick = {()=>{
+            this.handleDeleteBucket();
+            this.refs.deleteOverlay.hide();
+          }}>Yes</Button>
+        <Button style={{float:"right"}} bsSize="small" onClick = {()=>{
+            this.refs.deleteOverlay.hide();
+          }}>No</Button>
+      </Popover>
+    );
 
     return (
       <div id="outer-container">
         <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } >
+          <Button id="create-bucket-button" onClick={this.props.showBucketModal}>Create a Bucket</Button>
           {this.state.bucketList.map ( (bucket) => { return(
             <Bucket
               changeStateBucket = {this.changeState}
               key = {bucket.id}
               bucketId = {bucket.id}
               bucketName = {bucket.title}
-              active = {this.state.currentBucketId === bucket.id ? "active" : null} />
+              active = {this.state.currentBucketId === bucket.id ? "active" : null}
+              showDeleteIcon = {this.state.currentBucketId === bucket.id ? (
+              <OverlayTrigger ref="deleteOverlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
+                <i className="fa fa-trash-o" aria-hidden="true" id="delete-bucket-icon"></i>
+              </OverlayTrigger>
+              ) : null} />
           )})}
         </Menu>
+
         <Sidebar
           selectedBucket = {this.state.currentBucketId}
           bucketList = {this.state.bucketList}
@@ -81,6 +108,7 @@ export default class Component extends React.Component {
           addBucket = {this.props.addBucket}
           currentGroup = {this.props.currentGroup}
           deleteBucket = {this.props.deleteBucket}
+          showBucketModal = {this.props.showBucketModal}
         />
 
         <div className="main-container" id="page-wrap">

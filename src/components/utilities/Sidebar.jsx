@@ -1,7 +1,7 @@
 import React from 'react';
 import CardEntry from './SearchEntry';
 import Bucket from '../buckets/Buckets.jsx';
-import { Button } from 'react-bootstrap';
+import { Button, Popover, OverlayTrigger } from 'react-bootstrap';
 
 export default class Sidebar extends React.Component{
   constructor (props) {
@@ -9,15 +9,10 @@ export default class Sidebar extends React.Component{
     this.state = {
       show: false,
       value: '',
-      newBucket: 'one'
+      newBucket: ''
     };
 
-    this.handleSubmitBucket = this.handleSubmitBucket.bind(this);
     this.handleDeleteBucket = this.handleDeleteBucket.bind(this);
-  }
-
-  handleSubmitBucket() {
-    this.props.addBucket(this.state.newBucket, this.props.currentGroup);
   }
 
   handleDeleteBucket() {
@@ -26,16 +21,33 @@ export default class Sidebar extends React.Component{
 
   render(){
     var list = this.props.bucketList;
+
+    const deletePopover = (
+      <Popover id="popover-trigger-click-root-close" title="Are you sure?">
+        <Button bsStyle="danger" bsSize="small" onClick = {()=>{
+            this.handleDeleteBucket();
+            this.refs.deleteOverlay.hide();
+          }}>Yes</Button>
+        <Button style={{float:"right"}} bsSize="small" onClick = {()=>{
+            this.refs.deleteOverlay.hide();
+          }}>No</Button>
+      </Popover>
+    );
+
     return(
       <div className='sidebar'>
-        <Button id="create-bucket-button" onClick={this.handleSubmitBucket}>Create a Bucket</Button>
+        <Button id="create-bucket-button" onClick={this.props.showBucketModal}>Create a Bucket</Button>
         {list.map ( (bucket) => { return(
           <Bucket changeStateBucket = {this.props.changeStateBucket}
             key = {bucket.id}
             bucketId = {bucket.id}
             bucketName = {bucket.title}
             active = {this.props.selectedBucket === bucket.id ? "active" : null}
-            showDeleteIcon = {this.props.selectedBucket === bucket.id ? (<i className="fa fa-trash-o" aria-hidden="true" id="delete-bucket-icon" onClick={this.handleDeleteBucket}></i>) : null} />
+            showDeleteIcon = {this.props.selectedBucket === bucket.id ? (
+              <OverlayTrigger ref="deleteOverlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
+                <i className="fa fa-trash-o" aria-hidden="true" id="delete-bucket-icon"></i>
+              </OverlayTrigger>
+              ) : null} />
         )})}
       </div>
     );

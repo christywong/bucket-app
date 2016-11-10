@@ -19,7 +19,7 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+      currentGroup: '5822d9275328dbcd7ba033d6',
       currentUser: 'Daniel',
       showBucketModal: false,
       showGroupModal: false,
@@ -73,8 +73,6 @@ export default class App extends React.Component{
           showMember = {this.showAddMemberModal}
           showBucket = {this.showAddBucketModal}
           showHelp = {this.showHelpModal}
-
-
         />
 
         {
@@ -96,9 +94,11 @@ export default class App extends React.Component{
         }
         {
           this.state.showBucketModal ?
-          <AddBucketModal close={this.closeAddBucketModal}
-          visibility={this.state.showBucketModal}/>
-          :null
+          <AddBucketModal
+            close = {this.closeAddBucketModal}
+            visibility = {this.state.showBucketModal}
+            addBucket = {this.addBucket} />
+          : null
         }
 
         {
@@ -108,7 +108,6 @@ export default class App extends React.Component{
           :null
         }
 
-
         <Main
           currentGroupData ={this.state.data}
           allGroups = {this.state.data.tags}
@@ -116,7 +115,8 @@ export default class App extends React.Component{
           addBucket = {this.addBucket}
           currentGroup = {this.state.currentGroup}
           deleteBucket = {this.deleteBucket}
-          />
+          showBucketModal = {this.showAddBucketModal}
+        />
 
           //Modals
       // end of where I should add modals
@@ -137,9 +137,9 @@ export default class App extends React.Component{
    * @param name {string} Name of the bucket to be created
    * @param groupId {string} Id of the group to put the bucket in
    **/
-  addBucket(name, groupId) {
+  addBucket(name) {
     //console.log('adding bucket ', this.state.data.currentGroup.tags);
-    console.log(name, groupId);
+    //console.log(name, groupId);
 
     //if (name != "") {
       var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -379,7 +379,6 @@ export default class App extends React.Component{
           me.setState({
             data: result
           });
-          console.log('result from create bucket: ', result);
         } else {
           console.log('Oops an error occurred');
         }
@@ -402,7 +401,6 @@ export default class App extends React.Component{
           me.setState({
             data: result
           });
-          console.log('result: ', result);
         } else{
           console.log('Oops an error occurred');
         }
