@@ -149,6 +149,7 @@ export default class Component extends React.Component {
    * @param {object} card - Information from yelp results in order to build a new card.
    * @param {number} bucketId - The id of the bucket that the card will be added too.
    */
+   //TODO SOMETHING WRONG IN ADD
   addCard(card, bucketId){
     var tagId = bucketId !== "0" ? bucketId : null;
     console.log('adding a new card');

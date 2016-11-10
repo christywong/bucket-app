@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 
 var GroupSchema = new Schema({
   title: String,
-  tags: [{id: String, title: String}],
+  tags: [{id: String, title: String, typeOfBucket: Number}],
   members: [{id: String, name: String}],
   activities:[
     {
@@ -120,11 +120,11 @@ module.exports.actions.getAllGroups = function(req,res){
 
 module.exports.actions.createGroup = function(req,res){
   console.log('creating a new group :)');
-  console.log(req.body);
+
   var newGroup = new Groups({
     title   : req.body.title,
     members : {name: req.body.members},
-    tags    : [{id: req.body.tagId, title: req.body.tagTitle}]
+    tags    : [{id: 0, typeOfBucket: 1, title: "All"}]
   });
 
   console.log('new group ', newGroup);
@@ -167,13 +167,13 @@ module.exports.actions.addFriend = function(req,res){
 module.exports.actions.createBucket = function(req,res){
   //id of group we want to add the bucket too
   console.log('adding a bucket');
-
   var groupId = req.body.groupId;
   //name of new bucket
   var bucketTitle = req.body.bucket;
   var newBucket = {
-    id : uuid.v4(),
-    title : bucketTitle
+    id: uuid.v4(),
+    title : bucketTitle,
+    typeOfBucket : 0
   }
   console.log('bucket title ', bucketTitle, 'groupId ', groupId);
   Groups.findOneAndUpdate({'_id':groupId},{$push: {tags: newBucket}},{new: true},
