@@ -26,8 +26,8 @@ export default class App extends React.Component{
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
-      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser'))
-      showAccountSettingsModal: false,
+      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
+      showAccountSettingsModal: false
       //showAddModal: false,
       }
 
@@ -101,7 +101,6 @@ export default class App extends React.Component{
             close={this.closeAccountSettingsModal}
             changePassword={this.changePassword}
             visibility={this.state.showAccountSettingsModal}/>
-            />
           :null
         }
         {
@@ -492,10 +491,11 @@ export default class App extends React.Component{
         }
       }
 
-    xhr.open('DELETE', '/api/deleteBucket');
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.responseType = 'json'
-    xhr.send(payload);
+      xhr.open('DELETE', '/api/deleteBucket');
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.responseType = 'json'
+      xhr.send(payload);
+    }
   }
 
   apiChangePassword(memberId, newPassword){
