@@ -15,8 +15,8 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '5822d9275328dbcd7ba033d6',
-      currentUser: 'Alok'
+      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+      currentUser: 'Daniel'
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -63,13 +63,19 @@ export default class App extends React.Component{
     );
   }
 
+  /**
+   * Grab data for the newly selected Group Id
+   **/
   changeGroup(newGroupId){
-    console.log(newGroupId);
     const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
     this.loadJSONData(newGroupId);
-
   }
 
+  /**
+   * Adds a bucket into a new group
+   * @param name {string} Name of the bucket to be created
+   * @param groupId {string} Id of the group to put the bucket in
+   **/
   addBucket(name, groupId) {
     console.log('adding bucket ', this.state.data.currentGroup.tags);
     console.log(name);
@@ -92,7 +98,10 @@ export default class App extends React.Component{
       });
     }
   }
-
+  /**
+   * Creates a new Group
+   * @param name {string} Name of the Group to be added.
+   **/
   addGroup(name) {
     console.log('name of new group ', name);
     if (name != "") {
@@ -110,12 +119,14 @@ export default class App extends React.Component{
      //  console.log(newGroupList);
       this.apiCreateGroup(newGroup);
 
-      // this.setState({
-      //   listOfGroups: newGroupList
-      // });
     }
   }
 
+  /**
+   * Add a new member into a Group
+   * @param name {string} Name of the member to be added to the group
+   * @param currentGroupId {string} Id of the group that member is to be added to
+   **/
   addMember(name, currentGroupId){
     console.log(name);
     if (name != ""){
@@ -144,6 +155,7 @@ export default class App extends React.Component{
     }
   }
 
+  //Modal Functions
   showAccountSettingsModal(){
     this.setState({showModal: true});
   }
@@ -152,7 +164,10 @@ export default class App extends React.Component{
     this.setState({showModal: false});
   }
 
-  //API call to initialize our Application
+  /**
+   * API call to initialize data for a group
+   * @param currentGroup {string} The id of the group to retrieve data from.
+   **/
   loadJSONData(currentGroup){
     var me = this;
     var xhr = new XMLHttpRequest();
@@ -174,6 +189,9 @@ export default class App extends React.Component{
     xhr.send();
   }
 
+  /**
+   * API call to get a list of groups
+   **/
   getAllGroups(){
     var me = this;
     var xhr = new XMLHttpRequest();
@@ -195,6 +213,10 @@ export default class App extends React.Component{
     xhr.send();
   }
 
+  /**
+   * API call to create a new Group
+   * @param newGorup {Object} The newly created group object to be added to the database
+   **/
   apiCreateGroup(newGroup){
     var me = this;
     var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
@@ -221,6 +243,10 @@ export default class App extends React.Component{
     xhr.send(payload);
   }
 
+  /**
+   * API call to create a friend
+   * @param person{string} The name of the person we want to add to the group
+   **/
   apiAddFriend(newFriend){
     var me = this;
     var xhr = new XMLHttpRequest();

@@ -45,8 +45,9 @@ app.use(function(req,res,next){
   res.sendFile(path.join(__dirname, '/public/404.html'));
 });
 
-mongoose.Promise = global.Promise;
-mongoose.connect(DB_URL);
+// mongoose.Promise = global.Promise;
+// mongoose.connect(DB_URL);
+mongoose.connect('mongodb://localhost:27017/cse170');
 
 app.listen(port, function(){
   console.log('connected to port 8080');

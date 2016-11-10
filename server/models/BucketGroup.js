@@ -20,8 +20,9 @@ var GroupSchema = new Schema({
     }
   ]
 });
+var Groups = mongoose.model('groups', GroupSchema);
 
-var Groups = mongoose.model('bucketgroups', GroupSchema);
+//var Groups = mongoose.model('bucketgroups', GroupSchema);
 
 module.exports.actions = {};
 
