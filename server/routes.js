@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var JSONDATA = path.join(__dirname, 'Data.json');
 var Group = require('./models/BucketGroup.js');
+var Member = require('./models/Members.js');
 
 
 //TODO Our API to do stuff
@@ -52,12 +53,13 @@ module.exports = function (app){
   //Delete a Bucket
   app.post('/api/deleteBucket', Group.actions.deleteBucket);
 
-
   //Return a list of all the groups
   app.get('/api/getAllGroups', Group.actions.getAllGroups);
   //Creates a new group in the database
   app.post('/api/createGroup', Group.actions.createGroup);
   //add a friend to the group
   app.post('/api/addFriend', Group.actions.addFriend);
+
+  app.post('/api/createMember', Member.actions.createMember);
 
 }

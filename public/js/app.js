@@ -123,8 +123,8 @@
 	      listOfGroups: [],
 	      showModal: false,
 	      currentBucket: "0",
-	      currentGroup: '581fcd1fdcba0f6bf2649630',
-	      currentUser: 'Alok'
+	      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+	      currentUser: 'Daniel'
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -168,20 +168,26 @@
 	        })
 	      );
 	    }
+
+	    /**
+	     * Grab data for the newly selected Group Id
+	     **/
+
 	  }, {
 	    key: 'changeGroup',
 	    value: function changeGroup(newGroupId) {
-	      console.log(newGroupId);
 	      var newGroup = this.state.listOfGroups.filter(function (group) {
 	        return newGroupId === group.id;
 	      })[0];
 	      this.loadJSONData(newGroupId);
-
-	      // this.setState({
-	      //   data:
-	      //   currentBucket: 0
-	      // });
 	    }
+
+	    /**
+	     * Adds a bucket into a new group
+	     * @param name {string} Name of the bucket to be created
+	     * @param groupId {string} Id of the group to put the bucket in
+	     **/
+
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name, groupId) {
@@ -213,6 +219,11 @@
 	        })();
 	      }
 	    }
+	    /**
+	     * Creates a new Group
+	     * @param name {string} Name of the Group to be added.
+	     **/
+
 	  }, {
 	    key: 'addGroup',
 	    value: function addGroup(name) {
@@ -231,12 +242,15 @@
 	        var newGroupList = [].concat(_toConsumableArray(this.state.listOfGroups), [newGroup]);
 	        //  console.log(newGroupList);
 	        this.apiCreateGroup(newGroup);
-
-	        // this.setState({
-	        //   listOfGroups: newGroupList
-	        // });
 	      }
 	    }
+
+	    /**
+	     * Add a new member into a Group
+	     * @param name {string} Name of the member to be added to the group
+	     * @param currentGroupId {string} Id of the group that member is to be added to
+	     **/
+
 	  }, {
 	    key: 'addMember',
 	    value: function addMember(name, currentGroupId) {
@@ -266,6 +280,9 @@
 	        });
 	      }
 	    }
+
+	    //Modal Functions
+
 	  }, {
 	    key: 'showAccountSettingsModal',
 	    value: function showAccountSettingsModal() {
@@ -277,7 +294,10 @@
 	      this.setState({ showModal: false });
 	    }
 
-	    //API call to initialize our Application
+	    /**
+	     * API call to initialize data for a group
+	     * @param currentGroup {string} The id of the group to retrieve data from.
+	     **/
 
 	  }, {
 	    key: 'loadJSONData',
@@ -301,6 +321,11 @@
 	      xhr.responseType = 'json';
 	      xhr.send();
 	    }
+
+	    /**
+	     * API call to get a list of groups
+	     **/
+
 	  }, {
 	    key: 'getAllGroups',
 	    value: function getAllGroups() {
@@ -323,6 +348,12 @@
 	      xhr.responseType = 'json';
 	      xhr.send();
 	    }
+
+	    /**
+	     * API call to create a new Group
+	     * @param newGorup {Object} The newly created group object to be added to the database
+	     **/
+
 	  }, {
 	    key: 'apiCreateGroup',
 	    value: function apiCreateGroup(newGroup) {
@@ -346,6 +377,35 @@
 	      };
 	      console.log('getting data from server');
 	      xhr.open('POST', '/api/createGroup');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
+	    }
+
+	    /**
+	     * API call to create a friend
+	     * @param person{string} The name of the person we want to add to the group
+	     **/
+
+	  }, {
+	    key: 'apiAddFriend',
+	    value: function apiAddFriend(newFriend) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = "person=" + newFriend + "&groupId=" + this.state.currentGroup;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            me.setState({
+	              data: result
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      xhr.open('POST', '/api/addFriend');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	      xhr.responseType = 'json';
 	      xhr.send(payload);
@@ -4639,7 +4699,7 @@
 	      var cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
 
 	      //Card components to get injected into our view
-	      var groupCards = cardArray ? cardArray.map(function (cardEntry) {
+	      var filteredCards = cardArray ? cardArray.map(function (cardEntry) {
 	        return _react2.default.createElement(_Cards2.default, {
 	          key: cardEntry.id.toString(),
 	          activities: cardEntry,
@@ -4647,7 +4707,13 @@
 	          bucketTags: _this2.state.bucketList,
 	          deleteCard: _this2.deleteCard
 	        });
-	      }) : null;
+	      }) : [];
+
+	      var groupCards = filteredCards.length > 0 ? filteredCards : _react2.default.createElement(
+	        'h2',
+	        { className: 'empty-bucket-msg' },
+	        ' There are no cards in this bucket :( '
+	      );
 
 	      return _react2.default.createElement(
 	        'div',
@@ -4749,6 +4815,7 @@
 	     * @param {object} card - Information from yelp results in order to build a new card.
 	     * @param {number} bucketId - The id of the bucket that the card will be added too.
 	     */
+	    //TODO SOMETHING WRONG IN ADD
 
 	  }, {
 	    key: 'addCard',
@@ -4791,7 +4858,6 @@
 	  }, {
 	    key: 'moveCard',
 	    value: function moveCard(card, newTag) {
-
 	      card.tags[0] = newTag;
 	      var nextSelectedState = {};
 	      var currentBucketId = this.state.currentBucketId;
@@ -36113,9 +36179,7 @@
 	        { className: 'sr-only' },
 	        'Toggle navigation'
 	      ),
-	      _react2['default'].createElement('span', { className: 'icon-bar' }),
-	      _react2['default'].createElement('span', { className: 'icon-bar' }),
-	      _react2['default'].createElement('span', { className: 'icon-bar' })
+	      _react2['default'].createElement('span', { className: 'fa fa-gear fa-lg' })
 	    );
 	  };
 
@@ -36127,6 +36191,7 @@
 
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
+
 
 /***/ },
 /* 390 */
@@ -41460,9 +41525,14 @@
 	          { className: 'card-left' },
 	          _react2.default.createElement(
 	            'a',
-	            { href: 'https://www.yelp.com/biz/vallarta-express-mexican-eatery-san-diego?adjust_creative=SpLSZTvEK8wLBqyuM71G_g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=SpLSZTvEK8wLBqyuM71G_g', target: '_blank' },
+	            { href: card.yelpUrl, target: '_blank' },
 	            _react2.default.createElement('img', { src: card.img,
-	              width: '75' })
+	              width: '75' }),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'View on Yelp'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -55224,101 +55294,19 @@
 	      var currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
 	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
-
-	      var createGroupPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Create Group' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'group-name-input',
-	          placeholder: 'Group Name',
-	          onChange: this.handleChange }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-new-group',
-	          value: 'Create',
-	          onClick: this.handleSubmitGroup })
-	      );
-
-	      var addMemberPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Add Friend' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'email-input',
-	          placeholder: 'Name',
-	          onChange: this.handleChangeAddMember }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-member',
-	          value: 'Add',
-	          onClick: this.handleSubmitAddMember })
-	      );
-
-	      var createBucketPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Add Bucket' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'bucket-name-input',
-	          placeholder: 'Bucket Name',
-	          onChange: this.handleChangeBucket }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-new-bucket',
-	          value: 'Add',
-	          onClick: this.handleSubmitBucket })
-	      );
-
-	      var showMembersPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Friends', onClick: function onClick() {
-	            _this2.refs.overlayMember.hide();
-	          } },
-	        currentGroupMembers ? currentGroupMembers.map(function (member) {
-	          return _react2.default.createElement(
-	            'p',
-	            { key: member._id, onClick: function onClick() {
-	                _this2.refs.overlayMember.hide();
-	              } },
-	            member.name
-	          );
-	        }) : null
-	      );
-
 	      //What we are returning
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        { style: { zIndex: 500 }, fluid: true },
 	        _react2.default.createElement(
-	          _reactBootstrap.Nav,
+	          _reactBootstrap.Navbar.Header,
 	          null,
 	          _react2.default.createElement(
-	            _reactBootstrap.NavDropdown,
-	            { eventKey: 1, id: 'group-title-nav', title: currentGroupTitle, style: { position: "absolute", fontSize: 22, color: "#373a47" } },
-	            _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              { eventKey: 1.1, id: 'submit-member' },
-	              'View & Add Friend'
-	            ),
-	            _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
-	            _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              { eventKey: 1.2, onClick: this.props.showSettings },
-	              'Account Settings'
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              { eventKey: 1.3, href: '/index.html' },
-	              'Logout'
-	            )
-	          )
+	            _reactBootstrap.Navbar.Brand,
+	            { style: { position: 'absolute', left: 75 } },
+	            currentGroupTitle
+	          ),
+	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Navbar.Collapse,
@@ -55327,9 +55315,14 @@
 	            _reactBootstrap.Nav,
 	            { pullRight: true },
 	            _react2.default.createElement(
+	              _reactBootstrap.NavItem,
+	              { eventKey: 2, id: 'submit-member' },
+	              'Friends'
+	            ),
+	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
 	              {
-	                eventKey: 2,
+	                eventKey: 3,
 	                id: 'groups-dropdown',
 	                title: 'Groups' },
 	              currentGroup.map(function (group) {
@@ -55346,34 +55339,31 @@
 	              }),
 	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
 	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlayGroup',
-	                  trigger: 'click',
-	                  rootClose: true,
-	                  placement: 'bottom',
-	                  overlay: createGroupPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onClick: this.handlePopoverClick },
-	                  'Create Group'
-	                )
+	                _reactBootstrap.MenuItem,
+	                { onClick: this.handlePopoverClick },
+	                'Create Group'
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.OverlayTrigger,
-	                {
-	                  id: 'popover-trigger-click-root-close',
-	                  ref: 'overlayMember',
-	                  trigger: 'click',
-	                  rootClose: true,
-	                  placement: 'bottom',
-	                  overlay: showMembersPopover },
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  null,
-	                  'View Group'
-	                )
+	                _reactBootstrap.MenuItem,
+	                null,
+	                'View Group'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              {
+	                eventKey: 4,
+	                id: 'settings-dropdown',
+	                title: 'Settings' },
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 4.1, onClick: this.props.showSettings },
+	                'Account Settings'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 4.2, href: '/index.html' },
+	                'Logout'
 	              )
 	            )
 	          )
