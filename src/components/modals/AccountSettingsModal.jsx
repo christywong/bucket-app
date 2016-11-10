@@ -9,6 +9,16 @@ export default class AccountSettingsModal extends React.Component{
     }
   }
 
+  changePassword(){
+    var password = document.getElementsByName('password')[0].value;
+    var confirmPassword = document.getElementsByName('confirm-password')[0].value;
+
+    if(password === confirmPassword){
+      this.props.changePassword(password);
+      this.props.close();
+      alert('Password Changed');
+    }
+  }
   render(){
     var {close} = this.props;
     return(
@@ -26,37 +36,22 @@ export default class AccountSettingsModal extends React.Component{
           <Modal.Body className="modal-body">
             <form className="form-horizontal">
               <fieldset>
-                <div className="form-group">
-                  <label className="col-md-4 control-label" htmlFor="textinput">Change Name</label>
 
-                  <div className="col-md-4">
-                    <input className="form-control input-md" id="textinput" name="textinput" placeholder="New Name" type="text"></input>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="col-md-4 control-label" htmlFor="textinput">Change Email ID</label>
-                  <div className="col-md-4">
-                    <input className="form-control input-md" id="textinput" name="textinput" placeholder="New Email" type="text"></input>
-                  </div>
-                </div>
                 <div className="form-group">
                   <label className="col-md-4 control-label" htmlFor="passwordinput">New Password</label>
                   <div className="col-md-4">
-                    <input className="form-control input-md" id="passwordinput" name="passwordinput" placeholder="New Password" type="password"></input>
+                    <input className="form-control input-md" id="passwordinput" name="password" placeholder="New Password" type="password"></input>
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label className="col-md-4 control-label" htmlFor="passwordinput">Confirm Password</label>
                   <div className="col-md-4">
-                    <input className="form-control input-md" id="passwordinput" name="passwordinput" placeholder="Confirm Password" type="password"></input>
+                    <input className="form-control input-md" id="passwordinput" name="confirm-password" placeholder="Confirm Password" type="password"></input>
                   </div>
                 </div>
 
               </fieldset>
             </form>
-
             </Modal.Body>
             <Modal.Footer>
               <Button onClick = {()=>{
@@ -68,7 +63,7 @@ export default class AccountSettingsModal extends React.Component{
                 id="save-btn"
                 name="singlebutton"
                 onClick = {()=>{
-                  close();
+                  this.changePassword();
                   this.setState({showModal:false});
                 }}>Save</Button>
               </Modal.Footer>
