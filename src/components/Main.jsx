@@ -173,6 +173,7 @@ export default class Component extends React.Component {
       filteredCards: changeBucket,
       currentBucketId: bucketId
     });
+    this.props.changeSelected(bucketId);
   }
 
   /**

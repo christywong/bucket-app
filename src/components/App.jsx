@@ -19,7 +19,7 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '5822d9275328dbcd7ba033d6',
+      currentGroup: '5823ec88aa6c2bfcd02d3d57',
       currentUser: 'Daniel',
       currentUserId: '58240dbb14ffca2cd946d0f6',
       showBucketModal: false,
@@ -34,6 +34,7 @@ export default class App extends React.Component{
     this.addMember = this.addMember.bind(this);
     this.deleteBucket = this.deleteBucket.bind(this);
     this.changePassword = this.changePassword.bind(this);
+    this.changeSelectedBucket = this.changeSelectedBucket.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -123,6 +124,7 @@ export default class App extends React.Component{
           currentGroup = {this.state.currentGroup}
           deleteBucket = {this.deleteBucket}
           showBucketModal = {this.showAddBucketModal}
+          changeSelected = {this.changeSelectedBucket}
         />
 
           //Modals
@@ -131,11 +133,20 @@ export default class App extends React.Component{
     );
   }
 
+  changeSelectedBucket(selectedBucketId){
+    this.setState({
+      currentBucket: selectedBucketId
+    })
+  }
+
   /**
    * Grab data for the newly selected Group Id
    **/
   changeGroup(newGroupId){
     const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
+    this.setState({
+      currentGroup: newGroupId
+    })
     this.loadJSONData(newGroupId);
   }
 

@@ -19,6 +19,7 @@ export default class AccountSettingsModal extends React.Component{
       alert('Password Changed');
     }
   }
+  
   render(){
     var {close} = this.props;
     return(
