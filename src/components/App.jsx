@@ -20,7 +20,7 @@ export default class App extends React.Component{
       showModal: false,
       currentBucket: "0",
       currentGroup: '5823ec88aa6c2bfcd02d3d57',
-      currentUser: 'Daniel'
+      currentUser: 'Daniel',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,

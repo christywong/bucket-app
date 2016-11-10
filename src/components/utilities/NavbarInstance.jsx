@@ -1,8 +1,14 @@
 import React from 'react';
-import { Navbar, NavItem, Nav, NavDropdown, MenuItem, Dropdown } from "react-bootstrap";
-import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
+import {
+  Navbar,
+  NavItem,
+  Nav,
+  NavDropdown,
+  MenuItem,
+  Dropdown
+} from "react-bootstrap";
+import {Button, ButtonToolbar, OverlayTrigger, Popover} from 'react-bootstrap';
 import AccountSettingsModal from '../modals/AccountSettingsModal';
-
 
 export default class NavbarInstance extends React.Component {
   constructor(props) {
@@ -12,8 +18,8 @@ export default class NavbarInstance extends React.Component {
       show: false,
       value: '',
       dropdown: false,
-      target:'',
-      newBucket:'',
+      target: '',
+      newBucket: '',
       newMember: '',
       showModal: false
     }
@@ -38,7 +44,7 @@ export default class NavbarInstance extends React.Component {
   handleDropdownClick(e) {
     var dropdown = this.state.dropdown;
     var show = this.state.show;
-    if(!dropdown) {
+    if (!dropdown) {
       this.setState({dropdown: true});
     } else if (dropdown && show) {
       this.setState({dropdown: true});
@@ -75,7 +81,10 @@ export default class NavbarInstance extends React.Component {
 
   //Handlers for adding a bucket
   handleClickBucket(e) {
-    this.setState({target: e.target, show: !this.state.show});
+    this.setState({
+      target: e.target,
+      show: !this.state.show
+    });
   }
 
   handleChangeBucket(e) {
@@ -95,32 +104,51 @@ export default class NavbarInstance extends React.Component {
     this.setState({newMember: e.target.value});
   }
 
-  handleSubmitAddMember(e){
+  handleSubmitAddMember(e) {
     this.refs.overlayAddMember.hide();
     this.props.addMember(this.state.newMember, this.props.currentGroup.id);
-    this.setState({newMember:''});
+    this.setState({newMember: ''});
   }
 
   render() {
-    const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
-    const currentGroupTitle =  this.props.currentGroup.title ? this.props.currentGroup.title : " ";
-    const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
+    const currentGroupId = this.props.currentGroup
+    ? this.props.currentGroup.id
+    : null;
+    const currentGroupTitle = this.props.currentGroup.title
+    ? this.props.currentGroup.title
+    : " ";
+    const currentGroupMembers = this.props.currentGroup
+    ? this.props.currentGroup.members
+    : null;
     console.log(currentGroupMembers);
-    const currentGroup = this.props.groups ? this.props.groups : [];
+    const currentGroup = this.props.groups
+    ? this.props.groups
+    : [];
 
-    return(
-      <Navbar style={{zIndex: 500}} fluid>
+    return (
+      <Navbar
+        style={{
+          zIndex: 500
+        }}
+        fluid>
         <Navbar.Header>
-          <Navbar.Brand style={{position:'absolute',left: 35}} id="group-title-nav">
+          <Navbar.Brand
+            style={{
+              position: 'absolute',
+              left: 35
+            }}
+            id="group-title-nav">
             {currentGroupTitle}
           </Navbar.Brand>
-          <Navbar.Toggle />
+          <Navbar.Toggle/>
         </Navbar.Header>
 
         <Navbar.Collapse>
           <Nav pullRight>
 
-            <NavItem eventKey={2.4} onClick={this.props.showMember}>
+            <NavItem
+              eventKey={2.4}
+              onClick={this.props.showMember}>
               Friends
             </NavItem>
 
@@ -128,12 +156,13 @@ export default class NavbarInstance extends React.Component {
               eventKey={3}
               id="groups-dropdown"
               title="Groups">
-              {currentGroup.map((group)=>{
+              {currentGroup.map((group) => {
                 return (
                   <MenuItem
                     key={group._id}
-                    onClick={()=>{this.props.changeGroup(group._id)}}
-                    >
+                    onClick={() => {
+                      this.props.changeGroup(group._id)
+                    }}>
                     {group.title}
                   </MenuItem>
                 )
@@ -141,27 +170,36 @@ export default class NavbarInstance extends React.Component {
 
               <MenuItem divider/>
 
-                <MenuItem eventKey={3.1} onClick={this.props.showGroups}>
-                   Create Group
-                </MenuItem>
+              <MenuItem
+                eventKey={3.1}
+                onClick={this.props.showGroups}>
+                Create Group
+              </MenuItem>
 
-                <MenuItem eventKey={3.2} onClick={this.props.showBucket}>
-                  Add Bucket
-                </MenuItem>
+              <MenuItem
+                eventKey={3.2}
+                onClick={this.props.showBucket}>
+                Add Bucket
+              </MenuItem>
 
-                <MenuItem eventKey={3.3} onClick={this.props.showHelp}>
-                  Help
-                </MenuItem>
             </NavDropdown>
 
             <NavDropdown
               eventKey={4}
               id="settings-dropdown"
               title="Settings">
-              <MenuItem eventKey={4.1} onClick={this.props.showSettings}>
+              <MenuItem
+                eventKey={4.1}
+                onClick={this.props.showSettings}>
                 Account Settings
               </MenuItem>
-              <MenuItem eventKey={4.2} href="/index.html">Logout</MenuItem>
+
+              <MenuItem
+                eventKey={4.2}
+                onClick={this.props.showHelp}>
+                Help
+              </MenuItem>
+              <MenuItem eventKey={4.3} href="/index.html">Logout</MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

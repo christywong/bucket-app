@@ -525,8 +525,12 @@ body:before {
     background-color: $hover-blue-darken !important;
 }
 
-.fa-gear:hover {
+.fa-gear {
     color: $primary-gray;
+}
+
+.fa-gear:hover {
+    color:$primary-gray;
 }
 
 #delete-bucket-icon {
