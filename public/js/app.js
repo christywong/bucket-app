@@ -104,6 +104,18 @@
 
 	var _AddGroupModal2 = _interopRequireDefault(_AddGroupModal);
 
+	var _AddMemberModal = __webpack_require__(517);
+
+	var _AddMemberModal2 = _interopRequireDefault(_AddMemberModal);
+
+	var _AddBucketModal = __webpack_require__(518);
+
+	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
+
+	var _HelpModal = __webpack_require__(519);
+
+	var _HelpModal2 = _interopRequireDefault(_HelpModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -114,10 +126,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(517);
-
-	//import AddMemberModal from './modals/AddMemberModal';
-	//import AddBucketModal from './modals/AddBucketModal';
+	var styles = __webpack_require__(520);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -133,7 +142,11 @@
 	      showModal: false,
 	      currentBucket: "0",
 	      currentGroup: '5822d9275328dbcd7ba033d6',
-	      currentUser: 'Alok'
+	      currentUser: 'Alok',
+	      showBucketModal: false,
+	      showGroupModal: false,
+	      showMemberModal: false,
+	      showHelpModal: false
 
 	    };
 
@@ -151,6 +164,8 @@
 	    _this.closeAddMemberModal = _this.closeAddMemberModal.bind(_this);
 	    _this.showAddBucketModal = _this.showAddBucketModal.bind(_this);
 	    _this.closeAddBucketModal = _this.closeAddBucketModal.bind(_this);
+	    _this.showHelpModal = _this.showHelpModal.bind(_this);
+	    _this.closeHelpModal = _this.closeHelpModal.bind(_this);
 
 	    return _this;
 	  }
@@ -183,12 +198,19 @@
 	          showSettings: this.showAccountSettingsModal,
 	          showGroups: this.showAddGroupModal,
 	          showMember: this.showAddMemberModal,
-	          showBucket: this.showAddBucketModal
+	          showBucket: this.showAddBucketModal,
+	          showHelp: this.showHelpModal
+
 	        }),
 	        this.state.showModal ? _react2.default.createElement(_AccountSettingsModal2.default, { close: this.closeAccountSettingsModal }) : null,
-	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddGroupModal }) : null,
-	        this.state.showMemberModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddMemberModal }) : null,
-	        this.state.showBucketModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddBucketModal }) : null,
+	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, { close: this.closeAddGroupModal,
+	          visibility: this.state.showGroupModal }) : null,
+	        this.state.showMemberModal ? _react2.default.createElement(_AddMemberModal2.default, { close: this.closeAddMemberModal,
+	          visibility: this.state.showMemberModal }) : null,
+	        this.state.showBucketModal ? _react2.default.createElement(_AddBucketModal2.default, { close: this.closeAddBucketModal,
+	          visibility: this.state.showBucketModal }) : null,
+	        this.state.showHelpModal ? _react2.default.createElement(_HelpModal2.default, { close: this.closeHelpModal,
+	          visibility: this.state.showHelpModal }) : null,
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroupData: this.state.data,
 	          allGroups: this.state.data.tags,
@@ -329,6 +351,16 @@
 	    key: 'closeAddBucketModal',
 	    value: function closeAddBucketModal() {
 	      this.setState({ showBucketModal: false });
+	    }
+	  }, {
+	    key: 'showHelpModal',
+	    value: function showHelpModal() {
+	      this.setState({ showHelpModal: true });
+	    }
+	  }, {
+	    key: 'closeHelpModal',
+	    value: function closeHelpModal() {
+	      this.setState({ showHelpModal: false });
 	    }
 
 	    //API call to initialize our Application
@@ -55327,73 +55359,6 @@
 	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
 
-	      var createGroupPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Create Group' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'group-name-input',
-	          placeholder: 'Group Name',
-	          onChange: this.handleChange }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-new-group',
-	          value: 'Create',
-	          onClick: this.handleSubmitGroup })
-	      );
-
-	      var addMemberPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Add Friend' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'email-input',
-	          placeholder: 'Name',
-	          onChange: this.handleChangeAddMember }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-member',
-	          value: 'Add',
-	          onClick: this.handleSubmitAddMember })
-	      );
-
-	      var createBucketPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        {
-	          id: 'popover-trigger-click-root-close',
-	          title: 'Add Bucket' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          id: 'bucket-name-input',
-	          placeholder: 'Bucket Name',
-	          onChange: this.handleChangeBucket }),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          id: 'submit-new-bucket',
-	          value: 'Add',
-	          onClick: this.handleSubmitBucket })
-	      );
-
-	      var showMembersPopover = _react2.default.createElement(
-	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Friends', onClick: function onClick() {
-	            _this2.refs.overlayMember.hide();
-	          } },
-	        currentGroupMembers ? currentGroupMembers.map(function (member) {
-	          return _react2.default.createElement(
-	            'p',
-	            { key: member._id, onClick: function onClick() {
-	                _this2.refs.overlayMember.hide();
-	              } },
-	            member.name
-	          );
-	        }) : null
-	      );
-
 	      //What we are returning
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
@@ -55456,6 +55421,16 @@
 	                _reactBootstrap.MenuItem,
 	                { eventKey: 2.4, onClick: this.props.showMember },
 	                'Add Friend'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 2.5, onClick: this.props.showBucket },
+	                'Add Bucket'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 2.6, onClick: this.props.showHelp },
+	                'Help'
 	              )
 	            )
 	          )
@@ -55673,12 +55648,7 @@
 	  function AddGroupModal(props) {
 	    _classCallCheck(this, AddGroupModal);
 
-	    var _this = _possibleConstructorReturn(this, (AddGroupModal.__proto__ || Object.getPrototypeOf(AddGroupModal)).call(this, props));
-
-	    _this.state = {
-	      showGroupModal: 'false'
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (AddGroupModal.__proto__ || Object.getPrototypeOf(AddGroupModal)).call(this, props));
 	  }
 
 	  _createClass(AddGroupModal, [{
@@ -55686,102 +55656,70 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      var modalStyle = {
-	        position: 'fixed',
-	        zIndex: 1040,
-	        top: 0, bottom: 0, left: 0, right: 0
-	      };
-
 	      var backdropStyle = {
 	        zIndex: 'auto',
 	        backgroundColor: '#000',
-	        opacity: 0.5
-	      };
-
-	      var dialogStyle = function dialogStyle() {
-
-	        var top = 50 + (Math.floor(Math.random() * 20) - 10);
-	        var left = 50 + (Math.floor(Math.random() * 20) - 10);
-
-	        return {
-
-	          position: 'absolute',
-	          width: 400,
-	          top: top + '%', left: left + '%',
-	          transform: 'translate(-' + top + '%, -' + left + '%)',
-	          border: '1px solid #e5e5e5',
-	          backgroundColor: 'white',
-	          boxShadow: '0 5px 15px rgba(0,0,0,.5)',
-	          padding: 20
-	        };
+	        opacity: 0.8
 	      };
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'static-modal' },
+	        null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Modal,
 	          {
 	            'aria-labelledby': 'modal-label',
-	            style: modalStyle,
 	            backdropStyle: backdropStyle,
-	            show: this.state.showGroupModal
-
+	            show: this.props.visibility
 	          },
 	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Dialog,
+	            _reactBootstrap.Modal.Header,
 	            null,
 	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Header,
-	              null,
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'close', onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                '\xD7'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Modal.Title,
-	                null,
-	                'Create Group'
-	              )
+	              _reactBootstrap.Button,
+	              { className: 'close', onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              '\xD7'
 	            ),
 	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Body,
-	              { className: 'modal-body' },
-	              _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Name Your Group'
-	                ),
-	                _react2.default.createElement('input', {
-	                  className: 'addInput',
-	                  type: 'text',
-	                  placeholder: 'Group Name',
-	                  name: 'Group Name' })
-	              )
-	            ),
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Create Group'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            { className: 'modal-body' },
 	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Footer,
+	              'div',
 	              null,
 	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { onClick: function onClick() {
-	                    close();
-	                    _this2.setState({ showPager: false });
-	                  } },
-	                'Close'
+	                'label',
+	                null,
+	                'Name Your Group'
 	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { className: 'btn btn-primary', onClick: this.addGroup },
-	                'Create'
-	              )
+	              _react2.default.createElement('input', {
+	                className: 'addInput',
+	                type: 'text',
+	                placeholder: 'Group Name',
+	                name: 'Group Name' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { className: 'btn btn-primary', onClick: this.addGroup },
+	              'Create'
 	            )
 	          )
 	        )
@@ -55796,6 +55734,353 @@
 
 /***/ },
 /* 517 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddMemberModal = function (_React$Component) {
+	  _inherits(AddMemberModal, _React$Component);
+
+	  function AddMemberModal(props) {
+	    _classCallCheck(this, AddMemberModal);
+
+	    return _possibleConstructorReturn(this, (AddMemberModal.__proto__ || Object.getPrototypeOf(AddMemberModal)).call(this, props));
+	  }
+
+	  _createClass(AddMemberModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var backdropStyle = {
+	        zIndex: 'auto',
+	        backgroundColor: '#000',
+	        opacity: 0.8
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            'aria-labelledby': 'modal-label',
+	            backdropStyle: backdropStyle,
+	            show: this.props.visibility
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { className: 'close', onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              '\xD7'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Add Friends'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            { className: 'modal-body' },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'Add Friend'
+	              ),
+	              _react2.default.createElement('input', {
+	                className: 'addInput',
+	                type: 'text',
+	                placeholder: 'Friend Name',
+	                name: 'Friend Name' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { className: 'btn btn-primary', onClick: this.addMember },
+	              'Add'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return AddMemberModal;
+	}(_react2.default.Component);
+
+	exports.default = AddMemberModal;
+
+/***/ },
+/* 518 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddBucketModal = function (_React$Component) {
+	  _inherits(AddBucketModal, _React$Component);
+
+	  function AddBucketModal(props) {
+	    _classCallCheck(this, AddBucketModal);
+
+	    return _possibleConstructorReturn(this, (AddBucketModal.__proto__ || Object.getPrototypeOf(AddBucketModal)).call(this, props));
+	  }
+
+	  _createClass(AddBucketModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var backdropStyle = {
+	        zIndex: 'auto',
+	        backgroundColor: '#000',
+	        opacity: 0.8
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            'aria-labelledby': 'modal-label',
+	            backdropStyle: backdropStyle,
+	            show: this.props.visibility
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { className: 'close', onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              '\xD7'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Create a Bucket'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            { className: 'modal-body' },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'Name Your Bucket'
+	              ),
+	              _react2.default.createElement('input', {
+	                className: 'addInput',
+	                type: 'text',
+	                placeholder: 'Bucket Name',
+	                name: 'Bucket Name' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { className: 'btn btn-primary', onClick: this.addBucket },
+	              'Create'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return AddBucketModal;
+	}(_react2.default.Component);
+
+	exports.default = AddBucketModal;
+
+/***/ },
+/* 519 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var HelpModal = function (_React$Component) {
+	  _inherits(HelpModal, _React$Component);
+
+	  function HelpModal(props) {
+	    _classCallCheck(this, HelpModal);
+
+	    return _possibleConstructorReturn(this, (HelpModal.__proto__ || Object.getPrototypeOf(HelpModal)).call(this, props));
+	  }
+
+	  _createClass(HelpModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var backdropStyle = {
+	        zIndex: 'auto',
+	        backgroundColor: '#000',
+	        opacity: 0.8
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            'aria-labelledby': 'modal-label',
+	            backdropStyle: backdropStyle,
+	            show: this.props.visibility
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Getting Started'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Create your first bucket by clicking on + icon on the bottom of the sidebar.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Search for activities by clicking on + icon on the bottom right.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Add activity to your bucket by clicking on the paper pencil icon on the activity card.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Delete an activity from a bucket by clicking on the trash icon on the activity card.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Create a bucket list with friends by clicking on Groups on the navbar.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return HelpModal;
+	}(_react2.default.Component);
+
+	exports.default = HelpModal;
+
+/***/ },
+/* 520 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

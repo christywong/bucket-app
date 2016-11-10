@@ -108,74 +108,6 @@ export default class NavbarInstance extends React.Component {
     console.log(currentGroupMembers);
     const currentGroup = this.props.groups ? this.props.groups : [];
 
-    const createGroupPopover = (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Create Group">
-        <input
-          type="text"
-          id="group-name-input"
-          placeholder="Group Name"
-          onChange={this.handleChange}>
-        </input>
-        <input
-          type="submit"
-          id="submit-new-group"
-          value="Create"
-          onClick={this.handleSubmitGroup}>
-        </input>
-      </Popover>
-    );
-
-    const addMemberPopover= (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Add Friend">
-        <input
-          type="text"
-          id="email-input"
-          placeholder="Name"
-          onChange={this.handleChangeAddMember}>
-        </input>
-        <input
-          type="submit"
-          id="submit-member"
-          value="Add"
-          onClick={this.handleSubmitAddMember}>
-        </input>
-      </Popover>
-    );
-
-    const createBucketPopover = (
-      <Popover
-        id="popover-trigger-click-root-close"
-        title="Add Bucket">
-        <input
-          type="text"
-          id="bucket-name-input"
-          placeholder="Bucket Name"
-          onChange={this.handleChangeBucket}>
-        </input>
-        <input
-          type="submit"
-          id="submit-new-bucket"
-          value="Add"
-          onClick={this.handleSubmitBucket}>
-        </input>
-      </Popover>
-    );
-
-    const showMembersPopover = (
-      <Popover id="popover-trigger-click-root-close" title="Friends" onClick = {()=>{
-          this.refs.overlayMember.hide();
-        }}>
-        {currentGroupMembers ? currentGroupMembers.map((member) => (
-          <p key={member._id} onClick = {()=>{
-              this.refs.overlayMember.hide();
-            }}>{member.name}</p>
-        )) : null}
-      </Popover>
-    );
 
     //What we are returning
     return(
@@ -214,6 +146,12 @@ export default class NavbarInstance extends React.Component {
                 </MenuItem>
                 <MenuItem eventKey={2.4} onClick={this.props.showMember}>
                   Add Friend
+                </MenuItem>
+                <MenuItem eventKey={2.5} onClick={this.props.showBucket}>
+                  Add Bucket
+                </MenuItem>
+                <MenuItem eventKey={2.6} onClick={this.props.showHelp}>
+                  Help
                 </MenuItem>
             </NavDropdown>
           </Nav>

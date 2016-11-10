@@ -2,61 +2,46 @@ import React from 'react';
 import { Modal , Button, Pager} from 'react-bootstrap';
 
 
+ export default class HelpModal extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
   render() {
-  const modalStyle = {
-  position: 'fixed',
-  zIndex: 1040,
-  top: 0, bottom: 0, left: 0, right: 0
-};
-
-let rand = ()=> (Math.floor(Math.random() * 20) - 10);
-
 
 const backdropStyle = {
   zIndex: 'auto',
   backgroundColor: '#000',
-  opacity: 0.5
+  opacity: 0.8
 };
 
-const dialogStyle = function() {
-
-  let top = 50 + rand();
-  let left = 50 + rand();
-
-  return {
-    position: 'absolute',
-    width: 400,
-    top: top + '%', left: left + '%',
-    transform: `translate(-${top}%, -${left}%)`,
-    border: '1px solid #e5e5e5',
-    backgroundColor: 'white',
-    boxShadow: '0 5px 15px rgba(0,0,0,.5)',
-    padding: 20
-  };
-};
 
     return (
-      <div className='static-modal'>
-        <Modal
+      <div>
+          <Modal
           aria-labelledby='modal-label'
-          style={modalStyle}
           backdropStyle={backdropStyle}
-          show={this.state.showModal}
-          onHide={this.close}
+          show={this.props.visibility}  
         >
-          <div style={dialogStyle()} >
-            <h4 id='modal-label'>Getting Started</h4>
-            <p>
-            <ul>Create your first Bucket by..</ul>
-            <ul>Search for some activities by clicking on the + icon on the bottom right</ul>
-            <ul>Add activities to your bucket by clicking on the + icon on the top right of each activity card</ul>
-            <ul>Move an activity from one bucket to another by clicking on pencil & paper icon on the bottom right of each activity card</ul>
-            <ul>Delete an activity from a bucket by clicking on the garbage icon on the bottom right of each activity card</ul>
-            <ul>Create your own Group by...</u>
-            <ul>Add some friends to your Group by...</ul>
-            </p>
-            <ModalExample/>
-          </div>
+
+          <Modal.Header>
+          <Modal.Title>
+          Getting Started
+          </Modal.Title>
+          </Modal.Header>
+            <Modal.Body>
+            <p>Create your first bucket by clicking on + icon on the bottom of the sidebar.</p>
+            <p>Search for activities by clicking on + icon on the bottom right.</p>
+            <p>Add activity to your bucket by clicking on the paper pencil icon on the activity card.</p>
+            <p>Delete an activity from a bucket by clicking on the trash icon on the activity card.</p>
+            <p>Create a bucket list with friends by clicking on Groups on the navbar.</p>
+
+          </Modal.Body>
+        <Modal.Footer>
+            <Button onClick = {()=>{
+              this.props.close();      
+              }}>Close</Button>
+          </Modal.Footer>          
         </Modal>
       </div>
     );

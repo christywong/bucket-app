@@ -529,5 +529,9 @@ opacity: .2;
 }
 
 .modal {
-  bottom: 100 !important;
+  bottom: auto !important;
+}
+
+.modal-content{
+  border: 0 !important;
 }

@@ -7,8 +7,9 @@ import NavbarInstance from './utilities/NavbarInstance';
 import AccountSettingsModal from './modals/AccountSettingsModal';
 import {Modal,Button} from "react-bootstrap";
 import AddGroupModal from './modals/AddGroupModal';
-//import AddMemberModal from './modals/AddMemberModal';
-//import AddBucketModal from './modals/AddBucketModal';
+import AddMemberModal from './modals/AddMemberModal';
+import AddBucketModal from './modals/AddBucketModal';
+import HelpModal from './modals/HelpModal';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -19,14 +20,21 @@ export default class App extends React.Component{
       showModal: false,
       currentBucket: "0",
       currentGroup: '5822d9275328dbcd7ba033d6',
-      currentUser: 'Alok'
+      currentUser: 'Alok',
+      showBucketModal: false,
+      showGroupModal: false,
+      showMemberModal: false,
+      showHelpModal: false
 
-    }
+      }
+
+    
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
+
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -37,6 +45,9 @@ export default class App extends React.Component{
     this.closeAddMemberModal = this.closeAddMemberModal.bind(this);
     this.showAddBucketModal = this.showAddBucketModal.bind(this);
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
+    this.showHelpModal = this.showHelpModal.bind(this);
+    this.closeHelpModal = this.closeHelpModal.bind(this);
+
 
   }
 
@@ -62,6 +73,9 @@ export default class App extends React.Component{
           showGroups = {this.showAddGroupModal}
           showMember = {this.showAddMemberModal}
           showBucket = {this.showAddBucketModal}
+          showHelp = {this.showHelpModal}
+
+
         />
 
         {
@@ -71,19 +85,30 @@ export default class App extends React.Component{
         }
         {
           this.state.showGroupModal ?
-          <AddGroupModal close={this.closeAddGroupModal} />
+          <AddGroupModal close={this.closeAddGroupModal} 
+          visibility={this.state.showGroupModal}/>
           :null
         }
         {
           this.state.showMemberModal ?
-          <AddGroupModal close={this.closeAddMemberModal} />
+          <AddMemberModal close={this.closeAddMemberModal} 
+          visibility={this.state.showMemberModal}/>
           :null
         }
         {
           this.state.showBucketModal ?
-          <AddGroupModal close={this.closeAddBucketModal} />
+          <AddBucketModal close={this.closeAddBucketModal}
+          visibility={this.state.showBucketModal}/>
           :null
         }
+
+        {
+          this.state.showHelpModal ?
+          <HelpModal close={this.closeHelpModal}
+          visibility={this.state.showHelpModal}/>
+          :null
+        }
+
 
         <Main
           currentGroupData =
@@ -211,6 +236,14 @@ export default class App extends React.Component{
   closeAddBucketModal(){
     this.setState({showBucketModal:false});
   }
+  showHelpModal(){
+    this.setState({showHelpModal:true});
+  }
+
+  closeHelpModal(){
+    this.setState({showHelpModal:false});
+  }
+
 
   //API call to initialize our Application
   loadJSONData(currentGroup){
