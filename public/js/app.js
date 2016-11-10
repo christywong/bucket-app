@@ -140,14 +140,14 @@
 	      data: {},
 	      listOfGroups: [],
 	      showModal: false,
-	      currentBucket: "0",
-	      currentGroup: '5822d9275328dbcd7ba033d6',
+	      currentBucket: '0',
+	      currentGroup: '',
 	      currentUser: 'Daniel',
-	      currentUserId: '58240dbb14ffca2cd946d0f6',
+	      currentUserId: '',
 	      showBucketModal: false,
 	      showGroupModal: false,
 	      showMemberModal: false,
-	      showHelpModal: false
+	      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser'))
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -156,6 +156,8 @@
 	    _this.addMember = _this.addMember.bind(_this);
 	    _this.deleteBucket = _this.deleteBucket.bind(_this);
 	    _this.changePassword = _this.changePassword.bind(_this);
+	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
+	    _this.addCard = _this.addCard.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -172,10 +174,28 @@
 	    return _this;
 	  }
 
+	  //Call our remote endpoints to initialize our application
+
+
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.loadJSONData(this.state.currentGroup);
+	      var currentGroupId = localStorage.getItem('userGroupId');
+	      var currentUserId = localStorage.getItem('memberId');
+	      var currentUsername = localStorage.getItem('username');
+	      var showHelpModal = JSON.parse(localStorage.getItem('firstTimeUser'));
+
+	      this.setState({
+	        currentGroup: currentGroupId,
+	        currentUserId: currentUserId,
+	        currentUserName: currentUsername
+	      });
+
+	      if (showHelpModal) {
+	        this.apiChangeMemberHelpModalState(currentUserId);
+	      }
+	      console.log(this.state.showHelpModal);
+	      this.loadJSONData(currentGroupId);
 	      this.getAllGroups();
 	    }
 	  }, {
@@ -229,10 +249,57 @@
 	          addBucket: this.addBucket,
 	          currentGroup: this.state.currentGroup,
 	          deleteBucket: this.deleteBucket,
-	          showBucketModal: this.showAddBucketModal
-	        }),
-	        '//Modals // end of where I should add modals'
+	          showBucketModal: this.showAddBucketModal,
+	          changeSelected: this.changeSelectedBucket,
+	          addCard: this.addCard
+	        })
 	      );
+	    }
+
+	    /**
+	     * Changes the state of the selected bucket
+	     * @param {string} selectedBucketId - The bucket id that is to be switched too
+	     **/
+
+	  }, {
+	    key: 'changeSelectedBucket',
+	    value: function changeSelectedBucket(selectedBucketId) {
+	      this.setState({
+	        currentBucket: selectedBucketId
+	      });
+	    }
+
+	    /**
+	     * Creates a card in the specified Bucket.
+	     * @param {object} card - Information from yelp results in order to build a new card.
+	     * @param {number} bucketId - The id of the bucket that the card will be added too.
+	     **/
+
+	  }, {
+	    key: 'addCard',
+	    value: function addCard(card, bucketId) {
+	      var tagId = bucketId !== "0" ? bucketId : null;
+
+	      //Build the new Card we want to Add
+	      var newCard = {
+	        id: _uuid2.default.v4(),
+	        yelpId: card.id,
+	        yelpUrl: card.url,
+	        img: card.image_url,
+	        rating: card.rating_img_url,
+	        city: card.location.city,
+	        reviewCount: card.review_count,
+	        title: card.name,
+	        tags: [bucketId]
+	      };
+
+	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state.data, { activities: { $push: [newCard] } });
+
+	      //Add cards to the state in APP
+	      this.apiCreateCard(newCard, this.state.currentGroup);
+	      this.setState({
+	        data: updatedGroup
+	      });
 	    }
 
 	    /**
@@ -245,6 +312,9 @@
 	      var newGroup = this.state.listOfGroups.filter(function (group) {
 	        return newGroupId === group.id;
 	      })[0];
+	      this.setState({
+	        currentGroup: newGroupId
+	      });
 	      this.loadJSONData(newGroupId);
 	    }
 
@@ -288,8 +358,7 @@
 	          activities: []
 	        };
 
-	        var newGroupList = [].concat(_toConsumableArray(this.state.listOfGroups), [newGroup]);
-	        //  console.log(newGroupList);
+	        //var newGroupList = [...this.state.listOfGroups, newGroup];
 	        this.apiCreateGroup(newGroup);
 	      }
 	    }
@@ -354,6 +423,7 @@
 	  }, {
 	    key: 'showHelpModal',
 	    value: function showHelpModal() {
+	      console.log('closing modal');
 	      this.setState({ showHelpModal: true });
 	    }
 	  }, {
@@ -364,7 +434,7 @@
 
 	    /**
 	     * API call to initialize data for a group
-	     * @param currentGroup {string} The id of the group to retrieve data from.
+	     * @param {string} currentGroup The id of the group to retrieve data from.
 	     **/
 
 	  }, {
@@ -423,10 +493,35 @@
 	        this.apiChangePassword(this.state.currentUserId, newPassword);
 	      }
 	    }
+	    /**
+	     * Create Card
+	     **/
+
+	  }, {
+	    key: 'apiCreateCard',
+	    value: function apiCreateCard(newCard, groupId) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readystate === 4) {
+	          if (xhr.status === 200) {
+	            console.log('success!');
+	            console.log(xhr.response);
+	          } else {
+	            console.log('oops there was an error');
+	          }
+	        }
+	      };
+	      xhr.open('POST', '/api/createCard');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      console.log(payload);
+	      xhr.send(payload);
+	    }
 
 	    /**
 	     * API call to create a new Group
-	     * @param newGorup {Object} The newly created group object to be added to the database
+	     * @param {Object} newGroup  The newly created group object to be added to the database
 	     **/
 
 	  }, {
@@ -459,7 +554,7 @@
 
 	    /**
 	     * API call to create a friend
-	     * @param person{string} The name of the person we want to add to the group
+	     * @param {string} newFriend The name of the person we want to add to the group
 	     **/
 
 	  }, {
@@ -550,6 +645,29 @@
 	      };
 
 	      xhr.open('POST', '/api/changePassword');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiChangeMemberHelpModalState',
+	    value: function apiChangeMemberHelpModalState(userId) {
+	      console.log('changing to false');
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'userId=' + userId;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            console.log('result: ', result);
+	          } else {
+	            console.log('Oops an error occurred');
+	          }
+	        }
+	      };
+
+	      xhr.open('POST', '/api/changeFirstTimeState');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	      xhr.responseType = 'json';
 	      xhr.send(payload);
@@ -4811,7 +4929,7 @@
 	    _this.showModal = _this.showModal.bind(_this);
 	    _this.closeModal = _this.closeModal.bind(_this);
 	    _this.changeState = _this.changeState.bind(_this);
-	    _this.addCard = _this.addCard.bind(_this);
+	    //this.addCard = this.addCard.bind(this);
 	    _this.moveCard = _this.moveCard.bind(_this);
 	    _this.deleteCard = _this.deleteCard.bind(_this);
 	    _this.handleDeleteBucket = _this.handleDeleteBucket.bind(_this);
@@ -4928,7 +5046,7 @@
 	          'div',
 	          { className: 'main-container', id: 'page-wrap' },
 	          this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
-	            addCard: this.addCard,
+	            addCard: this.props.addCard,
 	            close: this.closeModal,
 	            addBucket: this.createBucket,
 	            bucketTags: this.state.bucketList
@@ -4981,6 +5099,7 @@
 	      var nextBucket = bucketId !== "0" ? bucketArray.filter(function (bucket) {
 	        return bucket.tags[0] == bucketId;
 	      }) : bucketArray;
+	      console.log('next bucket ', nextBucket);
 	      return nextBucket;
 	    }
 
@@ -4997,45 +5116,7 @@
 	        filteredCards: changeBucket,
 	        currentBucketId: bucketId
 	      });
-	    }
-
-	    /**
-	     * Creates a card in the specified Bucket.
-	     * @param {object} card - Information from yelp results in order to build a new card.
-	     * @param {number} bucketId - The id of the bucket that the card will be added too.
-	     */
-	    //TODO SOMETHING WRONG IN ADD
-
-	  }, {
-	    key: 'addCard',
-	    value: function addCard(card, bucketId) {
-	      var tagId = bucketId !== "0" ? bucketId : null;
-	      console.log('adding a new card');
-	      //Build the new Card we want to Add
-	      var newCard = {
-	        id: _uuid2.default.v4(),
-	        yelpId: card.id,
-	        yelpUrl: card.url,
-	        img: card.image_url,
-	        rating: card.rating_img_url,
-	        city: card.location.city,
-	        reviewCount: card.review_count,
-	        title: card.name,
-	        tags: [bucketId]
-	      };
-
-	      var currentBucketId = this.state.currentBucketId;
-	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state, { allCards: { $push: [newCard] } });
-	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state, { filteredCards: { $push: [newCard] } }) : this.state.filteredCards;
-	      console.log('updated group ', updatedGroup);
-	      console.log('selectedBucketId ', selectedBucket);
-	      //Add cards to the state in APP
-	      this.apiCreateCard(newCard, this.state.currentGroupId);
-
-	      this.setState({
-	        allCards: updatedGroup.allCards,
-	        filteredCards: selectedBucket.filteredCards
-	      });
+	      this.props.changeSelected(bucketId);
 	    }
 
 	    /**
@@ -5114,11 +5195,12 @@
 	      var selected = currentBucket ? currentBucket.activities : null;
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
 	      var currentGroup = currentBucket ? currentBucket._id : 0;
+	      this.filterTags(buckets.currentGroupId);
 
 	      //set our state initially
 	      this.setState({
 	        bucketList: listOfBuckets,
-	        filteredCards: selected,
+	        //filteredCards   : selected,
 	        allCards: selected,
 	        currentGroupId: currentGroup,
 	        currentBucketId: buckets.currentBucketId
@@ -36381,6 +36463,7 @@
 
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
+
 
 /***/ },
 /* 390 */

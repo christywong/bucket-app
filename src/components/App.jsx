@@ -18,15 +18,16 @@ export default class App extends React.Component{
       data: {},
       listOfGroups:[],
       showModal: false,
-      currentBucket: "0",
-      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+      currentBucket: '0',
+      currentGroup: '',
       currentUser: 'Daniel',
-      currentUserId: '58240dbb14ffca2cd946d0f6',
+      currentUserId: '',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
-      showHelpModal: false
+      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser'))
     }
+
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
@@ -35,6 +36,7 @@ export default class App extends React.Component{
     this.deleteBucket = this.deleteBucket.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeSelectedBucket = this.changeSelectedBucket.bind(this);
+    this.addCard = this.addCard.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -48,11 +50,26 @@ export default class App extends React.Component{
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
 
-
   }
 
+  //Call our remote endpoints to initialize our application
   componentDidMount() {
-    this.loadJSONData(this.state.currentGroup);
+    var currentGroupId = localStorage.getItem('userGroupId');
+    var currentUserId = localStorage.getItem('memberId');
+    var currentUsername = localStorage.getItem('username');
+    var showHelpModal = JSON.parse(localStorage.getItem('firstTimeUser'));
+
+    this.setState({
+      currentGroup: currentGroupId,
+      currentUserId: currentUserId,
+      currentUserName: currentUsername
+    });
+
+    if(showHelpModal){
+      this.apiChangeMemberHelpModalState(currentUserId);
+    }
+    console.log(this.state.showHelpModal);
+    this.loadJSONData(currentGroupId);
     this.getAllGroups();
   }
 
@@ -125,15 +142,50 @@ export default class App extends React.Component{
           deleteBucket = {this.deleteBucket}
           showBucketModal = {this.showAddBucketModal}
           changeSelected = {this.changeSelectedBucket}
+          addCard = {this.addCard}
         />
       </div>
     );
   }
 
+  /**
+   * Changes the state of the selected bucket
+   * @param {string} selectedBucketId - The bucket id that is to be switched too
+   **/
   changeSelectedBucket(selectedBucketId){
     this.setState({
       currentBucket: selectedBucketId
     })
+  }
+
+  /**
+   * Creates a card in the specified Bucket.
+   * @param {object} card - Information from yelp results in order to build a new card.
+   * @param {number} bucketId - The id of the bucket that the card will be added too.
+   **/
+  addCard(card, bucketId){
+    var tagId = bucketId !== "0" ? bucketId : null;
+
+    //Build the new Card we want to Add
+    const newCard = {
+      id: uuid.v4(),
+      yelpId: card.id,
+      yelpUrl: card.url,
+      img: card.image_url,
+      rating: card.rating_img_url,
+      city: card.location.city,
+      reviewCount: card.review_count,
+      title: card.name,
+      tags: [bucketId]
+    }
+
+    const updatedGroup = update(this.state.data, {activities: {$push: [newCard]}});
+
+    //Add cards to the state in APP
+    this.apiCreateCard(newCard, this.state.currentGroup);
+    this.setState({
+      data: updatedGroup
+    });
   }
 
   /**
@@ -180,10 +232,8 @@ export default class App extends React.Component{
         activities: []
       };
 
-      var newGroupList = [...this.state.listOfGroups, newGroup];
-     //  console.log(newGroupList);
+      //var newGroupList = [...this.state.listOfGroups, newGroup];
       this.apiCreateGroup(newGroup);
-
     }
   }
 
@@ -232,6 +282,7 @@ export default class App extends React.Component{
     this.setState({showBucketModal:false});
   }
   showHelpModal(){
+    console.log('closing modal');
     this.setState({showHelpModal:true});
   }
 
@@ -242,7 +293,7 @@ export default class App extends React.Component{
 
   /**
    * API call to initialize data for a group
-   * @param currentGroup {string} The id of the group to retrieve data from.
+   * @param {string} currentGroup The id of the group to retrieve data from.
    **/
   loadJSONData(currentGroup){
     var me = this;
@@ -294,10 +345,32 @@ export default class App extends React.Component{
       this.apiChangePassword(this.state.currentUserId, newPassword);
     }
   }
+  /**
+   * Create Card
+   **/
+   apiCreateCard(newCard, groupId){
+     var me = this;
+     var xhr = new XMLHttpRequest();
+     var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
+     xhr.onreadystatechange = function(){
+       if(xhr.readystate === 4){
+         if(xhr.status === 200){
+           console.log('success!');
+           console.log(xhr.response);
+         } else{
+           console.log('oops there was an error');
+         }
+       }
+     }
+     xhr.open('POST', '/api/createCard');
+     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+     console.log(payload);
+     xhr.send(payload);
+   }
 
   /**
    * API call to create a new Group
-   * @param newGorup {Object} The newly created group object to be added to the database
+   * @param {Object} newGroup  The newly created group object to be added to the database
    **/
   apiCreateGroup(newGroup){
     var me = this;
@@ -327,7 +400,7 @@ export default class App extends React.Component{
 
   /**
    * API call to create a friend
-   * @param person{string} The name of the person we want to add to the group
+   * @param {string} newFriend The name of the person we want to add to the group
    **/
   apiAddFriend(newFriend){
     var me = this;
@@ -412,6 +485,28 @@ export default class App extends React.Component{
     }
 
     xhr.open('POST', '/api/changePassword');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.responseType = 'json'
+    xhr.send(payload);
+  }
+
+  apiChangeMemberHelpModalState(userId){
+    console.log('changing to false')
+    var me = this;
+    var xhr = new XMLHttpRequest();
+    var payload = 'userId=' + userId;
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          console.log('result: ', result);
+        } else{
+          console.log('Oops an error occurred');
+        }
+      }
+    }
+
+    xhr.open('POST', '/api/changeFirstTimeState');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.responseType = 'json'
     xhr.send(payload);

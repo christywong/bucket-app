@@ -27,7 +27,7 @@ export default class Component extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.changeState = this.changeState.bind(this);
-    this.addCard = this.addCard.bind(this);
+    //this.addCard = this.addCard.bind(this);
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.handleDeleteBucket = this.handleDeleteBucket.bind(this);
@@ -115,7 +115,7 @@ export default class Component extends React.Component {
           {
             this.state.showModal ?
             <AddModal
-              addCard = {this.addCard}
+              addCard = {this.props.addCard}
               close = {this.closeModal}
               addBucket = {this.createBucket}
               bucketTags = {this.state.bucketList}
@@ -160,6 +160,7 @@ export default class Component extends React.Component {
   filterTags(bucketId){
     const bucketArray = this.state.allCards ? this.state.allCards : [];
     const nextBucket = bucketId !== "0" ? bucketArray.filter((bucket)=>(bucket.tags[0] == bucketId)) : bucketArray;
+    console.log('next bucket ', nextBucket);
     return nextBucket;
   }
 
@@ -174,42 +175,6 @@ export default class Component extends React.Component {
       currentBucketId: bucketId
     });
     this.props.changeSelected(bucketId);
-  }
-
-  /**
-   * Creates a card in the specified Bucket.
-   * @param {object} card - Information from yelp results in order to build a new card.
-   * @param {number} bucketId - The id of the bucket that the card will be added too.
-   */
-   //TODO SOMETHING WRONG IN ADD
-  addCard(card, bucketId){
-    var tagId = bucketId !== "0" ? bucketId : null;
-    console.log('adding a new card');
-    //Build the new Card we want to Add
-    const newCard = {
-      id: uuid.v4(),
-      yelpId: card.id,
-      yelpUrl: card.url,
-      img: card.image_url,
-      rating: card.rating_img_url,
-      city: card.location.city,
-      reviewCount: card.review_count,
-      title: card.name,
-      tags: [bucketId]
-    }
-
-    const currentBucketId = this.state.currentBucketId;
-    const updatedGroup = update(this.state, {allCards: {$push: [newCard]}});
-    const selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? update(this.state, {filteredCards: {$push: [newCard]}}) : this.state.filteredCards;
-    console.log('updated group ', updatedGroup);
-    console.log('selectedBucketId ', selectedBucket);
-    //Add cards to the state in APP
-    this.apiCreateCard(newCard, this.state.currentGroupId);
-
-    this.setState({
-      allCards: updatedGroup.allCards,
-      filteredCards: selectedBucket.filteredCards
-    });
   }
 
   /**
@@ -241,7 +206,7 @@ export default class Component extends React.Component {
 
     //make a call to our api
     this.apiMoveCard(card.id, this.state.currentGroupId, newTag);
-    const nextAllCardsState = update(this.state, {allCards: {$set: nextState}})
+    const nextAllCardsState = update(this.state, {allCards: {$set: nextState}});
     //set our new state
     this.setState({
       allCards: nextAllCardsState.allCards,
@@ -273,13 +238,14 @@ export default class Component extends React.Component {
     console.log(buckets.currentGroupData);
     const currentBucket = buckets.currentGroupData;
     const selected = currentBucket ? currentBucket.activities : null;
-    const listOfBuckets = currentBucket ? currentBucket.tags : []
+    const listOfBuckets = currentBucket ? currentBucket.tags : [];
     const currentGroup = currentBucket ? currentBucket._id : 0;
+    this.filterTags(buckets.currentGroupId);
 
     //set our state initially
     this.setState({
       bucketList      : listOfBuckets,
-      filteredCards   : selected,
+      //filteredCards   : selected,
       allCards        : selected,
       currentGroupId  : currentGroup,
       currentBucketId : buckets.currentBucketId,

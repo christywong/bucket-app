@@ -64,5 +64,6 @@ module.exports = function (app){
   app.post('/api/createMember', Member.actions.createMember);
   app.post('/api/searchMember', Member.actions.searchMember);
   app.post('/api/changePassword', Member.actions.changePassword);
+  app.post('/api/changeFirstTimeState', Member.actions.changeFirstTimeState);
 
 }

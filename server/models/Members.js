@@ -6,7 +6,7 @@ var MemberSchema = new Schema({
   name: String,
   username: String,
   password: String,
-  personId: String,
+  groupId: String,
   firstTimeUser: Boolean
 });
 var Member = mongoose.model('members', MemberSchema);
@@ -17,6 +17,7 @@ module.exports.actions.createMember = function(req,res){
   var person = new Member ({
     username: req.body.username,
     password: req.body.password,
+    groupId: '5824d4e879b6f14f9d487646',
     firstTimeUser: true
   });
 
@@ -42,9 +43,19 @@ module.exports.actions.searchMember = function(req,res){
       return err;
     }
     else{
-      console.log(member);
-      return res.status(200).json(
-        {'found': 'true','firstTimeUser': member.firstTimeUser});
+      if(member == null){
+        return res.status(200).json({'found':false})
+      }
+      else{
+        var resultFound = {
+          'found': 'true',
+          'groupId': member.groupId,
+          'memberId': member._id,
+          'firstTimeUser': member.firstTimeUser,
+          'username': member.username
+        };
+        return res.status(200).json(resultFound);
+      }
     }
   })
 }
@@ -58,7 +69,19 @@ module.exports.actions.changePassword = function(req, res){
       return err;
     }
     else{
-      console.log(data);
+      return res.status(200).json({'success': true})
+    }
+  })
+}
+
+module.exports.actions.changeFirstTimeState = function(req,res){
+  var userId = req.body.userId;
+  Member.findOneAndUpdate({'_id': userId}, {'firstTimeUser': false}, {new:true}, function(err,data){
+    if(err){
+      console.log(err);
+      return err;
+    }
+    else{
       return res.status(200).json({'success': true})
     }
   })

@@ -20,9 +20,9 @@ var GroupSchema = new Schema({
     }
   ]
 });
-//var Groups = mongoose.model('groups', GroupSchema);
+var Groups = mongoose.model('groups', GroupSchema);
 
-var Groups = mongoose.model('bucketgroups', GroupSchema);
+//var Groups = mongoose.model('bucketgroups', GroupSchema);
 
 module.exports.actions = {};
 
@@ -55,6 +55,8 @@ module.exports.actions.createCard = function(req,res){
     title: req.body.title,
     tags: req.body.tags
   }
+
+  console.log(newCard);
 
   Groups.findOneAndUpdate({'_id':req.body.groupId}, {$push: {activities: newCard}},{new: true}, function(err, data){
     if(err){
