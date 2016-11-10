@@ -10,6 +10,7 @@ import AddGroupModal from './modals/AddGroupModal';
 import AddMemberModal from './modals/AddMemberModal';
 import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
+//import AddModal from './modals/AddCardModal';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -19,13 +20,14 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+      currentGroup: '5822d9275328dbcd7ba033d6',
       currentUser: 'Daniel',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
-      showHelpModal: false
-
+      showHelpModal: false,
+      showAccountSettingsModal: false,
+      //showAddModal: false,
       }
 
 
@@ -47,6 +49,9 @@ export default class App extends React.Component{
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
+    //this.showAddModal = this.showAddModal.bind(this);
+    //this.closeAddModal = this.closeAddModal.bind(this);
+
 
 
   }
@@ -78,8 +83,9 @@ export default class App extends React.Component{
         />
 
         {
-          this.state.showModal ?
-          <AccountSettingsModal close={this.closeAccountSettingsModal} />
+          this.state.showAccountSettingsModal ?
+          <AccountSettingsModal close={this.closeAccountSettingsModal} 
+          visibility={this.state.showAccountSettingsModal}/>
           :null
         }
         {
@@ -108,6 +114,13 @@ export default class App extends React.Component{
           :null
         }
 
+        // {
+        //   this.state.showAddModal ?
+        //   <AddModal close={this.closeAddModal}
+        //   visibility={this.state.showAddModal}/>
+        //   :null
+        }
+
 
         <Main
           currentGroupData ={this.state.data}
@@ -116,12 +129,20 @@ export default class App extends React.Component{
           addBucket = {this.addBucket}
           currentGroup = {this.state.currentGroup}
           deleteBucket = {this.deleteBucket}
-          />
+          showBucketModal = {this.showAddBucketModal}
+          changeSelected = {this.changeSelectedBucket}
+        />
 
           //Modals
       // end of where I should add modals
       </div>
     );
+  }
+
+  changeSelectedBucket(selectedBucketId){
+    this.setState({
+      currentBucket: selectedBucketId
+    })
   }
 
   /**
@@ -224,11 +245,11 @@ export default class App extends React.Component{
 
   //Modal Functions
   showAccountSettingsModal(){
-    this.setState({showModal: true});
+    this.setState({showAccountSettingsModal: true});
   }
 
   closeAccountSettingsModal(){
-    this.setState({showModal: false});
+    this.setState({showAccountSettingsModal: false});
   }
 
   showAddGroupModal(){
@@ -261,6 +282,17 @@ export default class App extends React.Component{
   closeHelpModal(){
     this.setState({showHelpModal:false});
   }
+
+  // showAddModal(){
+  //   this.setState({showAddModal:true});
+  // }
+
+  // closeAddModal(){
+  //   this.setState({showAddModal:false});
+  // }
+
+
+
 
 
   /**
@@ -407,12 +439,11 @@ export default class App extends React.Component{
           console.log('Oops an error occurred');
         }
       }
-    }
-
+    
     xhr.open('DELETE', '/api/deleteBucket');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.responseType = 'json'
     xhr.send(payload);
   }
-
+}
 }

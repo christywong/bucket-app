@@ -21,16 +21,26 @@ export default class AddModal extends React.Component{
     // this.searchNext = this.searchNext.bind(this);
     this.getYelpData = this.getYelpData.bind(this);
   }
+
   render(){
     var {close, addBucket, bucketTags} = this.props;
 
+    const backdropStyle = {
+  zIndex: '1000',
+  backgroundColor: '#000',
+  opacity: 0.8
+};
+
     return(
       <div className="static-modal">
-        <Modal.Dialog>
+      <Modal
+          aria-labelledby='modal-label'
+          backdropStyle={backdropStyle}
+          show={this.props.visibility}  
+        >
           <Modal.Header>
                 <Button className="close" onClick = {()=>{
-                  close();
-                  this.setState({showPager:false});
+                  this.props.close();
                 }}>&times;</Button>
             <Modal.Title>
               Create Your Next Adventure
@@ -66,17 +76,17 @@ export default class AddModal extends React.Component{
             </Modal.Body>
             <Modal.Footer>
               <Button onClick = {()=>{
-                close();
-                this.setState({showPager:false});
+                this.props.close();
               }}>Close</Button>
                 <Button className="btn btn-primary" onClick = {this.searchQuery}> Search </Button>
               </Modal.Footer>
-            </Modal.Dialog>
+
+              </Modal>
           </div>
         )
       }
 
-      handleTitleValue(event){
+        handleTitleValue(event){
         this.setState({titlevalue: event.target.value})
       }
       selectEntry(entryId){
@@ -113,5 +123,4 @@ export default class AddModal extends React.Component{
         xhr.responseType = 'json'
         xhr.send();
       }
-
   }

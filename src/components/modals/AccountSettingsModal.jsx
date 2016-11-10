@@ -4,21 +4,29 @@ import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
 export default class AccountSettingsModal extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      showModal: 'false'
     }
-  }
 
   render(){
     var {close} = this.props;
+
+const backdropStyle = {
+  zIndex: '1000',
+  backgroundColor: '#000',
+  opacity: 0.8
+}; 
+
     return(
-      <div className="static-modal">
-        <Modal.Dialog>
+      <div className = "static-modal">
+          <Modal
+          aria-labelledby='modal-label'
+          backdropStyle={backdropStyle}
+          show={this.props.visibility}  
+        >
+       
           <Modal.Header>
             <Button className="close" onClick = {()=>{
-              close();
-              this.setState({showModal:false});
-            }}>&times;</Button>
+              this.props.close();
+           }}>&times;</Button>
             <Modal.Title>
               Account Settings
             </Modal.Title>
@@ -56,25 +64,24 @@ export default class AccountSettingsModal extends React.Component{
 
               </fieldset>
             </form>
-
             </Modal.Body>
+
             <Modal.Footer>
               <Button onClick = {()=>{
-                  close();
-                  this.setState({showModal:false});
+                  this.props.close();
                 }}>Close</Button>
               <Button
                 className="btn btn-danger"
                 id="save-btn"
                 name="singlebutton"
                 onClick = {()=>{
-                  close();
-                  this.setState({showModal:false});
+              this.props.close();
                 }}>Save</Button>
               </Modal.Footer>
-            </Modal.Dialog>
+              
+            </Modal>
           </div>
         );
       }
-
   }
+
