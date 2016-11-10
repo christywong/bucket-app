@@ -126,9 +126,6 @@ export default class App extends React.Component{
           showBucketModal = {this.showAddBucketModal}
           changeSelected = {this.changeSelectedBucket}
         />
-
-          //Modals
-      // end of where I should add modals
       </div>
     );
   }
