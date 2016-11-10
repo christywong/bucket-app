@@ -25,8 +25,7 @@ export default class App extends React.Component{
       showGroupModal: false,
       showMemberModal: false,
       showHelpModal: false
-
-      }
+    }
 
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -34,7 +33,6 @@ export default class App extends React.Component{
     this.addBucket = this.addBucket.bind(this);
     this.addMember = this.addMember.bind(this);
     this.deleteBucket = this.deleteBucket.bind(this);
-
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -52,11 +50,9 @@ export default class App extends React.Component{
   }
 
   componentDidMount() {
-
     this.loadJSONData(this.state.currentGroup);
     this.getAllGroups();
   }
-
 
   render(){
     let close = () => this.setState({ showModal2: false});
@@ -73,8 +69,6 @@ export default class App extends React.Component{
           showMember = {this.showAddMemberModal}
           showBucket = {this.showAddBucketModal}
           showHelp = {this.showHelpModal}
-
-
         />
 
         {
@@ -84,30 +78,37 @@ export default class App extends React.Component{
         }
         {
           this.state.showGroupModal ?
-          <AddGroupModal close={this.closeAddGroupModal}
-          visibility={this.state.showGroupModal}/>
+          <AddGroupModal
+            close={this.closeAddGroupModal}
+            visibility={this.state.showGroupModal}
+            addGroup={this.addGroup}
+            />
           :null
         }
         {
           this.state.showMemberModal ?
-          <AddMemberModal close={this.closeAddMemberModal}
-          visibility={this.state.showMemberModal}/>
+          <AddMemberModal
+            close={this.closeAddMemberModal}
+            visibility={this.state.showMemberModal}
+            addMember = {this.addMember}
+            friendsList ={this.state.data.members}/>
           :null
         }
         {
           this.state.showBucketModal ?
-          <AddBucketModal close={this.closeAddBucketModal}
-          visibility={this.state.showBucketModal}/>
+          <AddBucketModal
+            close={this.closeAddBucketModal}
+            visibility={this.state.showBucketModal}/>
           :null
         }
 
         {
           this.state.showHelpModal ?
-          <HelpModal close={this.closeHelpModal}
-          visibility={this.state.showHelpModal}/>
+          <HelpModal
+            close={this.closeHelpModal}
+            visibility={this.state.showHelpModal}/>
           :null
         }
-
 
         <Main
           currentGroupData ={this.state.data}
@@ -117,9 +118,6 @@ export default class App extends React.Component{
           currentGroup = {this.state.currentGroup}
           deleteBucket = {this.deleteBucket}
           />
-
-          //Modals
-      // end of where I should add modals
       </div>
     );
   }
@@ -194,31 +192,35 @@ export default class App extends React.Component{
    * @param name {string} Name of the member to be added to the group
    * @param currentGroupId {string} Id of the group that member is to be added to
    **/
-  addMember(name, currentGroupId){
-    console.log(name);
+  addMember(name){
+    console.log('new member ', name);
+
     if (name != ""){
-      var newMember = {
-        id: uuid.v4(),
-        name: name.charAt(0).toUpperCase() + name.slice(1)
-      }
-      var newMemberArray = [...this.state.data.currentGroup.members, newMember];
-      const nextState = update(this.state.data.currentGroup, {members: {$set: newMemberArray}});
+      // var newMember = {
+      //   id: uuid.v4(),
+      //   name: name.charAt(0).toUpperCase() + name.slice(1)
+      // }
+      var newMember = name.charAt(0).toUpperCase() + name.slice(1);
+      this.apiAddFriend(newMember);
 
-      const nextGroupState = this.state.data.groups.map((group) => {
-        if(group.id === currentGroupId){
-          group.members.push(newMember);
-        }
-        return group;
-      });
-
-      const nextDataState = {
-        groups: nextGroupState,
-        currentGroup: nextState
-      }
-      console.log(nextDataState);
-      this.setState({
-        data: nextDataState
-      });
+      // var newMemberArray = [...this.state.data.currentGroup.members, newMember];
+      // const nextState = update(this.state.data.currentGroup, {members: {$set: newMemberArray}});
+      //
+      // const nextGroupState = this.state.data.groups.map((group) => {
+      //   if(group.id === currentGroupId){
+      //     group.members.push(newMember);
+      //   }
+      //   return group;
+      // });
+      //
+      // const nextDataState = {
+      //   groups: nextGroupState,
+      //   currentGroup: nextState
+      // }
+      // console.log(nextDataState);
+      // this.setState({
+      //   data: nextDataState
+      // });
     }
   }
 
