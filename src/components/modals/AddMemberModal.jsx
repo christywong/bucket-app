@@ -8,15 +8,17 @@ export default class AddMemberModal extends React.Component{
     this.addMember = this.addMember.bind(this);
   }
 
+
   addMember(){
     var newMember = document.getElementsByName('new-member-name')[0].value;
     this.props.addMember(newMember);
     document.getElementsByName('new-member-name')[0].value = '';
   }
 
+
   render() {
     const backdropStyle = {
-      zIndex: 'auto',
+      zIndex: '1000',
       backgroundColor: '#000',
       opacity: 0.8
     };

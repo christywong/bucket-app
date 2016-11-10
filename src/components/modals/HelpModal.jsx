@@ -10,7 +10,7 @@ import { Modal , Button, Pager} from 'react-bootstrap';
   render() {
 
 const backdropStyle = {
-  zIndex: 'auto',
+  zIndex: '1000',
   backgroundColor: '#000',
   opacity: 0.8
 };

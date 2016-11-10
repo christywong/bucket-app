@@ -20,7 +20,8 @@ export default class Component extends React.Component {
       currentBucketId: 0,
       currentGroupId: 0,
       showSettingsModal: false,
-      newBucket: ''
+      newBucket: '',
+      showAddModal: false
     }
 
     //Bind our functions to the current scope
@@ -31,6 +32,7 @@ export default class Component extends React.Component {
     this.moveCard = this.moveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.handleDeleteBucket = this.handleDeleteBucket.bind(this);
+
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -119,6 +121,7 @@ export default class Component extends React.Component {
               close = {this.closeModal}
               addBucket = {this.createBucket}
               bucketTags = {this.state.bucketList}
+              visibility={this.state.showModal}
               />
             : null
           }

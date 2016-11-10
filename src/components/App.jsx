@@ -10,6 +10,7 @@ import AddGroupModal from './modals/AddGroupModal';
 import AddMemberModal from './modals/AddMemberModal';
 import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
+//import AddModal from './modals/AddCardModal';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -26,8 +27,9 @@ export default class App extends React.Component{
       showGroupModal: false,
       showMemberModal: false,
       showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser'))
-    }
-
+      showAccountSettingsModal: false,
+      //showAddModal: false,
+      }
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
@@ -49,6 +51,9 @@ export default class App extends React.Component{
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
+    //this.showAddModal = this.showAddModal.bind(this);
+    //this.closeAddModal = this.closeAddModal.bind(this);
+
 
   }
 
@@ -91,10 +96,11 @@ export default class App extends React.Component{
         />
 
         {
-          this.state.showModal ?
+          this.state.showAccountSettingsModal ?
           <AccountSettingsModal
             close={this.closeAccountSettingsModal}
             changePassword={this.changePassword}
+            visibility={this.state.showAccountSettingsModal}/>
             />
           :null
         }
@@ -133,6 +139,13 @@ export default class App extends React.Component{
           :null
         }
 
+        // {
+        //   this.state.showAddModal ?
+        //   <AddModal close={this.closeAddModal}
+        //   visibility={this.state.showAddModal}/>
+        //   :null
+        }
+
         <Main
           currentGroupData ={this.state.data}
           allGroups = {this.state.data.tags}
@@ -146,6 +159,12 @@ export default class App extends React.Component{
         />
       </div>
     );
+  }
+
+  changeSelectedBucket(selectedBucketId){
+    this.setState({
+      currentBucket: selectedBucketId
+    })
   }
 
   /**
@@ -251,11 +270,11 @@ export default class App extends React.Component{
 
   //Modal Functions
   showAccountSettingsModal(){
-    this.setState({showModal: true});
+    this.setState({showAccountSettingsModal: true});
   }
 
   closeAccountSettingsModal(){
-    this.setState({showModal: false});
+    this.setState({showAccountSettingsModal: false});
   }
 
   showAddGroupModal(){
@@ -289,6 +308,17 @@ export default class App extends React.Component{
   closeHelpModal(){
     this.setState({showHelpModal:false});
   }
+
+  // showAddModal(){
+  //   this.setState({showAddModal:true});
+  // }
+
+  // closeAddModal(){
+  //   this.setState({showAddModal:false});
+  // }
+
+
+
 
 
   /**
@@ -461,7 +491,6 @@ export default class App extends React.Component{
           console.log('Oops an error occurred');
         }
       }
-    }
 
     xhr.open('DELETE', '/api/deleteBucket');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
