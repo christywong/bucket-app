@@ -189,5 +189,16 @@ module.exports.actions.createBucket = function(req,res){
 }
 
 module.exports.actions.deleteBucket = function(req,res){
-
+  //get group id
+  var groupId = req.body.groupId;
+  //get bucket id from bucket we want to delete
+  var bucketId = req.body.bucketId;
+  Groups.findOneAndUpdate({'_id': groupId}, {$pull:{tags: {'id': bucketId}}}, {new: true},
+    function(err, group) {
+      if(err) {
+        console.log(err);
+        return err;
+      }
+      return res.status(200).json(group);
+  })
 }

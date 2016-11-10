@@ -498,6 +498,10 @@ opacity: .2;
   margin-right: auto;
 }
 
+#group-title-nav {
+  font-size: 25px;
+}
+
 @media (min-width: $breakpoint-tablet) {
   .bm-burger-button {
     display: none;
@@ -512,7 +516,7 @@ opacity: .2;
     display: none;
   }
   #group-title-nav {
-    margin-left: 75px;
+    margin-left: 40px;
   }
 }
 
@@ -525,10 +529,11 @@ opacity: .2;
     background-color: $hover-blue-darken !important;
 }
 
-.fa-gear {
+.fa-gear:hover {
   color: $primary-gray;
 }
 
-.fa-gear:hover{
-  color: $primary-gray;
+#delete-bucket-icon {
+  color: #fff;
+  float: right;
 }

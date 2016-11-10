@@ -159,7 +159,11 @@ body:before {
         visibility: visible; }
       .main-container .card-style .card-left p {
         position: absolute;
+<<<<<<< HEAD
         top: 25%;
+=======
+        top: 20%;
+>>>>>>> christy-branch
         left: 50%;
         transform: translate(-50%, 0);
         color: white;
@@ -397,6 +401,12 @@ body:before {
   margin-left: auto;
   margin-right: auto; }
 
+<<<<<<< HEAD
+=======
+#group-title-nav {
+  font-size: 25px; }
+
+>>>>>>> christy-branch
 @media (min-width: 768px) {
   .bm-burger-button {
     display: none; }
@@ -407,7 +417,7 @@ body:before {
   .sidebar {
     display: none; }
   #group-title-nav {
-    margin-left: 75px; } }
+    margin-left: 40px; } }
 
 .btn-primary {
   background-color: #147689 !important; }
@@ -420,3 +430,10 @@ body:before {
 
 .fa-gear:hover {
   color: #373a47; }
+<<<<<<< HEAD
+=======
+
+#delete-bucket-icon {
+  color: #fff;
+  float: right; }
+>>>>>>> christy-branch

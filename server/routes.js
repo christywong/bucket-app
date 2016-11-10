@@ -51,7 +51,7 @@ module.exports = function (app){
   //Create a new Bucket
   app.post('/api/createBucket', Group.actions.createBucket);
   //Delete a Bucket
-  app.post('/api/deleteBucket', Group.actions.deleteBucket);
+  app.delete('/api/deleteBucket', Group.actions.deleteBucket);
 
   //Return a list of all the groups
   app.get('/api/getAllGroups', Group.actions.getAllGroups);

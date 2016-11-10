@@ -123,14 +123,20 @@
 	      listOfGroups: [],
 	      showModal: false,
 	      currentBucket: "0",
+<<<<<<< HEAD
 	      currentGroup: '5823ec88aa6c2bfcd02d3d57',
 	      currentUser: 'Daniel'
+=======
+	      currentGroup: '5822d9275328dbcd7ba033d6',
+	      currentUser: 'Alok'
+>>>>>>> christy-branch
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
 	    _this.addMember = _this.addMember.bind(_this);
+	    _this.deleteBucket = _this.deleteBucket.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -156,7 +162,6 @@
 	          groups: this.state.listOfGroups,
 	          changeGroup: this.changeGroup,
 	          addGroup: this.addGroup,
-	          addBucket: this.addBucket,
 	          addMember: this.addMember,
 	          showSettings: this.showAccountSettingsModal
 	        }),
@@ -164,7 +169,10 @@
 	        _react2.default.createElement(_Main2.default, {
 	          currentGroupData: this.state.data,
 	          allGroups: this.state.data.tags,
-	          currentBucketId: this.state.currentBucket
+	          currentBucketId: this.state.currentBucket,
+	          addBucket: this.addBucket,
+	          currentGroup: this.state.currentGroup,
+	          deleteBucket: this.deleteBucket
 	        })
 	      );
 	    }
@@ -191,33 +199,33 @@
 	  }, {
 	    key: 'addBucket',
 	    value: function addBucket(name, groupId) {
-	      var _this2 = this;
+	      //console.log('adding bucket ', this.state.data.currentGroup.tags);
+	      console.log(name, groupId);
 
-	      console.log('adding bucket ', this.state.data.currentGroup.tags);
-	      console.log(name);
+	      //if (name != "") {
+	      var newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
+	      var newBucket = { id: _uuid2.default.v4(), title: newBucketName };
+	      // const nextCurrentGroupState = update(this.state.data.currentGroup, {tags: {$push: [newBucket]}});
+	      // const nextGroup = this.state.data.groups.map((group)=>{
+	      //   if(group.id === groupId){
+	      //     group.tags.push(newBucket);
+	      //   }
+	      //   return group;
+	      // })
 
-	      if (name != "") {
-	        var newBucketName;
+	      // const nextData = {groups: nextGroup, currentGroup: nextCurrentGroupState};
+	      // console.log(nextData);
+	      // this.setState({
+	      //   data: nextData
+	      // });
 
-	        (function () {
-	          newBucketName = name.charAt(0).toUpperCase() + name.slice(1);
-
-	          var newBucket = { id: _uuid2.default.v4(), title: newBucketName };
-	          var nextCurrentGroupState = (0, _reactAddonsUpdate2.default)(_this2.state.data.currentGroup, { tags: { $push: [newBucket] } });
-	          var nextGroup = _this2.state.data.groups.map(function (group) {
-	            if (group.id === groupId) {
-	              group.tags.push(newBucket);
-	            }
-	            return group;
-	          });
-
-	          var nextData = { groups: nextGroup, currentGroup: nextCurrentGroupState };
-	          console.log(nextData);
-	          _this2.setState({
-	            data: nextData
-	          });
-	        })();
-	      }
+	      this.apiCreateBucket(newBucket);
+	      // }
+	    }
+	  }, {
+	    key: 'deleteBucket',
+	    value: function deleteBucket(bucketId) {
+	      this.apiDeleteBucket(bucketId);
 	    }
 	    /**
 	     * Creates a new Group
@@ -381,12 +389,15 @@
 	      xhr.responseType = 'json';
 	      xhr.send(payload);
 	    }
+<<<<<<< HEAD
 
 	    /**
 	     * API call to create a friend
 	     * @param person{string} The name of the person we want to add to the group
 	     **/
 
+=======
+>>>>>>> christy-branch
 	  }, {
 	    key: 'apiAddFriend',
 	    value: function apiAddFriend(newFriend) {
@@ -410,6 +421,58 @@
 	      xhr.responseType = 'json';
 	      xhr.send(payload);
 	    }
+<<<<<<< HEAD
+=======
+	  }, {
+	    key: 'apiCreateBucket',
+	    value: function apiCreateBucket(newBucket) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = "bucket=" + newBucket.title + "&groupId=" + this.state.currentGroup;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            me.setState({
+	              data: result
+	            });
+	            console.log('result from create bucket: ', result);
+	          } else {
+	            console.log('Oops an error occurred');
+	          }
+	        }
+	      };
+	      xhr.open('POST', '/api/createBucket');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiDeleteBucket',
+	    value: function apiDeleteBucket(bucketId) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'bucketId=' + bucketId + '&groupId=' + this.state.currentGroup;
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            me.setState({
+	              data: result
+	            });
+	            console.log('result: ', result);
+	          } else {
+	            console.log('Oops an error occurred');
+	          }
+	        }
+	      };
+
+	      xhr.open('DELETE', '/api/deleteBucket');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
+	    }
+>>>>>>> christy-branch
 	  }]);
 
 	  return App;
@@ -4733,7 +4796,10 @@
 	        _react2.default.createElement(_Sidebar2.default, {
 	          selectedBucket: this.state.currentBucketId,
 	          bucketList: this.state.bucketList,
-	          changeStateBucket: this.changeState
+	          changeStateBucket: this.changeState,
+	          addBucket: this.props.addBucket,
+	          currentGroup: this.props.currentGroup,
+	          deleteBucket: this.props.deleteBucket
 	        }),
 	        _react2.default.createElement(
 	          'div',
@@ -4920,6 +4986,7 @@
 	  }, {
 	    key: 'initializeBucket',
 	    value: function initializeBucket(buckets) {
+	      console.log(buckets.currentGroupData);
 	      var currentBucket = buckets.currentGroupData;
 	      var selected = currentBucket ? currentBucket.activities : null;
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
@@ -41312,6 +41379,8 @@
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
+	var _reactBootstrap = __webpack_require__(37);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41330,12 +41399,26 @@
 
 	    _this.state = {
 	      show: false,
-	      value: ''
+	      value: '',
+	      newBucket: 'one'
 	    };
+
+	    _this.handleSubmitBucket = _this.handleSubmitBucket.bind(_this);
+	    _this.handleDeleteBucket = _this.handleDeleteBucket.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Sidebar, [{
+	    key: 'handleSubmitBucket',
+	    value: function handleSubmitBucket() {
+	      this.props.addBucket(this.state.newBucket, this.props.currentGroup);
+	    }
+	  }, {
+	    key: 'handleDeleteBucket',
+	    value: function handleDeleteBucket() {
+	      this.props.deleteBucket(this.props.selectedBucket);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -41344,12 +41427,18 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'sidebar' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { id: 'create-bucket-button', onClick: this.handleSubmitBucket },
+	          'Create a Bucket'
+	        ),
 	        list.map(function (bucket) {
 	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
 	            key: bucket.id,
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
-	            active: _this2.props.selectedBucket === bucket.id ? "active" : null });
+	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
+	            showDeleteIcon: _this2.props.selectedBucket === bucket.id ? _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon', onClick: _this2.handleDeleteBucket }) : null });
 	        })
 	      );
 	    }
@@ -41407,7 +41496,8 @@
 	        _react2.default.createElement(
 	          "h4",
 	          null,
-	          this.props.bucketName
+	          this.props.bucketName,
+	          this.props.showDeleteIcon
 	        )
 	      );
 	    }
@@ -55303,7 +55393,11 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Navbar.Brand,
+<<<<<<< HEAD
 	            { style: { position: 'absolute', left: 75 } },
+=======
+	            { style: { position: 'absolute', left: 35 }, id: 'group-title-nav' },
+>>>>>>> christy-branch
 	            currentGroupTitle
 	          ),
 	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
@@ -55342,6 +55436,7 @@
 	                _reactBootstrap.MenuItem,
 	                { onClick: this.handlePopoverClick },
 	                'Create Group'
+<<<<<<< HEAD
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.MenuItem,
@@ -55362,6 +55457,23 @@
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.MenuItem,
+=======
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              {
+	                eventKey: 4,
+	                id: 'settings-dropdown',
+	                title: 'Settings' },
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+	                { eventKey: 4.1, onClick: this.props.showSettings },
+	                'Account Settings'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.MenuItem,
+>>>>>>> christy-branch
 	                { eventKey: 4.2, href: '/index.html' },
 	                'Logout'
 	              )
