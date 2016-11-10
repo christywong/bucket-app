@@ -402,11 +402,14 @@ body:before {
   margin-right: auto; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #group-title-nav {
   font-size: 25px; }
 
 >>>>>>> christy-branch
+=======
+>>>>>>> joey-branch
 @media (min-width: 768px) {
   .bm-burger-button {
     display: none; }
@@ -425,6 +428,7 @@ body:before {
 .btn-primary:hover {
   background-color: #126a7b !important; }
 
+<<<<<<< HEAD
 .fa-gear {
   color: #373a47; }
 
@@ -437,3 +441,30 @@ body:before {
   color: #fff;
   float: right; }
 >>>>>>> christy-branch
+=======
+.addInput {
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3; }
+
+.modal-container {
+  position: relative; }
+
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute; }
+
+/* Overriding bootstrap styles */
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    background-color: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important; } }
+
+.modal {
+  bottom: auto !important; }
+
+.modal-content {
+  border: 0 !important; }
+>>>>>>> joey-branch

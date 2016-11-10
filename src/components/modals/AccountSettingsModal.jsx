@@ -8,6 +8,7 @@ export default class AccountSettingsModal extends React.Component{
       showModal: 'false'
     }
   }
+
   render(){
     var {close} = this.props;
     return(

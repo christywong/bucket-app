@@ -5,7 +5,11 @@ import uuid from 'uuid';
 import update from 'react-addons-update';
 import NavbarInstance from './utilities/NavbarInstance';
 import AccountSettingsModal from './modals/AccountSettingsModal';
-
+import {Modal,Button} from "react-bootstrap";
+import AddGroupModal from './modals/AddGroupModal';
+import AddMemberModal from './modals/AddMemberModal';
+import AddBucketModal from './modals/AddBucketModal';
+import HelpModal from './modals/HelpModal';
 
 export default class App extends React.Component{
   constructor(props) {
@@ -17,8 +21,13 @@ export default class App extends React.Component{
       currentBucket: "0",
       currentGroup: '5823ec88aa6c2bfcd02d3d57',
       currentUser: 'Daniel'
+      showBucketModal: false,
+      showGroupModal: false,
+      showMemberModal: false,
+      showHelpModal: false
 
-    }
+      }
+
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
@@ -26,18 +35,31 @@ export default class App extends React.Component{
     this.addMember = this.addMember.bind(this);
     this.deleteBucket = this.deleteBucket.bind(this);
 
+
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
     this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
+    this.showAddGroupModal = this.showAddGroupModal.bind(this);
+    this.closeAddGroupModal = this.closeAddGroupModal.bind(this);
+    this.showAddMemberModal = this.showAddMemberModal.bind(this);
+    this.closeAddMemberModal = this.closeAddMemberModal.bind(this);
+    this.showAddBucketModal = this.showAddBucketModal.bind(this);
+    this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
+    this.showHelpModal = this.showHelpModal.bind(this);
+    this.closeHelpModal = this.closeHelpModal.bind(this);
+
 
   }
 
   componentDidMount() {
+
     this.loadJSONData(this.state.currentGroup);
     this.getAllGroups();
   }
 
+
   render(){
+    let close = () => this.setState({ showModal2: false});
     return (
       <div>
         <NavbarInstance
@@ -47,12 +69,46 @@ export default class App extends React.Component{
           addGroup = {this.addGroup}
           addMember = {this.addMember}
           showSettings = {this.showAccountSettingsModal}
-          />
+          showGroups = {this.showAddGroupModal}
+          showMember = {this.showAddMemberModal}
+          showBucket = {this.showAddBucketModal}
+          showHelp = {this.showHelpModal}
+
+
+        />
+
         {
           this.state.showModal ?
           <AccountSettingsModal close={this.closeAccountSettingsModal} />
-          : null
+          :null
         }
+        {
+          this.state.showGroupModal ?
+          <AddGroupModal close={this.closeAddGroupModal}
+          visibility={this.state.showGroupModal}/>
+          :null
+        }
+        {
+          this.state.showMemberModal ?
+          <AddMemberModal close={this.closeAddMemberModal}
+          visibility={this.state.showMemberModal}/>
+          :null
+        }
+        {
+          this.state.showBucketModal ?
+          <AddBucketModal close={this.closeAddBucketModal}
+          visibility={this.state.showBucketModal}/>
+          :null
+        }
+
+        {
+          this.state.showHelpModal ?
+          <HelpModal close={this.closeHelpModal}
+          visibility={this.state.showHelpModal}/>
+          :null
+        }
+
+
         <Main
           currentGroupData ={this.state.data}
           allGroups = {this.state.data.tags}
@@ -61,6 +117,9 @@ export default class App extends React.Component{
           currentGroup = {this.state.currentGroup}
           deleteBucket = {this.deleteBucket}
           />
+
+          //Modals
+      // end of where I should add modals
       </div>
     );
   }
@@ -171,6 +230,38 @@ export default class App extends React.Component{
   closeAccountSettingsModal(){
     this.setState({showModal: false});
   }
+
+  showAddGroupModal(){
+    this.setState({showGroupModal:true});
+  }
+
+  closeAddGroupModal(){
+    this.setState({showGroupModal:false});
+  }
+
+  showAddMemberModal(){
+    this.setState({showMemberModal:true});
+  }
+
+  closeAddMemberModal(){
+    this.setState({showMemberModal:false});
+  }
+
+  showAddBucketModal(){
+    this.setState({showBucketModal:true});
+  }
+
+  closeAddBucketModal(){
+    this.setState({showBucketModal:false});
+  }
+  showHelpModal(){
+    this.setState({showHelpModal:true});
+  }
+
+  closeHelpModal(){
+    this.setState({showHelpModal:false});
+  }
+
 
   /**
    * API call to initialize data for a group

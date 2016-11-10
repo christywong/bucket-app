@@ -107,7 +107,7 @@ export default class NavbarInstance extends React.Component {
     const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
     console.log(currentGroupMembers);
     const currentGroup = this.props.groups ? this.props.groups : [];
-    //What we are returning
+
     return(
       <Navbar style={{zIndex: 500}} fluid>
         <Navbar.Header>
@@ -119,7 +119,8 @@ export default class NavbarInstance extends React.Component {
 
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem eventKey={2} id="submit-member">
+
+            <NavItem eventKey={2.4} onClick={this.props.showMember}>
               Friends
             </NavItem>
 
@@ -137,9 +138,19 @@ export default class NavbarInstance extends React.Component {
                   </MenuItem>
                 )
               })}
+
               <MenuItem divider/>
-                <MenuItem onClick={this.handlePopoverClick}>
+
+                <MenuItem eventKey={3.1} onClick={this.props.showGroups}>
                    Create Group
+                </MenuItem>
+
+                <MenuItem eventKey={3.2} onClick={this.props.showBucket}>
+                  Add Bucket
+                </MenuItem>
+
+                <MenuItem eventKey={3.3} onClick={this.props.showHelp}>
+                  Help
                 </MenuItem>
             </NavDropdown>
 
