@@ -162,7 +162,10 @@
 	    _this.deleteBucket = _this.deleteBucket.bind(_this);
 	    _this.changePassword = _this.changePassword.bind(_this);
 	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
+<<<<<<< HEAD
 	    _this.addCard = _this.addCard.bind(_this);
+=======
+>>>>>>> christy-branch
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -258,9 +261,15 @@
 	          currentGroup: this.state.currentGroup,
 	          deleteBucket: this.deleteBucket,
 	          showBucketModal: this.showAddBucketModal,
+<<<<<<< HEAD
 	          changeSelected: this.changeSelectedBucket,
 	          addCard: this.addCard
 	        })
+=======
+	          changeSelected: this.changeSelectedBucket
+	        }),
+	        '//Modals // end of where I should add modals'
+>>>>>>> christy-branch
 	      );
 	    }
 	  }, {
@@ -270,6 +279,7 @@
 	        currentBucket: selectedBucketId
 	      });
 	    }
+<<<<<<< HEAD
 
 	    /**
 	     * Changes the state of the selected bucket
@@ -316,6 +326,8 @@
 	        data: updatedGroup
 	      });
 	    }
+=======
+>>>>>>> christy-branch
 
 	    /**
 	     * Grab data for the newly selected Group Id
@@ -5143,6 +5155,48 @@
 	        currentBucketId: bucketId
 	      });
 	      this.props.changeSelected(bucketId);
+<<<<<<< HEAD
+=======
+	    }
+
+	    /**
+	     * Creates a card in the specified Bucket.
+	     * @param {object} card - Information from yelp results in order to build a new card.
+	     * @param {number} bucketId - The id of the bucket that the card will be added too.
+	     */
+	    //TODO SOMETHING WRONG IN ADD
+
+	  }, {
+	    key: 'addCard',
+	    value: function addCard(card, bucketId) {
+	      var tagId = bucketId !== "0" ? bucketId : null;
+	      console.log('adding a new card');
+	      //Build the new Card we want to Add
+	      var newCard = {
+	        id: _uuid2.default.v4(),
+	        yelpId: card.id,
+	        yelpUrl: card.url,
+	        img: card.image_url,
+	        rating: card.rating_img_url,
+	        city: card.location.city,
+	        reviewCount: card.review_count,
+	        title: card.name,
+	        tags: [bucketId]
+	      };
+
+	      var currentBucketId = this.state.currentBucketId;
+	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state, { allCards: { $push: [newCard] } });
+	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state, { filteredCards: { $push: [newCard] } }) : this.state.filteredCards;
+	      console.log('updated group ', updatedGroup);
+	      console.log('selectedBucketId ', selectedBucket);
+	      //Add cards to the state in APP
+	      this.apiCreateCard(newCard, this.state.currentGroupId);
+
+	      this.setState({
+	        allCards: updatedGroup.allCards,
+	        filteredCards: selectedBucket.filteredCards
+	      });
+>>>>>>> christy-branch
 	    }
 
 	    /**
@@ -41692,7 +41746,7 @@
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
 	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
-	            showDeleteIcon: _this2.props.selectedBucket === bucket.id ? _react2.default.createElement(
+	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 ? _react2.default.createElement(
 	              _reactBootstrap.OverlayTrigger,
 	              { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	              _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })

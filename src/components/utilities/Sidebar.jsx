@@ -43,7 +43,7 @@ export default class Sidebar extends React.Component{
             bucketId = {bucket.id}
             bucketName = {bucket.title}
             active = {this.props.selectedBucket === bucket.id ? "active" : null}
-            showDeleteIcon = {this.props.selectedBucket === bucket.id ? (
+            showDeleteIcon = {this.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 ? (
               <OverlayTrigger ref="deleteOverlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
                 <i className="fa fa-trash-o" aria-hidden="true" id="delete-bucket-icon"></i>
               </OverlayTrigger>

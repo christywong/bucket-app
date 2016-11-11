@@ -205,7 +205,8 @@ export default class App extends React.Component{
   changeGroup(newGroupId){
     const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
     this.setState({
-      currentGroup: newGroupId
+      currentGroup: newGroupId,
+      currentBucket: '0'
     })
     this.loadJSONData(newGroupId);
   }
