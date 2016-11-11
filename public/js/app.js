@@ -112,7 +112,7 @@
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
-	var _HelpModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./modals/HelpModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _HelpModal = __webpack_require__(519);
 
 	var _HelpModal2 = _interopRequireDefault(_HelpModal);
 
@@ -56419,7 +56419,126 @@
 	exports.default = AddBucketModal;
 
 /***/ },
-/* 519 */,
+/* 519 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var HelpModal = function (_React$Component) {
+	  _inherits(HelpModal, _React$Component);
+
+	  function HelpModal(props) {
+	    _classCallCheck(this, HelpModal);
+
+	    return _possibleConstructorReturn(this, (HelpModal.__proto__ || Object.getPrototypeOf(HelpModal)).call(this, props));
+	  }
+
+	  _createClass(HelpModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var backdropStyle = {
+	        zIndex: '1000',
+	        backgroundColor: '#000',
+	        opacity: 0.8
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            'aria-labelledby': 'modal-label',
+	            backdropStyle: backdropStyle,
+	            show: this.props.visibility
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Getting Started'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '1) Create your first bucket by clicking on the Create Bucket button on the sidebar.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '2) Search for activities to add by clicking the icon on the bottom right.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '3) Move activities to different buckets by clicking on the edit icon on the activitiy card.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '4) Delete an activity from a bucket by clicking on the trash icon on the activity card.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '5) Create a bucket list with friends by clicking on Groups on the navbar.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '6) Start adding friends to your Groups!'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return HelpModal;
+	}(_react2.default.Component);
+
+	exports.default = HelpModal;
+
+/***/ },
 /* 520 */
 /***/ function(module, exports) {
 
