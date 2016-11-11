@@ -5051,7 +5051,7 @@
 	              bucketId: bucket.id,
 	              bucketName: bucket.title,
 	              active: _this2.state.currentBucketId === bucket.id ? "active" : null,
-	              showDeleteIcon: _this2.state.currentBucketId === bucket.id ? _react2.default.createElement(
+	              showDeleteIcon: _this2.state.currentBucketId === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
 	                _reactBootstrap.OverlayTrigger,
 	                { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	                _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })
@@ -36498,7 +36498,6 @@
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
 
-
 /***/ },
 /* 390 */
 /***/ function(module, exports, __webpack_require__) {
@@ -41656,8 +41655,18 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      var list = this.props.bucketList;
+	      var list = this.props.bucketList ? this.props.bucketList : [];
+	      var createdBuckets = list.filter(function (bucket) {
+	        return bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2;
+	      });
+	      var allBucket = list.filter(function (bucket) {
+	        return bucket.typeOfBucket === 1;
+	      })[0];
+	      var archiveBucket = list.filter(function (bucket) {
+	        return bucket.typeOfBucket === 2;
+	      })[0];
 
+	      console.log('allBucket is: ', allBucket);
 	      var deletePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        { id: 'popover-trigger-click-root-close', title: 'Are you sure?' },
@@ -41686,13 +41695,13 @@
 	          { id: 'create-bucket-button', onClick: this.props.showBucketModal },
 	          'Create a Bucket'
 	        ),
-	        list.map(function (bucket) {
+	        createdBuckets.map(function (bucket) {
 	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
 	            key: bucket.id,
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
 	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
-	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 ? _react2.default.createElement(
+	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
 	              _reactBootstrap.OverlayTrigger,
 	              { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	              _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })
