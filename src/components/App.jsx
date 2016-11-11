@@ -19,7 +19,7 @@ export default class App extends React.Component{
       listOfGroups:[],
       showModal: false,
       currentBucket: "0",
-      currentGroup: '5823ec88aa6c2bfcd02d3d57',
+      currentGroup: '5822d9275328dbcd7ba033d6',
       currentUser: 'Daniel',
       currentUserId: '58240dbb14ffca2cd946d0f6',
       showBucketModal: false,

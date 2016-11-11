@@ -156,6 +156,7 @@
 	    _this.addMember = _this.addMember.bind(_this);
 	    _this.deleteBucket = _this.deleteBucket.bind(_this);
 	    _this.changePassword = _this.changePassword.bind(_this);
+	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -229,10 +230,18 @@
 	          addBucket: this.addBucket,
 	          currentGroup: this.state.currentGroup,
 	          deleteBucket: this.deleteBucket,
-	          showBucketModal: this.showAddBucketModal
+	          showBucketModal: this.showAddBucketModal,
+	          changeSelected: this.changeSelectedBucket
 	        }),
 	        '//Modals // end of where I should add modals'
 	      );
+	    }
+	  }, {
+	    key: 'changeSelectedBucket',
+	    value: function changeSelectedBucket(selectedBucketId) {
+	      this.setState({
+	        currentBucket: selectedBucketId
+	      });
 	    }
 
 	    /**
@@ -245,6 +254,9 @@
 	      var newGroup = this.state.listOfGroups.filter(function (group) {
 	        return newGroupId === group.id;
 	      })[0];
+	      this.setState({
+	        currentGroup: newGroupId
+	      });
 	      this.loadJSONData(newGroupId);
 	    }
 
@@ -4997,6 +5009,7 @@
 	        filteredCards: changeBucket,
 	        currentBucketId: bucketId
 	      });
+	      this.props.changeSelected(bucketId);
 	    }
 
 	    /**
@@ -41575,7 +41588,7 @@
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
 	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
-	            showDeleteIcon: _this2.props.selectedBucket === bucket.id ? _react2.default.createElement(
+	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 ? _react2.default.createElement(
 	              _reactBootstrap.OverlayTrigger,
 	              { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
 	              _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })
