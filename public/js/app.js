@@ -153,8 +153,6 @@
 	      showAccountSettingsModal: false
 	    };
 
-	    localStorage.setItem('firstTimeUser', 'false');
-
 	    _this.changeGroup = _this.changeGroup.bind(_this);
 	    _this.addGroup = _this.addGroup.bind(_this);
 	    _this.addBucket = _this.addBucket.bind(_this);
@@ -162,10 +160,7 @@
 	    _this.deleteBucket = _this.deleteBucket.bind(_this);
 	    _this.changePassword = _this.changePassword.bind(_this);
 	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
-<<<<<<< HEAD
 	    _this.addCard = _this.addCard.bind(_this);
-=======
->>>>>>> christy-branch
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -180,7 +175,6 @@
 	    _this.closeHelpModal = _this.closeHelpModal.bind(_this);
 	    //this.showAddModal = this.showAddModal.bind(this);
 	    //this.closeAddModal = this.closeAddModal.bind(this);
-
 
 	    return _this;
 	  }
@@ -201,9 +195,11 @@
 	        currentUserId: currentUserId,
 	        currentUserName: currentUsername
 	      });
-
+	      console.log('show help modal ', showHelpModal);
 	      if (showHelpModal) {
+	        console.log('calling api change state');
 	        this.apiChangeMemberHelpModalState(currentUserId);
+	        localStorage.setItem('firstTimeUser', 'false');
 	      }
 	      console.log(this.state.showHelpModal);
 	      this.loadJSONData(currentGroupId);
@@ -261,15 +257,9 @@
 	          currentGroup: this.state.currentGroup,
 	          deleteBucket: this.deleteBucket,
 	          showBucketModal: this.showAddBucketModal,
-<<<<<<< HEAD
 	          changeSelected: this.changeSelectedBucket,
 	          addCard: this.addCard
 	        })
-=======
-	          changeSelected: this.changeSelectedBucket
-	        }),
-	        '//Modals // end of where I should add modals'
->>>>>>> christy-branch
 	      );
 	    }
 	  }, {
@@ -279,7 +269,6 @@
 	        currentBucket: selectedBucketId
 	      });
 	    }
-<<<<<<< HEAD
 
 	    /**
 	     * Changes the state of the selected bucket
@@ -326,8 +315,6 @@
 	        data: updatedGroup
 	      });
 	    }
-=======
->>>>>>> christy-branch
 
 	    /**
 	     * Grab data for the newly selected Group Id
@@ -340,7 +327,8 @@
 	        return newGroupId === group.id;
 	      })[0];
 	      this.setState({
-	        currentGroup: newGroupId
+	        currentGroup: newGroupId,
+	        currentBucket: '0'
 	      });
 	      this.loadJSONData(newGroupId);
 	    }
@@ -5155,48 +5143,6 @@
 	        currentBucketId: bucketId
 	      });
 	      this.props.changeSelected(bucketId);
-<<<<<<< HEAD
-=======
-	    }
-
-	    /**
-	     * Creates a card in the specified Bucket.
-	     * @param {object} card - Information from yelp results in order to build a new card.
-	     * @param {number} bucketId - The id of the bucket that the card will be added too.
-	     */
-	    //TODO SOMETHING WRONG IN ADD
-
-	  }, {
-	    key: 'addCard',
-	    value: function addCard(card, bucketId) {
-	      var tagId = bucketId !== "0" ? bucketId : null;
-	      console.log('adding a new card');
-	      //Build the new Card we want to Add
-	      var newCard = {
-	        id: _uuid2.default.v4(),
-	        yelpId: card.id,
-	        yelpUrl: card.url,
-	        img: card.image_url,
-	        rating: card.rating_img_url,
-	        city: card.location.city,
-	        reviewCount: card.review_count,
-	        title: card.name,
-	        tags: [bucketId]
-	      };
-
-	      var currentBucketId = this.state.currentBucketId;
-	      var updatedGroup = (0, _reactAddonsUpdate2.default)(this.state, { allCards: { $push: [newCard] } });
-	      var selectedBucket = bucketId === currentBucketId || currentBucketId === 0 ? (0, _reactAddonsUpdate2.default)(this.state, { filteredCards: { $push: [newCard] } }) : this.state.filteredCards;
-	      console.log('updated group ', updatedGroup);
-	      console.log('selectedBucketId ', selectedBucket);
-	      //Add cards to the state in APP
-	      this.apiCreateCard(newCard, this.state.currentGroupId);
-
-	      this.setState({
-	        allCards: updatedGroup.allCards,
-	        filteredCards: selectedBucket.filteredCards
-	      });
->>>>>>> christy-branch
 	    }
 
 	    /**

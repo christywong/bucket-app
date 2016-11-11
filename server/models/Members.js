@@ -74,6 +74,7 @@ module.exports.actions.changePassword = function(req, res){
 }
 
 module.exports.actions.changeFirstTimeState = function(req,res){
+  console.log('changing state');
   var userId = req.body.userId;
   Member.findOneAndUpdate({'_id': userId}, {'firstTimeUser': false}, {new:true}, function(err,data){
     if(err){

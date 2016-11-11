@@ -20,9 +20,8 @@ var GroupSchema = new Schema({
     }
   ]
 });
-//var Groups = mongoose.model('groups', GroupSchema);
-
-var Groups = mongoose.model('bucketgroups', GroupSchema);
+var Groups = mongoose.model('groups', GroupSchema);
+//var Groups = mongoose.model('bucketgroups', GroupSchema);
 
 module.exports.actions = {};
 
@@ -127,7 +126,7 @@ module.exports.actions.createGroup = function(req,res){
   var newGroup = new Groups({
     title   : req.body.title,
     members : {name: req.body.members},
-    tags    : [{id: 0, typeOfBucket: 1, title: "All"}]
+    tags    : [{id: 0, typeOfBucket: 1, title: "All"},{id:uuid.v4(), title:"Archive", typeOfBucket : 2}]
   });
 
   console.log('new group ', newGroup);

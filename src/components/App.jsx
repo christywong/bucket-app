@@ -30,8 +30,6 @@ export default class App extends React.Component{
       showAccountSettingsModal: false
       }
 
-      localStorage.setItem('firstTimeUser','false');
-
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.addBucket = this.addBucket.bind(this);
@@ -55,7 +53,6 @@ export default class App extends React.Component{
     //this.showAddModal = this.showAddModal.bind(this);
     //this.closeAddModal = this.closeAddModal.bind(this);
 
-
   }
 
   //Call our remote endpoints to initialize our application
@@ -70,9 +67,11 @@ export default class App extends React.Component{
       currentUserId: currentUserId,
       currentUserName: currentUsername
     });
-
+    console.log('show help modal ', showHelpModal);
     if(showHelpModal){
+      console.log('calling api change state');
       this.apiChangeMemberHelpModalState(currentUserId);
+      localStorage.setItem('firstTimeUser','false');
     }
     console.log(this.state.showHelpModal);
     this.loadJSONData(currentGroupId);
