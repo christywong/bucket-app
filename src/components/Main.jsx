@@ -248,13 +248,11 @@ export default class Component extends React.Component {
     //set our state initially
     this.setState({
       bucketList      : listOfBuckets,
-      //filteredCards   : selected,
+      filteredCards   : selected,
       allCards        : selected,
       currentGroupId  : currentGroup,
       currentBucketId : buckets.currentBucketId,
     });
-
-
   }
 
   // API CALLS

@@ -28,8 +28,9 @@ export default class App extends React.Component{
       showMemberModal: false,
       showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
       showAccountSettingsModal: false
-      //showAddModal: false,
       }
+
+      localStorage.setItem('firstTimeUser','false');
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
@@ -129,20 +130,12 @@ export default class App extends React.Component{
             addBucket = {this.addBucket} />
           : null
         }
-
         {
           this.state.showHelpModal ?
           <HelpModal
             close={this.closeHelpModal}
             visibility={this.state.showHelpModal}/>
           :null
-        }
-
-        // {
-        //   this.state.showAddModal ?
-        //   <AddModal close={this.closeAddModal}
-        //   visibility={this.state.showAddModal}/>
-        //   :null
         }
 
         <Main

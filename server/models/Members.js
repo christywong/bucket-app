@@ -17,7 +17,6 @@ module.exports.actions.createMember = function(req,res){
   var person = new Member ({
     username: req.body.username,
     password: req.body.password,
-    groupId: '5824d4e879b6f14f9d487646',
     firstTimeUser: true
   });
 

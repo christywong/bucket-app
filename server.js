@@ -49,6 +49,7 @@ app.use(function(req,res,next){
 //mongoose.connect(DB_URL);
 mongoose.connect('mongodb://localhost:27017/cse170');
 
+
 app.listen(port, function(){
   console.log('connected to port 8080');
 });
