@@ -27,33 +27,78 @@ export default class Sidebar extends React.Component{
 
     console.log('allBucket is: ', allBucket);
     const deletePopover = (
-      <Popover id="popover-trigger-click-root-close" title="Are you sure?">
-        <Button bsStyle="danger" bsSize="small" onClick = {()=>{
+      <Popover
+        id="popover-trigger-click-root-close"
+        title="Are you sure?">
+        <Button
+          bsStyle="danger"
+          bsSize="small"
+          onClick = {()=>{
             this.handleDeleteBucket();
             this.refs.deleteOverlay.hide();
           }}>Yes</Button>
-        <Button style={{float:"right"}} bsSize="small" onClick = {()=>{
-            this.refs.deleteOverlay.hide();
-          }}>No</Button>
-      </Popover>
-    );
+          <Button
+            style={{float:"right"}}
+            bsSize="small"
+            onClick = {()=>{
+              this.refs.deleteOverlay.hide();
+            }}>No</Button>
+          </Popover>
+        );
 
-    return(
-      <div className='sidebar'>
-        <Button id="create-bucket-button" onClick={this.props.showBucketModal}>Create a Bucket</Button>
-        {createdBuckets.map ( (bucket) => { return(
-          <Bucket changeStateBucket = {this.props.changeStateBucket}
-            key = {bucket.id}
-            bucketId = {bucket.id}
-            bucketName = {bucket.title}
-            active = {this.props.selectedBucket === bucket.id ? "active" : null}
-            showDeleteIcon = {this.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? (
-              <OverlayTrigger ref="deleteOverlay" trigger="click" rootClose placement="top" overlay={deletePopover}>
-                <i className="fa fa-trash-o" aria-hidden="true" id="delete-bucket-icon"></i>
-              </OverlayTrigger>
-              ) : null} />
-        )})}
-      </div>
-    );
-  }
-}
+        return(
+          <div className='sidebar'>
+            <Button
+              id="create-bucket-button"
+              onClick={this.props.showBucketModal}>
+              Create a Bucket
+            </Button>
+            {
+              allBucket ?
+              <Bucket
+                changeStateBucket = {this.props.changeStateBucket}
+                key = {allBucket.id}
+                bucketId = {allBucket.id}
+                bucketName = {allBucket.title}
+                active = {this.props.selectedBucket === allBucket.id ? "active" : null}
+                />
+              : null
+            }
+            {createdBuckets.map ( (bucket) => { return(
+              <Bucket
+                changeStateBucket = {this.props.changeStateBucket}
+                key = {bucket.id}
+                bucketId = {bucket.id}
+                bucketName = {bucket.title}
+                active = {this.props.selectedBucket === bucket.id ? "active" : null}
+                showDeleteIcon = {this.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? (
+                  <OverlayTrigger
+                    ref="deleteOverlay"
+                    trigger="click"
+                    rootClose
+                    placement="top"
+                    overlay={deletePopover}>
+                    <i
+                      className="fa fa-trash-o"
+                      aria-hidden="true"
+                      id="delete-bucket-icon">
+                    </i>
+                  </OverlayTrigger>
+                ) : null} />
+              )})}
+
+              {
+                archiveBucket ?
+                <Bucket
+                  changeStateBucket = {this.props.changeStateBucket}
+                  key = {archiveBucket.id}
+                  bucketId = {archiveBucket.id}
+                  bucketName = {archiveBucket.title}
+                  active = {this.props.selectedBucket === archiveBucket.id ? "active" : null}
+                  />
+                : null
+              }
+            </div>
+          );
+        }
+      }

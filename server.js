@@ -6,9 +6,15 @@ const express = require('express'),
       config = require('config');
 
 const app = express();
-
+var DB_URL;
 var JSONDATA = path.join(__dirname, './server/Data.json');
-var DB_URL = config.get('db_url');
+
+if (process.env.LOCAL === 'true'){
+  DB_URL = config.get('db_url');
+} else{
+  DB_URL = process.env.DB_URL;
+}
+
 const port = process.env.PORT || 8080;
 
 app.engine('handlebars', handlebars());

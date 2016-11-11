@@ -38,6 +38,7 @@ export default class App extends React.Component{
     this.changePassword = this.changePassword.bind(this);
     this.changeSelectedBucket = this.changeSelectedBucket.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -50,8 +51,6 @@ export default class App extends React.Component{
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
-    //this.showAddModal = this.showAddModal.bind(this);
-    //this.closeAddModal = this.closeAddModal.bind(this);
 
   }
 
@@ -67,13 +66,12 @@ export default class App extends React.Component{
       currentUserId: currentUserId,
       currentUserName: currentUsername
     });
-    console.log('show help modal ', showHelpModal);
+
     if(showHelpModal){
-      console.log('calling api change state');
       this.apiChangeMemberHelpModalState(currentUserId);
       localStorage.setItem('firstTimeUser','false');
     }
-    console.log(this.state.showHelpModal);
+
     this.loadJSONData(currentGroupId);
     this.getAllGroups();
   }
@@ -147,6 +145,7 @@ export default class App extends React.Component{
           showBucketModal = {this.showAddBucketModal}
           changeSelected = {this.changeSelectedBucket}
           addCard = {this.addCard}
+          deleteCard = {this.deleteCard}
         />
       </div>
     );
@@ -199,6 +198,24 @@ export default class App extends React.Component{
   }
 
   /**
+  * Deletes a card from a group.
+  * @param {Number} cardId - The id of the card that we want to remove.
+  */
+  deleteCard(cardId){
+    //const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
+    const deletedCard = this.state.data.activities.filter((oldCard)=>(oldCard.id!==cardId));
+    console.log('card new state after delete ', cardsNextState);
+    const cardsNextState = update(this.state.data, {activities: {$set: deletedCard}});
+    //make a call to our api
+    this.apiDeleteCard(cardId, this.state.currentGroup);
+
+    //set our new state
+    this.setState({
+      data: cardsNextState //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
+    })
+  }
+
+  /**
    * Grab data for the newly selected Group Id
    **/
   changeGroup(newGroupId){
@@ -224,6 +241,7 @@ export default class App extends React.Component{
   }
 
   deleteBucket(bucketId) {
+
     this.apiDeleteBucket(bucketId);
   }
   /**
@@ -231,7 +249,7 @@ export default class App extends React.Component{
    * @param name {string} Name of the Group to be added.
    **/
   addGroup(name) {
-    console.log('name of new group ', name);
+
     if (name != "") {
       var newName = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -293,25 +311,12 @@ export default class App extends React.Component{
     this.setState({showBucketModal:false});
   }
   showHelpModal(){
-    console.log('closing modal');
     this.setState({showHelpModal:true});
   }
 
   closeHelpModal(){
     this.setState({showHelpModal:false});
   }
-
-  // showAddModal(){
-  //   this.setState({showAddModal:true});
-  // }
-
-  // closeAddModal(){
-  //   this.setState({showAddModal:false});
-  // }
-
-
-
-
 
   /**
    * API call to initialize data for a group
@@ -332,7 +337,6 @@ export default class App extends React.Component{
         }
       }
     }
-    console.log('getting data from server');
     xhr.open('GET', '/api/getGroup/' + currentGroup);
     xhr.responseType = 'json'
     xhr.send();
@@ -356,7 +360,6 @@ export default class App extends React.Component{
         }
       }
     }
-    console.log('getting data from server');
     xhr.open('GET', '/api/getAllGroups/');
     xhr.responseType = 'json'
     xhr.send();
@@ -377,8 +380,6 @@ export default class App extends React.Component{
      xhr.onreadystatechange = function(){
        if(xhr.readystate === 4){
          if(xhr.status === 200){
-           console.log('success!');
-           console.log(xhr.response);
          } else{
            console.log('oops there was an error');
          }
@@ -386,7 +387,26 @@ export default class App extends React.Component{
      }
      xhr.open('POST', '/api/createCard');
      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-     console.log(payload);
+     xhr.send(payload);
+   }
+
+   apiDeleteCard(cardId, groupId){
+     var me = this;
+     var xhr = new XMLHttpRequest();
+     var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+
+     xhr.onreadystatechange = function(){
+       if(xhr.readystate === 4){
+         if(xhr.status === 200){
+           console.log('success!');
+         } else{
+           console.log('oops there was an error');
+         }
+       }
+     }
+
+     xhr.open('DELETE', '/api/deleteCard');
+     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
      xhr.send(payload);
    }
 
@@ -402,8 +422,7 @@ export default class App extends React.Component{
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           var result = xhr.response;
-          console.log('result from adding a group ', result);
-          console.log('list of groups ', me.state.listOfGroups);
+
           var newGroupList = [...me.state.listOfGroups, result];
           me.setState({
             listOfGroups: newGroupList
@@ -413,7 +432,6 @@ export default class App extends React.Component{
         }
       }
     }
-    console.log('getting data from server');
     xhr.open('POST', '/api/createGroup');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.responseType = 'json'
@@ -483,12 +501,12 @@ export default class App extends React.Component{
           console.log('Oops an error occurred');
         }
       }
+    }
 
       xhr.open('DELETE', '/api/deleteBucket');
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.responseType = 'json'
       xhr.send(payload);
-    }
   }
 
   apiChangePassword(memberId, newPassword){
@@ -498,8 +516,6 @@ export default class App extends React.Component{
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          var result = xhr.response;
-          console.log('result: ', result);
         } else{
           console.log('Oops an error occurred');
         }
@@ -513,15 +529,13 @@ export default class App extends React.Component{
   }
 
   apiChangeMemberHelpModalState(userId){
-    console.log('changing to false')
     var me = this;
     var xhr = new XMLHttpRequest();
     var payload = 'userId=' + userId;
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          var result = xhr.response;
-          console.log('result: ', result);
+          console.log('sucess!');
         } else{
           console.log('Oops an error occurred');
         }

@@ -190,6 +190,7 @@ module.exports.actions.createBucket = function(req,res){
 
 module.exports.actions.deleteBucket = function(req,res){
   //get group id
+  console.log('print this in server');
   var groupId = req.body.groupId;
   //get bucket id from bucket we want to delete
   var bucketId = req.body.bucketId;

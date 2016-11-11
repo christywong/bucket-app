@@ -112,7 +112,7 @@
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
-	var _HelpModal = __webpack_require__(519);
+	var _HelpModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./modals/HelpModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _HelpModal2 = _interopRequireDefault(_HelpModal);
 
@@ -161,6 +161,7 @@
 	    _this.changePassword = _this.changePassword.bind(_this);
 	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
 	    _this.addCard = _this.addCard.bind(_this);
+	    _this.deleteCard = _this.deleteCard.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -173,8 +174,6 @@
 	    _this.closeAddBucketModal = _this.closeAddBucketModal.bind(_this);
 	    _this.showHelpModal = _this.showHelpModal.bind(_this);
 	    _this.closeHelpModal = _this.closeHelpModal.bind(_this);
-	    //this.showAddModal = this.showAddModal.bind(this);
-	    //this.closeAddModal = this.closeAddModal.bind(this);
 
 	    return _this;
 	  }
@@ -195,13 +194,12 @@
 	        currentUserId: currentUserId,
 	        currentUserName: currentUsername
 	      });
-	      console.log('show help modal ', showHelpModal);
+
 	      if (showHelpModal) {
-	        console.log('calling api change state');
 	        this.apiChangeMemberHelpModalState(currentUserId);
 	        localStorage.setItem('firstTimeUser', 'false');
 	      }
-	      console.log(this.state.showHelpModal);
+
 	      this.loadJSONData(currentGroupId);
 	      this.getAllGroups();
 	    }
@@ -258,7 +256,8 @@
 	          deleteBucket: this.deleteBucket,
 	          showBucketModal: this.showAddBucketModal,
 	          changeSelected: this.changeSelectedBucket,
-	          addCard: this.addCard
+	          addCard: this.addCard,
+	          deleteCard: this.deleteCard
 	        })
 	      );
 	    }
@@ -317,6 +316,29 @@
 	    }
 
 	    /**
+	    * Deletes a card from a group.
+	    * @param {Number} cardId - The id of the card that we want to remove.
+	    */
+
+	  }, {
+	    key: 'deleteCard',
+	    value: function deleteCard(cardId) {
+	      //const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
+	      var deletedCard = this.state.data.activities.filter(function (oldCard) {
+	        return oldCard.id !== cardId;
+	      });
+	      console.log('card new state after delete ', cardsNextState);
+	      var cardsNextState = (0, _reactAddonsUpdate2.default)(this.state.data, { activities: { $set: deletedCard } });
+	      //make a call to our api
+	      this.apiDeleteCard(cardId, this.state.currentGroup);
+
+	      //set our new state
+	      this.setState({
+	        data: cardsNextState //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
+	      });
+	    }
+
+	    /**
 	     * Grab data for the newly selected Group Id
 	     **/
 
@@ -351,6 +373,7 @@
 	  }, {
 	    key: 'deleteBucket',
 	    value: function deleteBucket(bucketId) {
+
 	      this.apiDeleteBucket(bucketId);
 	    }
 	    /**
@@ -361,7 +384,7 @@
 	  }, {
 	    key: 'addGroup',
 	    value: function addGroup(name) {
-	      console.log('name of new group ', name);
+
 	      if (name != "") {
 	        var newName = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -438,7 +461,6 @@
 	  }, {
 	    key: 'showHelpModal',
 	    value: function showHelpModal() {
-	      console.log('closing modal');
 	      this.setState({ showHelpModal: true });
 	    }
 	  }, {
@@ -446,15 +468,6 @@
 	    value: function closeHelpModal() {
 	      this.setState({ showHelpModal: false });
 	    }
-
-	    // showAddModal(){
-	    //   this.setState({showAddModal:true});
-	    // }
-
-	    // closeAddModal(){
-	    //   this.setState({showAddModal:false});
-	    // }
-
 
 	    /**
 	     * API call to initialize data for a group
@@ -478,7 +491,6 @@
 	          }
 	        }
 	      };
-	      console.log('getting data from server');
 	      xhr.open('GET', '/api/getGroup/' + currentGroup);
 	      xhr.responseType = 'json';
 	      xhr.send();
@@ -505,7 +517,6 @@
 	          }
 	        }
 	      };
-	      console.log('getting data from server');
 	      xhr.open('GET', '/api/getAllGroups/');
 	      xhr.responseType = 'json';
 	      xhr.send();
@@ -529,17 +540,34 @@
 	      var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readystate === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	            console.log(xhr.response);
-	          } else {
+	          if (xhr.status === 200) {} else {
 	            console.log('oops there was an error');
 	          }
 	        }
 	      };
 	      xhr.open('POST', '/api/createCard');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	      console.log(payload);
+	      xhr.send(payload);
+	    }
+	  }, {
+	    key: 'apiDeleteCard',
+	    value: function apiDeleteCard(cardId, groupId) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readystate === 4) {
+	          if (xhr.status === 200) {
+	            console.log('success!');
+	          } else {
+	            console.log('oops there was an error');
+	          }
+	        }
+	      };
+
+	      xhr.open('DELETE', '/api/deleteCard');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	      xhr.send(payload);
 	    }
 
@@ -558,8 +586,7 @@
 	        if (xhr.readyState === 4) {
 	          if (xhr.status === 200) {
 	            var result = xhr.response;
-	            console.log('result from adding a group ', result);
-	            console.log('list of groups ', me.state.listOfGroups);
+
 	            var newGroupList = [].concat(_toConsumableArray(me.state.listOfGroups), [result]);
 	            me.setState({
 	              listOfGroups: newGroupList
@@ -569,7 +596,6 @@
 	          }
 	        }
 	      };
-	      console.log('getting data from server');
 	      xhr.open('POST', '/api/createGroup');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	      xhr.responseType = 'json';
@@ -644,12 +670,12 @@
 	            console.log('Oops an error occurred');
 	          }
 	        }
-
-	        xhr.open('DELETE', '/api/deleteBucket');
-	        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	        xhr.responseType = 'json';
-	        xhr.send(payload);
 	      };
+
+	      xhr.open('DELETE', '/api/deleteBucket');
+	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	      xhr.responseType = 'json';
+	      xhr.send(payload);
 	    }
 	  }, {
 	    key: 'apiChangePassword',
@@ -659,10 +685,7 @@
 	      var payload = 'memberId=' + memberId + '&newPassword=' + newPassword;
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readyState === 4) {
-	          if (xhr.status === 200) {
-	            var result = xhr.response;
-	            console.log('result: ', result);
-	          } else {
+	          if (xhr.status === 200) {} else {
 	            console.log('Oops an error occurred');
 	          }
 	        }
@@ -676,15 +699,13 @@
 	  }, {
 	    key: 'apiChangeMemberHelpModalState',
 	    value: function apiChangeMemberHelpModalState(userId) {
-	      console.log('changing to false');
 	      var me = this;
 	      var xhr = new XMLHttpRequest();
 	      var payload = 'userId=' + userId;
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readyState === 4) {
 	          if (xhr.status === 200) {
-	            var result = xhr.response;
-	            console.log('result: ', result);
+	            console.log('sucess!');
 	          } else {
 	            console.log('Oops an error occurred');
 	          }
@@ -4954,9 +4975,8 @@
 	    _this.showModal = _this.showModal.bind(_this);
 	    _this.closeModal = _this.closeModal.bind(_this);
 	    _this.changeState = _this.changeState.bind(_this);
-	    //this.addCard = this.addCard.bind(this);
 	    _this.moveCard = _this.moveCard.bind(_this);
-	    _this.deleteCard = _this.deleteCard.bind(_this);
+	    //this.deleteCard = this.deleteCard.bind(this);
 	    _this.handleDeleteBucket = _this.handleDeleteBucket.bind(_this);
 
 	    //Bind modal listeners
@@ -5002,7 +5022,7 @@
 	          activities: cardEntry,
 	          moveCard: _this2.moveCard,
 	          bucketTags: _this2.state.bucketList,
-	          deleteCard: _this2.deleteCard
+	          deleteCard: _this2.props.deleteCard
 	        });
 	      }) : [];
 
@@ -5015,10 +5035,15 @@
 	      // Popover for deleting buckets
 	      var deletePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Are you sure?' },
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Are you sure?' },
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { bsStyle: 'danger', bsSize: 'small', onClick: function onClick() {
+	          {
+	            bsStyle: 'danger',
+	            bsSize: 'small',
+	            onClick: function onClick() {
 	              _this2.handleDeleteBucket();
 	              _this2.refs.deleteOverlay.hide();
 	            } },
@@ -5026,25 +5051,49 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { style: { float: "right" }, bsSize: 'small', onClick: function onClick() {
+	          {
+	            style: { float: "right" },
+	            bsSize: 'small',
+	            onClick: function onClick() {
 	              _this2.refs.deleteOverlay.hide();
 	            } },
 	          'No'
 	        )
 	      );
+	      var list = this.state.bucketList ? this.state.bucketList : [];
+	      var createdBuckets = list.filter(function (bucket) {
+	        return bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2;
+	      });
+	      var allBucket = list.filter(function (bucket) {
+	        return bucket.typeOfBucket === 1;
+	      })[0];
+	      var archiveBucket = list.filter(function (bucket) {
+	        return bucket.typeOfBucket === 2;
+	      })[0];
 
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'outer-container' },
 	        _react2.default.createElement(
 	          Menu,
-	          { pageWrapId: "page-wrap", outerContainerId: "outer-container" },
+	          {
+	            pageWrapId: "page-wrap",
+	            outerContainerId: "outer-container" },
 	          _react2.default.createElement(
 	            _reactBootstrap.Button,
-	            { id: 'create-bucket-button', onClick: this.props.showBucketModal },
+	            {
+	              id: 'create-bucket-button',
+	              onClick: this.props.showBucketModal },
 	            'Create a Bucket'
 	          ),
-	          this.state.bucketList.map(function (bucket) {
+	          allBucket ? _react2.default.createElement(_Buckets2.default, {
+	            changeStateBucket: this.changeState,
+	            key: allBucket.id,
+	            bucketId: allBucket.id,
+	            bucketName: allBucket.title,
+	            active: this.state.currentBucketId === allBucket.id ? "active" : null
+	          }) : null,
+	          createdBuckets.map(function (bucket) {
 	            return _react2.default.createElement(_Buckets2.default, {
 	              changeStateBucket: _this2.changeState,
 	              key: bucket.id,
@@ -5053,10 +5102,25 @@
 	              active: _this2.state.currentBucketId === bucket.id ? "active" : null,
 	              showDeleteIcon: _this2.state.currentBucketId === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
 	                _reactBootstrap.OverlayTrigger,
-	                { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
-	                _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })
+	                {
+	                  ref: 'deleteOverlay',
+	                  trigger: 'click',
+	                  rootClose: true,
+	                  placement: 'top',
+	                  overlay: deletePopover },
+	                _react2.default.createElement('i', {
+	                  className: 'fa fa-trash-o',
+	                  'aria-hidden': 'true',
+	                  id: 'delete-bucket-icon' })
 	              ) : null });
-	          })
+	          }),
+	          archiveBucket ? _react2.default.createElement(_Buckets2.default, {
+	            changeStateBucket: this.changeState,
+	            key: archiveBucket.id,
+	            bucketId: archiveBucket.id,
+	            bucketName: archiveBucket.title,
+	            active: this.state.currentBucketId === archiveBucket.id ? "active" : null
+	          }) : null
 	        ),
 	        _react2.default.createElement(_Sidebar2.default, {
 	          selectedBucket: this.state.currentBucketId,
@@ -5114,9 +5178,9 @@
 	    }
 
 	    /**
-	     * Filter the cards by the selected Tags
-	     * @param bucketId - The id of the bucket that will filter the cards.
-	     */
+	    * Filter the cards by the selected Tags
+	    * @param bucketId - The id of the bucket that will filter the cards.
+	    */
 
 	  }, {
 	    key: 'filterTags',
@@ -5125,14 +5189,13 @@
 	      var nextBucket = bucketId !== "0" ? bucketArray.filter(function (bucket) {
 	        return bucket.tags[0] == bucketId;
 	      }) : bucketArray;
-	      console.log('next bucket ', nextBucket);
 	      return nextBucket;
 	    }
 
 	    /**
-	     * Changes the state of the cards based on which bucket is selected.
-	     * @param {number} bucketId - The id of the bucket that is to be selected.
-	     */
+	    * Changes the state of the cards based on which bucket is selected.
+	    * @param {number} bucketId - The id of the bucket that is to be selected.
+	    */
 
 	  }, {
 	    key: 'changeState',
@@ -5146,10 +5209,10 @@
 	    }
 
 	    /**
-	     * Moves a card to a new bucket.
-	     * @param {object} card - The selected card that we want to move
-	     * @param {Number} newTag - The new bucket that we want to move the card too
-	     */
+	    * Moves a card to a new bucket.
+	    * @param {object} card - The selected card that we want to move
+	    * @param {Number} newTag - The new bucket that we want to move the card too
+	    */
 
 	  }, {
 	    key: 'moveCard',
@@ -5185,30 +5248,23 @@
 	      });
 	    }
 
-	    /**
-	     * Deletes a card from a group.
-	     * @param {Number} cardId - The id of the card that we want to remove.
-	     */
-
-	  }, {
-	    key: 'deleteCard',
-	    value: function deleteCard(cardId) {
-	      var filteredCardsNextState = this.state.filteredCards.filter(function (oldCard) {
-	        return oldCard.id !== cardId;
-	      });
-	      var cardsNextState = this.state.allCards.filter(function (oldCard) {
-	        return oldCard.id !== cardId;
-	      });
-
-	      //make a call to our api
-	      this.apiDeleteCard(cardId, this.state.currentGroupId);
-
-	      //set our new state
-	      this.setState({
-	        allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
-	        filteredCards: filteredCardsNextState
-	      });
-	    }
+	    // /**
+	    // * Deletes a card from a group.
+	    // * @param {Number} cardId - The id of the card that we want to remove.
+	    // */
+	    // deleteCard(cardId){
+	    //   const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
+	    //   const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
+	    //
+	    //   //make a call to our api
+	    //   this.apiDeleteCard(cardId, this.state.currentGroupId);
+	    //
+	    //   //set our new state
+	    //   this.setState({
+	    //     allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
+	    //     filteredCards: filteredCardsNextState
+	    //   })
+	    // }
 
 	    //Initialize our State whenever we update a prop from App.
 	    //This will keep the Main Component updated with whatever changes were made to App
@@ -5216,7 +5272,6 @@
 	  }, {
 	    key: 'initializeBucket',
 	    value: function initializeBucket(buckets) {
-	      console.log(buckets.currentGroupData);
 	      var currentBucket = buckets.currentGroupData;
 	      var selected = currentBucket ? currentBucket.activities : null;
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
@@ -5234,51 +5289,26 @@
 	    }
 
 	    // API CALLS
+	    // apiDeleteCard(cardId, groupId){
+	    //   var me = this;
+	    //   var xhr = new XMLHttpRequest();
+	    //   var payload = 'cardId=' + cardId + '&groupId=' + groupId;
+	    //
+	    //   xhr.onreadystatechange = function(){
+	    //     if(xhr.readystate === 4){
+	    //       if(xhr.status === 200){
+	    //         console.log('success!');
+	    //       } else{
+	    //         console.log('oops there was an error');
+	    //       }
+	    //     }
+	    //   }
+	    //
+	    //   xhr.open('DELETE', '/api/deleteCard');
+	    //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+	    //   xhr.send(payload);
+	    // }
 
-	  }, {
-	    key: 'apiCreateCard',
-	    value: function apiCreateCard(newCard, groupId) {
-	      var me = this;
-	      var xhr = new XMLHttpRequest();
-	      var payload = 'id=' + newCard.id + '&yelpId=' + newCard.yelpId + '&yelpUrl=' + newCard.yelpUrl + '&img=' + newCard.img + '&rating=' + newCard.rating + '&city=' + newCard.city + '&reviewCount=' + newCard.reviewCount + '&title=' + newCard.title + '&tags=' + newCard.tags + '&groupId=' + groupId;
-	      xhr.onreadystatechange = function () {
-	        if (xhr.readystate === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	            console.log(xhr.response);
-	          } else {
-	            console.log('oops there was an error');
-	          }
-	        }
-	      };
-	      xhr.open('POST', '/api/createCard');
-	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	      console.log(payload);
-	      xhr.send(payload);
-	    }
-	  }, {
-	    key: 'apiDeleteCard',
-	    value: function apiDeleteCard(cardId, groupId) {
-	      var me = this;
-	      var xhr = new XMLHttpRequest();
-	      var payload = 'cardId=' + cardId + '&groupId=' + groupId;
-
-	      xhr.onreadystatechange = function () {
-	        if (xhr.readystate === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	            console.log(xhr.response);
-	          } else {
-	            console.log('oops there was an error');
-	          }
-	        }
-	      };
-
-	      xhr.open('DELETE', '/api/deleteCard');
-	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	      console.log(payload);
-	      xhr.send(payload);
-	    }
 	  }, {
 	    key: 'apiMoveCard',
 	    value: function apiMoveCard(cardId, groupId, newTag) {
@@ -5290,7 +5320,6 @@
 	        if (xhr.readystate === 4) {
 	          if (xhr.status === 200) {
 	            console.log('success!');
-	            console.log(xhr.response);
 	          } else {
 	            console.log('oops there was an error');
 	          }
@@ -5299,7 +5328,6 @@
 
 	      xhr.open('PUT', '/api/moveCard');
 	      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	      console.log(payload);
 	      xhr.send(payload);
 	    }
 	  }]);
@@ -36498,6 +36526,7 @@
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
 
+
 /***/ },
 /* 390 */
 /***/ function(module, exports, __webpack_require__) {
@@ -41669,10 +41698,15 @@
 	      console.log('allBucket is: ', allBucket);
 	      var deletePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Are you sure?' },
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Are you sure?' },
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { bsStyle: 'danger', bsSize: 'small', onClick: function onClick() {
+	          {
+	            bsStyle: 'danger',
+	            bsSize: 'small',
+	            onClick: function onClick() {
 	              _this2.handleDeleteBucket();
 	              _this2.refs.deleteOverlay.hide();
 	            } },
@@ -41680,7 +41714,10 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { style: { float: "right" }, bsSize: 'small', onClick: function onClick() {
+	          {
+	            style: { float: "right" },
+	            bsSize: 'small',
+	            onClick: function onClick() {
 	              _this2.refs.deleteOverlay.hide();
 	            } },
 	          'No'
@@ -41692,21 +41729,46 @@
 	        { className: 'sidebar' },
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { id: 'create-bucket-button', onClick: this.props.showBucketModal },
+	          {
+	            id: 'create-bucket-button',
+	            onClick: this.props.showBucketModal },
 	          'Create a Bucket'
 	        ),
+	        allBucket ? _react2.default.createElement(_Buckets2.default, {
+	          changeStateBucket: this.props.changeStateBucket,
+	          key: allBucket.id,
+	          bucketId: allBucket.id,
+	          bucketName: allBucket.title,
+	          active: this.props.selectedBucket === allBucket.id ? "active" : null
+	        }) : null,
 	        createdBuckets.map(function (bucket) {
-	          return _react2.default.createElement(_Buckets2.default, { changeStateBucket: _this2.props.changeStateBucket,
+	          return _react2.default.createElement(_Buckets2.default, {
+	            changeStateBucket: _this2.props.changeStateBucket,
 	            key: bucket.id,
 	            bucketId: bucket.id,
 	            bucketName: bucket.title,
 	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
 	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
 	              _reactBootstrap.OverlayTrigger,
-	              { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
-	              _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true', id: 'delete-bucket-icon' })
+	              {
+	                ref: 'deleteOverlay',
+	                trigger: 'click',
+	                rootClose: true,
+	                placement: 'top',
+	                overlay: deletePopover },
+	              _react2.default.createElement('i', {
+	                className: 'fa fa-trash-o',
+	                'aria-hidden': 'true',
+	                id: 'delete-bucket-icon' })
 	            ) : null });
-	        })
+	        }),
+	        archiveBucket ? _react2.default.createElement(_Buckets2.default, {
+	          changeStateBucket: this.props.changeStateBucket,
+	          key: archiveBucket.id,
+	          bucketId: archiveBucket.id,
+	          bucketName: archiveBucket.title,
+	          active: this.props.selectedBucket === archiveBucket.id ? "active" : null
+	        }) : null
 	      );
 	    }
 	  }]);
@@ -56357,121 +56419,7 @@
 	exports.default = AddBucketModal;
 
 /***/ },
-/* 519 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactBootstrap = __webpack_require__(37);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var HelpModal = function (_React$Component) {
-	  _inherits(HelpModal, _React$Component);
-
-	  function HelpModal(props) {
-	    _classCallCheck(this, HelpModal);
-
-	    return _possibleConstructorReturn(this, (HelpModal.__proto__ || Object.getPrototypeOf(HelpModal)).call(this, props));
-	  }
-
-	  _createClass(HelpModal, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var backdropStyle = {
-	        zIndex: '1000',
-	        backgroundColor: '#000',
-	        opacity: 0.8
-	      };
-
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal,
-	          {
-	            'aria-labelledby': 'modal-label',
-	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
-	          },
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Header,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Modal.Title,
-	              null,
-	              'Getting Started'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Body,
-	            null,
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Create your first bucket by clicking on + icon on the bottom of the sidebar.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Search for activities by clicking on + icon on the bottom right.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Add activity to your bucket by clicking on the paper pencil icon on the activity card.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Delete an activity from a bucket by clicking on the trash icon on the activity card.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Create a bucket list with friends by clicking on Groups on the navbar.'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Footer,
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
-	                  _this2.props.close();
-	                } },
-	              'Close'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return HelpModal;
-	}(_react2.default.Component);
-
-	exports.default = HelpModal;
-
-/***/ },
+/* 519 */,
 /* 520 */
 /***/ function(module, exports) {
 
