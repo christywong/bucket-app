@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal , Button, FormControl, Pager} from 'react-bootstrap';
+import { Modal , Button, FormControl, Pager, Table} from 'react-bootstrap';
 
 export default class AddMemberModal extends React.Component{
   constructor(props){
@@ -37,7 +37,7 @@ export default class AddMemberModal extends React.Component{
                 this.props.close();
               }}>&times;</Button>
               <Modal.Title>
-                Add Friends
+                Friends List
               </Modal.Title>
             </Modal.Header>
             <Modal.Body className="modal-body">
@@ -51,17 +51,26 @@ export default class AddMemberModal extends React.Component{
                   placeholder="Friend Name"
                   name="new-member-name"/>
               </div>
-              <div>
-                <h1>
-                  Friends List
-                </h1>
-                {this.props.friendsList.map((friend)=>(
-                  <p key = {friend._id}>
-                    {friend.name}
-                  </p>
-                ))}
+              <div style={{marginTop: 20}}>
+                <Table striped bordered condensed >
+                  <thead>
+                    <tr>
+                      <th>
+                        Username
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.props.friendsList.map((friend)=>(
+                      <tr key = {friend._id}>
+                        <td>
+                          {friend.name}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
               </div>
-
             </Modal.Body>
             <Modal.Footer>
               <Button onClick = {()=>{

@@ -56132,7 +56132,7 @@
 	            _react2.default.createElement(
 	              _reactBootstrap.Modal.Title,
 	              null,
-	              'Add Friends'
+	              'Friends List'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -56154,19 +56154,39 @@
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              null,
+	              { style: { marginTop: 20 } },
 	              _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Friends List'
-	              ),
-	              this.props.friendsList.map(function (friend) {
-	                return _react2.default.createElement(
-	                  'p',
-	                  { key: friend._id },
-	                  friend.name
-	                );
-	              })
+	                _reactBootstrap.Table,
+	                { striped: true, bordered: true, condensed: true },
+	                _react2.default.createElement(
+	                  'thead',
+	                  null,
+	                  _react2.default.createElement(
+	                    'tr',
+	                    null,
+	                    _react2.default.createElement(
+	                      'th',
+	                      null,
+	                      'Username'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'tbody',
+	                  null,
+	                  this.props.friendsList.map(function (friend) {
+	                    return _react2.default.createElement(
+	                      'tr',
+	                      { key: friend._id },
+	                      _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        friend.name
+	                      )
+	                    );
+	                  })
+	                )
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
