@@ -42,6 +42,7 @@ const config = {
       { from: 'src/static/index.html', to: '../'},
       { from: 'src/static/404.html', to: '../'},
       { from: 'src/static/app.html', to: '../'},
+      { from: 'src/static/app2.html', to: '../'},
       { from: 'src/static/home.html', to: '../'},
       { from: 'src/static/archive.html', to: '../'},
       { from: 'src/static/settings.html', to: '../'},

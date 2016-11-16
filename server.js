@@ -33,6 +33,10 @@ app.get('/app', function(req,res){
   res.sendFile(path.join(__dirname, '/public/app.html'));
 });
 
+app.get('/app2', function(req,res){
+  res.sendFile(path.join(__dirname, '/public/app2.html'));
+});
+
 app.post('/api/postData', function(req,res){
   console.log('saving data');
   console.log(req.body);
