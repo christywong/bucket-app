@@ -21,7 +21,7 @@ export default class App extends React.Component{
       showModal: false,
       currentBucket: '0',
       currentGroup: '',
-      currentUser: 'Daniel',
+      currentUser: 'testuser',
       currentUserId: '',
       showBucketModal: false,
       showGroupModal: false,

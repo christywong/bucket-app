@@ -184,9 +184,13 @@ export default class Component extends React.Component {
                   : null
                 }
                 <div
+                  className='mybucket-btn'><i className="fa fa-home" aria-hidden="true"></i>
+                </div>
+                <div
                   className='add-btn'
                   onClick = {this.showModal}>+</div>
               </div>
+
             </div>
           )
         }
