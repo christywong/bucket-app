@@ -25,7 +25,6 @@ export default class Sidebar extends React.Component{
     var allBucket = list.filter((bucket)=>(bucket.typeOfBucket === 1))[0];
     var archiveBucket = list.filter((bucket)=>(bucket.typeOfBucket === 2))[0];
 
-    console.log('allBucket is: ', allBucket);
     const deletePopover = (
       <Popover
         id="popover-trigger-click-root-close"
@@ -48,11 +47,13 @@ export default class Sidebar extends React.Component{
 
         return(
           <div className='sidebar'>
-            <Button
+            <h3 className="tags-title">Tags
+              <i
+              className="fa fa-plus-square"
               id="create-bucket-button"
-              onClick={this.props.showBucketModal}>
-              Create a Bucket
-            </Button>
+              onClick={this.props.showBucketModal} /> </h3>
+
+            <div className='sidebar-tags'>
             {
               allBucket ?
               <Bucket
@@ -98,6 +99,8 @@ export default class Sidebar extends React.Component{
                   />
                 : null
               }
+              </div>
+
             </div>
           );
         }

@@ -184,7 +184,9 @@ export default class Component extends React.Component {
                   : null
                 }
                 <div
-                  className='mybucket-btn'><i className="fa fa-home" aria-hidden="true"></i>
+                  className='mybucket-btn'
+                  onClick = {()=>{this.props.changeMyBucket()}} >
+                  <i className="fa fa-home" aria-hidden="true"></i>
                 </div>
                 <div
                   className='add-btn'
