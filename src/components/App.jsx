@@ -108,6 +108,8 @@ export default class App extends React.Component{
             close={this.closeAddGroupModal}
             visibility={this.state.showGroupModal}
             addGroup={this.addGroup}
+            groups = {this.state.listOfGroups}
+            changeGroup = {this.changeGroup}
             />
           :null
         }
@@ -433,6 +435,7 @@ export default class App extends React.Component{
           me.setState({
             listOfGroups: newGroupList
           });
+          me.changeGroup(result._id);
         } else{
           console.log('Ooops an error occured');
         }
