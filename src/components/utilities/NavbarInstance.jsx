@@ -118,7 +118,8 @@ export default class NavbarInstance extends React.Component {
     const currentGroup = this.props.groups ? this.props.groups : [];
 
     const activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
-    const showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? "Add Friends" : null;
+    const showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? 
+                              ( <NavItem eventKey={2.4} onClick={this.props.showMember}> Add Friends</NavItem> ) : null;
 
     return (
       <Navbar
@@ -141,11 +142,7 @@ export default class NavbarInstance extends React.Component {
         <Navbar.Collapse>
           <Nav pullRight>
 
-            <NavItem
-              eventKey={2.4}
-              onClick={this.props.showMember}>
-              {showAddFriendsTab}
-            </NavItem>
+            {showAddFriendsTab}
 
             <NavDropdown
               eventKey={3}
