@@ -4,8 +4,8 @@
 <head>
   <meta name="viewport" content="width=device-width">
   <title>Bucket</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
   <link href="styles/main.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -20,7 +20,7 @@
 <div class="form">
   <div class="thumbnail"><img class="bucket-logo" src="images/bucket-logo.png"/></div>
 
-  <form class="register-form">
+  <form class="register-form" onsubmit="changePassword();">
     <input type="text" placeholder="Name"/>
     <input type="password" placeholder="Password"/>
     <input type="text" placeholder="Email Address"/>
@@ -29,6 +29,7 @@
   </form>
 
   <form class="login-form">
+    <div class= "alert alert-danger errorLogin" id= "errorMsg" style="display: none"></div>
     <input name="username" type="text" placeholder="Username"/>
     <input name="password" type="password" placeholder="Password"/>
     <button id="login-button">Log In</button>

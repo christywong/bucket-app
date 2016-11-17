@@ -9,13 +9,23 @@ export default class AccountSettingsModal extends React.Component{
   changePassword(){
     var password = document.getElementsByName('password')[0].value;
     var confirmPassword = document.getElementsByName('confirm-password')[0].value;
+    var mismatch = document.getElementById('errorMsg').innerHTML="<span class='errormsg'>Passwords do not match.</span>";
 
     if(password === confirmPassword){
+     document.getElementsByName('password')[0].style.border='1px solid black';
+     document.getElementsByName('confirm-password')[0].style.border='1px solid black';
+
       this.props.changePassword(password);
       this.props.close();
       alert('Password Changed');
     }
+     else{
+     mismatch;
+     document.getElementsByName('password')[0].style.border='2px solid red';
+     document.getElementsByName('confirm-password')[0].style.border='2px solid red';
+    } 
   }
+
 
   render(){
     var {close} = this.props;
@@ -48,6 +58,7 @@ export default class AccountSettingsModal extends React.Component{
               <form className="form-horizontal">
                 <fieldset>
 
+
                   <div className="form-group">
                     <label
                       className="col-md-4 control-label"
@@ -79,6 +90,8 @@ export default class AccountSettingsModal extends React.Component{
                         type="password">
                       </input>
                     </div>
+                     <div className = "col-md-4 col-md-offset-4" id="errorMsg"></div>
+
                   </div>
 
                 </fieldset>
@@ -94,9 +107,7 @@ export default class AccountSettingsModal extends React.Component{
                   id="save-btn"
                   name="singlebutton"
                   onClick = {()=>{
-                    this.changePassword();
-                    this.setState({showModal:false});
-                    this.props.close();
+                    this.changePassword();                    
                   }}>Save</Button>
                 </Modal.Footer>
 

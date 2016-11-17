@@ -42,6 +42,8 @@ html {
     border-bottom-left-radius: 100%;
     border-bottom-right-radius: 100%;
     box-sizing: border-box;
+    background-color: transparent;
+    border: none;
 }
 
 .form .thumbnail img {
@@ -63,6 +65,16 @@ html {
     border-bottom-right-radius: 3px;
     box-sizing: border-box;
     font-size: 14px;
+
+}
+
+.errormsg {
+  color: red;
+  font-size: 13px;
+}
+
+.errorLogin {
+    font-size: 13px
 }
 
 .form button {

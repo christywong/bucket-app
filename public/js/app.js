@@ -55885,11 +55885,19 @@
 	    value: function changePassword() {
 	      var password = document.getElementsByName('password')[0].value;
 	      var confirmPassword = document.getElementsByName('confirm-password')[0].value;
+	      var mismatch = document.getElementById('errorMsg').innerHTML = "<span class='errormsg'>Passwords do not match.</span>";
 
 	      if (password === confirmPassword) {
+	        document.getElementsByName('password')[0].style.border = '1px solid black';
+	        document.getElementsByName('confirm-password')[0].style.border = '1px solid black';
+
 	        this.props.changePassword(password);
 	        this.props.close();
 	        alert('Password Changed');
+	      } else {
+	        mismatch;
+	        document.getElementsByName('password')[0].style.border = '2px solid red';
+	        document.getElementsByName('confirm-password')[0].style.border = '2px solid red';
 	      }
 	    }
 	  }, {
@@ -55983,7 +55991,8 @@
 	                      name: 'confirm-password',
 	                      placeholder: 'Confirm Password',
 	                      type: 'password' })
-	                  )
+	                  ),
+	                  _react2.default.createElement('div', { className: 'col-md-4 col-md-offset-4', id: 'errorMsg' })
 	                )
 	              )
 	            )
@@ -56006,8 +56015,6 @@
 	                name: 'singlebutton',
 	                onClick: function onClick() {
 	                  _this2.changePassword();
-	                  _this2.setState({ showModal: false });
-	                  _this2.props.close();
 	                } },
 	              'Save'
 	            )
