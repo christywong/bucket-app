@@ -242,14 +242,14 @@ body:before {
     position: absolute;
     height: 100%;
     width: 225px;
-    //background-color: $primary-gray;
     background-color: $white;
     margin: 0;
     overflow: scroll;
     padding-top: 50px;
+    border-right: solid 1px #D3D3DD;
 
     .tags-title{
-      color: white;
+      color: #333;
       margin-left: 20px;
       padding-top: 4px;
       padding-bottom: 4px;
@@ -271,11 +271,11 @@ body:before {
           // position: fixed;
           // bottom: 0;
           // margin-bottom: 20px;
-          color: white;
+          color: $orange;
           padding-left: 10px;
           font-size: 18px;
           &:hover{
-            color: $hover-blue;
+            color: $orange-darken;
           }
       }
     }
@@ -437,7 +437,7 @@ body:before {
     h4 {
         margin-left: 20px;
         padding: 15px;
-        color: #777;
+        color: #313131;
         margin-top: 0;
         margin-bottom: 0;
     }
@@ -446,12 +446,15 @@ body:before {
 
 .active {
     background-color: $primary-blue-hover;
+
     background-color: #147689;
+    background-color: #5a9fac;
 }
 
 .bucket-tags:hover {
     background-color: $primary-blue-hover;
     background-color: #147689;
+    background-color: #5a9fac;
 }
 
 
@@ -591,7 +594,7 @@ body:before {
 }
 
 #delete-bucket-icon {
-    color: #fff;
+    color: #313131;
     float: right;
 }
 
@@ -626,3 +629,12 @@ body:before {
 // .modal-content{
 //   border: 0 !important;
 // }
+
+.fake-loader-overlay{
+  height: 100vh;
+  width: 100vw;
+  z-index: 5000;
+  background-color: white;
+  opacity: .6;
+  position: absolute;
+}

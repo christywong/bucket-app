@@ -190,19 +190,20 @@ body:before {
   background-color: #f4f4f6;
   margin: 0;
   overflow: scroll;
-  padding-top: 50px; }
+  padding-top: 50px;
+  border-right: solid 1px #D3D3DD; }
   .sidebar .tags-title {
-    color: white;
+    color: #333;
     margin-left: 20px;
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 15px; }
     .sidebar .tags-title #create-bucket-button {
-      color: white;
+      color: #F48B4C;
       padding-left: 10px;
       font-size: 18px; }
       .sidebar .tags-title #create-bucket-button:hover {
-        color: #147689; }
+        color: #db7d44; }
 
 .searchWrapper {
   margin-top: 75px;
@@ -323,17 +324,19 @@ body:before {
   .bucket-tags h4 {
     margin-left: 20px;
     padding: 15px;
-    color: #777;
+    color: #313131;
     margin-top: 0;
     margin-bottom: 0; }
 
 .active {
   background-color: #184067;
-  background-color: #147689; }
+  background-color: #147689;
+  background-color: #5a9fac; }
 
 .bucket-tags:hover {
   background-color: #184067;
-  background-color: #147689; }
+  background-color: #147689;
+  background-color: #5a9fac; }
 
 .p-no-margin {
   margin: 0; }
@@ -443,7 +446,7 @@ body:before {
   color: #373a47; }
 
 #delete-bucket-icon {
-  color: #fff;
+  color: #313131;
   float: right; }
 
 .addInput {
@@ -468,3 +471,10 @@ body:before {
         border: 1px solid rgba(0,0,0,.15) !important;
     }
 }*/
+.fake-loader-overlay {
+  height: 100vh;
+  width: 100vw;
+  z-index: 5000;
+  background-color: white;
+  opacity: .6;
+  position: absolute; }

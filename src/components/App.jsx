@@ -10,6 +10,7 @@ import AddGroupModal from './modals/AddGroupModal';
 import AddMemberModal from './modals/AddMemberModal';
 import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
+var Loader = require('react-loader');
 //import AddModal from './modals/AddCardModal';
 
 export default class App extends React.Component{
@@ -27,8 +28,9 @@ export default class App extends React.Component{
       showGroupModal: false,
       showMemberModal: false,
       showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
-      showAccountSettingsModal: false
-      }
+      showAccountSettingsModal: false,
+      pageLoaded: true
+    }
 
     this.changeGroup = this.changeGroup.bind(this);
     this.addGroup = this.addGroup.bind(this);
@@ -81,6 +83,18 @@ export default class App extends React.Component{
     let close = () => this.setState({ showModal2: false});
     return (
       <div>
+        <Loader
+          loaded={this.state.pageLoaded}
+          lines={13}
+          length={20}
+          width={10}
+          radius={30}
+          corners={1} rotate={0} direction={1} color="#000" speed={1}
+          trail={60} shadow={false} hwaccel={false} className="spinner"
+          zIndex={2e9} top="50%" left="50%" scale={1.00}
+          loadedClassName="loadedContent" >
+        </Loader>
+        {!this.state.pageLoaded ? <div className="fake-loader-overlay" /> : null}
         <NavbarInstance
           currentGroup ={this.state.data}
           groups = {this.state.listOfGroups}
@@ -149,6 +163,7 @@ export default class App extends React.Component{
           deleteCard = {this.deleteCard}
           changeMyBucket = {this.changeMyBucket}
         />
+
       </div>
     );
   }
@@ -230,6 +245,15 @@ export default class App extends React.Component{
   }
 
   changeMyBucket(){
+    this.setState({
+      pageLoaded: false
+    });
+
+    setTimeout(function(){
+      this.setState({
+        pageLoaded: true
+      })
+    }.bind(this), 200);
     this.changeGroup("582519efea7d4e04653aafda");
   }
 
