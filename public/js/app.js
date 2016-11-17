@@ -144,7 +144,7 @@
 	      showModal: false,
 	      currentBucket: '0',
 	      currentGroup: '',
-	      currentUser: 'Daniel',
+	      currentUser: 'testuser',
 	      currentUserId: '',
 	      showBucketModal: false,
 	      showGroupModal: false,
@@ -5143,6 +5143,12 @@
 	          }) : null,
 	          groupCards,
 	          this.state.showSettingsModal ? _react2.default.createElement(AccountSettingsModal, { close: this.closeAccountSettingsModal }) : null,
+	          _react2.default.createElement(
+	            'div',
+	            {
+	              className: 'mybucket-btn' },
+	            _react2.default.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
+	          ),
 	          _react2.default.createElement(
 	            'div',
 	            {
@@ -36526,7 +36532,6 @@
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
 
-
 /***/ },
 /* 390 */
 /***/ function(module, exports, __webpack_require__) {
@@ -55717,6 +55722,8 @@
 	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
 
+	      var activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
+
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        {
@@ -55750,24 +55757,26 @@
 	              {
 	                eventKey: 2.4,
 	                onClick: this.props.showMember },
-	              'Friends'
+	              'Add Friends'
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
 	              {
 	                eventKey: 3,
 	                id: 'groups-dropdown',
-	                title: 'Groups' },
+	                title: activeGroupTitle },
 	              currentGroup.map(function (group) {
-	                return _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  {
-	                    key: group._id,
-	                    onClick: function onClick() {
-	                      _this2.props.changeGroup(group._id);
-	                    } },
-	                  group.title
-	                );
+	                if (group.title != "My Bucket") {
+	                  return _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    {
+	                      key: group._id,
+	                      onClick: function onClick() {
+	                        _this2.props.changeGroup(group._id);
+	                      } },
+	                    group.title
+	                  );
+	                }
 	              }),
 	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
 	              _react2.default.createElement(

@@ -125,6 +125,8 @@ export default class NavbarInstance extends React.Component {
     ? this.props.groups
     : [];
 
+    const activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
+
     return (
       <Navbar
         style={{
@@ -149,23 +151,25 @@ export default class NavbarInstance extends React.Component {
             <NavItem
               eventKey={2.4}
               onClick={this.props.showMember}>
-              Friends
+              Add Friends
             </NavItem>
 
             <NavDropdown
               eventKey={3}
               id="groups-dropdown"
-              title="Groups">
+              title={activeGroupTitle}>
               {currentGroup.map((group) => {
-                return (
-                  <MenuItem
-                    key={group._id}
-                    onClick={() => {
-                      this.props.changeGroup(group._id)
-                    }}>
-                    {group.title}
-                  </MenuItem>
-                )
+                if (group.title != "My Bucket") {
+                  return (
+                    <MenuItem
+                      key={group._id}
+                      onClick={() => {
+                        this.props.changeGroup(group._id)
+                      }}>
+                      {group.title}
+                    </MenuItem>
+                  )
+                }
               })}
 
               <MenuItem divider/>
