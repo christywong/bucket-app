@@ -42,7 +42,9 @@ export default class Cards extends React.Component{
         </div>
 
         <div className="card-header center-block">
+          <a href={card.yelpUrl} target="_blank"> 
           <h4 className="card-title" style={{margin: 0}}>{card.title}</h4>
+          </a> 
         </div>
 
         <div className="card-left">
