@@ -111,21 +111,14 @@ export default class NavbarInstance extends React.Component {
   }
 
   render() {
-    const currentGroupId = this.props.currentGroup
-    ? this.props.currentGroup.id
-    : null;
-    const currentGroupTitle = this.props.currentGroup.title
-    ? this.props.currentGroup.title
-    : " ";
-    const currentGroupMembers = this.props.currentGroup
-    ? this.props.currentGroup.members
-    : null;
+    const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
+    const currentGroupTitle = this.props.currentGroup.title ? this.props.currentGroup.title : " ";
+    const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
     console.log(currentGroupMembers);
-    const currentGroup = this.props.groups
-    ? this.props.groups
-    : [];
+    const currentGroup = this.props.groups ? this.props.groups : [];
 
     const activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
+    const showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? "Add Friends" : null;
 
     return (
       <Navbar
@@ -151,7 +144,7 @@ export default class NavbarInstance extends React.Component {
             <NavItem
               eventKey={2.4}
               onClick={this.props.showMember}>
-              Add Friends
+              {showAddFriendsTab}
             </NavItem>
 
             <NavDropdown

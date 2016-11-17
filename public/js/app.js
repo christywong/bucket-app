@@ -162,6 +162,7 @@
 	    _this.changeSelectedBucket = _this.changeSelectedBucket.bind(_this);
 	    _this.addCard = _this.addCard.bind(_this);
 	    _this.deleteCard = _this.deleteCard.bind(_this);
+	    _this.changeMyBucket = _this.changeMyBucket.bind(_this);
 
 	    //Bind modal listeners
 	    _this.showAccountSettingsModal = _this.showAccountSettingsModal.bind(_this);
@@ -257,7 +258,8 @@
 	          showBucketModal: this.showAddBucketModal,
 	          changeSelected: this.changeSelectedBucket,
 	          addCard: this.addCard,
-	          deleteCard: this.deleteCard
+	          deleteCard: this.deleteCard,
+	          changeMyBucket: this.changeMyBucket
 	        })
 	      );
 	    }
@@ -353,6 +355,11 @@
 	        currentBucket: '0'
 	      });
 	      this.loadJSONData(newGroupId);
+	    }
+	  }, {
+	    key: 'changeMyBucket',
+	    value: function changeMyBucket() {
+	      this.changeGroup("582519efea7d4e04653aafda");
 	    }
 
 	    /**
@@ -5146,7 +5153,10 @@
 	          _react2.default.createElement(
 	            'div',
 	            {
-	              className: 'mybucket-btn' },
+	              className: 'mybucket-btn',
+	              onClick: function onClick() {
+	                _this2.props.changeMyBucket();
+	              } },
 	            _react2.default.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
@@ -41700,7 +41710,6 @@
 	        return bucket.typeOfBucket === 2;
 	      })[0];
 
-	      console.log('allBucket is: ', allBucket);
 	      var deletePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        {
@@ -41733,47 +41742,54 @@
 	        'div',
 	        { className: 'sidebar' },
 	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          {
+	          'h3',
+	          { className: 'tags-title' },
+	          'Tags',
+	          _react2.default.createElement('i', {
+	            className: 'fa fa-plus-square',
 	            id: 'create-bucket-button',
-	            onClick: this.props.showBucketModal },
-	          'Create a Bucket'
+	            onClick: this.props.showBucketModal }),
+	          ' '
 	        ),
-	        allBucket ? _react2.default.createElement(_Buckets2.default, {
-	          changeStateBucket: this.props.changeStateBucket,
-	          key: allBucket.id,
-	          bucketId: allBucket.id,
-	          bucketName: allBucket.title,
-	          active: this.props.selectedBucket === allBucket.id ? "active" : null
-	        }) : null,
-	        createdBuckets.map(function (bucket) {
-	          return _react2.default.createElement(_Buckets2.default, {
-	            changeStateBucket: _this2.props.changeStateBucket,
-	            key: bucket.id,
-	            bucketId: bucket.id,
-	            bucketName: bucket.title,
-	            active: _this2.props.selectedBucket === bucket.id ? "active" : null,
-	            showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
-	              _reactBootstrap.OverlayTrigger,
-	              {
-	                ref: 'deleteOverlay',
-	                trigger: 'click',
-	                rootClose: true,
-	                placement: 'top',
-	                overlay: deletePopover },
-	              _react2.default.createElement('i', {
-	                className: 'fa fa-trash-o',
-	                'aria-hidden': 'true',
-	                id: 'delete-bucket-icon' })
-	            ) : null });
-	        }),
-	        archiveBucket ? _react2.default.createElement(_Buckets2.default, {
-	          changeStateBucket: this.props.changeStateBucket,
-	          key: archiveBucket.id,
-	          bucketId: archiveBucket.id,
-	          bucketName: archiveBucket.title,
-	          active: this.props.selectedBucket === archiveBucket.id ? "active" : null
-	        }) : null
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'sidebar-tags' },
+	          allBucket ? _react2.default.createElement(_Buckets2.default, {
+	            changeStateBucket: this.props.changeStateBucket,
+	            key: allBucket.id,
+	            bucketId: allBucket.id,
+	            bucketName: allBucket.title,
+	            active: this.props.selectedBucket === allBucket.id ? "active" : null
+	          }) : null,
+	          createdBuckets.map(function (bucket) {
+	            return _react2.default.createElement(_Buckets2.default, {
+	              changeStateBucket: _this2.props.changeStateBucket,
+	              key: bucket.id,
+	              bucketId: bucket.id,
+	              bucketName: bucket.title,
+	              active: _this2.props.selectedBucket === bucket.id ? "active" : null,
+	              showDeleteIcon: _this2.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? _react2.default.createElement(
+	                _reactBootstrap.OverlayTrigger,
+	                {
+	                  ref: 'deleteOverlay',
+	                  trigger: 'click',
+	                  rootClose: true,
+	                  placement: 'top',
+	                  overlay: deletePopover },
+	                _react2.default.createElement('i', {
+	                  className: 'fa fa-trash-o',
+	                  'aria-hidden': 'true',
+	                  id: 'delete-bucket-icon' })
+	              ) : null });
+	          }),
+	          archiveBucket ? _react2.default.createElement(_Buckets2.default, {
+	            changeStateBucket: this.props.changeStateBucket,
+	            key: archiveBucket.id,
+	            bucketId: archiveBucket.id,
+	            bucketName: archiveBucket.title,
+	            active: this.props.selectedBucket === archiveBucket.id ? "active" : null
+	          }) : null
+	        )
 	      );
 	    }
 	  }]);
@@ -55723,6 +55739,7 @@
 	      var currentGroup = this.props.groups ? this.props.groups : [];
 
 	      var activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
+	      var showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? "Add Friends" : null;
 
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
@@ -55757,7 +55774,7 @@
 	              {
 	                eventKey: 2.4,
 	                onClick: this.props.showMember },
-	              'Add Friends'
+	              showAddFriendsTab
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
