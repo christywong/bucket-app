@@ -29,7 +29,8 @@ export default class App extends React.Component{
       showMemberModal: false,
       showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
       showAccountSettingsModal: false,
-      pageLoaded: true
+      pageLoaded: false,
+      fakeLoader: true
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -78,23 +79,27 @@ export default class App extends React.Component{
     this.loadJSONData(currentGroupId);
     this.getAllGroups();
   }
-
+/*
+<Loader
+  loaded={this.state.fakeLoader}
+  lines={13}
+  length={20}
+  width={10}
+  radius={30}
+  corners={1} rotate={0} direction={1} color="#000" speed={1}
+  trail={60} shadow={false} hwaccel={false} className="spinner"
+  zIndex={2e9} top="50%" left="50%" scale={1.00}
+  loadedClassName="loadedContent" >
+</Loader>
+{!this.state.fakeLoader ? <div className="fake-loader-overlay" /> : null}
+*/
   render(){
     let close = () => this.setState({ showModal2: false});
     return (
       <div>
         <Loader
           loaded={this.state.pageLoaded}
-          lines={13}
-          length={20}
-          width={10}
-          radius={30}
-          corners={1} rotate={0} direction={1} color="#000" speed={1}
-          trail={60} shadow={false} hwaccel={false} className="spinner"
-          zIndex={2e9} top="50%" left="50%" scale={1.00}
-          loadedClassName="loadedContent" >
-        </Loader>
-        {!this.state.pageLoaded ? <div className="fake-loader-overlay" /> : null}
+        >
         <NavbarInstance
           currentGroup ={this.state.data}
           groups = {this.state.listOfGroups}
@@ -156,8 +161,8 @@ export default class App extends React.Component{
           currentGroupData ={this.state.data}
           allGroups = {this.state.data.tags}
           currentBucketId = {this.state.currentBucket}
-          addBucket = {this.addBucket}
           currentGroup = {this.state.currentGroup}
+          addBucket = {this.addBucket}
           deleteBucket = {this.deleteBucket}
           showBucketModal = {this.showAddBucketModal}
           changeSelected = {this.changeSelectedBucket}
@@ -165,6 +170,7 @@ export default class App extends React.Component{
           deleteCard = {this.deleteCard}
           changeMyBucket = {this.changeMyBucket}
         />
+    </Loader>
 
       </div>
     );
@@ -241,19 +247,20 @@ export default class App extends React.Component{
     const newGroup = this.state.listOfGroups.filter((group)=>(newGroupId===group.id))[0];
     this.setState({
       currentGroup: newGroupId,
-      currentBucket: '0'
+      currentBucket: '0',
+      pageLoaded: false
     })
     this.loadJSONData(newGroupId);
   }
 
   changeMyBucket(){
     this.setState({
-      pageLoaded: false
+      fakeLoader: false
     });
 
     setTimeout(function(){
       this.setState({
-        pageLoaded: true
+        fakeLoader: true
       })
     }.bind(this), 200);
     this.changeGroup("582519efea7d4e04653aafda");
@@ -362,7 +369,8 @@ export default class App extends React.Component{
         if(xhr.status === 200){
           var result = xhr.response;
           me.setState({
-            data: result
+            data: result,
+            pageLoaded: true
           });
         } else{
           console.log('Ooops an error occured');

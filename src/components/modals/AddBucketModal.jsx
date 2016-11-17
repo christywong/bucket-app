@@ -20,8 +20,8 @@ export default class AddBucketModal extends React.Component{
 
   render() {
     const backdropStyle = {
-      zIndex: 'auto',
-      backgroundColor: '#000',
+      zIndex: '1000',
+      backgroundColor: '#fff',
       opacity: 0.8
     };
     return (
@@ -29,19 +29,19 @@ export default class AddBucketModal extends React.Component{
         <Modal
           aria-labelledby='modal-label'
           backdropStyle={backdropStyle}
-          show={this.props.visibility}  
+          show={this.props.visibility}
         >
           <Modal.Header>
             <Button className="close" onClick = {()=>{
                 this.props.close();
                }}>&times;</Button>
             <Modal.Title>
-              Create a Bucket
+              Create a New Tag
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body">
             <div>
-              <label>Name Your Bucket</label>
+              <label>Name Your Tag</label>
               <input
                 className = 'addInput'
                 type="text"
@@ -54,7 +54,7 @@ export default class AddBucketModal extends React.Component{
               this.props.close();
               }}>Close</Button>
             <Button className="btn btn-primary" onClick={this.addBucket}>Create</Button>
-          </Modal.Footer>      
+          </Modal.Footer>
         </Modal>
       </div>
     );

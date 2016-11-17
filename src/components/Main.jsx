@@ -40,7 +40,7 @@ export default class Component extends React.Component {
 
   //Initialize the Main component on start or whenever this component recieves props
   componentWillMount(){
-    this.initializeBucket(this.props.currentGroupData);
+    this.initializeBucket(this.props);
   }
   componentWillReceiveProps(nextProps){
     this.initializeBucket(nextProps);
@@ -295,12 +295,13 @@ export default class Component extends React.Component {
         //Initialize our State whenever we update a prop from App.
         //This will keep the Main Component updated with whatever changes were made to App
         initializeBucket(buckets){
+          console.log('...initializing bucking ', buckets);
           const currentBucket = buckets.currentGroupData;
           const selected = currentBucket ? currentBucket.activities : null;
           const listOfBuckets = currentBucket ? currentBucket.tags : [];
           const currentGroup = currentBucket ? currentBucket._id : 0;
           this.filterTags(buckets.currentGroupId);
-
+          console.log('all cards ', selected);
           //set our state initially
           this.setState({
             bucketList      : listOfBuckets,
