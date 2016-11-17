@@ -38,6 +38,7 @@ var loginUser = function(username,password){
           window.location = '/app';
         }
         else{
+          $('#errorMsg').show().text("Invalid Username/Password");
           console.log('incorrect credentials');
         }
       } else{
