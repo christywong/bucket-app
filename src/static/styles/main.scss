@@ -12,6 +12,8 @@ $hover-blue: #147689;
 $hover-blue-darken: #126a7b;
 $pink: #ef3340;
 $pink-darken: #bf2833;
+$orange: #F48B4C;
+$orange-darken: #db7d44;
 
 body,
 html {
@@ -169,7 +171,7 @@ body:before {
     justify-content: center;
     align-content: flex-start;
     align-items: flex-start;
-
+    background-color: $white;
     .card-style {
         width: 200px;
         height: 175px;
@@ -240,11 +242,45 @@ body:before {
     position: absolute;
     height: 100%;
     width: 225px;
-    background-color: $primary-gray;
+    //background-color: $primary-gray;
+    background-color: $white;
     margin: 0;
     overflow: scroll;
     padding-top: 50px;
+
+    .tags-title{
+      color: white;
+      margin-left: 20px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 15px;
+      // span{
+      //   font-size: 24px;
+      // }
+      #create-bucket-button {
+          // margin-left: 30px;
+          // padding: 10px;
+          // background-color: #fff;
+          // color: $hover-blue;
+          // border: none;
+          // border-radius: 5px;
+          // text-align: center;
+          // text-decoration: none;
+          // display: inline-block;
+          // font-size: 16px;
+          // position: fixed;
+          // bottom: 0;
+          // margin-bottom: 20px;
+          color: white;
+          padding-left: 10px;
+          font-size: 18px;
+          &:hover{
+            color: $hover-blue;
+          }
+      }
+    }
 }
+
 
 .searchWrapper {
     margin-top: 75px;
@@ -352,7 +388,7 @@ body:before {
   position: fixed;
   line-height: 45px;
   text-align: center;
-  background-color: $pink;
+  background-color: $orange;
   color: white;
   cursor: pointer;
   right: 40px;
@@ -361,8 +397,11 @@ body:before {
   width: 50px;
   height: 50px;
   font-size: 28px;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
   &:hover{
-    background-color: $pink-darken;
+    background-color: $orange-darken;
   }
 }
 
@@ -385,14 +424,24 @@ body:before {
     width: 50px;
     height: 50px;
     font-size: 28px;
-}
-
-.add-btn:hover {
-    background-color: $hover-blue-darken;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
+    &:hover{
+        background-color: $hover-blue-darken;
+    }
 }
 
 .bucket-tags {
     cursor: pointer;
+    h4 {
+        margin-left: 20px;
+        padding: 15px;
+        color: #777;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
 }
 
 .active {
@@ -405,33 +454,12 @@ body:before {
     background-color: #147689;
 }
 
-.bucket-tags h4 {
-    margin-left: 20px;
-    padding: 15px;
-    color: $white;
-    margin-top: 0;
-    margin-bottom: 0;
-}
 
-#create-bucket-button {
-    margin-left: 30px;
-    padding: 10px;
-    background-color: #fff;
-    color: $hover-blue;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 20px;
-}
 
-#create-bucket-button:hover {
-    background-color: #d2d2d2;
-}
+//
+// #create-bucket-button:hover {
+//     background-color: #d2d2d2;
+// }
 
 .p-no-margin {
     margin: 0;
@@ -522,9 +550,9 @@ body:before {
 }
 
 #group-title-nav {
-    font-size: 32px;
-    color: $pink;
-    font-weight: bold;
+    font-size: 36px;
+    color: $hover-blue;
+    font-weight: 500;
 
 }
 @media (min-width: $breakpoint-tablet) {

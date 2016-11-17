@@ -39,6 +39,7 @@ export default class App extends React.Component{
     this.changeSelectedBucket = this.changeSelectedBucket.bind(this);
     this.addCard = this.addCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.changeMyBucket = this.changeMyBucket.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -146,6 +147,7 @@ export default class App extends React.Component{
           changeSelected = {this.changeSelectedBucket}
           addCard = {this.addCard}
           deleteCard = {this.deleteCard}
+          changeMyBucket = {this.changeMyBucket}
         />
       </div>
     );
@@ -225,6 +227,10 @@ export default class App extends React.Component{
       currentBucket: '0'
     })
     this.loadJSONData(newGroupId);
+  }
+
+  changeMyBucket(){
+    this.changeGroup("582519efea7d4e04653aafda");
   }
 
   /**

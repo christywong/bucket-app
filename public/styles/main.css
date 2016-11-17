@@ -131,7 +131,8 @@ body:before {
   overflow-y: scroll;
   justify-content: center;
   align-content: flex-start;
-  align-items: flex-start; }
+  align-items: flex-start;
+  background-color: #f4f4f6; }
   .main-container .card-style {
     width: 200px;
     height: 175px;
@@ -186,10 +187,22 @@ body:before {
   position: absolute;
   height: 100%;
   width: 225px;
-  background-color: #373a47;
+  background-color: #f4f4f6;
   margin: 0;
   overflow: scroll;
   padding-top: 50px; }
+  .sidebar .tags-title {
+    color: white;
+    margin-left: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 15px; }
+    .sidebar .tags-title #create-bucket-button {
+      color: white;
+      padding-left: 10px;
+      font-size: 18px; }
+      .sidebar .tags-title #create-bucket-button:hover {
+        color: #147689; }
 
 .searchWrapper {
   margin-top: 75px;
@@ -267,7 +280,7 @@ body:before {
   position: fixed;
   line-height: 45px;
   text-align: center;
-  background-color: #ef3340;
+  background-color: #F48B4C;
   color: white;
   cursor: pointer;
   right: 40px;
@@ -275,9 +288,12 @@ body:before {
   border-radius: 50px;
   width: 50px;
   height: 50px;
-  font-size: 28px; }
+  font-size: 28px;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4); }
   .mybucket-btn:hover {
-    background-color: #bf2833; }
+    background-color: #db7d44; }
 
 .fa-home {
   color: white !important;
@@ -295,13 +311,21 @@ body:before {
   border-radius: 50px;
   width: 50px;
   height: 50px;
-  font-size: 28px; }
-
-.add-btn:hover {
-  background-color: #126a7b; }
+  font-size: 28px;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4); }
+  .add-btn:hover {
+    background-color: #126a7b; }
 
 .bucket-tags {
   cursor: pointer; }
+  .bucket-tags h4 {
+    margin-left: 20px;
+    padding: 15px;
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 0; }
 
 .active {
   background-color: #184067;
@@ -310,31 +334,6 @@ body:before {
 .bucket-tags:hover {
   background-color: #184067;
   background-color: #147689; }
-
-.bucket-tags h4 {
-  margin-left: 20px;
-  padding: 15px;
-  color: #f4f4f6;
-  margin-top: 0;
-  margin-bottom: 0; }
-
-#create-bucket-button {
-  margin-left: 30px;
-  padding: 10px;
-  background-color: #fff;
-  color: #147689;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  position: fixed;
-  bottom: 0;
-  margin-bottom: 20px; }
-
-#create-bucket-button:hover {
-  background-color: #d2d2d2; }
 
 .p-no-margin {
   margin: 0; }
@@ -415,9 +414,9 @@ body:before {
   margin: 150px auto 0; }
 
 #group-title-nav {
-  font-size: 32px;
-  color: #ef3340;
-  font-weight: bold; }
+  font-size: 36px;
+  color: #147689;
+  font-weight: 500; }
 
 @media (min-width: 768px) {
   .bm-burger-button {
