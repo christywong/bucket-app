@@ -65,6 +65,7 @@ export default class Component extends React.Component {
         moveCard={this.moveCard}
         bucketTags = {this.state.bucketList}
         deleteCard={this.props.deleteCard}
+        tags = {this.props.allGroups}
         />
     )}) : [];
 

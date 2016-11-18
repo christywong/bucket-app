@@ -7,6 +7,20 @@ export default class Cards extends React.Component{
   }
   render(){
     const card = this.props.activities;
+
+    var tagLabel = null;
+    var filteredTag;
+    if(this.props.tags != null){
+      filteredTag = this.props.tags.filter((tag) => (tag.id === card.tags[0]));
+      if(filteredTag.length === 0 ){
+        tagLabel = 'All';
+      }
+      else{
+        tagLabel = filteredTag[0].title;
+      }
+    }
+
+
     const movePopover = (
       <Popover id="popover-trigger-click-root-close" title="Move to">
         {this.props.bucketTags.map((tag) => (
@@ -42,18 +56,16 @@ export default class Cards extends React.Component{
         </div>
 
         <div className="card-header center-block">
-          <a href={card.yelpUrl} target="_blank"> 
+          <a href={card.yelpUrl} target="_blank">
           <h4 className="card-title" style={{margin: 0}}>{card.title}</h4>
-          </a> 
+          </a>
         </div>
-
         <div className="card-left">
           <a href={card.yelpUrl} target="_blank">
             <img src={card.img}
               width= '75'/>
               <p>View on Yelp</p>
           </a>
-
         </div>
 
         <div className="card-right">
@@ -61,6 +73,10 @@ export default class Cards extends React.Component{
           <p className='p-no-margin'> Reviews: {card.reviewCount} </p>
           <p className='p-no-margin'> {card.city} </p>
         </div>
+
+        <p className='card-tag-label'>
+          <i className="fa fa-tag" aria-hidden="true"></i> <span>{tagLabel}</span>
+        </p>
 
       </div>
     );

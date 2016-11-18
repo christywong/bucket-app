@@ -5067,7 +5067,8 @@
 	          activities: cardEntry,
 	          moveCard: _this2.moveCard,
 	          bucketTags: _this2.state.bucketList,
-	          deleteCard: _this2.props.deleteCard
+	          deleteCard: _this2.props.deleteCard,
+	          tags: _this2.props.allGroups
 	        });
 	      }) : [];
 
@@ -42553,6 +42554,20 @@
 	      var _this2 = this;
 
 	      var card = this.props.activities;
+
+	      var tagLabel = null;
+	      var filteredTag;
+	      if (this.props.tags != null) {
+	        filteredTag = this.props.tags.filter(function (tag) {
+	          return tag.id === card.tags[0];
+	        });
+	        if (filteredTag.length === 0) {
+	          tagLabel = 'All';
+	        } else {
+	          tagLabel = filteredTag[0].title;
+	        }
+	      }
+
 	      var movePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
 	        { id: 'popover-trigger-click-root-close', title: 'Move to' },
@@ -42650,6 +42665,17 @@
 	            ' ',
 	            card.city,
 	            ' '
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'card-tag-label' },
+	          _react2.default.createElement('i', { className: 'fa fa-tag', 'aria-hidden': 'true' }),
+	          ' ',
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            tagLabel
 	          )
 	        )
 	      );
