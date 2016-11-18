@@ -219,11 +219,12 @@ body {
 .main-container {
     padding-top: 25px;
     // margin-left: 225px;
+    flex: 1;
     display: flex;
     flex-direction: row;
     height: calc(100vh - 60px);
     flex-wrap: wrap;
-    overflow-y: scroll;
+    overflow: auto;
     justify-content: center;
     align-content: flex-start;
     align-items: flex-start;
