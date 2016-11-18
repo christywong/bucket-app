@@ -5125,11 +5125,14 @@
 	            pageWrapId: "page-wrap",
 	            outerContainerId: "outer-container" },
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            {
+	            'h3',
+	            { className: 'tags-title' },
+	            'Tags',
+	            _react2.default.createElement('i', {
+	              className: 'fa fa-plus-square',
 	              id: 'create-bucket-button',
-	              onClick: this.props.showBucketModal },
-	            'Create a Bucket'
+	              onClick: this.props.showBucketModal }),
+	            ' '
 	          ),
 	          allBucket ? _react2.default.createElement(_Buckets2.default, {
 	            changeStateBucket: this.changeState,
@@ -56392,11 +56395,14 @@
 	      var currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
 	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
-
 	      var activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
 	      var showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? _react2.default.createElement(
 	        _reactBootstrap.NavItem,
-	        { eventKey: 2.4, onClick: this.props.showMember },
+	        {
+	          eventKey: 2.4,
+	          onClick: this.props.showMember,
+	          className: 'add-friends'
+	        },
 	        ' Add Friends'
 	      ) : null;
 

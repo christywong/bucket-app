@@ -8,7 +8,7 @@ html {
   height: 100vh;
   background-size: cover;
   background-image: url("/images/gliderport.png");
-  margin-bottom: 0px; }
+  margin-bottom: 0; }
 
 #jumbotron-text {
   margin-left: 100px; }
@@ -23,7 +23,7 @@ html {
 @media (max-width: 768px) {
   #jumbotron-text {
     text-align: center;
-    margin-left: 0px; }
+    margin-left: 0; }
   #homepage-elems {
     padding-top: 50px; }
   .home-text {
@@ -124,18 +124,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-/*body:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: block;
-    background: rgba(255, 255, 255, 0.8);
-    width: 100%;
-    height: 100%;
-}*/
 .navbar {
   border-radius: 0 !important; }
+
+.add-friends a:focus {
+  outline: none; }
 
 #img-wrapper-404 {
   float: right; }
@@ -235,18 +228,19 @@ body {
   overflow: scroll;
   padding-top: 50px;
   border-right: solid 1px #D3D3DD; }
-  .sidebar .tags-title {
-    color: #333;
-    margin-left: 20px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 15px; }
-    .sidebar .tags-title #create-bucket-button {
-      color: #F48B4C;
-      padding-left: 10px;
-      font-size: 18px; }
-      .sidebar .tags-title #create-bucket-button:hover {
-        color: #db7d44; }
+
+.tags-title {
+  color: #333;
+  margin-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px; }
+  .tags-title #create-bucket-button {
+    color: #F48B4C;
+    padding-left: 10px;
+    font-size: 18px; }
+    .tags-title #create-bucket-button:hover {
+      color: #db7d44; }
 
 .searchWrapper {
   margin-top: 75px;
@@ -333,9 +327,9 @@ body {
   width: 50px;
   height: 50px;
   font-size: 28px;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4); }
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4); }
   .mybucket-btn:hover {
     background-color: #db7d44; }
 
@@ -356,9 +350,9 @@ body {
   width: 50px;
   height: 50px;
   font-size: 28px;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4); }
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4); }
   .add-btn:hover {
     background-color: #126a7b; }
 
@@ -456,6 +450,9 @@ body {
 .bm-menu-wrap {
   width: 225px !important; }
 
+.bm-menu {
+  background-color: #f4f4f6; }
+
 .empty-bucket-msg {
   margin: 150px auto 0;
   color: rgba(0, 0, 0, 0.2); }
@@ -506,19 +503,4 @@ body {
 
 .modal-container .modal,
 .modal-container .modal-backdrop {
-  position: absolute; }
-
-/* Overriding bootstrap styles */
-/*@media (max-width: 767px) {
-    .navbar-nav .open .dropdown-menu {
-        background-color: #fff !important;
-        border: 1px solid rgba(0,0,0,.15) !important;
-    }
-}*/
-.fake-loader-overlay {
-  height: 100vh;
-  width: 100vw;
-  z-index: 5000;
-  background-color: white;
-  opacity: .6;
   position: absolute; }
