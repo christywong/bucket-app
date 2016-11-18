@@ -19,13 +19,12 @@ body,
 html {
     height: 100%;
 }
-
 /*** Homepage ***/
 .jumbotron {
     height: 100vh;
     background-size: cover;
     background-image: url("/images/gliderport.png");
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #jumbotron-text {
@@ -40,21 +39,21 @@ html {
     font-size: 36px !important;
     font-weight: 300 !important;
 }
-
 @media (max-width: $breakpoint-tablet) {
     #jumbotron-text {
         text-align: center;
-        margin-left: 0px;
+        margin-left: 0;
     }
+
     #homepage-elems {
         padding-top: 50px;
     }
+
     .home-text {
         font-size: 28px !important;
         font-weight: 300 !important;
     }
 }
-
 /*** Login Form ***/
 .form {
     position: relative;
@@ -104,21 +103,20 @@ html {
     border-bottom-right-radius: 3px;
     box-sizing: border-box;
     font-size: 14px;
-
 }
 
 .errormsg {
-  color: red;
-  font-size: 13px;
+    color: red;
+    font-size: 13px;
 }
 
 .successmsg {
-  color: green;
-  font-size: 13px;
+    color: green;
+    font-size: 13px;
 }
 
 .errorLogin {
-    font-size: 13px
+    font-size: 13px;
 }
 
 .form button {
@@ -162,19 +160,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/*body:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: block;
-    background: rgba(255, 255, 255, 0.8);
-    width: 100%;
-    height: 100%;
-}*/
-
 .navbar {
     border-radius: 0 !important;
+}
+
+.add-friends a:focus {
+    outline: none;
 }
 
 #img-wrapper-404 {
@@ -228,6 +219,7 @@ body {
     align-content: flex-start;
     align-items: flex-start;
     background-color: $white;
+
     .card-style {
         width: 200px;
         height: 175px;
@@ -247,7 +239,6 @@ body {
             min-width: 25px;
             padding-bottom: 10px;
             margin-bottom: 10px;
-
         }
 
         .card-left {
@@ -304,40 +295,25 @@ body {
     overflow: scroll;
     padding-top: 50px;
     border-right: solid 1px #D3D3DD;
-
-    .tags-title{
-      color: #333;
-      margin-left: 20px;
-      padding-top: 4px;
-      padding-bottom: 4px;
-      padding-left: 15px;
-      // span{
-      //   font-size: 24px;
-      // }
-      #create-bucket-button {
-          // margin-left: 30px;
-          // padding: 10px;
-          // background-color: #fff;
-          // color: $hover-blue;
-          // border: none;
-          // border-radius: 5px;
-          // text-align: center;
-          // text-decoration: none;
-          // display: inline-block;
-          // font-size: 16px;
-          // position: fixed;
-          // bottom: 0;
-          // margin-bottom: 20px;
-          color: $orange;
-          padding-left: 10px;
-          font-size: 18px;
-          &:hover{
-            color: $orange-darken;
-          }
-      }
-    }
 }
 
+.tags-title {
+    color: #333;
+    margin-left: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 15px;
+
+    #create-bucket-button {
+        color: $orange;
+        padding-left: 10px;
+        font-size: 18px;
+
+        &:hover {
+            color: $orange-darken;
+        }
+    }
+}
 
 .searchWrapper {
     margin-top: 75px;
@@ -442,30 +418,30 @@ body {
 }
 
 .mybucket-btn {
-  position: fixed;
-  line-height: 45px;
-  text-align: center;
-  background-color: $orange;
-  color: white;
-  cursor: pointer;
-  right: 40px;
-  bottom: 90px;
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
-  font-size: 28px;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-  &:hover{
-    background-color: $orange-darken;
-  }
+    position: fixed;
+    line-height: 45px;
+    text-align: center;
+    background-color: $orange;
+    color: white;
+    cursor: pointer;
+    right: 40px;
+    bottom: 90px;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+    -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+
+    &:hover {
+        background-color: $orange-darken;
+    }
 }
 
-
-.fa-home{
-  color: white !important;
-  line-height: 50px;
+.fa-home {
+    color: white !important;
+    line-height: 50px;
 }
 
 .add-btn {
@@ -481,16 +457,18 @@ body {
     width: 50px;
     height: 50px;
     font-size: 28px;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .4);
-    &:hover{
+    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+    -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+
+    &:hover {
         background-color: $hover-blue-darken;
     }
 }
 
 .bucket-tags {
     cursor: pointer;
+
     h4 {
         margin-left: 20px;
         padding: 15px;
@@ -498,12 +476,10 @@ body {
         margin-top: 0;
         margin-bottom: 0;
     }
-
 }
 
 .active {
     background-color: $primary-blue-hover;
-
     background-color: #147689;
     background-color: #5a9fac;
 }
@@ -513,9 +489,6 @@ body {
     background-color: #147689;
     background-color: #5a9fac;
 }
-
-
-
 //
 // #create-bucket-button:hover {
 //     background-color: #d2d2d2;
@@ -605,6 +578,10 @@ body {
     width: 225px !important;
 }
 
+.bm-menu {
+    background-color: $white;
+}
+
 .empty-bucket-msg {
     margin: 150px auto 0;
     color: rgba(0, 0, 0, 0.2);
@@ -614,7 +591,6 @@ body {
     font-size: 36px;
     color: $hover-blue;
     font-weight: 500;
-
 }
 @media (min-width: $breakpoint-tablet) {
     .bm-burger-button {
@@ -648,7 +624,7 @@ body {
 }
 
 .fa-gear:hover {
-    color:$primary-gray;
+    color: $primary-gray;
 }
 
 #delete-bucket-icon {
@@ -672,27 +648,4 @@ body {
 .modal-container .modal,
 .modal-container .modal-backdrop {
     position: absolute;
-}
-/* Overriding bootstrap styles */
-/*@media (max-width: 767px) {
-    .navbar-nav .open .dropdown-menu {
-        background-color: #fff !important;
-        border: 1px solid rgba(0,0,0,.15) !important;
-    }
-}*/
-// .modal {
-//   bottom: auto !important;
-// }
-//
-// .modal-content{
-//   border: 0 !important;
-// }
-
-.fake-loader-overlay{
-  height: 100vh;
-  width: 100vw;
-  z-index: 5000;
-  background-color: white;
-  opacity: .6;
-  position: absolute;
 }
