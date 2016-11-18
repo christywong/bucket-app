@@ -366,10 +366,11 @@ body {
   cursor: pointer; }
   .bucket-tags h4 {
     margin-left: 20px;
-    padding: 15px;
+    padding: 10px 15px;
     color: #313131;
     margin-top: 0;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    font-size: 16px; }
 
 .active {
   background-color: #184067;
