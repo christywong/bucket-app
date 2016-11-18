@@ -29,24 +29,12 @@ export default class HelpModal extends React.Component{
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>
-              1) Create your first bucket by clicking on the Create Bucket button on the sidebar.
-            </p>
-            <p>
-              2) Search for activities to add by clicking the icon on the bottom right.
-            </p>
-            <p>
-              3) Move activities to different buckets by clicking on the edit icon on the activitiy card.
-            </p>
-            <p>
-              4) Delete an activity from a bucket by clicking on the trash icon on the activity card.
-            </p>
-            <p>
-              5) Create a bucket list with friends by clicking on Groups on the navbar.
-            </p>
-            <p>
-              6) Start adding friends to your Groups!
-            </p>
+            <p><strong>Create a Tag: </strong>+ icon on the sidebar.</p>
+            <p><strong>Search for Activities: </strong>+ icon on the bottom right.</p>
+            <p><strong>Move Activities: </strong>edit icon on the activitiy card.</p>
+            <p><strong>Delete an Activity: </strong>trash icon on the activity card.</p>
+            <p><strong>Create a Group: </strong>Groups dropdown on the navbar.</p>
+            <p><strong>Add Friends: </strong>Add Friends on the navbar &amp; enter your friend's name.</p>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick = {()=>{
