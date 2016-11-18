@@ -56,8 +56,8 @@ app.use(function(req,res,next){
 });
 
 mongoose.Promise = global.Promise;
-//mongoose.connect(DB_URL);
-mongoose.connect('mongodb://localhost:27017/cse170');
+mongoose.connect(DB_URL); //for production
+//mongoose.connect('mongodb://localhost:27017/cse170'); //for development
 
 app.listen(port, function(){
   console.log('connected to port 8080');

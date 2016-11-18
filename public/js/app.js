@@ -395,7 +395,8 @@
 	          fakeLoader: true
 	        });
 	      }.bind(this), 200);
-	      this.changeGroup("582519efea7d4e04653aafda");
+	      this.changeGroup("582519efea7d4e04653aafda"); // for production
+	      //this.changeGroup("582f55ebeedcb47778d7ee03"); // for development
 	    }
 
 	    /**
