@@ -29,7 +29,17 @@ module.exports = {};
 
 module.exports.search = function(req,res){
   // See http://www.yelp.com/developers/documentation/v2/search_api
-  yelp.search({ term: req.params.category, location: req.params.city})
+  yelp.search({ term: req.params.category, location: req.params.city, offset: req.params.offset})
+  .then(function (data) {
+    res.send(data);
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
+}
+
+module.exports.searchCity = function(req,res){
+  yelp.search({location: req.params.city, offset: req.params.offset})
   .then(function (data) {
     res.send(data);
   })

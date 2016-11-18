@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button, Col, OverlayTrigger, Popover} from 'react-bootstrap';
+
 export default class SearchEntry extends React.Component {
   constructor(props){
     super(props);
-
   }
   render(){
     const createBucketPopover = (
@@ -38,10 +38,14 @@ export default class SearchEntry extends React.Component {
             rootClose
             placement="right"
             overlay={createBucketPopover}>
-            <i className="fa fa-lg fa-plus-square add-to-bucket-btn" aria-hidden="true"></i>
+            <i
+              className="fa fa-lg fa-plus-square add-to-bucket-btn"
+              aria-hidden="true">
+            </i>
           </OverlayTrigger>
-
-          <h5 className="card-title" style ={{marginBottom: 10, marginTop:0}}>
+          <h5
+            className="card-title"
+            style ={{marginBottom: 10, marginTop:0}}>
             {this.props.ItemEntry.name}
           </h5>
           <div className="search-entry-left">
@@ -55,15 +59,18 @@ export default class SearchEntry extends React.Component {
             </a>
           </div>
           <div className="search-entry-right">
-            <img src={this.props.ItemEntry.rating_img_url} width='100'/>
-            <p>Reviews: {this.props.ItemEntry.review_count}</p>
-            <p>{this.props.ItemEntry.location.city}</p>
+            <img
+              src={this.props.ItemEntry.rating_img_url}
+              width='100'/>
+            <p>
+              Reviews: {this.props.ItemEntry.review_count}
+            </p>
+            <p>
+              {this.props.ItemEntry.location.city}
+            </p>
           </div>
         </div>
       </Col>
     )
-  }
-  addToBucketDropDown(){
-
   }
 }

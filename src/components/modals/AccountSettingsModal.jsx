@@ -23,7 +23,7 @@ export default class AccountSettingsModal extends React.Component{
      mismatch;
      document.getElementsByName('password')[0].style.border='2px solid red';
      document.getElementsByName('confirm-password')[0].style.border='2px solid red';
-    } 
+    }
   }
 
 
@@ -107,7 +107,7 @@ export default class AccountSettingsModal extends React.Component{
                   id="save-btn"
                   name="singlebutton"
                   onClick = {()=>{
-                    this.changePassword();                    
+                    this.changePassword();
                   }}>Save</Button>
                 </Modal.Footer>
 

@@ -10,6 +10,7 @@ var Member = require('./models/Members.js');
 //TODO Our API to do stuff
 module.exports = function (app){
   app.get('/search/:city/:category/:offset', yelpSearch.search);
+  app.get('/searchCity/:city/:offset',yelpSearch.searchCity);
   app.get('/home', bucketHome.view);
 
   app.get('/api/getData', function(req,res){
