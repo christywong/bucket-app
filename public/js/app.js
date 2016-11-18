@@ -82,37 +82,37 @@
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _uuid = __webpack_require__(431);
+	var _uuid = __webpack_require__(433);
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _reactAddonsUpdate = __webpack_require__(433);
+	var _reactAddonsUpdate = __webpack_require__(435);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-	var _NavbarInstance = __webpack_require__(514);
+	var _NavbarInstance = __webpack_require__(516);
 
 	var _NavbarInstance2 = _interopRequireDefault(_NavbarInstance);
 
-	var _AccountSettingsModal = __webpack_require__(515);
+	var _AccountSettingsModal = __webpack_require__(517);
 
 	var _AccountSettingsModal2 = _interopRequireDefault(_AccountSettingsModal);
 
 	var _reactBootstrap = __webpack_require__(37);
 
-	var _AddGroupModal = __webpack_require__(516);
+	var _AddGroupModal = __webpack_require__(518);
 
 	var _AddGroupModal2 = _interopRequireDefault(_AddGroupModal);
 
-	var _AddMemberModal = __webpack_require__(517);
+	var _AddMemberModal = __webpack_require__(519);
 
 	var _AddMemberModal2 = _interopRequireDefault(_AddMemberModal);
 
-	var _AddBucketModal = __webpack_require__(518);
+	var _AddBucketModal = __webpack_require__(520);
 
 	var _AddBucketModal2 = _interopRequireDefault(_AddBucketModal);
 
-	var _HelpModal = __webpack_require__(519);
+	var _HelpModal = __webpack_require__(521);
 
 	var _HelpModal2 = _interopRequireDefault(_HelpModal);
 
@@ -126,9 +126,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(520);
+	var styles = __webpack_require__(522);
 
-	var Loader = __webpack_require__(524);
+	var Loader = __webpack_require__(428);
 	//import AddModal from './modals/AddCardModal';
 
 	var App = function (_React$Component) {
@@ -4967,23 +4967,23 @@
 
 	var _reactBootstrap = __webpack_require__(37);
 
-	var _Sidebar = __webpack_require__(428);
+	var _Sidebar = __webpack_require__(430);
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-	var _Cards = __webpack_require__(430);
+	var _Cards = __webpack_require__(432);
 
 	var _Cards2 = _interopRequireDefault(_Cards);
 
-	var _uuid = __webpack_require__(431);
+	var _uuid = __webpack_require__(433);
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _reactAddonsUpdate = __webpack_require__(433);
+	var _reactAddonsUpdate = __webpack_require__(435);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-	var _Buckets = __webpack_require__(429);
+	var _Buckets = __webpack_require__(431);
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
@@ -4995,7 +4995,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Menu = __webpack_require__(435).push;
+	var Menu = __webpack_require__(437).push;
 
 	var Component = function (_React$Component) {
 	  _inherits(Component, _React$Component);
@@ -5414,7 +5414,7 @@
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
-	var _reactLoader = __webpack_require__(524);
+	var _reactLoader = __webpack_require__(428);
 
 	var _reactLoader2 = _interopRequireDefault(_reactLoader);
 
@@ -7719,16 +7719,18 @@
 	  PanelGroup.prototype.render = function render() {
 	    var _this2 = this;
 
-	    var _props = this.props,
-	        accordion = _props.accordion,
-	        propsActiveKey = _props.activeKey,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['accordion', 'activeKey', 'className', 'children']);
+	    var _props = this.props;
+	    var accordion = _props.accordion;
+	    var propsActiveKey = _props.activeKey;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['accordion', 'activeKey', 'className', 'children']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['defaultActiveKey', 'onSelect']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['defaultActiveKey', 'onSelect']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    var activeKey = void 0;
 	    if (accordion) {
@@ -8020,8 +8022,8 @@
 	function splitBsProps(props) {
 	  var elementProps = {};
 	  (0, _entries2['default'])(props).forEach(function (_ref) {
-	    var propName = _ref[0],
-	        propValue = _ref[1];
+	    var propName = _ref[0];
+	    var propValue = _ref[1];
 
 	    if (!isBsProp(propName)) {
 	      elementProps[propName] = propValue;
@@ -8039,8 +8041,8 @@
 
 	  var elementProps = {};
 	  (0, _entries2['default'])(props).forEach(function (_ref2) {
-	    var propName = _ref2[0],
-	        propValue = _ref2[1];
+	    var propName = _ref2[0];
+	    var propValue = _ref2[1];
 
 	    if (!isBsProp(propName) && !isOmittedProp[propName]) {
 	      elementProps[propName] = propValue;
@@ -8550,16 +8552,18 @@
 	  Alert.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        onDismiss = _props.onDismiss,
-	        closeLabel = _props.closeLabel,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['onDismiss', 'closeLabel', 'className', 'children']);
+	    var _props = this.props;
+	    var onDismiss = _props.onDismiss;
+	    var closeLabel = _props.closeLabel;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['onDismiss', 'closeLabel', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var dismissable = !!onDismiss;
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'dismissable')] = dismissable, _extends2));
@@ -8687,15 +8691,17 @@
 	  };
 
 	  Badge.prototype.render = function render() {
-	    var _props = this.props,
-	        pullRight = _props.pullRight,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['pullRight', 'className', 'children']);
+	    var _props = this.props;
+	    var pullRight = _props.pullRight;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['pullRight', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends3['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), {
 	      'pull-right': pullRight,
@@ -8775,13 +8781,15 @@
 	  }
 
 	  Breadcrumb.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -8874,13 +8882,13 @@
 	  }
 
 	  BreadcrumbItem.prototype.render = function render() {
-	    var _props = this.props,
-	        active = _props.active,
-	        href = _props.href,
-	        title = _props.title,
-	        target = _props.target,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'href', 'title', 'target', 'className']);
+	    var _props = this.props;
+	    var active = _props.active;
+	    var href = _props.href;
+	    var title = _props.title;
+	    var target = _props.target;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'href', 'title', 'target', 'className']);
 
 	    // Don't try to render these props on non-active <span>.
 
@@ -8981,10 +8989,10 @@
 	  }
 
 	  SafeAnchor.prototype.handleClick = function handleClick(event) {
-	    var _props = this.props,
-	        disabled = _props.disabled,
-	        href = _props.href,
-	        onClick = _props.onClick;
+	    var _props = this.props;
+	    var disabled = _props.disabled;
+	    var href = _props.href;
+	    var onClick = _props.onClick;
 
 
 	    if (disabled || isTrivialHref(href)) {
@@ -9002,17 +9010,17 @@
 	  };
 
 	  SafeAnchor.prototype.render = function render() {
-	    var _props2 = this.props,
-	        Component = _props2.componentClass,
-	        disabled = _props2.disabled,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'disabled']);
+	    var _props2 = this.props;
+	    var Component = _props2.componentClass;
+	    var disabled = _props2.disabled;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'disabled']);
 
 
 	    if (isTrivialHref(props.href)) {
 	      props.role = props.role || 'button';
 	      // we want to make sure there is a href attribute on the node
 	      // otherwise, the cursor incorrectly styled (except with role='button')
-	      props.href = props.href || '#';
+	      props.href = props.href || '';
 	    }
 
 	    if (disabled) {
@@ -9205,8 +9213,8 @@
 	  };
 
 	  Button.prototype.renderButton = function renderButton(_ref, className) {
-	    var componentClass = _ref.componentClass,
-	        elementProps = (0, _objectWithoutProperties3['default'])(_ref, ['componentClass']);
+	    var componentClass = _ref.componentClass;
+	    var elementProps = (0, _objectWithoutProperties3['default'])(_ref, ['componentClass']);
 
 	    var Component = componentClass || 'button';
 
@@ -9219,15 +9227,17 @@
 	  Button.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        active = _props.active,
-	        block = _props.block,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'block', 'className']);
+	    var _props = this.props;
+	    var active = _props.active;
+	    var block = _props.block;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'block', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {
 	      active: active
@@ -9307,8 +9317,8 @@
 	   * @type {bool}
 	   */
 	  block: (0, _all2['default'])(_react2['default'].PropTypes.bool, function (_ref) {
-	    var block = _ref.block,
-	        vertical = _ref.vertical;
+	    var block = _ref.block;
+	    var vertical = _ref.vertical;
 	    return block && !vertical ? new Error('`block` requires `vertical` to be set to have any effect') : null;
 	  })
 	};
@@ -9330,16 +9340,18 @@
 	  ButtonGroup.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        block = _props.block,
-	        justified = _props.justified,
-	        vertical = _props.vertical,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['block', 'justified', 'vertical', 'className']);
+	    var _props = this.props;
+	    var block = _props.block;
+	    var justified = _props.justified;
+	    var vertical = _props.vertical;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['block', 'justified', 'vertical', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps)] = !vertical, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'vertical')] = vertical, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'justified')] = justified, _extends2[(0, _bootstrapUtils.prefix)(_Button2['default'].defaultProps, 'block')] = block, _extends2));
 
@@ -9454,13 +9466,15 @@
 	  }
 
 	  ButtonToolbar.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -9564,19 +9578,7 @@
 	  defaultActiveIndex: _react2['default'].PropTypes.number,
 	  direction: _react2['default'].PropTypes.oneOf(['prev', 'next']),
 	  prevIcon: _react2['default'].PropTypes.node,
-	  /**
-	   * Label shown to screen readers only, can be used to show the previous element
-	   * in the carousel.
-	   * Set to null to deactivate.
-	   */
-	  prevLabel: _react2['default'].PropTypes.string,
-	  nextIcon: _react2['default'].PropTypes.node,
-	  /**
-	   * Label shown to screen readers only, can be used to show the next element
-	   * in the carousel.
-	   * Set to null to deactivate.
-	   */
-	  nextLabel: _react2['default'].PropTypes.string
+	  nextIcon: _react2['default'].PropTypes.node
 	};
 
 	var defaultProps = {
@@ -9587,9 +9589,7 @@
 	  indicators: true,
 	  controls: true,
 	  prevIcon: _react2['default'].createElement(_Glyphicon2['default'], { glyph: 'chevron-left' }),
-	  prevLabel: 'Previous',
-	  nextIcon: _react2['default'].createElement(_Glyphicon2['default'], { glyph: 'chevron-right' }),
-	  nextLabel: 'Next'
+	  nextIcon: _react2['default'].createElement(_Glyphicon2['default'], { glyph: 'chevron-right' })
 	};
 
 	var Carousel = function (_React$Component) {
@@ -9759,10 +9759,10 @@
 	  };
 
 	  Carousel.prototype.waitForNext = function waitForNext() {
-	    var _props = this.props,
-	        slide = _props.slide,
-	        interval = _props.interval,
-	        activeIndexProp = _props.activeIndex;
+	    var _props = this.props;
+	    var slide = _props.slide;
+	    var interval = _props.interval;
+	    var activeIndexProp = _props.activeIndex;
 
 
 	    if (!this.isPaused && slide && interval && activeIndexProp == null) {
@@ -9812,16 +9812,7 @@
 	    );
 	  };
 
-	  Carousel.prototype.renderControls = function renderControls(properties) {
-	    var wrap = properties.wrap,
-	        children = properties.children,
-	        activeIndex = properties.activeIndex,
-	        prevIcon = properties.prevIcon,
-	        nextIcon = properties.nextIcon,
-	        bsProps = properties.bsProps,
-	        prevLabel = properties.prevLabel,
-	        nextLabel = properties.nextLabel;
-
+	  Carousel.prototype.renderControls = function renderControls(wrap, children, activeIndex, prevIcon, nextIcon, bsProps) {
 	    var controlClassName = (0, _bootstrapUtils.prefix)(bsProps, 'control');
 	    var count = _ValidComponentChildren2['default'].count(children);
 
@@ -9832,12 +9823,7 @@
 	        className: (0, _classnames2['default'])(controlClassName, 'left'),
 	        onClick: this.handlePrev
 	      },
-	      prevIcon,
-	      prevLabel && _react2['default'].createElement(
-	        'span',
-	        { className: 'sr-only' },
-	        prevLabel
-	      )
+	      prevIcon
 	    ), (wrap || activeIndex !== count - 1) && _react2['default'].createElement(
 	      _SafeAnchor2['default'],
 	      {
@@ -9845,38 +9831,33 @@
 	        className: (0, _classnames2['default'])(controlClassName, 'right'),
 	        onClick: this.handleNext
 	      },
-	      nextIcon,
-	      nextLabel && _react2['default'].createElement(
-	        'span',
-	        { className: 'sr-only' },
-	        nextLabel
-	      )
+	      nextIcon
 	    )];
 	  };
 
 	  Carousel.prototype.render = function render() {
 	    var _this4 = this;
 
-	    var _props2 = this.props,
-	        slide = _props2.slide,
-	        indicators = _props2.indicators,
-	        controls = _props2.controls,
-	        wrap = _props2.wrap,
-	        prevIcon = _props2.prevIcon,
-	        prevLabel = _props2.prevLabel,
-	        nextIcon = _props2.nextIcon,
-	        nextLabel = _props2.nextLabel,
-	        className = _props2.className,
-	        children = _props2.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['slide', 'indicators', 'controls', 'wrap', 'prevIcon', 'prevLabel', 'nextIcon', 'nextLabel', 'className', 'children']);
-	    var _state = this.state,
-	        previousActiveIndex = _state.previousActiveIndex,
-	        direction = _state.direction;
+	    var _props2 = this.props;
+	    var slide = _props2.slide;
+	    var indicators = _props2.indicators;
+	    var controls = _props2.controls;
+	    var wrap = _props2.wrap;
+	    var prevIcon = _props2.prevIcon;
+	    var nextIcon = _props2.nextIcon;
+	    var className = _props2.className;
+	    var children = _props2.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['slide', 'indicators', 'controls', 'wrap', 'prevIcon', 'nextIcon', 'className', 'children']);
+	    var _state = this.state;
+	    var previousActiveIndex = _state.previousActiveIndex;
+	    var direction = _state.direction;
 
 	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['interval', 'pauseOnHover', 'onSelect', 'onSlideEnd', 'activeIndex', // Accessed via this.getActiveIndex().
-	    'defaultActiveIndex', 'direction']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    'defaultActiveIndex', 'direction']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    var activeIndex = this.getActiveIndex();
 
@@ -9909,16 +9890,7 @@
 	          });
 	        })
 	      ),
-	      controls && this.renderControls({
-	        wrap: wrap,
-	        children: children,
-	        activeIndex: activeIndex,
-	        prevIcon: prevIcon,
-	        prevLabel: prevLabel,
-	        nextIcon: nextIcon,
-	        nextLabel: nextLabel,
-	        bsProps: bsProps
-	      })
+	      controls && this.renderControls(wrap, children, activeIndex, prevIcon, nextIcon, bsProps)
 	    );
 	  };
 
@@ -9995,14 +9967,16 @@
 	  }
 
 	  CarouselCaption.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -10151,13 +10125,13 @@
 	  };
 
 	  CarouselItem.prototype.render = function render() {
-	    var _props = this.props,
-	        direction = _props.direction,
-	        active = _props.active,
-	        animateIn = _props.animateIn,
-	        animateOut = _props.animateOut,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['direction', 'active', 'animateIn', 'animateOut', 'className']);
+	    var _props = this.props;
+	    var direction = _props.direction;
+	    var active = _props.active;
+	    var animateIn = _props.animateIn;
+	    var animateOut = _props.animateOut;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['direction', 'active', 'animateIn', 'animateOut', 'className']);
 
 
 	    delete props.onAnimateOutEnd;
@@ -27555,14 +27529,16 @@
 	  Glyphicon.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        glyph = _props.glyph,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['glyph', 'className']);
+	    var _props = this.props;
+	    var glyph = _props.glyph;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['glyph', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, glyph)] = true, _extends2));
 
@@ -27654,19 +27630,21 @@
 	  }
 
 	  Checkbox.prototype.render = function render() {
-	    var _props = this.props,
-	        inline = _props.inline,
-	        disabled = _props.disabled,
-	        validationState = _props.validationState,
-	        inputRef = _props.inputRef,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var inline = _props.inline;
+	    var disabled = _props.disabled;
+	    var validationState = _props.validationState;
+	    var inputRef = _props.inputRef;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var input = _react2['default'].createElement('input', (0, _extends3['default'])({}, elementProps, {
 	      ref: inputRef,
@@ -27887,14 +27865,16 @@
 	  }
 
 	  Clearfix.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -28006,16 +27986,18 @@
 	    var formGroup = this.context.$bs_formGroup;
 	    var controlId = formGroup && formGroup.controlId;
 
-	    var _props = this.props,
-	        _props$htmlFor = _props.htmlFor,
-	        htmlFor = _props$htmlFor === undefined ? controlId : _props$htmlFor,
-	        srOnly = _props.srOnly,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['htmlFor', 'srOnly', 'className']);
+	    var _props = this.props;
+	    var _props$htmlFor = _props.htmlFor;
+	    var htmlFor = _props$htmlFor === undefined ? controlId : _props$htmlFor;
+	    var srOnly = _props.srOnly;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['htmlFor', 'srOnly', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    process.env.NODE_ENV !== 'production' ? (0, _warning2['default'])(controlId == null || htmlFor === controlId, '`controlId` is ignored on `<ControlLabel>` when `htmlFor` is specified.') : void 0;
 
@@ -28264,14 +28246,16 @@
 	  }
 
 	  Col.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = [];
 
@@ -28528,14 +28512,14 @@
 	  };
 
 	  Collapse.prototype.render = function render() {
-	    var _props = this.props,
-	        onEnter = _props.onEnter,
-	        onEntering = _props.onEntering,
-	        onEntered = _props.onEntered,
-	        onExit = _props.onExit,
-	        onExiting = _props.onExiting,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'className']);
+	    var _props = this.props;
+	    var onEnter = _props.onEnter;
+	    var onEntering = _props.onEntering;
+	    var onEntered = _props.onEntered;
+	    var onExit = _props.onExit;
+	    var onExiting = _props.onExiting;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'className']);
 
 
 	    delete props.dimension;
@@ -29390,12 +29374,7 @@
 	   * If `'menuitem'`, causes the dropdown to behave like a menu item rather than
 	   * a menu button.
 	   */
-	  role: _react2['default'].PropTypes.string,
-
-	  /**
-	   * Which event when fired outside the component will cause it to be closed
-	   */
-	  rootCloseEvent: _react2['default'].PropTypes.oneOf(['click', 'mousedown'])
+	  role: _react2['default'].PropTypes.string
 	};
 
 	var defaultProps = {
@@ -29542,11 +29521,10 @@
 	  Dropdown.prototype.renderMenu = function renderMenu(child, _ref) {
 	    var _this3 = this;
 
-	    var id = _ref.id,
-	        onClose = _ref.onClose,
-	        onSelect = _ref.onSelect,
-	        rootCloseEvent = _ref.rootCloseEvent,
-	        props = (0, _objectWithoutProperties3['default'])(_ref, ['id', 'onClose', 'onSelect', 'rootCloseEvent']);
+	    var id = _ref.id;
+	    var onClose = _ref.onClose;
+	    var onSelect = _ref.onSelect;
+	    var props = (0, _objectWithoutProperties3['default'])(_ref, ['id', 'onClose', 'onSelect']);
 
 	    var ref = function ref(c) {
 	      _this3.menu = c;
@@ -29563,8 +29541,7 @@
 	      labelledBy: id,
 	      bsClass: (0, _bootstrapUtils.prefix)(props, 'menu'),
 	      onClose: (0, _createChainedFunction2['default'])(child.props.onClose, onClose, this.handleClose),
-	      onSelect: (0, _createChainedFunction2['default'])(child.props.onSelect, onSelect, this.handleClose),
-	      rootCloseEvent: rootCloseEvent
+	      onSelect: (0, _createChainedFunction2['default'])(child.props.onSelect, onSelect, this.handleClose)
 	    }));
 	  };
 
@@ -29572,21 +29549,20 @@
 	    var _classes,
 	        _this4 = this;
 
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        id = _props.id,
-	        dropup = _props.dropup,
-	        disabled = _props.disabled,
-	        pullRight = _props.pullRight,
-	        open = _props.open,
-	        onClose = _props.onClose,
-	        onSelect = _props.onSelect,
-	        role = _props.role,
-	        bsClass = _props.bsClass,
-	        className = _props.className,
-	        rootCloseEvent = _props.rootCloseEvent,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'id', 'dropup', 'disabled', 'pullRight', 'open', 'onClose', 'onSelect', 'role', 'bsClass', 'className', 'rootCloseEvent', 'children']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var id = _props.id;
+	    var dropup = _props.dropup;
+	    var disabled = _props.disabled;
+	    var pullRight = _props.pullRight;
+	    var open = _props.open;
+	    var onClose = _props.onClose;
+	    var onSelect = _props.onSelect;
+	    var role = _props.role;
+	    var bsClass = _props.bsClass;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'id', 'dropup', 'disabled', 'pullRight', 'open', 'onClose', 'onSelect', 'role', 'bsClass', 'className', 'children']);
 
 
 	    delete props.onToggle;
@@ -29614,7 +29590,7 @@
 	            });
 	          case MENU_ROLE:
 	            return _this4.renderMenu(child, {
-	              id: id, open: open, pullRight: pullRight, bsClass: bsClass, onClose: onClose, onSelect: onSelect, rootCloseEvent: rootCloseEvent
+	              id: id, open: open, pullRight: pullRight, bsClass: bsClass, onClose: onClose, onSelect: onSelect
 	            });
 	          default:
 	            return child;
@@ -30282,8 +30258,7 @@
 	  pullRight: _react2['default'].PropTypes.bool,
 	  onClose: _react2['default'].PropTypes.func,
 	  labelledBy: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.string, _react2['default'].PropTypes.number]),
-	  onSelect: _react2['default'].PropTypes.func,
-	  rootCloseEvent: _react2['default'].PropTypes.oneOf(['click', 'mousedown'])
+	  onSelect: _react2['default'].PropTypes.func
 	};
 
 	var defaultProps = {
@@ -30338,9 +30313,10 @@
 	  };
 
 	  DropdownMenu.prototype.focusNext = function focusNext() {
-	    var _getItemsAndActiveInd = this.getItemsAndActiveIndex(),
-	        items = _getItemsAndActiveInd.items,
-	        activeIndex = _getItemsAndActiveInd.activeIndex;
+	    var _getItemsAndActiveInd = this.getItemsAndActiveIndex();
+
+	    var items = _getItemsAndActiveInd.items;
+	    var activeIndex = _getItemsAndActiveInd.activeIndex;
 
 	    if (items.length === 0) {
 	      return;
@@ -30351,9 +30327,10 @@
 	  };
 
 	  DropdownMenu.prototype.focusPrevious = function focusPrevious() {
-	    var _getItemsAndActiveInd2 = this.getItemsAndActiveIndex(),
-	        items = _getItemsAndActiveInd2.items,
-	        activeIndex = _getItemsAndActiveInd2.activeIndex;
+	    var _getItemsAndActiveInd2 = this.getItemsAndActiveIndex();
+
+	    var items = _getItemsAndActiveInd2.items;
+	    var activeIndex = _getItemsAndActiveInd2.activeIndex;
 
 	    if (items.length === 0) {
 	      return;
@@ -30367,20 +30344,21 @@
 	    var _extends2,
 	        _this2 = this;
 
-	    var _props = this.props,
-	        open = _props.open,
-	        pullRight = _props.pullRight,
-	        onClose = _props.onClose,
-	        labelledBy = _props.labelledBy,
-	        onSelect = _props.onSelect,
-	        className = _props.className,
-	        rootCloseEvent = _props.rootCloseEvent,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['open', 'pullRight', 'onClose', 'labelledBy', 'onSelect', 'className', 'rootCloseEvent', 'children']);
+	    var _props = this.props;
+	    var open = _props.open;
+	    var pullRight = _props.pullRight;
+	    var onClose = _props.onClose;
+	    var labelledBy = _props.labelledBy;
+	    var onSelect = _props.onSelect;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['open', 'pullRight', 'onClose', 'labelledBy', 'onSelect', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'right')] = pullRight, _extends2));
 
@@ -30388,8 +30366,7 @@
 	      _RootCloseWrapper2['default'],
 	      {
 	        disabled: !open,
-	        onRootClose: onClose,
-	        event: rootCloseEvent
+	        onRootClose: onClose
 	      },
 	      _react2['default'].createElement(
 	        'ul',
@@ -30899,14 +30876,14 @@
 	  }
 
 	  DropdownToggle.prototype.render = function render() {
-	    var _props = this.props,
-	        noCaret = _props.noCaret,
-	        open = _props.open,
-	        useAnchor = _props.useAnchor,
-	        bsClass = _props.bsClass,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['noCaret', 'open', 'useAnchor', 'bsClass', 'className', 'children']);
+	    var _props = this.props;
+	    var noCaret = _props.noCaret;
+	    var open = _props.open;
+	    var useAnchor = _props.useAnchor;
+	    var bsClass = _props.bsClass;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['noCaret', 'open', 'useAnchor', 'bsClass', 'className', 'children']);
 
 
 	    delete props.bsRole;
@@ -31084,16 +31061,18 @@
 	  }
 
 	  DropdownButton.prototype.render = function render() {
-	    var _props = this.props,
-	        bsSize = _props.bsSize,
-	        bsStyle = _props.bsStyle,
-	        title = _props.title,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['bsSize', 'bsStyle', 'title', 'children']);
+	    var _props = this.props;
+	    var bsSize = _props.bsSize;
+	    var bsStyle = _props.bsStyle;
+	    var title = _props.title;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['bsSize', 'bsStyle', 'title', 'children']);
 
-	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent),
-	        dropdownProps = _splitComponentProps[0],
-	        toggleProps = _splitComponentProps[1];
+	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent);
+
+	    var dropdownProps = _splitComponentProps[0];
+	    var toggleProps = _splitComponentProps[1];
+
 
 	    return _react2['default'].createElement(
 	      _Dropdown2['default'],
@@ -31148,8 +31127,8 @@
 	  var childProps = {};
 
 	  (0, _entries2["default"])(props).forEach(function (_ref) {
-	    var propName = _ref[0],
-	        propValue = _ref[1];
+	    var propName = _ref[0];
+	    var propValue = _ref[1];
 
 	    if (componentPropTypes[propName]) {
 	      parentProps[propName] = propValue;
@@ -31347,16 +31326,18 @@
 	  }
 
 	  Form.prototype.render = function render() {
-	    var _props = this.props,
-	        horizontal = _props.horizontal,
-	        inline = _props.inline,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['horizontal', 'inline', 'componentClass', 'className']);
+	    var _props = this.props;
+	    var horizontal = _props.horizontal;
+	    var inline = _props.inline;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['horizontal', 'inline', 'componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = [];
 	    if (horizontal) {
@@ -31468,17 +31449,19 @@
 	    var formGroup = this.context.$bs_formGroup;
 	    var controlId = formGroup && formGroup.controlId;
 
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        type = _props.type,
-	        _props$id = _props.id,
-	        id = _props$id === undefined ? controlId : _props$id,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'type', 'id', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var type = _props.type;
+	    var _props$id = _props.id;
+	    var id = _props$id === undefined ? controlId : _props$id;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'type', 'id', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    process.env.NODE_ENV !== 'production' ? (0, _warning2['default'])(controlId == null || id === controlId, '`controlId` is ignored on `<FormControl>` when `id` is specified.') : void 0;
 
@@ -31595,14 +31578,16 @@
 	  };
 
 	  FormControlFeedback.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -31686,14 +31671,16 @@
 	  }
 
 	  FormControlStatic.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -31778,9 +31765,9 @@
 	  }
 
 	  FormGroup.prototype.getChildContext = function getChildContext() {
-	    var _props = this.props,
-	        controlId = _props.controlId,
-	        validationState = _props.validationState;
+	    var _props = this.props;
+	    var controlId = _props.controlId;
+	    var validationState = _props.validationState;
 
 
 	    return {
@@ -31800,15 +31787,17 @@
 	  };
 
 	  FormGroup.prototype.render = function render() {
-	    var _props2 = this.props,
-	        validationState = _props2.validationState,
-	        className = _props2.className,
-	        children = _props2.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['validationState', 'className', 'children']);
+	    var _props2 = this.props;
+	    var validationState = _props2.validationState;
+	    var className = _props2.className;
+	    var children = _props2.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['validationState', 'className', 'children']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['controlId']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['controlId']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    var classes = (0, _extends3['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), {
 	      'has-feedback': this.hasFeedback(children)
@@ -31906,15 +31895,17 @@
 	  }
 
 	  Grid.prototype.render = function render() {
-	    var _props = this.props,
-	        fluid = _props.fluid,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['fluid', 'componentClass', 'className']);
+	    var _props = this.props;
+	    var fluid = _props.fluid;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['fluid', 'componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.prefix)(bsProps, fluid && 'fluid');
 
@@ -31981,13 +31972,15 @@
 	  }
 
 	  HelpBlock.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32082,17 +32075,19 @@
 	  Image.prototype.render = function render() {
 	    var _classes;
 
-	    var _props = this.props,
-	        responsive = _props.responsive,
-	        rounded = _props.rounded,
-	        circle = _props.circle,
-	        thumbnail = _props.thumbnail,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['responsive', 'rounded', 'circle', 'thumbnail', 'className']);
+	    var _props = this.props;
+	    var responsive = _props.responsive;
+	    var rounded = _props.rounded;
+	    var circle = _props.circle;
+	    var thumbnail = _props.thumbnail;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['responsive', 'rounded', 'circle', 'thumbnail', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (_classes = {}, _classes[(0, _bootstrapUtils.prefix)(bsProps, 'responsive')] = responsive, _classes[(0, _bootstrapUtils.prefix)(bsProps, 'rounded')] = rounded, _classes[(0, _bootstrapUtils.prefix)(bsProps, 'circle')] = circle, _classes[(0, _bootstrapUtils.prefix)(bsProps, 'thumbnail')] = thumbnail, _classes);
 
@@ -32169,13 +32164,15 @@
 	  }
 
 	  InputGroup.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32242,13 +32239,15 @@
 	  }
 
 	  InputGroupAddon.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32312,13 +32311,15 @@
 	  }
 
 	  InputGroupButton.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32394,14 +32395,16 @@
 	  }
 
 	  Jumbotron.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32490,14 +32493,16 @@
 	  };
 
 	  Label.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends3['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), {
 
@@ -32606,16 +32611,18 @@
 	  }
 
 	  ListGroup.prototype.render = function render() {
-	    var _props = this.props,
-	        children = _props.children,
-	        _props$componentClass = _props.componentClass,
-	        Component = _props$componentClass === undefined ? getDefaultComponent(children) : _props$componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['children', 'componentClass', 'className']);
+	    var _props = this.props;
+	    var children = _props.children;
+	    var _props$componentClass = _props.componentClass;
+	    var Component = _props$componentClass === undefined ? getDefaultComponent(children) : _props$componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['children', 'componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32725,18 +32732,20 @@
 	  };
 
 	  ListGroupItem.prototype.render = function render() {
-	    var _props = this.props,
-	        active = _props.active,
-	        disabled = _props.disabled,
-	        className = _props.className,
-	        header = _props.header,
-	        listItem = _props.listItem,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'disabled', 'className', 'header', 'listItem', 'children']);
+	    var _props = this.props;
+	    var active = _props.active;
+	    var disabled = _props.disabled;
+	    var className = _props.className;
+	    var header = _props.header;
+	    var listItem = _props.listItem;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'disabled', 'className', 'header', 'listItem', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends3['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), {
 	      active: active,
@@ -32873,14 +32882,16 @@
 	  }
 
 	  Media.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -32966,14 +32977,16 @@
 	  }
 
 	  MediaBody.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33052,14 +33065,16 @@
 	  }
 
 	  MediaHeading.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33137,14 +33152,16 @@
 	  }
 
 	  MediaLeft.prototype.render = function render() {
-	    var _props = this.props,
-	        align = _props.align,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['align', 'className']);
+	    var _props = this.props;
+	    var align = _props.align;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['align', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33215,13 +33232,15 @@
 	  }
 
 	  MediaList.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33285,13 +33304,15 @@
 	  }
 
 	  MediaListItem.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33366,14 +33387,16 @@
 	  }
 
 	  MediaRight.prototype.render = function render() {
-	    var _props = this.props,
-	        align = _props.align,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['align', 'className']);
+	    var _props = this.props;
+	    var align = _props.align;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['align', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -33463,8 +33486,8 @@
 	   * groups of menu items.
 	   */
 	  divider: (0, _all2['default'])(_react2['default'].PropTypes.bool, function (_ref) {
-	    var divider = _ref.divider,
-	        children = _ref.children;
+	    var divider = _ref.divider;
+	    var children = _ref.children;
 	    return divider && children ? new Error('Children will not be rendered for dividers') : null;
 	  }),
 
@@ -33517,11 +33540,11 @@
 	  }
 
 	  MenuItem.prototype.handleClick = function handleClick(event) {
-	    var _props = this.props,
-	        href = _props.href,
-	        disabled = _props.disabled,
-	        onSelect = _props.onSelect,
-	        eventKey = _props.eventKey;
+	    var _props = this.props;
+	    var href = _props.href;
+	    var disabled = _props.disabled;
+	    var onSelect = _props.onSelect;
+	    var eventKey = _props.eventKey;
 
 
 	    if (!href || disabled) {
@@ -33538,19 +33561,21 @@
 	  };
 
 	  MenuItem.prototype.render = function render() {
-	    var _props2 = this.props,
-	        active = _props2.active,
-	        disabled = _props2.disabled,
-	        divider = _props2.divider,
-	        header = _props2.header,
-	        onClick = _props2.onClick,
-	        className = _props2.className,
-	        style = _props2.style,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['active', 'disabled', 'divider', 'header', 'onClick', 'className', 'style']);
+	    var _props2 = this.props;
+	    var active = _props2.active;
+	    var disabled = _props2.disabled;
+	    var divider = _props2.divider;
+	    var header = _props2.header;
+	    var onClick = _props2.onClick;
+	    var className = _props2.className;
+	    var style = _props2.style;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['active', 'disabled', 'divider', 'header', 'onClick', 'className', 'style']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['eventKey', 'onSelect']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['eventKey', 'onSelect']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    if (divider) {
 	      // Forcibly blank out the children; separators shouldn't render any.
@@ -33877,21 +33902,23 @@
 	  Modal.prototype.render = function render() {
 	    var _this2 = this;
 
-	    var _props = this.props,
-	        backdrop = _props.backdrop,
-	        animation = _props.animation,
-	        show = _props.show,
-	        Dialog = _props.dialogComponentClass,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        onEntering = _props.onEntering,
-	        onExited = _props.onExited,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['backdrop', 'animation', 'show', 'dialogComponentClass', 'className', 'style', 'children', 'onEntering', 'onExited']);
+	    var _props = this.props;
+	    var backdrop = _props.backdrop;
+	    var animation = _props.animation;
+	    var show = _props.show;
+	    var Dialog = _props.dialogComponentClass;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var onEntering = _props.onEntering;
+	    var onExited = _props.onExited;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['backdrop', 'animation', 'show', 'dialogComponentClass', 'className', 'style', 'children', 'onEntering', 'onExited']);
 
-	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Modal2['default']),
-	        baseModalProps = _splitComponentProps[0],
-	        dialogProps = _splitComponentProps[1];
+	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Modal2['default']);
+
+	    var baseModalProps = _splitComponentProps[0];
+	    var dialogProps = _splitComponentProps[1];
+
 
 	    var inClassName = show && !animation && 'in';
 
@@ -35183,13 +35210,15 @@
 	  }
 
 	  ModalBody.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -35264,16 +35293,18 @@
 	  ModalDialog.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        dialogClassName = _props.dialogClassName,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['dialogClassName', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var dialogClassName = _props.dialogClassName;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['dialogClassName', 'className', 'style', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var bsClassName = (0, _bootstrapUtils.prefix)(bsProps);
 
@@ -35358,13 +35389,15 @@
 	  }
 
 	  ModalFooter.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -35466,20 +35499,22 @@
 	  }
 
 	  ModalHeader.prototype.render = function render() {
-	    var _props = this.props,
-	        label = _props['aria-label'],
-	        closeButton = _props.closeButton,
-	        onHide = _props.onHide,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['aria-label', 'closeButton', 'onHide', 'className', 'children']);
+	    var _props = this.props;
+	    var label = _props['aria-label'];
+	    var closeButton = _props.closeButton;
+	    var onHide = _props.onHide;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['aria-label', 'closeButton', 'onHide', 'className', 'children']);
 
 
 	    var modal = this.context.$bs_modal;
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -35565,13 +35600,15 @@
 	  }
 
 	  ModalTitle.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -35675,8 +35712,8 @@
 	  stacked: _react2['default'].PropTypes.bool,
 
 	  justified: (0, _all2['default'])(_react2['default'].PropTypes.bool, function (_ref) {
-	    var justified = _ref.justified,
-	        navbar = _ref.navbar;
+	    var justified = _ref.justified;
+	    var navbar = _ref.navbar;
 	    return justified && navbar ? Error('justified navbar `Nav`s are not supported') : null;
 	  }),
 
@@ -35730,8 +35767,7 @@
 
 	var contextTypes = {
 	  $bs_navbar: _react2['default'].PropTypes.shape({
-	    bsClass: _react2['default'].PropTypes.string,
-	    onSelect: _react2['default'].PropTypes.func
+	    bsClass: _react2['default'].PropTypes.string
 	  }),
 
 	  $bs_tabContainer: _react2['default'].PropTypes.shape({
@@ -35761,9 +35797,11 @@
 
 	    var children = this.props.children;
 
-	    var _getActiveProps = this.getActiveProps(),
-	        activeKey = _getActiveProps.activeKey,
-	        activeHref = _getActiveProps.activeHref;
+	    var _getActiveProps = this.getActiveProps();
+
+	    var activeKey = _getActiveProps.activeKey;
+	    var activeHref = _getActiveProps.activeHref;
+
 
 	    var activeChild = _ValidComponentChildren2['default'].find(children, function (child) {
 	      return _this2.isActive(child, activeKey, activeHref);
@@ -35817,9 +35855,11 @@
 	      return child.props.eventKey && !child.props.disabled;
 	    });
 
-	    var _getActiveProps2 = this.getActiveProps(),
-	        activeKey = _getActiveProps2.activeKey,
-	        activeHref = _getActiveProps2.activeHref;
+	    var _getActiveProps2 = this.getActiveProps();
+
+	    var activeKey = _getActiveProps2.activeKey;
+	    var activeHref = _getActiveProps2.activeHref;
+
 
 	    var activeChild = _ValidComponentChildren2['default'].find(children, function (child) {
 	      return _this3.isActive(child, activeKey, activeHref);
@@ -35874,13 +35914,13 @@
 	      return null;
 	    }
 
-	    var _child$props = child.props,
-	        id = _child$props.id,
-	        controls = _child$props['aria-controls'],
-	        eventKey = _child$props.eventKey,
-	        role = _child$props.role,
-	        onKeyDown = _child$props.onKeyDown,
-	        tabIndex = _child$props.tabIndex;
+	    var _child$props = child.props;
+	    var id = _child$props.id;
+	    var controls = _child$props['aria-controls'];
+	    var eventKey = _child$props.eventKey;
+	    var role = _child$props.role;
+	    var onKeyDown = _child$props.onKeyDown;
+	    var tabIndex = _child$props.tabIndex;
 
 
 	    if (tabContainer) {
@@ -35911,32 +35951,35 @@
 	    var _extends2,
 	        _this5 = this;
 
-	    var _props = this.props,
-	        stacked = _props.stacked,
-	        justified = _props.justified,
-	        onSelect = _props.onSelect,
-	        propsRole = _props.role,
-	        propsNavbar = _props.navbar,
-	        pullRight = _props.pullRight,
-	        pullLeft = _props.pullLeft,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['stacked', 'justified', 'onSelect', 'role', 'navbar', 'pullRight', 'pullLeft', 'className', 'children']);
+	    var _props = this.props;
+	    var stacked = _props.stacked;
+	    var justified = _props.justified;
+	    var onSelect = _props.onSelect;
+	    var propsRole = _props.role;
+	    var propsNavbar = _props.navbar;
+	    var pullRight = _props.pullRight;
+	    var pullLeft = _props.pullLeft;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['stacked', 'justified', 'onSelect', 'role', 'navbar', 'pullRight', 'pullLeft', 'className', 'children']);
 
 
 	    var tabContainer = this.context.$bs_tabContainer;
 	    var role = propsRole || (tabContainer ? 'tablist' : null);
 
-	    var _getActiveProps3 = this.getActiveProps(),
-	        activeKey = _getActiveProps3.activeKey,
-	        activeHref = _getActiveProps3.activeHref;
+	    var _getActiveProps3 = this.getActiveProps();
+
+	    var activeKey = _getActiveProps3.activeKey;
+	    var activeHref = _getActiveProps3.activeHref;
 
 	    delete props.activeKey; // Accessed via this.getActiveProps().
 	    delete props.activeHref; // Accessed via this.getActiveProps().
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'stacked')] = stacked, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'justified')] = justified, _extends2));
 
@@ -35967,7 +36010,7 @@
 	      }),
 	      _ValidComponentChildren2['default'].map(children, function (child) {
 	        var active = _this5.isActive(child, activeKey, activeHref);
-	        var childOnSelect = (0, _createChainedFunction2['default'])(child.props.onSelect, onSelect, navbar && navbar.onSelect, tabContainer && tabContainer.onSelect);
+	        var childOnSelect = (0, _createChainedFunction2['default'])(child.props.onSelect, onSelect, tabContainer && tabContainer.onSelect);
 
 	        return (0, _react.cloneElement)(child, (0, _extends4['default'])({}, _this5.getTabProps(child, tabContainer, role, active, childOnSelect), {
 	          active: active,
@@ -36058,14 +36101,7 @@
 
 	var _StyleConfig = __webpack_require__(131);
 
-	var _createChainedFunction = __webpack_require__(132);
-
-	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	// TODO: Remove this pragma once we upgrade eslint-config-airbnb.
-	/* eslint-disable react/no-multi-comp */
 
 	var propTypes = {
 	  /**
@@ -36104,36 +36140,7 @@
 	   * @controllable navExpanded
 	   */
 	  onToggle: _react2['default'].PropTypes.func,
-	  /**
-	   * A callback fired when a descendant of a child `<Nav>` is selected. Should
-	   * be used to execute complex closing or other miscellaneous actions desired
-	   * after selecting a descendant of `<Nav>`. Does nothing if no `<Nav>` or `<Nav>`
-	   * descendants exist. The callback is called with an eventKey, which is a
-	   * prop from the selected `<Nav>` descendant, and an event.
-	   *
-	   * ```js
-	   * function (
-	   * 	Any eventKey,
-	   * 	SyntheticEvent event?
-	   * )
-	   * ```
-	   *
-	   * For basic closing behavior after all `<Nav>` descendant onSelect events in
-	   * mobile viewports, try using collapseOnSelect.
-	   *
-	   * Note: If you are manually closing the navbar using this `OnSelect` prop,
-	   * ensure that you are setting `expanded` to false and not *toggling* between
-	   * true and false.
-	   */
-	  onSelect: _react2['default'].PropTypes.func,
-	  /**
-	   * Sets `expanded` to `false` after the onSelect event of a descendant of a
-	   * child `<Nav>`. Does nothing if no `<Nav>` or `<Nav>` descendants exist.
-	   *
-	   * The onSelect callback should be used instead for more complex operations
-	   * that need to be executed after the `select` event of `<Nav>` descendants.
-	   */
-	  collapseOnSelect: _react2['default'].PropTypes.bool,
+
 	  /**
 	   * Explicitly set the visiblity of the navbar body
 	   *
@@ -36142,7 +36149,8 @@
 	  expanded: _react2['default'].PropTypes.bool,
 
 	  role: _react2['default'].PropTypes.string
-	};
+	}; // TODO: Remove this pragma once we upgrade eslint-config-airbnb.
+	/* eslint-disable react/no-multi-comp */
 
 	var defaultProps = {
 	  componentClass: 'nav',
@@ -36150,16 +36158,14 @@
 	  fixedBottom: false,
 	  staticTop: false,
 	  inverse: false,
-	  fluid: false,
-	  collapseOnSelect: false
+	  fluid: false
 	};
 
 	var childContextTypes = {
 	  $bs_navbar: _react.PropTypes.shape({
 	    bsClass: _react.PropTypes.string,
 	    expanded: _react.PropTypes.bool,
-	    onToggle: _react.PropTypes.func.isRequired,
-	    onSelect: _react.PropTypes.func
+	    onToggle: _react.PropTypes.func.isRequired
 	  })
 	};
 
@@ -36172,43 +36178,28 @@
 	    var _this = (0, _possibleConstructorReturn3['default'])(this, _React$Component.call(this, props, context));
 
 	    _this.handleToggle = _this.handleToggle.bind(_this);
-	    _this.handleCollapse = _this.handleCollapse.bind(_this);
 	    return _this;
 	  }
 
 	  Navbar.prototype.getChildContext = function getChildContext() {
-	    var _props = this.props,
-	        bsClass = _props.bsClass,
-	        expanded = _props.expanded,
-	        onSelect = _props.onSelect,
-	        collapseOnSelect = _props.collapseOnSelect;
+	    var _props = this.props;
+	    var bsClass = _props.bsClass;
+	    var expanded = _props.expanded;
 
 
 	    return {
 	      $bs_navbar: {
 	        bsClass: bsClass,
 	        expanded: expanded,
-	        onToggle: this.handleToggle,
-	        onSelect: (0, _createChainedFunction2['default'])(onSelect, collapseOnSelect ? this.handleCollapse : null)
+	        onToggle: this.handleToggle
 	      }
 	    };
 	  };
 
-	  Navbar.prototype.handleCollapse = function handleCollapse() {
-	    var _props2 = this.props,
-	        onToggle = _props2.onToggle,
-	        expanded = _props2.expanded;
-
-
-	    if (expanded) {
-	      onToggle(false);
-	    }
-	  };
-
 	  Navbar.prototype.handleToggle = function handleToggle() {
-	    var _props3 = this.props,
-	        onToggle = _props3.onToggle,
-	        expanded = _props3.expanded;
+	    var _props2 = this.props;
+	    var onToggle = _props2.onToggle;
+	    var expanded = _props2.expanded;
 
 
 	    onToggle(!expanded);
@@ -36217,25 +36208,25 @@
 	  Navbar.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props4 = this.props,
-	        Component = _props4.componentClass,
-	        fixedTop = _props4.fixedTop,
-	        fixedBottom = _props4.fixedBottom,
-	        staticTop = _props4.staticTop,
-	        inverse = _props4.inverse,
-	        fluid = _props4.fluid,
-	        className = _props4.className,
-	        children = _props4.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props4, ['componentClass', 'fixedTop', 'fixedBottom', 'staticTop', 'inverse', 'fluid', 'className', 'children']);
+	    var _props3 = this.props;
+	    var Component = _props3.componentClass;
+	    var fixedTop = _props3.fixedTop;
+	    var fixedBottom = _props3.fixedBottom;
+	    var staticTop = _props3.staticTop;
+	    var inverse = _props3.inverse;
+	    var fluid = _props3.fluid;
+	    var className = _props3.className;
+	    var children = _props3.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props3, ['componentClass', 'fixedTop', 'fixedBottom', 'staticTop', 'inverse', 'fluid', 'className', 'children']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['expanded', 'onToggle', 'onSelect', 'collapseOnSelect']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['expanded', 'onToggle']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
 
 	    // will result in some false positives but that seems better
 	    // than false negatives. strict `undefined` check allows explicit
 	    // "nulling" of the role if the user really doesn't want one
-
 
 	    if (elementProps.role === undefined && Component !== 'nav') {
 	      elementProps.role = 'navigation';
@@ -36273,13 +36264,13 @@
 
 	function createSimpleWrapper(tag, suffix, displayName) {
 	  var Wrapper = function Wrapper(_ref, _ref2) {
-	    var Component = _ref.componentClass,
-	        className = _ref.className,
-	        pullRight = _ref.pullRight,
-	        pullLeft = _ref.pullLeft,
-	        props = (0, _objectWithoutProperties3['default'])(_ref, ['componentClass', 'className', 'pullRight', 'pullLeft']);
-	    var _ref2$$bs_navbar = _ref2.$bs_navbar,
-	        navbarProps = _ref2$$bs_navbar === undefined ? { bsClass: 'navbar' } : _ref2$$bs_navbar;
+	    var Component = _ref.componentClass;
+	    var className = _ref.className;
+	    var pullRight = _ref.pullRight;
+	    var pullLeft = _ref.pullLeft;
+	    var props = (0, _objectWithoutProperties3['default'])(_ref, ['componentClass', 'className', 'pullRight', 'pullLeft']);
+	    var _ref2$$bs_navbar = _ref2.$bs_navbar;
+	    var navbarProps = _ref2$$bs_navbar === undefined ? { bsClass: 'navbar' } : _ref2$$bs_navbar;
 	    return _react2['default'].createElement(Component, (0, _extends4['default'])({}, props, {
 	      className: (0, _classnames2['default'])(className, (0, _bootstrapUtils.prefix)(navbarProps, suffix), pullRight && (0, _bootstrapUtils.prefix)(navbarProps, 'right'), pullLeft && (0, _bootstrapUtils.prefix)(navbarProps, 'left'))
 	    }));
@@ -36376,10 +36367,10 @@
 	  }
 
 	  NavbarBrand.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
 
 	    var navbarProps = this.context.$bs_navbar || { bsClass: 'navbar' };
 
@@ -36462,9 +36453,9 @@
 	  }
 
 	  NavbarCollapse.prototype.render = function render() {
-	    var _props = this.props,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['children']);
+	    var _props = this.props;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['children']);
 
 	    var navbarProps = this.context.$bs_navbar || { bsClass: 'navbar' };
 
@@ -36544,9 +36535,9 @@
 	  }
 
 	  NavbarHeader.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
 	    var navbarProps = this.context.$bs_navbar || { bsClass: 'navbar' };
 
@@ -36632,11 +36623,11 @@
 	  }
 
 	  NavbarToggle.prototype.render = function render() {
-	    var _props = this.props,
-	        onClick = _props.onClick,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['onClick', 'className', 'children']);
+	    var _props = this.props;
+	    var onClick = _props.onClick;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['onClick', 'className', 'children']);
 
 	    var navbarProps = this.context.$bs_navbar || { bsClass: 'navbar' };
 
@@ -36663,7 +36654,9 @@
 	        { className: 'sr-only' },
 	        'Toggle navigation'
 	      ),
-	      _react2['default'].createElement('span', { className: 'fa fa-gear fa-lg' })
+	      _react2['default'].createElement('span', { className: 'icon-bar' }),
+	      _react2['default'].createElement('span', { className: 'icon-bar' }),
+	      _react2['default'].createElement('span', { className: 'icon-bar' })
 	    );
 	  };
 
@@ -36675,7 +36668,6 @@
 
 	exports['default'] = NavbarToggle;
 	module.exports = exports['default'];
-
 
 /***/ },
 /* 390 */
@@ -36770,23 +36762,24 @@
 	  NavDropdown.prototype.render = function render() {
 	    var _this3 = this;
 
-	    var _props = this.props,
-	        title = _props.title,
-	        activeKey = _props.activeKey,
-	        activeHref = _props.activeHref,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['title', 'activeKey', 'activeHref', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var title = _props.title;
+	    var activeKey = _props.activeKey;
+	    var activeHref = _props.activeHref;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['title', 'activeKey', 'activeHref', 'className', 'style', 'children']);
 
 
 	    var active = this.isActive(this, activeKey, activeHref);
 	    delete props.active; // Accessed via this.isActive().
 	    delete props.eventKey; // Accessed via this.isActive().
 
-	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent),
-	        dropdownProps = _splitComponentProps[0],
-	        toggleProps = _splitComponentProps[1];
+	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent);
+
+	    var dropdownProps = _splitComponentProps[0];
+	    var toggleProps = _splitComponentProps[1];
 
 	    // Unlike for the other dropdowns, styling needs to go to the `<Dropdown>`
 	    // rather than the `<Dropdown.Toggle>`.
@@ -36907,13 +36900,13 @@
 	  };
 
 	  NavItem.prototype.render = function render() {
-	    var _props = this.props,
-	        active = _props.active,
-	        disabled = _props.disabled,
-	        onClick = _props.onClick,
-	        className = _props.className,
-	        style = _props.style,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'disabled', 'onClick', 'className', 'style']);
+	    var _props = this.props;
+	    var active = _props.active;
+	    var disabled = _props.disabled;
+	    var onClick = _props.onClick;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['active', 'disabled', 'onClick', 'className', 'style']);
 
 
 	    delete props.onSelect;
@@ -37071,10 +37064,10 @@
 	  }
 
 	  Overlay.prototype.render = function render() {
-	    var _props = this.props,
-	        animation = _props.animation,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['animation', 'children']);
+	    var _props = this.props;
+	    var animation = _props.animation;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['animation', 'children']);
 
 
 	    var transition = animation === true ? _Fade2['default'] : animation || null;
@@ -38145,16 +38138,16 @@
 	  };
 
 	  OverlayTrigger.prototype.render = function render() {
-	    var _props = this.props,
-	        trigger = _props.trigger,
-	        overlay = _props.overlay,
-	        children = _props.children,
-	        onBlur = _props.onBlur,
-	        onClick = _props.onClick,
-	        onFocus = _props.onFocus,
-	        onMouseOut = _props.onMouseOut,
-	        onMouseOver = _props.onMouseOver,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['trigger', 'overlay', 'children', 'onBlur', 'onClick', 'onFocus', 'onMouseOut', 'onMouseOver']);
+	    var _props = this.props;
+	    var trigger = _props.trigger;
+	    var overlay = _props.overlay;
+	    var children = _props.children;
+	    var onBlur = _props.onBlur;
+	    var onClick = _props.onClick;
+	    var onFocus = _props.onFocus;
+	    var onMouseOut = _props.onMouseOut;
+	    var onMouseOver = _props.onMouseOver;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['trigger', 'overlay', 'children', 'onBlur', 'onClick', 'onFocus', 'onMouseOut', 'onMouseOver']);
 
 
 	    delete props.delay;
@@ -38254,14 +38247,16 @@
 	  }
 
 	  PageHeader.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -38379,10 +38374,10 @@
 	  }
 
 	  PagerItem.prototype.handleSelect = function handleSelect(e) {
-	    var _props = this.props,
-	        disabled = _props.disabled,
-	        onSelect = _props.onSelect,
-	        eventKey = _props.eventKey;
+	    var _props = this.props;
+	    var disabled = _props.disabled;
+	    var onSelect = _props.onSelect;
+	    var eventKey = _props.eventKey;
 
 
 	    if (onSelect || disabled) {
@@ -38399,14 +38394,14 @@
 	  };
 
 	  PagerItem.prototype.render = function render() {
-	    var _props2 = this.props,
-	        disabled = _props2.disabled,
-	        previous = _props2.previous,
-	        next = _props2.next,
-	        onClick = _props2.onClick,
-	        className = _props2.className,
-	        style = _props2.style,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['disabled', 'previous', 'next', 'onClick', 'className', 'style']);
+	    var _props2 = this.props;
+	    var disabled = _props2.disabled;
+	    var previous = _props2.previous;
+	    var next = _props2.next;
+	    var onClick = _props2.onClick;
+	    var className = _props2.className;
+	    var style = _props2.style;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['disabled', 'previous', 'next', 'onClick', 'className', 'style']);
 
 
 	    delete props.onSelect;
@@ -38591,15 +38586,17 @@
 	  }
 
 	  Pager.prototype.render = function render() {
-	    var _props = this.props,
-	        onSelect = _props.onSelect,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['onSelect', 'className', 'children']);
+	    var _props = this.props;
+	    var onSelect = _props.onSelect;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['onSelect', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -38751,8 +38748,8 @@
 
 	    if (maxButtons) {
 	      var hiddenPagesBefore = activePage - parseInt(maxButtons / 2, 10);
-	      startPage = Math.max(hiddenPagesBefore, 1);
-	      hasHiddenPagesAfter = items >= startPage + maxButtons;
+	      startPage = hiddenPagesBefore > 2 ? hiddenPagesBefore : 1;
+	      hasHiddenPagesAfter = startPage + maxButtons < items;
 
 	      if (!hasHiddenPagesAfter) {
 	        endPage = items;
@@ -38838,24 +38835,26 @@
 	  };
 
 	  Pagination.prototype.render = function render() {
-	    var _props = this.props,
-	        activePage = _props.activePage,
-	        items = _props.items,
-	        maxButtons = _props.maxButtons,
-	        boundaryLinks = _props.boundaryLinks,
-	        ellipsis = _props.ellipsis,
-	        first = _props.first,
-	        last = _props.last,
-	        prev = _props.prev,
-	        next = _props.next,
-	        onSelect = _props.onSelect,
-	        buttonComponentClass = _props.buttonComponentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['activePage', 'items', 'maxButtons', 'boundaryLinks', 'ellipsis', 'first', 'last', 'prev', 'next', 'onSelect', 'buttonComponentClass', 'className']);
+	    var _props = this.props;
+	    var activePage = _props.activePage;
+	    var items = _props.items;
+	    var maxButtons = _props.maxButtons;
+	    var boundaryLinks = _props.boundaryLinks;
+	    var ellipsis = _props.ellipsis;
+	    var first = _props.first;
+	    var last = _props.last;
+	    var prev = _props.prev;
+	    var next = _props.next;
+	    var onSelect = _props.onSelect;
+	    var buttonComponentClass = _props.buttonComponentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['activePage', 'items', 'maxButtons', 'boundaryLinks', 'ellipsis', 'first', 'last', 'prev', 'next', 'onSelect', 'buttonComponentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -39013,10 +39012,10 @@
 	  }
 
 	  PaginationButton.prototype.handleClick = function handleClick(event) {
-	    var _props = this.props,
-	        disabled = _props.disabled,
-	        onSelect = _props.onSelect,
-	        eventKey = _props.eventKey;
+	    var _props = this.props;
+	    var disabled = _props.disabled;
+	    var onSelect = _props.onSelect;
+	    var eventKey = _props.eventKey;
 
 
 	    if (disabled) {
@@ -39029,14 +39028,14 @@
 	  };
 
 	  PaginationButton.prototype.render = function render() {
-	    var _props2 = this.props,
-	        Component = _props2.componentClass,
-	        active = _props2.active,
-	        disabled = _props2.disabled,
-	        onClick = _props2.onClick,
-	        className = _props2.className,
-	        style = _props2.style,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'active', 'disabled', 'onClick', 'className', 'style']);
+	    var _props2 = this.props;
+	    var Component = _props2.componentClass;
+	    var active = _props2.active;
+	    var disabled = _props2.disabled;
+	    var onClick = _props2.onClick;
+	    var className = _props2.className;
+	    var style = _props2.style;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'active', 'disabled', 'onClick', 'className', 'style']);
 
 
 	    if (Component === _SafeAnchor2['default']) {
@@ -39217,8 +39216,7 @@
 	        onClick: this.handleClickTitle,
 	        'aria-controls': id,
 	        'aria-expanded': expanded,
-	        'aria-selected': expanded,
-	        className: expanded ? null : 'collapsed'
+	        'aria-selected': expanded
 	      },
 	      header
 	    );
@@ -39282,27 +39280,29 @@
 	  };
 
 	  Panel.prototype.render = function render() {
-	    var _props = this.props,
-	        collapsible = _props.collapsible,
-	        header = _props.header,
-	        id = _props.id,
-	        footer = _props.footer,
-	        propsExpanded = _props.expanded,
-	        headerRole = _props.headerRole,
-	        panelRole = _props.panelRole,
-	        className = _props.className,
-	        children = _props.children,
-	        onEnter = _props.onEnter,
-	        onEntering = _props.onEntering,
-	        onEntered = _props.onEntered,
-	        onExit = _props.onExit,
-	        onExiting = _props.onExiting,
-	        onExited = _props.onExited,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['collapsible', 'header', 'id', 'footer', 'expanded', 'headerRole', 'panelRole', 'className', 'children', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited']);
+	    var _props = this.props;
+	    var collapsible = _props.collapsible;
+	    var header = _props.header;
+	    var id = _props.id;
+	    var footer = _props.footer;
+	    var propsExpanded = _props.expanded;
+	    var headerRole = _props.headerRole;
+	    var panelRole = _props.panelRole;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var onEnter = _props.onEnter;
+	    var onEntering = _props.onEntering;
+	    var onEntered = _props.onEntered;
+	    var onExit = _props.onExit;
+	    var onExiting = _props.onExiting;
+	    var onExited = _props.onExited;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['collapsible', 'header', 'id', 'footer', 'expanded', 'headerRole', 'panelRole', 'className', 'children', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['defaultExpanded', 'eventKey', 'onSelect']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['defaultExpanded', 'eventKey', 'onSelect']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    var expanded = propsExpanded != null ? propsExpanded : this.state.expanded;
 
@@ -39433,21 +39433,23 @@
 	  Popover.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        placement = _props.placement,
-	        positionTop = _props.positionTop,
-	        positionLeft = _props.positionLeft,
-	        arrowOffsetTop = _props.arrowOffsetTop,
-	        arrowOffsetLeft = _props.arrowOffsetLeft,
-	        title = _props.title,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['placement', 'positionTop', 'positionLeft', 'arrowOffsetTop', 'arrowOffsetLeft', 'title', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var placement = _props.placement;
+	    var positionTop = _props.positionTop;
+	    var positionLeft = _props.positionLeft;
+	    var arrowOffsetTop = _props.arrowOffsetTop;
+	    var arrowOffsetLeft = _props.arrowOffsetLeft;
+	    var title = _props.title;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['placement', 'positionTop', 'positionLeft', 'arrowOffsetTop', 'arrowOffsetLeft', 'title', 'className', 'style', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[placement] = true, _extends2));
 
@@ -39613,20 +39615,22 @@
 	  ProgressBar.prototype.renderProgressBar = function renderProgressBar(_ref) {
 	    var _extends2;
 
-	    var min = _ref.min,
-	        now = _ref.now,
-	        max = _ref.max,
-	        label = _ref.label,
-	        srOnly = _ref.srOnly,
-	        striped = _ref.striped,
-	        active = _ref.active,
-	        className = _ref.className,
-	        style = _ref.style,
-	        props = (0, _objectWithoutProperties3['default'])(_ref, ['min', 'now', 'max', 'label', 'srOnly', 'striped', 'active', 'className', 'style']);
+	    var min = _ref.min;
+	    var now = _ref.now;
+	    var max = _ref.max;
+	    var label = _ref.label;
+	    var srOnly = _ref.srOnly;
+	    var striped = _ref.striped;
+	    var active = _ref.active;
+	    var className = _ref.className;
+	    var style = _ref.style;
+	    var props = (0, _objectWithoutProperties3['default'])(_ref, ['min', 'now', 'max', 'label', 'srOnly', 'striped', 'active', 'className', 'style']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {
 	      active: active
@@ -39651,27 +39655,27 @@
 	  };
 
 	  ProgressBar.prototype.render = function render() {
-	    var _props = this.props,
-	        isChild = _props.isChild,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['isChild']);
+	    var _props = this.props;
+	    var isChild = _props.isChild;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['isChild']);
 
 
 	    if (isChild) {
 	      return this.renderProgressBar(props);
 	    }
 
-	    var min = props.min,
-	        now = props.now,
-	        max = props.max,
-	        label = props.label,
-	        srOnly = props.srOnly,
-	        striped = props.striped,
-	        active = props.active,
-	        bsClass = props.bsClass,
-	        bsStyle = props.bsStyle,
-	        className = props.className,
-	        children = props.children,
-	        wrapperProps = (0, _objectWithoutProperties3['default'])(props, ['min', 'now', 'max', 'label', 'srOnly', 'striped', 'active', 'bsClass', 'bsStyle', 'className', 'children']);
+	    var min = props.min;
+	    var now = props.now;
+	    var max = props.max;
+	    var label = props.label;
+	    var srOnly = props.srOnly;
+	    var striped = props.striped;
+	    var active = props.active;
+	    var bsClass = props.bsClass;
+	    var bsStyle = props.bsStyle;
+	    var className = props.className;
+	    var children = props.children;
+	    var wrapperProps = (0, _objectWithoutProperties3['default'])(props, ['min', 'now', 'max', 'label', 'srOnly', 'striped', 'active', 'bsClass', 'bsStyle', 'className', 'children']);
 
 
 	    return _react2['default'].createElement(
@@ -39771,19 +39775,21 @@
 	  }
 
 	  Radio.prototype.render = function render() {
-	    var _props = this.props,
-	        inline = _props.inline,
-	        disabled = _props.disabled,
-	        validationState = _props.validationState,
-	        inputRef = _props.inputRef,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var inline = _props.inline;
+	    var disabled = _props.disabled;
+	    var validationState = _props.validationState;
+	    var inputRef = _props.inputRef;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['inline', 'disabled', 'validationState', 'inputRef', 'className', 'style', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var input = _react2['default'].createElement('input', (0, _extends3['default'])({}, elementProps, {
 	      ref: inputRef,
@@ -39914,16 +39920,18 @@
 	  ResponsiveEmbed.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        a16by9 = _props.a16by9,
-	        a4by3 = _props.a4by3,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['a16by9', 'a4by3', 'className', 'children']);
+	    var _props = this.props;
+	    var a16by9 = _props.a16by9;
+	    var a4by3 = _props.a4by3;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['a16by9', 'a4by3', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    process.env.NODE_ENV !== 'production' ? (0, _warning2['default'])(a16by9 || a4by3, 'Either `a16by9` or `a4by3` must be set.') : void 0;
 	    process.env.NODE_ENV !== 'production' ? (0, _warning2['default'])(!(a16by9 && a4by3), 'Only one of `a16by9` or `a4by3` can be set.') : void 0;
@@ -40010,14 +40018,16 @@
 	  }
 
 	  Row.prototype.render = function render() {
-	    var _props = this.props,
-	        Component = _props.componentClass,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+	    var _props = this.props;
+	    var Component = _props.componentClass;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -40117,17 +40127,19 @@
 	  }
 
 	  SplitButton.prototype.render = function render() {
-	    var _props = this.props,
-	        bsSize = _props.bsSize,
-	        bsStyle = _props.bsStyle,
-	        title = _props.title,
-	        toggleLabel = _props.toggleLabel,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['bsSize', 'bsStyle', 'title', 'toggleLabel', 'children']);
+	    var _props = this.props;
+	    var bsSize = _props.bsSize;
+	    var bsStyle = _props.bsStyle;
+	    var title = _props.title;
+	    var toggleLabel = _props.toggleLabel;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['bsSize', 'bsStyle', 'title', 'toggleLabel', 'children']);
 
-	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent),
-	        dropdownProps = _splitComponentProps[0],
-	        buttonProps = _splitComponentProps[1];
+	    var _splitComponentProps = (0, _splitComponentProps3['default'])(props, _Dropdown2['default'].ControlledComponent);
+
+	    var dropdownProps = _splitComponentProps[0];
+	    var buttonProps = _splitComponentProps[1];
+
 
 	    return _react2['default'].createElement(
 	      _Dropdown2['default'],
@@ -40418,11 +40430,11 @@
 	  }
 
 	  TabContainer.prototype.getChildContext = function getChildContext() {
-	    var _props = this.props,
-	        activeKey = _props.activeKey,
-	        onSelect = _props.onSelect,
-	        generateChildId = _props.generateChildId,
-	        id = _props.id;
+	    var _props = this.props;
+	    var activeKey = _props.activeKey;
+	    var onSelect = _props.onSelect;
+	    var generateChildId = _props.generateChildId;
+	    var id = _props.id;
 
 
 	    var getId = generateChildId || function (key, type) {
@@ -40444,9 +40456,9 @@
 	  };
 
 	  TabContainer.prototype.render = function render() {
-	    var _props2 = this.props,
-	        children = _props2.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['children']);
+	    var _props2 = this.props;
+	    var children = _props2.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['children']);
 
 
 	    delete props.generateChildId;
@@ -40571,10 +40583,10 @@
 	  }
 
 	  TabContent.prototype.getChildContext = function getChildContext() {
-	    var _props = this.props,
-	        bsClass = _props.bsClass,
-	        animation = _props.animation,
-	        unmountOnExit = _props.unmountOnExit;
+	    var _props = this.props;
+	    var bsClass = _props.bsClass;
+	    var animation = _props.animation;
+	    var unmountOnExit = _props.unmountOnExit;
 
 
 	    var stateActiveKey = this.state.activeKey;
@@ -40650,14 +40662,16 @@
 	  };
 
 	  TabContent.prototype.render = function render() {
-	    var _props2 = this.props,
-	        Component = _props2.componentClass,
-	        className = _props2.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'className']);
+	    var _props2 = this.props;
+	    var Component = _props2.componentClass;
+	    var className = _props2.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props2, ['componentClass', 'className']);
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['animation', 'unmountOnExit']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['animation', 'unmountOnExit']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    return _react2['default'].createElement(Component, (0, _extends3['default'])({}, elementProps, {
 	      className: (0, _classnames2['default'])(className, (0, _bootstrapUtils.prefix)(bsProps, 'content'))
@@ -40904,24 +40918,26 @@
 	  };
 
 	  TabPane.prototype.render = function render() {
-	    var _props = this.props,
-	        eventKey = _props.eventKey,
-	        className = _props.className,
-	        onEnter = _props.onEnter,
-	        onEntering = _props.onEntering,
-	        onEntered = _props.onEntered,
-	        onExit = _props.onExit,
-	        onExiting = _props.onExiting,
-	        onExited = _props.onExited,
-	        propsUnmountOnExit = _props.unmountOnExit,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['eventKey', 'className', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited', 'unmountOnExit']);
-	    var _context = this.context,
-	        tabContent = _context.$bs_tabContent,
-	        tabContainer = _context.$bs_tabContainer;
+	    var _props = this.props;
+	    var eventKey = _props.eventKey;
+	    var className = _props.className;
+	    var onEnter = _props.onEnter;
+	    var onEntering = _props.onEntering;
+	    var onEntered = _props.onEntered;
+	    var onExit = _props.onExit;
+	    var onExiting = _props.onExiting;
+	    var onExited = _props.onExited;
+	    var propsUnmountOnExit = _props.unmountOnExit;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['eventKey', 'className', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited', 'unmountOnExit']);
+	    var _context = this.context;
+	    var tabContent = _context.$bs_tabContent;
+	    var tabContainer = _context.$bs_tabContainer;
 
-	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['animation']),
-	        bsProps = _splitBsPropsAndOmit[0],
-	        elementProps = _splitBsPropsAndOmit[1];
+	    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['animation']);
+
+	    var bsProps = _splitBsPropsAndOmit[0];
+	    var elementProps = _splitBsPropsAndOmit[1];
+
 
 	    var active = this.isActive();
 	    var animation = this.getAnimation();
@@ -41055,18 +41071,20 @@
 	  Table.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        striped = _props.striped,
-	        bordered = _props.bordered,
-	        condensed = _props.condensed,
-	        hover = _props.hover,
-	        responsive = _props.responsive,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['striped', 'bordered', 'condensed', 'hover', 'responsive', 'className']);
+	    var _props = this.props;
+	    var striped = _props.striped;
+	    var bordered = _props.bordered;
+	    var condensed = _props.condensed;
+	    var hover = _props.hover;
+	    var responsive = _props.responsive;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['striped', 'bordered', 'condensed', 'hover', 'responsive', 'className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'striped')] = striped, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'bordered')] = bordered, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'condensed')] = condensed, _extends2[(0, _bootstrapUtils.prefix)(bsProps, 'hover')] = hover, _extends2));
 
@@ -41223,11 +41241,11 @@
 	  }
 
 	  Tabs.prototype.renderTab = function renderTab(child) {
-	    var _child$props = child.props,
-	        title = _child$props.title,
-	        eventKey = _child$props.eventKey,
-	        disabled = _child$props.disabled,
-	        tabClassName = _child$props.tabClassName;
+	    var _child$props = child.props;
+	    var title = _child$props.title;
+	    var eventKey = _child$props.eventKey;
+	    var disabled = _child$props.disabled;
+	    var tabClassName = _child$props.tabClassName;
 
 	    if (title == null) {
 	      return null;
@@ -41245,18 +41263,18 @@
 	  };
 
 	  Tabs.prototype.render = function render() {
-	    var _props = this.props,
-	        id = _props.id,
-	        onSelect = _props.onSelect,
-	        animation = _props.animation,
-	        unmountOnExit = _props.unmountOnExit,
-	        bsClass = _props.bsClass,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        _props$activeKey = _props.activeKey,
-	        activeKey = _props$activeKey === undefined ? getDefaultActiveKey(children) : _props$activeKey,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['id', 'onSelect', 'animation', 'unmountOnExit', 'bsClass', 'className', 'style', 'children', 'activeKey']);
+	    var _props = this.props;
+	    var id = _props.id;
+	    var onSelect = _props.onSelect;
+	    var animation = _props.animation;
+	    var unmountOnExit = _props.unmountOnExit;
+	    var bsClass = _props.bsClass;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var _props$activeKey = _props.activeKey;
+	    var activeKey = _props$activeKey === undefined ? getDefaultActiveKey(children) : _props$activeKey;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['id', 'onSelect', 'animation', 'unmountOnExit', 'bsClass', 'className', 'style', 'children', 'activeKey']);
 
 
 	    return _react2['default'].createElement(
@@ -41361,16 +41379,18 @@
 	  }
 
 	  Thumbnail.prototype.render = function render() {
-	    var _props = this.props,
-	        src = _props.src,
-	        alt = _props.alt,
-	        className = _props.className,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['src', 'alt', 'className', 'children']);
+	    var _props = this.props;
+	    var src = _props.src;
+	    var alt = _props.alt;
+	    var className = _props.className;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['src', 'alt', 'className', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var Component = elementProps.href ? _SafeAnchor2['default'] : 'div';
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
@@ -41488,20 +41508,22 @@
 	  Tooltip.prototype.render = function render() {
 	    var _extends2;
 
-	    var _props = this.props,
-	        placement = _props.placement,
-	        positionTop = _props.positionTop,
-	        positionLeft = _props.positionLeft,
-	        arrowOffsetTop = _props.arrowOffsetTop,
-	        arrowOffsetLeft = _props.arrowOffsetLeft,
-	        className = _props.className,
-	        style = _props.style,
-	        children = _props.children,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['placement', 'positionTop', 'positionLeft', 'arrowOffsetTop', 'arrowOffsetLeft', 'className', 'style', 'children']);
+	    var _props = this.props;
+	    var placement = _props.placement;
+	    var positionTop = _props.positionTop;
+	    var positionLeft = _props.positionLeft;
+	    var arrowOffsetTop = _props.arrowOffsetTop;
+	    var arrowOffsetLeft = _props.arrowOffsetLeft;
+	    var className = _props.className;
+	    var style = _props.style;
+	    var children = _props.children;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['placement', 'positionTop', 'positionLeft', 'arrowOffsetTop', 'arrowOffsetLeft', 'className', 'style', 'children']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[placement] = true, _extends2));
 
@@ -41591,13 +41613,15 @@
 	  }
 
 	  Well.prototype.render = function render() {
-	    var _props = this.props,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
+	    var _props = this.props;
+	    var className = _props.className;
+	    var props = (0, _objectWithoutProperties3['default'])(_props, ['className']);
 
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props);
+
+	    var bsProps = _splitBsProps[0];
+	    var elementProps = _splitBsProps[1];
+
 
 	    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
 
@@ -41779,6 +41803,516 @@
 /* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
+
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2), __webpack_require__(151), __webpack_require__(429)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof module === 'object' && typeof module.exports === 'object') {
+	    module.exports = factory(require('react'), require('react-dom'), require('spin.js'));
+	  } else {
+	    root.Loader = factory(root.React, root.ReactDOM, root.Spinner);
+	  }
+
+	}(this, function (React, ReactDOM, Spinner) {
+
+	  var Loader = React.createClass({displayName: "Loader",
+	    propTypes: {
+	      className:       React.PropTypes.string,
+	      color:           React.PropTypes.string,
+	      component:       React.PropTypes.any,
+	      corners:         React.PropTypes.number,
+	      direction:       React.PropTypes.oneOf([1, -1]),
+	      hwaccell:        React.PropTypes.bool,
+	      left:            React.PropTypes.string,
+	      length:          React.PropTypes.number,
+	      lines:           React.PropTypes.number,
+	      loaded:          React.PropTypes.bool,
+	      loadedClassName: React.PropTypes.string,
+	      opacity:         React.PropTypes.number,
+	      options:         React.PropTypes.object,
+	      parentClassName: React.PropTypes.string,
+	      radius:          React.PropTypes.number,
+	      rotate:          React.PropTypes.number,
+	      scale:           React.PropTypes.number,
+	      shadow:          React.PropTypes.bool,
+	      speed:           React.PropTypes.number,
+	      top:             React.PropTypes.string,
+	      trail:           React.PropTypes.number,
+	      width:           React.PropTypes.number,
+	      zIndex:          React.PropTypes.number
+	    },
+
+	    getDefaultProps: function () {
+	      return {
+	        component: 'div',
+	        loadedClassName: 'loadedContent',
+	        parentClassName: 'loader'
+	      };
+	    },
+
+	    getInitialState: function () {
+	      return { loaded: false, options: {} };
+	    },
+
+	    componentDidMount: function () {
+	      this.updateState(this.props);
+	    },
+
+	    componentWillReceiveProps: function (nextProps) {
+	      this.updateState(nextProps);
+	    },
+
+	    updateState: function (props) {
+	      props || (props = {});
+
+	      var loaded = this.state.loaded;
+	      var options = this.state.options;
+
+	      // update loaded state, if supplied
+	      if ('loaded' in props) {
+	        loaded = !!props.loaded;
+	      }
+
+	      // update spinner options, if supplied
+	      var allowedOptions = Object.keys(this.constructor.propTypes);
+	      allowedOptions.splice(allowedOptions.indexOf('loaded'), 1);
+	      allowedOptions.splice(allowedOptions.indexOf('options'), 1);
+
+	      // allows passing options as either props or as an option object
+	      var propsOrObjectOptions = 'options' in props ? props.options : props;
+
+	      allowedOptions.forEach(function (key) {
+	        if (key in propsOrObjectOptions) {
+	          options[key] = propsOrObjectOptions[key];
+	        }
+	      });
+
+	      this.setState({ loaded: loaded, options: options }, this.spin);
+	    },
+
+	    spin: function () {
+	      var canUseDOM = !!(
+	        typeof window !== 'undefined' &&
+	        window.document &&
+	        window.document.createElement
+	      );
+
+	      if (canUseDOM && this.isMounted() && !this.state.loaded) {
+	        var spinner = new Spinner(this.state.options);
+	        var target =  ReactDOM.findDOMNode(this.refs.loader);
+
+	        // clear out any other spinners from previous renders
+	        target.innerHTML = '';
+	        spinner.spin(target);
+	      }
+	    },
+
+	    render: function () {
+	      var props, children;
+
+	      if (this.state.loaded) {
+	        props = { key: 'content', className: this.props.loadedClassName };
+	        children = this.props.children;
+	      } else {
+	        props = { key: 'loader', ref: 'loader', className: this.props.parentClassName };
+	      }
+
+	      return React.createElement(this.props.component, props, children);
+	    }
+	  });
+
+	  return Loader;
+
+	}));
+
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * Copyright (c) 2011-2014 Felix Gnass
+	 * Licensed under the MIT license
+	 * http://spin.js.org/
+	 *
+	 * Example:
+	    var opts = {
+	      lines: 12             // The number of lines to draw
+	    , length: 7             // The length of each line
+	    , width: 5              // The line thickness
+	    , radius: 10            // The radius of the inner circle
+	    , scale: 1.0            // Scales overall size of the spinner
+	    , corners: 1            // Roundness (0..1)
+	    , color: '#000'         // #rgb or #rrggbb
+	    , opacity: 1/4          // Opacity of the lines
+	    , rotate: 0             // Rotation offset
+	    , direction: 1          // 1: clockwise, -1: counterclockwise
+	    , speed: 1              // Rounds per second
+	    , trail: 100            // Afterglow percentage
+	    , fps: 20               // Frames per second when using setTimeout()
+	    , zIndex: 2e9           // Use a high z-index by default
+	    , className: 'spinner'  // CSS class to assign to the element
+	    , top: '50%'            // center vertically
+	    , left: '50%'           // center horizontally
+	    , shadow: false         // Whether to render a shadow
+	    , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
+	    , position: 'absolute'  // Element positioning
+	    }
+	    var target = document.getElementById('foo')
+	    var spinner = new Spinner(opts).spin(target)
+	 */
+	;(function (root, factory) {
+
+	  /* CommonJS */
+	  if (typeof module == 'object' && module.exports) module.exports = factory()
+
+	  /* AMD module */
+	  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+
+	  /* Browser global */
+	  else root.Spinner = factory()
+	}(this, function () {
+	  "use strict"
+
+	  var prefixes = ['webkit', 'Moz', 'ms', 'O'] /* Vendor prefixes */
+	    , animations = {} /* Animation rules keyed by their name */
+	    , useCssAnimations /* Whether to use CSS animations or setTimeout */
+	    , sheet /* A stylesheet to hold the @keyframe or VML rules. */
+
+	  /**
+	   * Utility function to create elements. If no tag name is given,
+	   * a DIV is created. Optionally properties can be passed.
+	   */
+	  function createEl (tag, prop) {
+	    var el = document.createElement(tag || 'div')
+	      , n
+
+	    for (n in prop) el[n] = prop[n]
+	    return el
+	  }
+
+	  /**
+	   * Appends children and returns the parent.
+	   */
+	  function ins (parent /* child1, child2, ...*/) {
+	    for (var i = 1, n = arguments.length; i < n; i++) {
+	      parent.appendChild(arguments[i])
+	    }
+
+	    return parent
+	  }
+
+	  /**
+	   * Creates an opacity keyframe animation rule and returns its name.
+	   * Since most mobile Webkits have timing issues with animation-delay,
+	   * we create separate rules for each line/segment.
+	   */
+	  function addAnimation (alpha, trail, i, lines) {
+	    var name = ['opacity', trail, ~~(alpha * 100), i, lines].join('-')
+	      , start = 0.01 + i/lines * 100
+	      , z = Math.max(1 - (1-alpha) / trail * (100-start), alpha)
+	      , prefix = useCssAnimations.substring(0, useCssAnimations.indexOf('Animation')).toLowerCase()
+	      , pre = prefix && '-' + prefix + '-' || ''
+
+	    if (!animations[name]) {
+	      sheet.insertRule(
+	        '@' + pre + 'keyframes ' + name + '{' +
+	        '0%{opacity:' + z + '}' +
+	        start + '%{opacity:' + alpha + '}' +
+	        (start+0.01) + '%{opacity:1}' +
+	        (start+trail) % 100 + '%{opacity:' + alpha + '}' +
+	        '100%{opacity:' + z + '}' +
+	        '}', sheet.cssRules.length)
+
+	      animations[name] = 1
+	    }
+
+	    return name
+	  }
+
+	  /**
+	   * Tries various vendor prefixes and returns the first supported property.
+	   */
+	  function vendor (el, prop) {
+	    var s = el.style
+	      , pp
+	      , i
+
+	    prop = prop.charAt(0).toUpperCase() + prop.slice(1)
+	    if (s[prop] !== undefined) return prop
+	    for (i = 0; i < prefixes.length; i++) {
+	      pp = prefixes[i]+prop
+	      if (s[pp] !== undefined) return pp
+	    }
+	  }
+
+	  /**
+	   * Sets multiple style properties at once.
+	   */
+	  function css (el, prop) {
+	    for (var n in prop) {
+	      el.style[vendor(el, n) || n] = prop[n]
+	    }
+
+	    return el
+	  }
+
+	  /**
+	   * Fills in default values.
+	   */
+	  function merge (obj) {
+	    for (var i = 1; i < arguments.length; i++) {
+	      var def = arguments[i]
+	      for (var n in def) {
+	        if (obj[n] === undefined) obj[n] = def[n]
+	      }
+	    }
+	    return obj
+	  }
+
+	  /**
+	   * Returns the line color from the given string or array.
+	   */
+	  function getColor (color, idx) {
+	    return typeof color == 'string' ? color : color[idx % color.length]
+	  }
+
+	  // Built-in defaults
+
+	  var defaults = {
+	    lines: 12             // The number of lines to draw
+	  , length: 7             // The length of each line
+	  , width: 5              // The line thickness
+	  , radius: 10            // The radius of the inner circle
+	  , scale: 1.0            // Scales overall size of the spinner
+	  , corners: 1            // Roundness (0..1)
+	  , color: '#000'         // #rgb or #rrggbb
+	  , opacity: 1/4          // Opacity of the lines
+	  , rotate: 0             // Rotation offset
+	  , direction: 1          // 1: clockwise, -1: counterclockwise
+	  , speed: 1              // Rounds per second
+	  , trail: 100            // Afterglow percentage
+	  , fps: 20               // Frames per second when using setTimeout()
+	  , zIndex: 2e9           // Use a high z-index by default
+	  , className: 'spinner'  // CSS class to assign to the element
+	  , top: '50%'            // center vertically
+	  , left: '50%'           // center horizontally
+	  , shadow: false         // Whether to render a shadow
+	  , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
+	  , position: 'absolute'  // Element positioning
+	  }
+
+	  /** The constructor */
+	  function Spinner (o) {
+	    this.opts = merge(o || {}, Spinner.defaults, defaults)
+	  }
+
+	  // Global defaults that override the built-ins:
+	  Spinner.defaults = {}
+
+	  merge(Spinner.prototype, {
+	    /**
+	     * Adds the spinner to the given target element. If this instance is already
+	     * spinning, it is automatically removed from its previous target b calling
+	     * stop() internally.
+	     */
+	    spin: function (target) {
+	      this.stop()
+
+	      var self = this
+	        , o = self.opts
+	        , el = self.el = createEl(null, {className: o.className})
+
+	      css(el, {
+	        position: o.position
+	      , width: 0
+	      , zIndex: o.zIndex
+	      , left: o.left
+	      , top: o.top
+	      })
+
+	      if (target) {
+	        target.insertBefore(el, target.firstChild || null)
+	      }
+
+	      el.setAttribute('role', 'progressbar')
+	      self.lines(el, self.opts)
+
+	      if (!useCssAnimations) {
+	        // No CSS animation support, use setTimeout() instead
+	        var i = 0
+	          , start = (o.lines - 1) * (1 - o.direction) / 2
+	          , alpha
+	          , fps = o.fps
+	          , f = fps / o.speed
+	          , ostep = (1 - o.opacity) / (f * o.trail / 100)
+	          , astep = f / o.lines
+
+	        ;(function anim () {
+	          i++
+	          for (var j = 0; j < o.lines; j++) {
+	            alpha = Math.max(1 - (i + (o.lines - j) * astep) % f * ostep, o.opacity)
+
+	            self.opacity(el, j * o.direction + start, alpha, o)
+	          }
+	          self.timeout = self.el && setTimeout(anim, ~~(1000 / fps))
+	        })()
+	      }
+	      return self
+	    }
+
+	    /**
+	     * Stops and removes the Spinner.
+	     */
+	  , stop: function () {
+	      var el = this.el
+	      if (el) {
+	        clearTimeout(this.timeout)
+	        if (el.parentNode) el.parentNode.removeChild(el)
+	        this.el = undefined
+	      }
+	      return this
+	    }
+
+	    /**
+	     * Internal method that draws the individual lines. Will be overwritten
+	     * in VML fallback mode below.
+	     */
+	  , lines: function (el, o) {
+	      var i = 0
+	        , start = (o.lines - 1) * (1 - o.direction) / 2
+	        , seg
+
+	      function fill (color, shadow) {
+	        return css(createEl(), {
+	          position: 'absolute'
+	        , width: o.scale * (o.length + o.width) + 'px'
+	        , height: o.scale * o.width + 'px'
+	        , background: color
+	        , boxShadow: shadow
+	        , transformOrigin: 'left'
+	        , transform: 'rotate(' + ~~(360/o.lines*i + o.rotate) + 'deg) translate(' + o.scale*o.radius + 'px' + ',0)'
+	        , borderRadius: (o.corners * o.scale * o.width >> 1) + 'px'
+	        })
+	      }
+
+	      for (; i < o.lines; i++) {
+	        seg = css(createEl(), {
+	          position: 'absolute'
+	        , top: 1 + ~(o.scale * o.width / 2) + 'px'
+	        , transform: o.hwaccel ? 'translate3d(0,0,0)' : ''
+	        , opacity: o.opacity
+	        , animation: useCssAnimations && addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) + ' ' + 1 / o.speed + 's linear infinite'
+	        })
+
+	        if (o.shadow) ins(seg, css(fill('#000', '0 0 4px #000'), {top: '2px'}))
+	        ins(el, ins(seg, fill(getColor(o.color, i), '0 0 1px rgba(0,0,0,.1)')))
+	      }
+	      return el
+	    }
+
+	    /**
+	     * Internal method that adjusts the opacity of a single line.
+	     * Will be overwritten in VML fallback mode below.
+	     */
+	  , opacity: function (el, i, val) {
+	      if (i < el.childNodes.length) el.childNodes[i].style.opacity = val
+	    }
+
+	  })
+
+
+	  function initVML () {
+
+	    /* Utility function to create a VML tag */
+	    function vml (tag, attr) {
+	      return createEl('<' + tag + ' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">', attr)
+	    }
+
+	    // No CSS transforms but VML support, add a CSS rule for VML elements:
+	    sheet.addRule('.spin-vml', 'behavior:url(#default#VML)')
+
+	    Spinner.prototype.lines = function (el, o) {
+	      var r = o.scale * (o.length + o.width)
+	        , s = o.scale * 2 * r
+
+	      function grp () {
+	        return css(
+	          vml('group', {
+	            coordsize: s + ' ' + s
+	          , coordorigin: -r + ' ' + -r
+	          })
+	        , { width: s, height: s }
+	        )
+	      }
+
+	      var margin = -(o.width + o.length) * o.scale * 2 + 'px'
+	        , g = css(grp(), {position: 'absolute', top: margin, left: margin})
+	        , i
+
+	      function seg (i, dx, filter) {
+	        ins(
+	          g
+	        , ins(
+	            css(grp(), {rotation: 360 / o.lines * i + 'deg', left: ~~dx})
+	          , ins(
+	              css(
+	                vml('roundrect', {arcsize: o.corners})
+	              , { width: r
+	                , height: o.scale * o.width
+	                , left: o.scale * o.radius
+	                , top: -o.scale * o.width >> 1
+	                , filter: filter
+	                }
+	              )
+	            , vml('fill', {color: getColor(o.color, i), opacity: o.opacity})
+	            , vml('stroke', {opacity: 0}) // transparent stroke to fix color bleeding upon opacity change
+	            )
+	          )
+	        )
+	      }
+
+	      if (o.shadow)
+	        for (i = 1; i <= o.lines; i++) {
+	          seg(i, -2, 'progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)')
+	        }
+
+	      for (i = 1; i <= o.lines; i++) seg(i)
+	      return ins(el, g)
+	    }
+
+	    Spinner.prototype.opacity = function (el, i, val, o) {
+	      var c = el.firstChild
+	      o = o.shadow && o.lines || 0
+	      if (c && i + o < c.childNodes.length) {
+	        c = c.childNodes[i + o]; c = c && c.firstChild; c = c && c.firstChild
+	        if (c) c.opacity = val
+	      }
+	    }
+	  }
+
+	  if (typeof document !== 'undefined') {
+	    sheet = (function () {
+	      var el = createEl('style', {type : 'text/css'})
+	      ins(document.getElementsByTagName('head')[0], el)
+	      return el.sheet || el.styleSheet
+	    }())
+
+	    var probe = css(createEl('group'), {behavior: 'url(#default#VML)'})
+
+	    if (!vendor(probe, 'transform') && probe.adj) initVML()
+	    else useCssAnimations = vendor(probe, 'animation')
+	  }
+
+	  return Spinner
+
+	}));
+
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -41795,7 +42329,7 @@
 
 	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
 
-	var _Buckets = __webpack_require__(429);
+	var _Buckets = __webpack_require__(431);
 
 	var _Buckets2 = _interopRequireDefault(_Buckets);
 
@@ -41938,7 +42472,7 @@
 	exports.default = Sidebar;
 
 /***/ },
-/* 429 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41997,7 +42531,7 @@
 	exports.default = Bucket;
 
 /***/ },
-/* 430 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42146,7 +42680,7 @@
 	exports.default = Cards;
 
 /***/ },
-/* 431 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//     uuid.js
@@ -42157,7 +42691,7 @@
 	// Unique ID creation requires a high quality random # generator.  We feature
 	// detect to determine the best RNG source, normalizing to a function that
 	// returns 128-bits of randomness, since that's what's usually required
-	var _rng = __webpack_require__(432);
+	var _rng = __webpack_require__(434);
 
 	// Maps for number <-> hex string conversion
 	var _byteToHex = [];
@@ -42335,7 +42869,7 @@
 
 
 /***/ },
-/* 432 */
+/* 434 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -42374,13 +42908,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 433 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(434);
+	module.exports = __webpack_require__(436);
 
 /***/ },
-/* 434 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -42499,7 +43033,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 435 */
+/* 437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42508,20 +43042,20 @@
 	  value: true
 	});
 	exports['default'] = {
-	  slide: __webpack_require__(436),
-	  stack: __webpack_require__(503),
-	  elastic: __webpack_require__(504),
-	  bubble: __webpack_require__(508),
-	  push: __webpack_require__(509),
-	  pushRotate: __webpack_require__(510),
-	  scaleDown: __webpack_require__(511),
-	  scaleRotate: __webpack_require__(512),
-	  fallDown: __webpack_require__(513)
+	  slide: __webpack_require__(438),
+	  stack: __webpack_require__(505),
+	  elastic: __webpack_require__(506),
+	  bubble: __webpack_require__(510),
+	  push: __webpack_require__(511),
+	  pushRotate: __webpack_require__(512),
+	  scaleDown: __webpack_require__(513),
+	  scaleRotate: __webpack_require__(514),
+	  fallDown: __webpack_require__(515)
 	};
 	module.exports = exports['default'];
 
 /***/ },
-/* 436 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42532,7 +43066,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -42542,7 +43076,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 437 */
+/* 439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42561,19 +43095,19 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _radium = __webpack_require__(438);
+	var _radium = __webpack_require__(440);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
-	var _baseStyles = __webpack_require__(500);
+	var _baseStyles = __webpack_require__(502);
 
 	var _baseStyles2 = _interopRequireDefault(_baseStyles);
 
-	var _BurgerIcon = __webpack_require__(501);
+	var _BurgerIcon = __webpack_require__(503);
 
 	var _BurgerIcon2 = _interopRequireDefault(_BurgerIcon);
 
-	var _CrossIcon = __webpack_require__(502);
+	var _CrossIcon = __webpack_require__(504);
 
 	var _CrossIcon2 = _interopRequireDefault(_CrossIcon);
 
@@ -42800,7 +43334,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 438 */
+/* 440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42809,31 +43343,31 @@
 	  value: true
 	});
 
-	var _enhancer = __webpack_require__(439);
+	var _enhancer = __webpack_require__(441);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _plugins = __webpack_require__(485);
+	var _plugins = __webpack_require__(487);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _style = __webpack_require__(496);
+	var _style = __webpack_require__(498);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _styleRoot = __webpack_require__(497);
+	var _styleRoot = __webpack_require__(499);
 
 	var _styleRoot2 = _interopRequireDefault(_styleRoot);
 
-	var _getState = __webpack_require__(481);
+	var _getState = __webpack_require__(483);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _keyframes = __webpack_require__(499);
+	var _keyframes = __webpack_require__(501);
 
 	var _keyframes2 = _interopRequireDefault(_keyframes);
 
-	var _resolveStyles = __webpack_require__(441);
+	var _resolveStyles = __webpack_require__(443);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42860,7 +43394,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 439 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42877,11 +43411,11 @@
 
 	var _react = __webpack_require__(2);
 
-	var _styleKeeper = __webpack_require__(440);
+	var _styleKeeper = __webpack_require__(442);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _resolveStyles = __webpack_require__(441);
+	var _resolveStyles = __webpack_require__(443);
 
 	var _resolveStyles2 = _interopRequireDefault(_resolveStyles);
 
@@ -43049,7 +43583,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 440 */
+/* 442 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43121,7 +43655,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 441 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43134,33 +43668,33 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _appendImportantToEachValue = __webpack_require__(442);
+	var _appendImportantToEachValue = __webpack_require__(444);
 
 	var _appendImportantToEachValue2 = _interopRequireDefault(_appendImportantToEachValue);
 
-	var _cssRuleSetToString = __webpack_require__(445);
+	var _cssRuleSetToString = __webpack_require__(447);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _getState = __webpack_require__(481);
+	var _getState = __webpack_require__(483);
 
 	var _getState2 = _interopRequireDefault(_getState);
 
-	var _getStateKey = __webpack_require__(482);
+	var _getStateKey = __webpack_require__(484);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
-	var _hash = __webpack_require__(483);
+	var _hash = __webpack_require__(485);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _mergeStyles = __webpack_require__(484);
+	var _mergeStyles = __webpack_require__(486);
 
-	var _plugins = __webpack_require__(485);
+	var _plugins = __webpack_require__(487);
 
 	var _plugins2 = _interopRequireDefault(_plugins);
 
-	var _exenv = __webpack_require__(495);
+	var _exenv = __webpack_require__(497);
 
 	var _exenv2 = _interopRequireDefault(_exenv);
 
@@ -43483,7 +44017,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 442 */
+/* 444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43493,11 +44027,11 @@
 	});
 	exports.default = appendImportantToEachValue;
 
-	var _appendPxIfNeeded = __webpack_require__(443);
+	var _appendPxIfNeeded = __webpack_require__(445);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _mapObject = __webpack_require__(444);
+	var _mapObject = __webpack_require__(446);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
@@ -43511,7 +44045,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 443 */
+/* 445 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43565,7 +44099,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 444 */
+/* 446 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43583,7 +44117,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 445 */
+/* 447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43593,19 +44127,19 @@
 	});
 	exports.default = cssRuleSetToString;
 
-	var _appendPxIfNeeded = __webpack_require__(443);
+	var _appendPxIfNeeded = __webpack_require__(445);
 
 	var _appendPxIfNeeded2 = _interopRequireDefault(_appendPxIfNeeded);
 
-	var _camelCasePropsToDashCase = __webpack_require__(446);
+	var _camelCasePropsToDashCase = __webpack_require__(448);
 
 	var _camelCasePropsToDashCase2 = _interopRequireDefault(_camelCasePropsToDashCase);
 
-	var _mapObject = __webpack_require__(444);
+	var _mapObject = __webpack_require__(446);
 
 	var _mapObject2 = _interopRequireDefault(_mapObject);
 
-	var _prefixer = __webpack_require__(447);
+	var _prefixer = __webpack_require__(449);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43632,7 +44166,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 446 */
+/* 448 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43672,7 +44206,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 447 */
+/* 449 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {'use strict';
@@ -43691,7 +44225,7 @@
 	exports.getPrefixedKeyframes = getPrefixedKeyframes;
 	exports.getPrefixedStyle = getPrefixedStyle;
 
-	var _inlineStylePrefixer = __webpack_require__(448);
+	var _inlineStylePrefixer = __webpack_require__(450);
 
 	var _inlineStylePrefixer2 = _interopRequireDefault(_inlineStylePrefixer);
 
@@ -43756,7 +44290,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(4)))
 
 /***/ },
-/* 448 */
+/* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43771,61 +44305,61 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _inlineStylePrefixAll = __webpack_require__(449);
+	var _inlineStylePrefixAll = __webpack_require__(451);
 
 	var _inlineStylePrefixAll2 = _interopRequireDefault(_inlineStylePrefixAll);
 
-	var _utilsGetBrowserInformation = __webpack_require__(464);
+	var _utilsGetBrowserInformation = __webpack_require__(466);
 
 	var _utilsGetBrowserInformation2 = _interopRequireDefault(_utilsGetBrowserInformation);
 
-	var _utilsGetPrefixedKeyframes = __webpack_require__(467);
+	var _utilsGetPrefixedKeyframes = __webpack_require__(469);
 
 	var _utilsGetPrefixedKeyframes2 = _interopRequireDefault(_utilsGetPrefixedKeyframes);
 
-	var _utilsCapitalizeString = __webpack_require__(468);
+	var _utilsCapitalizeString = __webpack_require__(470);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(469);
+	var _utilsAssign = __webpack_require__(471);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _prefixProps = __webpack_require__(470);
+	var _prefixProps = __webpack_require__(472);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _pluginsCalc = __webpack_require__(471);
+	var _pluginsCalc = __webpack_require__(473);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(473);
+	var _pluginsCursor = __webpack_require__(475);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(474);
+	var _pluginsFlex = __webpack_require__(476);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(475);
+	var _pluginsSizing = __webpack_require__(477);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(476);
+	var _pluginsGradient = __webpack_require__(478);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(477);
+	var _pluginsTransition = __webpack_require__(479);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(479);
+	var _pluginsFlexboxIE = __webpack_require__(481);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(480);
+	var _pluginsFlexboxOld = __webpack_require__(482);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -43959,7 +44493,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 449 */
+/* 451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43971,49 +44505,49 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _prefixProps = __webpack_require__(450);
+	var _prefixProps = __webpack_require__(452);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
-	var _utilsCapitalizeString = __webpack_require__(451);
+	var _utilsCapitalizeString = __webpack_require__(453);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsAssign = __webpack_require__(452);
+	var _utilsAssign = __webpack_require__(454);
 
 	var _utilsAssign2 = _interopRequireDefault(_utilsAssign);
 
-	var _pluginsCalc = __webpack_require__(453);
+	var _pluginsCalc = __webpack_require__(455);
 
 	var _pluginsCalc2 = _interopRequireDefault(_pluginsCalc);
 
-	var _pluginsCursor = __webpack_require__(457);
+	var _pluginsCursor = __webpack_require__(459);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(458);
+	var _pluginsFlex = __webpack_require__(460);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(459);
+	var _pluginsSizing = __webpack_require__(461);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(460);
+	var _pluginsGradient = __webpack_require__(462);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
-	var _pluginsTransition = __webpack_require__(461);
+	var _pluginsTransition = __webpack_require__(463);
 
 	var _pluginsTransition2 = _interopRequireDefault(_pluginsTransition);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(462);
+	var _pluginsFlexboxIE = __webpack_require__(464);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(463);
+	var _pluginsFlexboxOld = __webpack_require__(465);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -44053,7 +44587,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 450 */
+/* 452 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44065,7 +44599,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 451 */
+/* 453 */
 /***/ function(module, exports) {
 
 	// helper to capitalize strings
@@ -44082,7 +44616,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 452 */
+/* 454 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -44103,7 +44637,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 453 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44115,11 +44649,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsJoinPrefixedRules = __webpack_require__(454);
+	var _utilsJoinPrefixedRules = __webpack_require__(456);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(456);
+	var _utilsIsPrefixedValue = __webpack_require__(458);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -44136,7 +44670,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 454 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44149,7 +44683,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _camelToDashCase = __webpack_require__(455);
+	var _camelToDashCase = __webpack_require__(457);
 
 	var _camelToDashCase2 = _interopRequireDefault(_camelToDashCase);
 
@@ -44169,7 +44703,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 455 */
+/* 457 */
 /***/ function(module, exports) {
 
 	/**
@@ -44191,7 +44725,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 456 */
+/* 458 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -44209,7 +44743,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 457 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44221,7 +44755,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsJoinPrefixedRules = __webpack_require__(454);
+	var _utilsJoinPrefixedRules = __webpack_require__(456);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -44241,7 +44775,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 458 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44253,7 +44787,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsCamelToDashCase = __webpack_require__(455);
+	var _utilsCamelToDashCase = __webpack_require__(457);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -44270,7 +44804,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 459 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44282,7 +44816,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsJoinPrefixedRules = __webpack_require__(454);
+	var _utilsJoinPrefixedRules = __webpack_require__(456);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
@@ -44312,7 +44846,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 460 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44324,11 +44858,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsJoinPrefixedRules = __webpack_require__(454);
+	var _utilsJoinPrefixedRules = __webpack_require__(456);
 
 	var _utilsJoinPrefixedRules2 = _interopRequireDefault(_utilsJoinPrefixedRules);
 
-	var _utilsIsPrefixedValue = __webpack_require__(456);
+	var _utilsIsPrefixedValue = __webpack_require__(458);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
@@ -44345,7 +44879,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 461 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44359,19 +44893,19 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(455);
+	var _utilsCamelToDashCase = __webpack_require__(457);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(451);
+	var _utilsCapitalizeString = __webpack_require__(453);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsIsPrefixedValue = __webpack_require__(456);
+	var _utilsIsPrefixedValue = __webpack_require__(458);
 
 	var _utilsIsPrefixedValue2 = _interopRequireDefault(_utilsIsPrefixedValue);
 
-	var _prefixProps = __webpack_require__(450);
+	var _prefixProps = __webpack_require__(452);
 
 	var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -44432,7 +44966,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 462 */
+/* 464 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -44470,7 +45004,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 463 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44484,7 +45018,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(455);
+	var _utilsCamelToDashCase = __webpack_require__(457);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -44518,7 +45052,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 464 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44529,7 +45063,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _bowser = __webpack_require__(465);
+	var _bowser = __webpack_require__(467);
 
 	var _bowser2 = _interopRequireDefault(_bowser);
 
@@ -44616,7 +45150,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 465 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -44627,7 +45161,7 @@
 
 	!function (name, definition) {
 	  if (typeof module != 'undefined' && module.exports) module.exports = definition()
-	  else if (true) __webpack_require__(466)(name, definition)
+	  else if (true) __webpack_require__(468)(name, definition)
 	  else this[name] = definition()
 	}('bowser', function () {
 	  /**
@@ -44942,9 +45476,9 @@
 	    }
 
 	    // set OS flags for platforms that have multiple browsers
-	    if (!result.windowsphone && !result.msedge && (android || result.silk)) {
+	    if (!result.msedge && (android || result.silk)) {
 	      result.android = t
-	    } else if (!result.windowsphone && !result.msedge && iosdevice) {
+	    } else if (iosdevice) {
 	      result[iosdevice] = t
 	      result.ios = t
 	    } else if (mac) {
@@ -45161,10 +45695,6 @@
 	    for (var browser in minVersions) {
 	      if (minVersions.hasOwnProperty(browser)) {
 	        if (_bowser[browser]) {
-	          if (typeof minVersions[browser] !== 'string') {
-	            throw new Error('Browser version in the minVersion map should be a string: ' + browser + ': ' + String(minVersions));
-	          }
-
 	          // browser version and min supported version.
 	          return compareVersions([version, minVersions[browser]]) < 0;
 	        }
@@ -45202,14 +45732,14 @@
 
 
 /***/ },
-/* 466 */
+/* 468 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 467 */
+/* 469 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45234,7 +45764,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 468 */
+/* 470 */
 /***/ function(module, exports) {
 
 	// helper to capitalize strings
@@ -45251,7 +45781,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 469 */
+/* 471 */
 /***/ function(module, exports) {
 
 	// leight polyfill for Object.assign
@@ -45273,7 +45803,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 470 */
+/* 472 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -45285,7 +45815,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 471 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45299,7 +45829,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45320,7 +45850,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 472 */
+/* 474 */
 /***/ function(module, exports) {
 
 	/**
@@ -45342,7 +45872,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 473 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45354,7 +45884,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45384,7 +45914,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 474 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45396,7 +45926,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45424,7 +45954,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 475 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45438,7 +45968,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45475,7 +46005,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 476 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45489,7 +46019,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45512,7 +46042,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 477 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45526,15 +46056,15 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
-	var _utilsCapitalizeString = __webpack_require__(468);
+	var _utilsCapitalizeString = __webpack_require__(470);
 
 	var _utilsCapitalizeString2 = _interopRequireDefault(_utilsCapitalizeString);
 
-	var _utilsUnprefixProperty = __webpack_require__(478);
+	var _utilsUnprefixProperty = __webpack_require__(480);
 
 	var _utilsUnprefixProperty2 = _interopRequireDefault(_utilsUnprefixProperty);
 
@@ -45578,7 +46108,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 478 */
+/* 480 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45595,7 +46125,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 479 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45609,7 +46139,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45665,7 +46195,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 480 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45679,7 +46209,7 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var _utilsCamelToDashCase = __webpack_require__(472);
+	var _utilsCamelToDashCase = __webpack_require__(474);
 
 	var _utilsCamelToDashCase2 = _interopRequireDefault(_utilsCamelToDashCase);
 
@@ -45741,7 +46271,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 481 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45750,7 +46280,7 @@
 	  value: true
 	});
 
-	var _getStateKey = __webpack_require__(482);
+	var _getStateKey = __webpack_require__(484);
 
 	var _getStateKey2 = _interopRequireDefault(_getStateKey);
 
@@ -45766,7 +46296,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 482 */
+/* 484 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45784,7 +46314,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 483 */
+/* 485 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45816,7 +46346,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 484 */
+/* 486 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45880,7 +46410,7 @@
 	}
 
 /***/ },
-/* 485 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45889,35 +46419,35 @@
 	  value: true
 	});
 
-	var _checkPropsPlugin = __webpack_require__(486);
+	var _checkPropsPlugin = __webpack_require__(488);
 
 	var _checkPropsPlugin2 = _interopRequireDefault(_checkPropsPlugin);
 
-	var _keyframesPlugin = __webpack_require__(487);
+	var _keyframesPlugin = __webpack_require__(489);
 
 	var _keyframesPlugin2 = _interopRequireDefault(_keyframesPlugin);
 
-	var _mergeStyleArrayPlugin = __webpack_require__(488);
+	var _mergeStyleArrayPlugin = __webpack_require__(490);
 
 	var _mergeStyleArrayPlugin2 = _interopRequireDefault(_mergeStyleArrayPlugin);
 
-	var _prefixPlugin = __webpack_require__(489);
+	var _prefixPlugin = __webpack_require__(491);
 
 	var _prefixPlugin2 = _interopRequireDefault(_prefixPlugin);
 
-	var _removeNestedStylesPlugin = __webpack_require__(490);
+	var _removeNestedStylesPlugin = __webpack_require__(492);
 
 	var _removeNestedStylesPlugin2 = _interopRequireDefault(_removeNestedStylesPlugin);
 
-	var _resolveInteractionStylesPlugin = __webpack_require__(491);
+	var _resolveInteractionStylesPlugin = __webpack_require__(493);
 
 	var _resolveInteractionStylesPlugin2 = _interopRequireDefault(_resolveInteractionStylesPlugin);
 
-	var _resolveMediaQueriesPlugin = __webpack_require__(493);
+	var _resolveMediaQueriesPlugin = __webpack_require__(495);
 
 	var _resolveMediaQueriesPlugin2 = _interopRequireDefault(_resolveMediaQueriesPlugin);
 
-	var _visitedPlugin = __webpack_require__(494);
+	var _visitedPlugin = __webpack_require__(496);
 
 	var _visitedPlugin2 = _interopRequireDefault(_visitedPlugin);
 
@@ -45938,7 +46468,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 486 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46005,7 +46535,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 487 */
+/* 489 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46042,7 +46572,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 488 */
+/* 490 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46066,7 +46596,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 489 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46076,7 +46606,7 @@
 	});
 	exports.default = prefixPlugin;
 
-	var _prefixer = __webpack_require__(447);
+	var _prefixer = __webpack_require__(449);
 
 	function prefixPlugin(_ref // eslint-disable-line no-shadow
 	) {
@@ -46089,7 +46619,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 490 */
+/* 492 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46117,7 +46647,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 491 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46126,7 +46656,7 @@
 	  value: true
 	});
 
-	var _mouseUpListener = __webpack_require__(492);
+	var _mouseUpListener = __webpack_require__(494);
 
 	var _mouseUpListener2 = _interopRequireDefault(_mouseUpListener);
 
@@ -46250,7 +46780,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 492 */
+/* 494 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46299,7 +46829,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 493 */
+/* 495 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46480,7 +47010,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 494 */
+/* 496 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46525,7 +47055,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 495 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -46571,7 +47101,7 @@
 
 
 /***/ },
-/* 496 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46582,7 +47112,7 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _cssRuleSetToString = __webpack_require__(445);
+	var _cssRuleSetToString = __webpack_require__(447);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
@@ -46668,7 +47198,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 497 */
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46681,15 +47211,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enhancer = __webpack_require__(439);
+	var _enhancer = __webpack_require__(441);
 
 	var _enhancer2 = _interopRequireDefault(_enhancer);
 
-	var _styleKeeper = __webpack_require__(440);
+	var _styleKeeper = __webpack_require__(442);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
-	var _styleSheet = __webpack_require__(498);
+	var _styleSheet = __webpack_require__(500);
 
 	var _styleSheet2 = _interopRequireDefault(_styleSheet);
 
@@ -46763,7 +47293,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 498 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46779,7 +47309,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _styleKeeper = __webpack_require__(440);
+	var _styleKeeper = __webpack_require__(442);
 
 	var _styleKeeper2 = _interopRequireDefault(_styleKeeper);
 
@@ -46842,7 +47372,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 499 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46852,15 +47382,15 @@
 	});
 	exports.default = keyframes;
 
-	var _cssRuleSetToString = __webpack_require__(445);
+	var _cssRuleSetToString = __webpack_require__(447);
 
 	var _cssRuleSetToString2 = _interopRequireDefault(_cssRuleSetToString);
 
-	var _hash = __webpack_require__(483);
+	var _hash = __webpack_require__(485);
 
 	var _hash2 = _interopRequireDefault(_hash);
 
-	var _prefixer = __webpack_require__(447);
+	var _prefixer = __webpack_require__(449);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46881,7 +47411,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 500 */
+/* 502 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46943,7 +47473,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 501 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46958,7 +47488,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(438);
+	var _radium = __webpack_require__(440);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
@@ -47045,7 +47575,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 502 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47060,7 +47590,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _radium = __webpack_require__(438);
+	var _radium = __webpack_require__(440);
 
 	var _radium2 = _interopRequireDefault(_radium);
 
@@ -47141,7 +47671,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 503 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47152,7 +47682,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -47178,7 +47708,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 504 */
+/* 506 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47189,11 +47719,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _snapsvgImporter = __webpack_require__(505);
+	var _snapsvgImporter = __webpack_require__(507);
 
 	var _snapsvgImporter2 = _interopRequireDefault(_snapsvgImporter);
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -47263,7 +47793,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 505 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47275,7 +47805,7 @@
 	exports['default'] = function () {
 	  var Snap = undefined;
 	  try {
-	    Snap = __webpack_require__(506);
+	    Snap = __webpack_require__(508);
 	  } finally {
 	    return Snap;
 	  }
@@ -47284,10 +47814,10 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 506 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
-	window.eve = __webpack_require__(507)
+	window.eve = __webpack_require__(509)
 
 	// Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
 	//
@@ -55022,7 +55552,7 @@
 
 
 /***/ },
-/* 507 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
@@ -55431,7 +55961,7 @@
 
 
 /***/ },
-/* 508 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55442,11 +55972,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _snapsvgImporter = __webpack_require__(505);
+	var _snapsvgImporter = __webpack_require__(507);
 
 	var _snapsvgImporter2 = _interopRequireDefault(_snapsvgImporter);
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55527,7 +56057,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 509 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55538,7 +56068,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55562,7 +56092,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 510 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55573,7 +56103,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55600,7 +56130,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 511 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55611,7 +56141,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55637,7 +56167,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 512 */
+/* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55648,7 +56178,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55675,7 +56205,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 513 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55686,7 +56216,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _menuFactory = __webpack_require__(437);
+	var _menuFactory = __webpack_require__(439);
 
 	var _menuFactory2 = _interopRequireDefault(_menuFactory);
 
@@ -55719,7 +56249,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 514 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55736,7 +56266,7 @@
 
 	var _reactBootstrap = __webpack_require__(37);
 
-	var _AccountSettingsModal = __webpack_require__(515);
+	var _AccountSettingsModal = __webpack_require__(517);
 
 	var _AccountSettingsModal2 = _interopRequireDefault(_AccountSettingsModal);
 
@@ -55982,7 +56512,7 @@
 	exports.default = NavbarInstance;
 
 /***/ },
-/* 515 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56023,12 +56553,14 @@
 	      var confirmPassword = document.getElementsByName('confirm-password')[0].value;
 
 	      if (password === confirmPassword) {
+	        document.getElementById('errorMsg').innerHTML = "";
 	        document.getElementsByName('password')[0].style.border = '2px solid green';
 	        document.getElementsByName('confirm-password')[0].style.border = '2px solid green';
 	        document.getElementById('successMsg').innerHTML = "<span class='successmsg'>Password reset successfully.</span>";
 
 	        this.props.changePassword(password);
 	      } else {
+	        document.getElementById('successMsg').innerHTML = "";
 	        document.getElementById('errorMsg').innerHTML = "<span class='errormsg'>Passwords do not match.</span>";
 	        ;
 	        document.getElementsByName('password')[0].style.border = '2px solid red';
@@ -56166,7 +56698,7 @@
 	exports.default = AccountSettingsModal;
 
 /***/ },
-/* 516 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56296,7 +56828,7 @@
 	exports.default = AddGroupModal;
 
 /***/ },
-/* 517 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56462,7 +56994,7 @@
 	exports.default = AddMemberModal;
 
 /***/ },
-/* 518 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56592,7 +57124,7 @@
 	exports.default = AddBucketModal;
 
 /***/ },
-/* 519 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56712,523 +57244,10 @@
 	exports.default = HelpModal;
 
 /***/ },
-/* 520 */
+/* 522 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
-
-	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2), __webpack_require__(151), __webpack_require__(525)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	  } else if (typeof module === 'object' && typeof module.exports === 'object') {
-	    module.exports = factory(require('react'), require('react-dom'), require('spin.js'));
-	  } else {
-	    root.Loader = factory(root.React, root.ReactDOM, root.Spinner);
-	  }
-
-	}(this, function (React, ReactDOM, Spinner) {
-
-	  var Loader = React.createClass({displayName: "Loader",
-	    propTypes: {
-	      className:       React.PropTypes.string,
-	      color:           React.PropTypes.string,
-	      component:       React.PropTypes.any,
-	      corners:         React.PropTypes.number,
-	      direction:       React.PropTypes.oneOf([1, -1]),
-	      hwaccell:        React.PropTypes.bool,
-	      left:            React.PropTypes.string,
-	      length:          React.PropTypes.number,
-	      lines:           React.PropTypes.number,
-	      loaded:          React.PropTypes.bool,
-	      loadedClassName: React.PropTypes.string,
-	      opacity:         React.PropTypes.number,
-	      options:         React.PropTypes.object,
-	      parentClassName: React.PropTypes.string,
-	      radius:          React.PropTypes.number,
-	      rotate:          React.PropTypes.number,
-	      scale:           React.PropTypes.number,
-	      shadow:          React.PropTypes.bool,
-	      speed:           React.PropTypes.number,
-	      top:             React.PropTypes.string,
-	      trail:           React.PropTypes.number,
-	      width:           React.PropTypes.number,
-	      zIndex:          React.PropTypes.number
-	    },
-
-	    getDefaultProps: function () {
-	      return {
-	        component: 'div',
-	        loadedClassName: 'loadedContent',
-	        parentClassName: 'loader'
-	      };
-	    },
-
-	    getInitialState: function () {
-	      return { loaded: false, options: {} };
-	    },
-
-	    componentDidMount: function () {
-	      this.updateState(this.props);
-	    },
-
-	    componentWillReceiveProps: function (nextProps) {
-	      this.updateState(nextProps);
-	    },
-
-	    updateState: function (props) {
-	      props || (props = {});
-
-	      var loaded = this.state.loaded;
-	      var options = this.state.options;
-
-	      // update loaded state, if supplied
-	      if ('loaded' in props) {
-	        loaded = !!props.loaded;
-	      }
-
-	      // update spinner options, if supplied
-	      var allowedOptions = Object.keys(this.constructor.propTypes);
-	      allowedOptions.splice(allowedOptions.indexOf('loaded'), 1);
-	      allowedOptions.splice(allowedOptions.indexOf('options'), 1);
-
-	      // allows passing options as either props or as an option object
-	      var propsOrObjectOptions = 'options' in props ? props.options : props;
-
-	      allowedOptions.forEach(function (key) {
-	        if (key in propsOrObjectOptions) {
-	          options[key] = propsOrObjectOptions[key];
-	        }
-	      });
-
-	      this.setState({ loaded: loaded, options: options }, this.spin);
-	    },
-
-	    spin: function () {
-	      var canUseDOM = !!(
-	        typeof window !== 'undefined' &&
-	        window.document &&
-	        window.document.createElement
-	      );
-
-	      if (canUseDOM && this.isMounted() && !this.state.loaded) {
-	        var spinner = new Spinner(this.state.options);
-	        var target =  ReactDOM.findDOMNode(this.refs.loader);
-
-	        // clear out any other spinners from previous renders
-	        target.innerHTML = '';
-	        spinner.spin(target);
-	      }
-	    },
-
-	    render: function () {
-	      var props, children;
-
-	      if (this.state.loaded) {
-	        props = { key: 'content', className: this.props.loadedClassName };
-	        children = this.props.children;
-	      } else {
-	        props = { key: 'loader', ref: 'loader', className: this.props.parentClassName };
-	      }
-
-	      return React.createElement(this.props.component, props, children);
-	    }
-	  });
-
-	  return Loader;
-
-	}));
-
-
-/***/ },
-/* 525 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
-	 * Copyright (c) 2011-2014 Felix Gnass
-	 * Licensed under the MIT license
-	 * http://spin.js.org/
-	 *
-	 * Example:
-	    var opts = {
-	      lines: 12             // The number of lines to draw
-	    , length: 7             // The length of each line
-	    , width: 5              // The line thickness
-	    , radius: 10            // The radius of the inner circle
-	    , scale: 1.0            // Scales overall size of the spinner
-	    , corners: 1            // Roundness (0..1)
-	    , color: '#000'         // #rgb or #rrggbb
-	    , opacity: 1/4          // Opacity of the lines
-	    , rotate: 0             // Rotation offset
-	    , direction: 1          // 1: clockwise, -1: counterclockwise
-	    , speed: 1              // Rounds per second
-	    , trail: 100            // Afterglow percentage
-	    , fps: 20               // Frames per second when using setTimeout()
-	    , zIndex: 2e9           // Use a high z-index by default
-	    , className: 'spinner'  // CSS class to assign to the element
-	    , top: '50%'            // center vertically
-	    , left: '50%'           // center horizontally
-	    , shadow: false         // Whether to render a shadow
-	    , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
-	    , position: 'absolute'  // Element positioning
-	    }
-	    var target = document.getElementById('foo')
-	    var spinner = new Spinner(opts).spin(target)
-	 */
-	;(function (root, factory) {
-
-	  /* CommonJS */
-	  if (typeof module == 'object' && module.exports) module.exports = factory()
-
-	  /* AMD module */
-	  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
-
-	  /* Browser global */
-	  else root.Spinner = factory()
-	}(this, function () {
-	  "use strict"
-
-	  var prefixes = ['webkit', 'Moz', 'ms', 'O'] /* Vendor prefixes */
-	    , animations = {} /* Animation rules keyed by their name */
-	    , useCssAnimations /* Whether to use CSS animations or setTimeout */
-	    , sheet /* A stylesheet to hold the @keyframe or VML rules. */
-
-	  /**
-	   * Utility function to create elements. If no tag name is given,
-	   * a DIV is created. Optionally properties can be passed.
-	   */
-	  function createEl (tag, prop) {
-	    var el = document.createElement(tag || 'div')
-	      , n
-
-	    for (n in prop) el[n] = prop[n]
-	    return el
-	  }
-
-	  /**
-	   * Appends children and returns the parent.
-	   */
-	  function ins (parent /* child1, child2, ...*/) {
-	    for (var i = 1, n = arguments.length; i < n; i++) {
-	      parent.appendChild(arguments[i])
-	    }
-
-	    return parent
-	  }
-
-	  /**
-	   * Creates an opacity keyframe animation rule and returns its name.
-	   * Since most mobile Webkits have timing issues with animation-delay,
-	   * we create separate rules for each line/segment.
-	   */
-	  function addAnimation (alpha, trail, i, lines) {
-	    var name = ['opacity', trail, ~~(alpha * 100), i, lines].join('-')
-	      , start = 0.01 + i/lines * 100
-	      , z = Math.max(1 - (1-alpha) / trail * (100-start), alpha)
-	      , prefix = useCssAnimations.substring(0, useCssAnimations.indexOf('Animation')).toLowerCase()
-	      , pre = prefix && '-' + prefix + '-' || ''
-
-	    if (!animations[name]) {
-	      sheet.insertRule(
-	        '@' + pre + 'keyframes ' + name + '{' +
-	        '0%{opacity:' + z + '}' +
-	        start + '%{opacity:' + alpha + '}' +
-	        (start+0.01) + '%{opacity:1}' +
-	        (start+trail) % 100 + '%{opacity:' + alpha + '}' +
-	        '100%{opacity:' + z + '}' +
-	        '}', sheet.cssRules.length)
-
-	      animations[name] = 1
-	    }
-
-	    return name
-	  }
-
-	  /**
-	   * Tries various vendor prefixes and returns the first supported property.
-	   */
-	  function vendor (el, prop) {
-	    var s = el.style
-	      , pp
-	      , i
-
-	    prop = prop.charAt(0).toUpperCase() + prop.slice(1)
-	    if (s[prop] !== undefined) return prop
-	    for (i = 0; i < prefixes.length; i++) {
-	      pp = prefixes[i]+prop
-	      if (s[pp] !== undefined) return pp
-	    }
-	  }
-
-	  /**
-	   * Sets multiple style properties at once.
-	   */
-	  function css (el, prop) {
-	    for (var n in prop) {
-	      el.style[vendor(el, n) || n] = prop[n]
-	    }
-
-	    return el
-	  }
-
-	  /**
-	   * Fills in default values.
-	   */
-	  function merge (obj) {
-	    for (var i = 1; i < arguments.length; i++) {
-	      var def = arguments[i]
-	      for (var n in def) {
-	        if (obj[n] === undefined) obj[n] = def[n]
-	      }
-	    }
-	    return obj
-	  }
-
-	  /**
-	   * Returns the line color from the given string or array.
-	   */
-	  function getColor (color, idx) {
-	    return typeof color == 'string' ? color : color[idx % color.length]
-	  }
-
-	  // Built-in defaults
-
-	  var defaults = {
-	    lines: 12             // The number of lines to draw
-	  , length: 7             // The length of each line
-	  , width: 5              // The line thickness
-	  , radius: 10            // The radius of the inner circle
-	  , scale: 1.0            // Scales overall size of the spinner
-	  , corners: 1            // Roundness (0..1)
-	  , color: '#000'         // #rgb or #rrggbb
-	  , opacity: 1/4          // Opacity of the lines
-	  , rotate: 0             // Rotation offset
-	  , direction: 1          // 1: clockwise, -1: counterclockwise
-	  , speed: 1              // Rounds per second
-	  , trail: 100            // Afterglow percentage
-	  , fps: 20               // Frames per second when using setTimeout()
-	  , zIndex: 2e9           // Use a high z-index by default
-	  , className: 'spinner'  // CSS class to assign to the element
-	  , top: '50%'            // center vertically
-	  , left: '50%'           // center horizontally
-	  , shadow: false         // Whether to render a shadow
-	  , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
-	  , position: 'absolute'  // Element positioning
-	  }
-
-	  /** The constructor */
-	  function Spinner (o) {
-	    this.opts = merge(o || {}, Spinner.defaults, defaults)
-	  }
-
-	  // Global defaults that override the built-ins:
-	  Spinner.defaults = {}
-
-	  merge(Spinner.prototype, {
-	    /**
-	     * Adds the spinner to the given target element. If this instance is already
-	     * spinning, it is automatically removed from its previous target b calling
-	     * stop() internally.
-	     */
-	    spin: function (target) {
-	      this.stop()
-
-	      var self = this
-	        , o = self.opts
-	        , el = self.el = createEl(null, {className: o.className})
-
-	      css(el, {
-	        position: o.position
-	      , width: 0
-	      , zIndex: o.zIndex
-	      , left: o.left
-	      , top: o.top
-	      })
-
-	      if (target) {
-	        target.insertBefore(el, target.firstChild || null)
-	      }
-
-	      el.setAttribute('role', 'progressbar')
-	      self.lines(el, self.opts)
-
-	      if (!useCssAnimations) {
-	        // No CSS animation support, use setTimeout() instead
-	        var i = 0
-	          , start = (o.lines - 1) * (1 - o.direction) / 2
-	          , alpha
-	          , fps = o.fps
-	          , f = fps / o.speed
-	          , ostep = (1 - o.opacity) / (f * o.trail / 100)
-	          , astep = f / o.lines
-
-	        ;(function anim () {
-	          i++
-	          for (var j = 0; j < o.lines; j++) {
-	            alpha = Math.max(1 - (i + (o.lines - j) * astep) % f * ostep, o.opacity)
-
-	            self.opacity(el, j * o.direction + start, alpha, o)
-	          }
-	          self.timeout = self.el && setTimeout(anim, ~~(1000 / fps))
-	        })()
-	      }
-	      return self
-	    }
-
-	    /**
-	     * Stops and removes the Spinner.
-	     */
-	  , stop: function () {
-	      var el = this.el
-	      if (el) {
-	        clearTimeout(this.timeout)
-	        if (el.parentNode) el.parentNode.removeChild(el)
-	        this.el = undefined
-	      }
-	      return this
-	    }
-
-	    /**
-	     * Internal method that draws the individual lines. Will be overwritten
-	     * in VML fallback mode below.
-	     */
-	  , lines: function (el, o) {
-	      var i = 0
-	        , start = (o.lines - 1) * (1 - o.direction) / 2
-	        , seg
-
-	      function fill (color, shadow) {
-	        return css(createEl(), {
-	          position: 'absolute'
-	        , width: o.scale * (o.length + o.width) + 'px'
-	        , height: o.scale * o.width + 'px'
-	        , background: color
-	        , boxShadow: shadow
-	        , transformOrigin: 'left'
-	        , transform: 'rotate(' + ~~(360/o.lines*i + o.rotate) + 'deg) translate(' + o.scale*o.radius + 'px' + ',0)'
-	        , borderRadius: (o.corners * o.scale * o.width >> 1) + 'px'
-	        })
-	      }
-
-	      for (; i < o.lines; i++) {
-	        seg = css(createEl(), {
-	          position: 'absolute'
-	        , top: 1 + ~(o.scale * o.width / 2) + 'px'
-	        , transform: o.hwaccel ? 'translate3d(0,0,0)' : ''
-	        , opacity: o.opacity
-	        , animation: useCssAnimations && addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) + ' ' + 1 / o.speed + 's linear infinite'
-	        })
-
-	        if (o.shadow) ins(seg, css(fill('#000', '0 0 4px #000'), {top: '2px'}))
-	        ins(el, ins(seg, fill(getColor(o.color, i), '0 0 1px rgba(0,0,0,.1)')))
-	      }
-	      return el
-	    }
-
-	    /**
-	     * Internal method that adjusts the opacity of a single line.
-	     * Will be overwritten in VML fallback mode below.
-	     */
-	  , opacity: function (el, i, val) {
-	      if (i < el.childNodes.length) el.childNodes[i].style.opacity = val
-	    }
-
-	  })
-
-
-	  function initVML () {
-
-	    /* Utility function to create a VML tag */
-	    function vml (tag, attr) {
-	      return createEl('<' + tag + ' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">', attr)
-	    }
-
-	    // No CSS transforms but VML support, add a CSS rule for VML elements:
-	    sheet.addRule('.spin-vml', 'behavior:url(#default#VML)')
-
-	    Spinner.prototype.lines = function (el, o) {
-	      var r = o.scale * (o.length + o.width)
-	        , s = o.scale * 2 * r
-
-	      function grp () {
-	        return css(
-	          vml('group', {
-	            coordsize: s + ' ' + s
-	          , coordorigin: -r + ' ' + -r
-	          })
-	        , { width: s, height: s }
-	        )
-	      }
-
-	      var margin = -(o.width + o.length) * o.scale * 2 + 'px'
-	        , g = css(grp(), {position: 'absolute', top: margin, left: margin})
-	        , i
-
-	      function seg (i, dx, filter) {
-	        ins(
-	          g
-	        , ins(
-	            css(grp(), {rotation: 360 / o.lines * i + 'deg', left: ~~dx})
-	          , ins(
-	              css(
-	                vml('roundrect', {arcsize: o.corners})
-	              , { width: r
-	                , height: o.scale * o.width
-	                , left: o.scale * o.radius
-	                , top: -o.scale * o.width >> 1
-	                , filter: filter
-	                }
-	              )
-	            , vml('fill', {color: getColor(o.color, i), opacity: o.opacity})
-	            , vml('stroke', {opacity: 0}) // transparent stroke to fix color bleeding upon opacity change
-	            )
-	          )
-	        )
-	      }
-
-	      if (o.shadow)
-	        for (i = 1; i <= o.lines; i++) {
-	          seg(i, -2, 'progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)')
-	        }
-
-	      for (i = 1; i <= o.lines; i++) seg(i)
-	      return ins(el, g)
-	    }
-
-	    Spinner.prototype.opacity = function (el, i, val, o) {
-	      var c = el.firstChild
-	      o = o.shadow && o.lines || 0
-	      if (c && i + o < c.childNodes.length) {
-	        c = c.childNodes[i + o]; c = c && c.firstChild; c = c && c.firstChild
-	        if (c) c.opacity = val
-	      }
-	    }
-	  }
-
-	  if (typeof document !== 'undefined') {
-	    sheet = (function () {
-	      var el = createEl('style', {type : 'text/css'})
-	      ins(document.getElementsByTagName('head')[0], el)
-	      return el.sheet || el.styleSheet
-	    }())
-
-	    var probe = css(createEl('group'), {behavior: 'url(#default#VML)'})
-
-	    if (!vendor(probe, 'transform') && probe.adj) initVML()
-	    else useCssAnimations = vendor(probe, 'animation')
-	  }
-
-	  return Spinner
-
-	}));
-
 
 /***/ }
 /******/ ]);
