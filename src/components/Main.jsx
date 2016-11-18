@@ -103,11 +103,13 @@ export default class Component extends React.Component {
             <Menu
               pageWrapId={ "page-wrap" }
               outerContainerId={ "outer-container" } >
-              <h3 className="tags-title">Tags
+              <h3 className="tags-title">
+                Tags
                 <i
-                className="fa fa-plus-square"
-                id="create-bucket-button"
-                onClick={this.props.showBucketModal} /> </h3>
+                  className="fa fa-plus-square"
+                  id="create-bucket-button"
+                  onClick={this.props.showBucketModal} />
+              </h3>
               {
                 allBucket ?
                 <Bucket
@@ -187,7 +189,8 @@ export default class Component extends React.Component {
                 <div
                   className='mybucket-btn'
                   onClick = {()=>{this.props.changeMyBucket()}} >
-                  <i className="fa fa-home" aria-hidden="true"></i>
+                  <i className="fa fa-home" aria-hidden="true">
+                  </i>
                 </div>
                 <div
                   className='add-btn'

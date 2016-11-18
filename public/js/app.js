@@ -5132,8 +5132,7 @@
 	            _react2.default.createElement('i', {
 	              className: 'fa fa-plus-square',
 	              id: 'create-bucket-button',
-	              onClick: this.props.showBucketModal }),
-	            ' '
+	              onClick: this.props.showBucketModal })
 	          ),
 	          allBucket ? _react2.default.createElement(_Buckets2.default, {
 	            changeStateBucket: this.changeState,
@@ -41701,6 +41700,7 @@
 	                _this2.refs.selectTagOverlay.hide();
 	                _this2.props.addCard(_this2.props.ItemEntry, tag.id);
 	              },
+	              key: tag.id,
 	              className: 'tag-list' },
 	            tag.title
 	          );

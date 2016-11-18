@@ -64,7 +64,7 @@ module.exports.actions.createCard = function(req,res){
     }
     else{
       console.log(data);
-      return res.status(200);
+      return res.status(200).json(data);
     }
   })
 
@@ -81,7 +81,7 @@ module.exports.actions.deleteCard = function(req, res){
     }
     else{
       console.log(data);
-      return res.status(200);
+      return res.status(200).json(data);
     }
   })
 }
@@ -102,7 +102,7 @@ module.exports.actions.moveCard = function(req,res){
     }
     else{
       console.log(data);
-      return res.status(200);
+      return res.status(200).json(data);
     }
   })
 }

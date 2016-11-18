@@ -16,6 +16,7 @@ export default class SearchEntry extends React.Component {
               this.refs.selectTagOverlay.hide();
               this.props.addCard(this.props.ItemEntry, tag.id);
             }}
+            key = {tag.id}
             className="tag-list">
             {tag.title}
           </p>
