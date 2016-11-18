@@ -1,6 +1,13 @@
 {
   "short_name": "Bucket",
   "name": "Bucket With Friends",
+  "icons": [
+    {
+      "src": "../images/bucket-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "landscape"
