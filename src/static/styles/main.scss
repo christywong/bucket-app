@@ -19,11 +19,48 @@ body,
 html {
     height: 100%;
 }
+
+/*** Homepage ***/
+.jumbotron {
+    height: 100vh;
+    background-size: cover;
+    background-image: url("/images/gliderport.png");
+    margin-bottom: 0px;
+}
+
+#jumbotron-text {
+    margin-left: 100px;
+}
+
+#homepage-elems {
+    padding-top: 100px;
+}
+
+.home-text {
+    font-size: 36px !important;
+    font-weight: 300 !important;
+}
+
+@media (max-width: $breakpoint-tablet) {
+    #jumbotron-text {
+        text-align: center;
+        margin-left: 0px;
+    }
+    #homepage-elems {
+        padding-top: 50px;
+    }
+    .home-text {
+        font-size: 28px !important;
+        font-weight: 300 !important;
+    }
+}
+
 /*** Login Form ***/
 .form {
     position: relative;
     z-index: 1;
-    background: #147689;
+    /*background: #147689;*/
+    background: transparent;
     max-width: 300px;
     margin: 0 auto 100px;
     padding: 30px;
@@ -86,7 +123,7 @@ html {
 
 .form button {
     outline: 0;
-    background: $primary-blue;
+    background: $hover-blue;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -103,13 +140,15 @@ html {
 
 .form .message {
     margin: 15px 0 0;
-    color: #b3b3b3;
-    font-size: 12px;
+    color: black;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .form .message a {
-    color: $white;
-    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    text-decoration: underline;
 }
 
 .form .register-form {
@@ -123,7 +162,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body:before {
+/*body:before {
     content: "";
     position: fixed;
     top: 0;
@@ -132,7 +171,7 @@ body:before {
     background: rgba(255, 255, 255, 0.8);
     width: 100%;
     height: 100%;
-}
+}*/
 
 .navbar {
     border-radius: 0 !important;
@@ -568,6 +607,7 @@ body:before {
 
 .empty-bucket-msg {
     margin: 150px auto 0;
+    color: rgba(0, 0, 0, 0.2);
 }
 
 #group-title-nav {

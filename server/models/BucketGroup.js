@@ -108,7 +108,7 @@ module.exports.actions.moveCard = function(req,res){
 }
 
 module.exports.actions.getAllGroups = function(req,res){
-  Groups.find({},'_id title', function(err, listOfGroups){
+  Groups.find({},'_id title', {sort: {title: 1}}, function(err, listOfGroups){
     if(err){
       console.log('oh no something went wrong');
       return err;
