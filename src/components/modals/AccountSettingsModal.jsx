@@ -11,6 +11,7 @@ export default class AccountSettingsModal extends React.Component{
     var confirmPassword = document.getElementsByName('confirm-password')[0].value;
 
     if(password === confirmPassword){
+    document.getElementById('errorMsg').innerHTML="";
      document.getElementsByName('password')[0].style.border='2px solid green';
      document.getElementsByName('confirm-password')[0].style.border='2px solid green';
      document.getElementById('successMsg').innerHTML="<span class='successmsg'>Password reset successfully.</span>"
@@ -18,6 +19,7 @@ export default class AccountSettingsModal extends React.Component{
       this.props.changePassword(password);
     }
      else{
+     document.getElementById('successMsg').innerHTML="";
      document.getElementById('errorMsg').innerHTML="<span class='errormsg'>Passwords do not match.</span>";
 ;
      document.getElementsByName('password')[0].style.border='2px solid red';
