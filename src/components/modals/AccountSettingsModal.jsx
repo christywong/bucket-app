@@ -9,18 +9,17 @@ export default class AccountSettingsModal extends React.Component{
   changePassword(){
     var password = document.getElementsByName('password')[0].value;
     var confirmPassword = document.getElementsByName('confirm-password')[0].value;
-    var mismatch = document.getElementById('errorMsg').innerHTML="<span class='errormsg'>Passwords do not match.</span>";
 
     if(password === confirmPassword){
-     document.getElementsByName('password')[0].style.border='1px solid black';
-     document.getElementsByName('confirm-password')[0].style.border='1px solid black';
+     document.getElementsByName('password')[0].style.border='2px solid green';
+     document.getElementsByName('confirm-password')[0].style.border='2px solid green';
+     document.getElementById('successMsg').innerHTML="<span class='successmsg'>Password reset successfully.</span>"
 
       this.props.changePassword(password);
-      this.props.close();
-      alert('Password Changed');
     }
      else{
-     mismatch;
+     document.getElementById('errorMsg').innerHTML="<span class='errormsg'>Passwords do not match.</span>";
+;
      document.getElementsByName('password')[0].style.border='2px solid red';
      document.getElementsByName('confirm-password')[0].style.border='2px solid red';
     } 
@@ -91,6 +90,7 @@ export default class AccountSettingsModal extends React.Component{
                       </input>
                     </div>
                      <div className = "col-md-4 col-md-offset-4" id="errorMsg"></div>
+                     <div className = "col-md-4 col-md-offset-4" id="successMsg"></div>
 
                   </div>
 

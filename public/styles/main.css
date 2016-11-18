@@ -53,6 +53,10 @@ html {
   color: red;
   font-size: 13px; }
 
+.successmsg {
+  color: green;
+  font-size: 13px; }
+
 .errorLogin {
   font-size: 13px; }
 

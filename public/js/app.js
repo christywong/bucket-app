@@ -152,12 +152,8 @@
 	      showMemberModal: false,
 	      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
 	      showAccountSettingsModal: false,
-<<<<<<< HEAD
 	      pageLoaded: false,
 	      fakeLoader: true
-=======
-	      pageLoaded: true
->>>>>>> christy-branch
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -237,7 +233,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-<<<<<<< HEAD
 	        _react2.default.createElement(
 	          Loader,
 	          {
@@ -292,67 +287,6 @@
 	            changeMyBucket: this.changeMyBucket
 	          })
 	        )
-=======
-	        _react2.default.createElement(Loader, {
-	          loaded: this.state.pageLoaded,
-	          lines: 13,
-	          length: 20,
-	          width: 10,
-	          radius: 30,
-	          corners: 1, rotate: 0, direction: 1, color: '#000', speed: 1,
-	          trail: 60, shadow: false, hwaccel: false, className: 'spinner',
-	          zIndex: 2e9, top: '50%', left: '50%', scale: 1.00,
-	          loadedClassName: 'loadedContent' }),
-	        !this.state.pageLoaded ? _react2.default.createElement('div', { className: 'fake-loader-overlay' }) : null,
-	        _react2.default.createElement(_NavbarInstance2.default, {
-	          currentGroup: this.state.data,
-	          groups: this.state.listOfGroups,
-	          changeGroup: this.changeGroup,
-	          addGroup: this.addGroup,
-	          addMember: this.addMember,
-	          showSettings: this.showAccountSettingsModal,
-	          showGroups: this.showAddGroupModal,
-	          showMember: this.showAddMemberModal,
-	          showBucket: this.showAddBucketModal,
-	          showHelp: this.showHelpModal
-	        }),
-	        this.state.showAccountSettingsModal ? _react2.default.createElement(_AccountSettingsModal2.default, {
-	          close: this.closeAccountSettingsModal,
-	          changePassword: this.changePassword,
-	          visibility: this.state.showAccountSettingsModal }) : null,
-	        this.state.showGroupModal ? _react2.default.createElement(_AddGroupModal2.default, {
-	          close: this.closeAddGroupModal,
-	          visibility: this.state.showGroupModal,
-	          addGroup: this.addGroup,
-	          groups: this.state.listOfGroups,
-	          changeGroup: this.changeGroup
-	        }) : null,
-	        this.state.showMemberModal ? _react2.default.createElement(_AddMemberModal2.default, {
-	          close: this.closeAddMemberModal,
-	          visibility: this.state.showMemberModal,
-	          addMember: this.addMember,
-	          friendsList: this.state.data.members }) : null,
-	        this.state.showBucketModal ? _react2.default.createElement(_AddBucketModal2.default, {
-	          close: this.closeAddBucketModal,
-	          visibility: this.state.showBucketModal,
-	          addBucket: this.addBucket }) : null,
-	        this.state.showHelpModal ? _react2.default.createElement(_HelpModal2.default, {
-	          close: this.closeHelpModal,
-	          visibility: this.state.showHelpModal }) : null,
-	        _react2.default.createElement(_Main2.default, {
-	          currentGroupData: this.state.data,
-	          allGroups: this.state.data.tags,
-	          currentBucketId: this.state.currentBucket,
-	          addBucket: this.addBucket,
-	          currentGroup: this.state.currentGroup,
-	          deleteBucket: this.deleteBucket,
-	          showBucketModal: this.showAddBucketModal,
-	          changeSelected: this.changeSelectedBucket,
-	          addCard: this.addCard,
-	          deleteCard: this.deleteCard,
-	          changeMyBucket: this.changeMyBucket
-	        })
->>>>>>> christy-branch
 	      );
 	    }
 	  }, {
@@ -453,20 +387,12 @@
 	    key: 'changeMyBucket',
 	    value: function changeMyBucket() {
 	      this.setState({
-<<<<<<< HEAD
 	        fakeLoader: false
-=======
-	        pageLoaded: false
->>>>>>> christy-branch
 	      });
 
 	      setTimeout(function () {
 	        this.setState({
-<<<<<<< HEAD
 	          fakeLoader: true
-=======
-	          pageLoaded: true
->>>>>>> christy-branch
 	        });
 	      }.bind(this), 200);
 	      this.changeGroup("582519efea7d4e04653aafda");
@@ -5265,14 +5191,10 @@
 	          _react2.default.createElement(
 	            'div',
 	            {
-<<<<<<< HEAD
 	              className: 'mybucket-btn',
 	              onClick: function onClick() {
 	                _this2.props.changeMyBucket();
 	              } },
-=======
-	              className: 'mybucket-btn' },
->>>>>>> joey-branch
 	            _react2.default.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
@@ -56021,17 +55943,16 @@
 	    value: function changePassword() {
 	      var password = document.getElementsByName('password')[0].value;
 	      var confirmPassword = document.getElementsByName('confirm-password')[0].value;
-	      var mismatch = document.getElementById('errorMsg').innerHTML = "<span class='errormsg'>Passwords do not match.</span>";
 
 	      if (password === confirmPassword) {
-	        document.getElementsByName('password')[0].style.border = '1px solid black';
-	        document.getElementsByName('confirm-password')[0].style.border = '1px solid black';
+	        document.getElementsByName('password')[0].style.border = '2px solid green';
+	        document.getElementsByName('confirm-password')[0].style.border = '2px solid green';
+	        document.getElementById('successMsg').innerHTML = "<span class='successmsg'>Password reset successfully.</span>";
 
 	        this.props.changePassword(password);
-	        this.props.close();
-	        alert('Password Changed');
 	      } else {
-	        mismatch;
+	        document.getElementById('errorMsg').innerHTML = "<span class='errormsg'>Passwords do not match.</span>";
+	        ;
 	        document.getElementsByName('password')[0].style.border = '2px solid red';
 	        document.getElementsByName('confirm-password')[0].style.border = '2px solid red';
 	      }
@@ -56128,7 +56049,8 @@
 	                      placeholder: 'Confirm Password',
 	                      type: 'password' })
 	                  ),
-	                  _react2.default.createElement('div', { className: 'col-md-4 col-md-offset-4', id: 'errorMsg' })
+	                  _react2.default.createElement('div', { className: 'col-md-4 col-md-offset-4', id: 'errorMsg' }),
+	                  _react2.default.createElement('div', { className: 'col-md-4 col-md-offset-4', id: 'successMsg' })
 	                )
 	              )
 	            )
