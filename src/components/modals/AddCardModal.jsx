@@ -23,10 +23,8 @@ export default class AddModal extends React.Component{
     this.handleTitleValue = this.handleTitleValue.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
     this.selectEntry = this.selectEntry.bind(this);
-    // this.searchNext = this.searchNext.bind(this);
     this.searchYelpData = this.searchYelpData.bind(this);
     this.pageYelpData = this.pageYelpData.bind(this);
-
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
   }
@@ -36,7 +34,7 @@ export default class AddModal extends React.Component{
 
     const backdropStyle = {
       zIndex: '1000',
-      backgroundColor: '#000',
+      backgroundColor: '#fff',
       opacity: 0.8
     };
     var disablePrevious = this.state.pageNumber > 0? false : true;
@@ -61,7 +59,7 @@ export default class AddModal extends React.Component{
             <Modal.Body className="modal-body">
               <div>
                 <label>
-                  Find a City
+                  Find a City <span style={{color:'red'}}>*</span>
                 </label>
                 <input
                   className = 'searchInput'

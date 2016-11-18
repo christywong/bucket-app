@@ -19,7 +19,7 @@ export default class AddMemberModal extends React.Component{
   render() {
     const backdropStyle = {
       zIndex: '1000',
-      backgroundColor: '#000',
+      backgroundColor: '#fff',
       opacity: 0.8
     };
 

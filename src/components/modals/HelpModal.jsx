@@ -11,7 +11,7 @@ export default class HelpModal extends React.Component{
 
     const backdropStyle = {
       zIndex: '1000',
-      backgroundColor: '#000',
+      backgroundColor: '#fff',
       opacity: 0.8
     };
 

@@ -36,16 +36,16 @@ export default class AddBucketModal extends React.Component{
                 this.props.close();
                }}>&times;</Button>
             <Modal.Title>
-              Create a New Tag
+              Add a New Tag
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body">
             <div>
-              <label>Name Your Tag</label>
+              <label>Create Your Tag</label>
               <input
                 className = 'addInput'
                 type="text"
-                placeholder="Bucket Name"
+                placeholder="Tag Name"
                 name="bucket-name" />
             </div>
           </Modal.Body>
