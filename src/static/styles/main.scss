@@ -229,6 +229,7 @@ body {
     align-content: flex-start;
     align-items: flex-start;
     background-color: $white;
+    -webkit-overflow-scrolling: touch;
 
     .card-style {
         width: 200px;

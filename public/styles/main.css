@@ -169,7 +169,8 @@ body {
   justify-content: center;
   align-content: flex-start;
   align-items: flex-start;
-  background-color: #f4f4f6; }
+  background-color: #f4f4f6;
+  -webkit-overflow-scrolling: touch; }
   .main-container .card-style {
     width: 200px;
     height: 185px;
