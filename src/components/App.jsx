@@ -22,6 +22,7 @@ export default class App extends React.Component{
       showModal: false,
       currentBucket: '0',
       currentGroup: '',
+      myBucketId: '',
       currentUser: 'testuser',
       currentUserId: '',
       showBucketModal: false,
@@ -68,7 +69,8 @@ export default class App extends React.Component{
     this.setState({
       currentGroup: currentGroupId,
       currentUserId: currentUserId,
-      currentUserName: currentUsername
+      currentUserName: currentUsername,
+      myBucketId: currentGroupId
     });
 
     if(showHelpModal){
@@ -263,8 +265,7 @@ export default class App extends React.Component{
         fakeLoader: true
       })
     }.bind(this), 200);
-    this.changeGroup("582519efea7d4e04653aafda"); // for production
-    //this.changeGroup("582f55ebeedcb47778d7ee03"); // for development
+    this.changeGroup(this.state.myBucketId);
   }
 
   /**
@@ -279,7 +280,7 @@ export default class App extends React.Component{
       this.apiCreateBucket(newBucket);
     }
   }
-
+  
   deleteBucket(bucketId) {
 
     this.apiDeleteBucket(bucketId);

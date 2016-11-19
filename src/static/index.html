@@ -19,17 +19,19 @@
       <div class="row">
         <div class="col-sm-7">
           <div id="jumbotron-text">
-            <h1 class="display-3">Bucket</h1>
+            <h1 class="display-3">Create your next adventure</h1>
             <p class="lead home-text">A fun &amp; collaborative way to create bucket lists with friends.</p>
           </div>
         </div>
         <div class="col-sm-5">
+
           <div class="form">
-            <form class="register-form" onsubmit="changePassword();">
-              <input type="text" placeholder="Name"/>
-              <input type="password" placeholder="Password"/>
-              <input type="text" placeholder="Email Address"/>
+            <form id="register-form" class="register-form">
+              <input name="register-email" type="text" placeholder="Email Address"/>
+              <input name="register-username" type="text" placeholder="Username"/>
+              <input name="register-password" type="password" placeholder="Password"/>
               <button>Sign Up</button>
+
               <p class="message">Already registered? <a href="#">Log In</a></p>
             </form>
 

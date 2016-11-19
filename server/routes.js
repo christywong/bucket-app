@@ -47,8 +47,6 @@ module.exports = function (app){
   app.delete('/api/deleteCard', Group.actions.deleteCard);
   //Move a card
   app.put('/api/moveCard', Group.actions.moveCard);
-
-  //TODO
   //Create a new Bucket
   app.post('/api/createBucket', Group.actions.createBucket);
   //Delete a Bucket
