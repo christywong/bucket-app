@@ -207,7 +207,8 @@
 	      }
 
 	      this.loadJSONData(currentGroupId);
-	      this.getAllGroups();
+	      //this.getAllGroups();
+	      this.getUserGroups(currentUserId);
 	    }
 	    /*
 	    <Loader
@@ -567,6 +568,35 @@
 	      xhr.responseType = 'json';
 	      xhr.send();
 	    }
+
+	    /**
+	     * Gets all the Groups associated with the Current User
+	     **/
+
+	  }, {
+	    key: 'getUserGroups',
+	    value: function getUserGroups(currentUserId) {
+	      var me = this;
+	      //var userId = this.state.currentUserId;
+	      var xhr = new XMLHttpRequest();
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            var result = xhr.response;
+	            console.log(result);
+	            me.setState({
+	              listOfGroups: result
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      console.log('current user id ', currentUserId);
+	      xhr.open('GET', '/api/getUserGroups/' + currentUserId);
+	      xhr.responseType = 'json';
+	      xhr.send();
+	    }
 	  }, {
 	    key: 'changePassword',
 	    value: function changePassword(newPassword) {
@@ -626,7 +656,9 @@
 	    key: 'apiCreateGroup',
 	    value: function apiCreateGroup(newGroup) {
 	      var me = this;
-	      var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
+
+	      //TODO look into where newGroup.members is coming from
+	      var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title + '&memberId=' + this.state.currentUserId;
 	      var xhr = new XMLHttpRequest();
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readyState === 4) {

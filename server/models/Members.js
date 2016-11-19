@@ -7,6 +7,7 @@ var MemberSchema = new Schema({
   username: String,
   password: String,
   groupId: String,
+  userGroups: [String],
   firstTimeUser: Boolean
 });
 var Member = mongoose.model('members', MemberSchema);

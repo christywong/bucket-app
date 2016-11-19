@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 var GroupSchema = new Schema({
   title: String,
   tags: [{id: String, title: String, typeOfBucket: Number}],
-  members: [{id: String, name: String}],
+  members: [{memberId: String, name: String}],
   activities:[
     {
       id: String,
@@ -119,25 +119,32 @@ module.exports.actions.getAllGroups = function(req,res){
   })
 }
 
-module.exports.actions.createGroup = function(req,res){
-  console.log('creating a new group :)');
+module.exports.actions.getUserGroups = function(req,res){
+  Groups.find({"members.memberId": req.params.userId},'_id title', {sort: {title: 1}}, function(err, listOfGroups){
+    if(err){
+      console.log('oh no something went wrong');
+      return err;
+    }
+    else{
+      console.log('get user groups ', listOfGroups)
+      return res.status(200).json(listOfGroups);
+    }
+  })
+}
 
+module.exports.actions.createGroup = function(req,res){
   var newGroup = new Groups({
     title   : req.body.title,
-    members : {name: req.body.members},
+    members : {memberId: req.body.memberId, name: req.body.members},
     tags    : [{id: 0, typeOfBucket: 1, title: "All"},{id:uuid.v4(), title:"Archive", typeOfBucket : 2}]
   });
 
-  console.log('new group ', newGroup);
   newGroup.save(function(err,group){
     if(err){
-      console.log('oh no something went wrong');
       console.log(err);
       return err;
     }
     else{
-      console.log(group);
-      console.log('new group added to the db ');
       return res.status(200).json(group);
     }
   })

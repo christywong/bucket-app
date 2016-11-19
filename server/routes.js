@@ -54,6 +54,7 @@ module.exports = function (app){
 
   //Return a list of all the groups
   app.get('/api/getAllGroups', Group.actions.getAllGroups);
+  app.get('/api/getUserGroups/:userId', Group.actions.getUserGroups);
   //Creates a new group in the database
   app.post('/api/createGroup', Group.actions.createGroup);
   //add a friend to the group

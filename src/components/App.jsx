@@ -79,7 +79,8 @@ export default class App extends React.Component{
     }
 
     this.loadJSONData(currentGroupId);
-    this.getAllGroups();
+    //this.getAllGroups();
+    this.getUserGroups(currentUserId);
   }
 /*
 <Loader
@@ -280,7 +281,7 @@ export default class App extends React.Component{
       this.apiCreateBucket(newBucket);
     }
   }
-  
+
   deleteBucket(bucketId) {
 
     this.apiDeleteBucket(bucketId);
@@ -407,6 +408,33 @@ export default class App extends React.Component{
     xhr.send();
   }
 
+  /**
+   * Gets all the Groups associated with the Current User
+   **/
+  getUserGroups(currentUserId){
+    var me = this;
+    //var userId = this.state.currentUserId;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          var result = xhr.response;
+          console.log(result);
+          me.setState({
+            listOfGroups: result
+          });
+        } else{
+          console.log('Ooops an error occured');
+        }
+      }
+    }
+    console.log('current user id ', currentUserId);
+    xhr.open('GET', '/api/getUserGroups/' + currentUserId);
+    xhr.responseType = 'json'
+    xhr.send();
+
+  }
+
   changePassword(newPassword){
     if(newPassword.length > 3){
       this.apiChangePassword(this.state.currentUserId, newPassword);
@@ -458,7 +486,9 @@ export default class App extends React.Component{
    **/
   apiCreateGroup(newGroup){
     var me = this;
-    var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
+
+    //TODO look into where newGroup.members is coming from
+    var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title + '&memberId='+this.state.currentUserId;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4){
