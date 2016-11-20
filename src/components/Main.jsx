@@ -57,6 +57,8 @@ export default class Component extends React.Component {
     const selectedBucket = this.state.allCards;
     const cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
 
+    const currentGroupTitle = this.props.currentGroupData.title ? this.props.currentGroupData.title : " ";
+
     //Card components to get injected into our view
     const filteredCards =  cardArray ? cardArray.map((cardEntry) => { return(
       <Cards
@@ -167,34 +169,31 @@ export default class Component extends React.Component {
                 deleteBucket = {this.props.deleteBucket}
                 showBucketModal = {this.props.showBucketModal}
                 />
-
-              <div className="main-container" id="page-wrap">
-                {
-                  this.state.showModal ?
-                  <AddModal
-                    addCard = {this.props.addCard}
-                    close = {this.closeModal}
-                    addBucket = {this.createBucket}
-                    bucketTags = {this.state.bucketList}
-                    visibility={this.state.showModal}
-                    />
-                  : null
-                }
-                {groupCards}
-                {
-                  this.state.showSettingsModal ?
-                  <AccountSettingsModal close={this.closeAccountSettingsModal} />
-                  : null
-                }
-                <div
-                  className='mybucket-btn'
-                  onClick = {()=>{this.props.changeMyBucket()}} >
-                  <i className="fa fa-home" aria-hidden="true">
-                  </i>
+              <div className="main-container">
+                <h1 className="group-title">{currentGroupTitle}</h1>
+                <div className="card-container" id="page-wrap">
+                  {
+                    this.state.showModal ?
+                    <AddModal
+                      addCard = {this.props.addCard}
+                      close = {this.closeModal}
+                      addBucket = {this.createBucket}
+                      bucketTags = {this.state.bucketList}
+                      visibility={this.state.showModal}
+                      />
+                    : null
+                  }
+                  {groupCards}
+                  {
+                    this.state.showSettingsModal ?
+                    <AccountSettingsModal close={this.closeAccountSettingsModal} />
+                    : null
+                  }
+                  <div
+                    className='add-btn'
+                    onClick = {this.showModal}>+</div>
                 </div>
-                <div
-                  className='add-btn'
-                  onClick = {this.showModal}>+</div>
+
               </div>
 
             </div>

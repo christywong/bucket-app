@@ -136,11 +136,17 @@ export default class NavbarInstance extends React.Component {
           <Navbar.Brand
             style={{
               position: 'absolute',
-              left: 35
+              left: 35,
+              cursor: 'pointer'
             }}
+            onClick = {()=>{this.props.changeMyBucket()}} 
             id="group-title-nav">
-            {currentGroupTitle}
+            <i className="fa fa-home mybucket-btn" aria-hidden="true">
+            </i>
+            <span style={{paddingLeft: 45}}>Bucket</span>
           </Navbar.Brand>
+
+
           <Navbar.Toggle/>
         </Navbar.Header>
 

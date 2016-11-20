@@ -8,8 +8,8 @@ $aqua: rgb(0, 174, 204);
 $baby-blue: #0059b3;
 $salmon: rgba(239,64,86,0.9);
 $white: #f4f4f6;
-$hover-blue: #147689;
-$hover-blue-darken: #126a7b;
+$teal: #147689;
+$teal-darken: #126a7b;
 $pink: #ef3340;
 $pink-darken: #bf2833;
 $orange: #F48B4C;
@@ -130,7 +130,7 @@ html {
 
 .form button {
     outline: 0;
-    background: $hover-blue;
+    background: $teal;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -216,20 +216,30 @@ body {
     margin-bottom: 0 !important;
 }
 
-.main-container {
+.group-title{
+  margin-top: 0;
+  margin-left: 20px;
+  padding-top: 20px;
+  color: $teal;
+}
+.main-container{
+  padding-left: 20px;
+  height: calc(100vh - 60px);
+  -webkit-overflow-scrolling: touch;
+}
+.card-container {
     padding-top: 25px;
     // margin-left: 225px;
     flex: 1;
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 60px);
     flex-wrap: wrap;
     overflow: auto;
-    justify-content: center;
+    justify-content: left;
     align-content: flex-start;
     align-items: flex-start;
     background-color: $white;
-    -webkit-overflow-scrolling: touch;
+
 
     .card-style {
         width: 200px;
@@ -299,7 +309,7 @@ body {
           margin: 0;
           font-size: 12px;
           font-weight: 600;
-          color: $hover-blue;
+          color: $teal;
         }
     }
 }
@@ -390,7 +400,7 @@ body {
     .add-to-bucket-btn {
         padding: 0 0 6px;
         float: right;
-        color: $hover-blue;
+        color: $teal;
     }
 }
 
@@ -439,37 +449,18 @@ body {
 }
 
 .mybucket-btn {
-    position: fixed;
-    line-height: 55px;
-    text-align: center;
-    background-color: $orange;
-    color: white;
-    cursor: pointer;
-    right: 30px;
-    bottom: 100px;
-    border-radius: 50px;
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-    -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-
-    &:hover {
-        background-color: $orange-darken;
-    }
-}
-
-.fa-home {
-    color: white !important;
-    line-height: 50px;
+  position: absolute;
+  top: 8px;
+  color: $orange !important;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 .add-btn {
     position: fixed;
     line-height: 55px;
     text-align: center;
-    background-color: $hover-blue;
+    background-color: $orange;
     color: white;
     cursor: pointer;
     right: 30px;
@@ -483,7 +474,7 @@ body {
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
 
     &:hover {
-        background-color: $hover-blue-darken;
+        background-color: $orange-darken;
     }
 }
 
@@ -540,7 +531,7 @@ body {
     cursor: pointer;
     margin-left: 2px;
     line-height: 15px;
-    color: $hover-blue;
+    color: $teal;
 }
 
 .fa:hover {
@@ -553,7 +544,7 @@ body {
 }
 
 .card-title {
-    color: $hover-blue;
+    color: $teal;
 }
 /* Position and sizing of burger button */
 .bm-burger-button {
@@ -611,7 +602,7 @@ body {
 
 #group-title-nav {
     font-size: 36px;
-    color: $hover-blue;
+    color: $teal;
     font-weight: 500;
 }
 @media (min-width: $breakpoint-tablet) {
@@ -622,6 +613,7 @@ body {
     .main-container {
         margin-left: 225px;
     }
+
 }
 @media (max-width: $breakpoint-tablet) {
     .sidebar {
@@ -631,14 +623,21 @@ body {
     #group-title-nav {
         margin-left: 40px;
     }
+    .card-container {
+      justify-content: center;
+    }
+    .group-title{
+      text-align: center;
+      margin-left:0;
+    }
 }
 
 .btn-primary {
-    background-color: $hover-blue !important;
+    background-color: $teal !important;
 }
 
 .btn-primary:hover {
-    background-color: $hover-blue-darken !important;
+    background-color: $teal-darken !important;
 }
 
 .fa-gear {

@@ -109,6 +109,7 @@ export default class App extends React.Component{
           changeGroup = {this.changeGroup}
           addGroup = {this.addGroup}
           addMember = {this.addMember}
+          changeMyBucket = {this.changeMyBucket}
           showSettings = {this.showAccountSettingsModal}
           showGroups = {this.showAddGroupModal}
           showMember = {this.showAddMemberModal}
@@ -171,7 +172,7 @@ export default class App extends React.Component{
           changeSelected = {this.changeSelectedBucket}
           addCard = {this.addCard}
           deleteCard = {this.deleteCard}
-          changeMyBucket = {this.changeMyBucket}
+
         />
     </Loader>
 

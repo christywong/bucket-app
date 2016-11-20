@@ -247,6 +247,7 @@
 	            changeGroup: this.changeGroup,
 	            addGroup: this.addGroup,
 	            addMember: this.addMember,
+	            changeMyBucket: this.changeMyBucket,
 	            showSettings: this.showAccountSettingsModal,
 	            showGroups: this.showAddGroupModal,
 	            showMember: this.showAddMemberModal,
@@ -286,8 +287,8 @@
 	            showBucketModal: this.showAddBucketModal,
 	            changeSelected: this.changeSelectedBucket,
 	            addCard: this.addCard,
-	            deleteCard: this.deleteCard,
-	            changeMyBucket: this.changeMyBucket
+	            deleteCard: this.deleteCard
+
 	          })
 	        )
 	      );
@@ -5094,6 +5095,8 @@
 	      var selectedBucket = this.state.allCards;
 	      var cardArray = selectedBucket ? this.filterTags(this.state.currentBucketId) : null;
 
+	      var currentGroupTitle = this.props.currentGroupData.title ? this.props.currentGroupData.title : " ";
+
 	      //Card components to get injected into our view
 	      var filteredCards = cardArray ? cardArray.map(function (cardEntry) {
 	        return _react2.default.createElement(_Cards2.default, {
@@ -5215,31 +5218,31 @@
 	        }),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'main-container', id: 'page-wrap' },
-	          this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
-	            addCard: this.props.addCard,
-	            close: this.closeModal,
-	            addBucket: this.createBucket,
-	            bucketTags: this.state.bucketList,
-	            visibility: this.state.showModal
-	          }) : null,
-	          groupCards,
-	          this.state.showSettingsModal ? _react2.default.createElement(AccountSettingsModal, { close: this.closeAccountSettingsModal }) : null,
+	          { className: 'main-container' },
 	          _react2.default.createElement(
-	            'div',
-	            {
-	              className: 'mybucket-btn',
-	              onClick: function onClick() {
-	                _this2.props.changeMyBucket();
-	              } },
-	            _react2.default.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
+	            'h1',
+	            { className: 'group-title' },
+	            currentGroupTitle
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            {
-	              className: 'add-btn',
-	              onClick: this.showModal },
-	            '+'
+	            { className: 'card-container', id: 'page-wrap' },
+	            this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
+	              addCard: this.props.addCard,
+	              close: this.closeModal,
+	              addBucket: this.createBucket,
+	              bucketTags: this.state.bucketList,
+	              visibility: this.state.showModal
+	            }) : null,
+	            groupCards,
+	            this.state.showSettingsModal ? _react2.default.createElement(AccountSettingsModal, { close: this.closeAccountSettingsModal }) : null,
+	            _react2.default.createElement(
+	              'div',
+	              {
+	                className: 'add-btn',
+	                onClick: this.showModal },
+	              '+'
+	            )
 	          )
 	        )
 	      );
@@ -56481,10 +56484,19 @@
 	            {
 	              style: {
 	                position: 'absolute',
-	                left: 35
+	                left: 35,
+	                cursor: 'pointer'
+	              },
+	              onClick: function onClick() {
+	                _this2.props.changeMyBucket();
 	              },
 	              id: 'group-title-nav' },
-	            currentGroupTitle
+	            _react2.default.createElement('i', { className: 'fa fa-home mybucket-btn', 'aria-hidden': 'true' }),
+	            _react2.default.createElement(
+	              'span',
+	              { style: { paddingLeft: 45 } },
+	              'Bucket'
+	            )
 	          ),
 	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	        ),
