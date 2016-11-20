@@ -11,6 +11,7 @@ import AddMemberModal from './modals/AddMemberModal';
 import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
 var Loader = require('react-loader');
+import ReactGA from 'react-ga';
 //import AddModal from './modals/AddCardModal';
 
 export default class App extends React.Component{
@@ -55,6 +56,8 @@ export default class App extends React.Component{
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
+
+    ReactGA.initialize('UA-87728260-1');
 
   }
 
@@ -323,6 +326,10 @@ export default class App extends React.Component{
 
   showAddBucketModal(){
     this.setState({showBucketModal:true});
+    ReactGA.event({
+      category: 'create-tag',
+      action: 'click',
+    });
   }
 
   closeAddBucketModal(){
@@ -593,5 +600,12 @@ export default class App extends React.Component{
     xhr.responseType = 'json'
     xhr.send(payload);
   }
+
+  /* Google Analytics code */
+  //ReactGA.initialize('UA-87728260-1');
+
+  // var ga = ReactGA.ga();
+  // ga('send', 'pageview');
+  // ga('send', 'event', 'tagButton', 'click');
 
 }
