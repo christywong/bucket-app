@@ -47,58 +47,60 @@ export default class Sidebar extends React.Component{
 
         return(
           <div className='sidebar'>
-            <h3 className="tags-title">Tags
+            <h3 className="tags-title">
+              Tags
               <i
-              className="fa fa-plus-square"
-              id="create-bucket-button"
-              onClick={this.props.showBucketModal} /> </h3>
+                className="fa fa-plus-square"
+                id="create-bucket-button"
+                onClick={this.props.showBucketModal} />
+            </h3>
 
             <div className='sidebar-tags'>
-            {
-              allBucket ?
-              <Bucket
-                changeStateBucket = {this.props.changeStateBucket}
-                key = {allBucket.id}
-                bucketId = {allBucket.id}
-                bucketName = {allBucket.title}
-                active = {this.props.selectedBucket === allBucket.id ? "active" : null}
-                />
-              : null
-            }
-            {createdBuckets.map ( (bucket) => { return(
-              <Bucket
-                changeStateBucket = {this.props.changeStateBucket}
-                key = {bucket.id}
-                bucketId = {bucket.id}
-                bucketName = {bucket.title}
-                active = {this.props.selectedBucket === bucket.id ? "active" : null}
-                showDeleteIcon = {this.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? (
-                  <OverlayTrigger
-                    ref="deleteOverlay"
-                    trigger="click"
-                    rootClose
-                    placement="top"
-                    overlay={deletePopover}>
-                    <i
-                      className="fa fa-trash-o"
-                      aria-hidden="true"
-                      id="delete-bucket-icon">
-                    </i>
-                  </OverlayTrigger>
-                ) : null} />
-              )})}
-
               {
-                archiveBucket ?
+                allBucket ?
                 <Bucket
                   changeStateBucket = {this.props.changeStateBucket}
-                  key = {archiveBucket.id}
-                  bucketId = {archiveBucket.id}
-                  bucketName = {archiveBucket.title}
-                  active = {this.props.selectedBucket === archiveBucket.id ? "active" : null}
+                  key = {allBucket.id}
+                  bucketId = {allBucket.id}
+                  bucketName = {allBucket.title}
+                  active = {this.props.selectedBucket === allBucket.id ? "active" : null}
                   />
                 : null
               }
+              {createdBuckets.map ( (bucket) => { return(
+                <Bucket
+                  changeStateBucket = {this.props.changeStateBucket}
+                  key = {bucket.id}
+                  bucketId = {bucket.id}
+                  bucketName = {bucket.title}
+                  active = {this.props.selectedBucket === bucket.id ? "active" : null}
+                  showDeleteIcon = {this.props.selectedBucket === bucket.id && bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2 ? (
+                    <OverlayTrigger
+                      ref="deleteOverlay"
+                      trigger="click"
+                      rootClose
+                      placement="top"
+                      overlay={deletePopover}>
+                      <i
+                        className="fa fa-trash-o"
+                        aria-hidden="true"
+                        id="delete-bucket-icon">
+                      </i>
+                    </OverlayTrigger>
+                  ) : null} />
+                )})}
+
+                {
+                  archiveBucket ?
+                  <Bucket
+                    changeStateBucket = {this.props.changeStateBucket}
+                    key = {archiveBucket.id}
+                    bucketId = {archiveBucket.id}
+                    bucketName = {archiveBucket.title}
+                    active = {this.props.selectedBucket === archiveBucket.id ? "active" : null}
+                    />
+                  : null
+                }
               </div>
 
             </div>

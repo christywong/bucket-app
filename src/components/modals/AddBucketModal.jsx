@@ -32,33 +32,39 @@ export default class AddBucketModal extends React.Component{
           backdropStyle={backdropStyle}
           show={this.props.visibility}
           onHide={()=>{this.props.close()}}
-        >
+          >
           <Modal.Header>
-            <Button className="close" onClick = {()=>{
+            <Button
+              className="close"
+              onClick = {()=>{
                 this.props.close();
-               }}>&times;</Button>
-            <Modal.Title>
-              Add a New Tag
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="modal-body">
-            <div>
-              <label>Create Your Tag</label>
-              <input
-                className = 'addInput'
-                type="text"
-                placeholder="Tag Name"
-                name="bucket-name" />
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick = {()=>{
-              this.props.close();
-              }}>Close</Button>
-            <Button className="btn btn-primary" onClick={this.addBucket}>Create</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  }
-}
+              }}>&times;</Button>
+              <Modal.Title>
+                Add a New Tag
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="modal-body">
+              <div>
+                <label>
+                  Create Your Tag
+                </label>
+                <input
+                  className = 'addInput'
+                  type="text"
+                  placeholder="Tag Name"
+                  name="bucket-name" />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick = {()=>{
+                  this.props.close();
+                }}>Close</Button>
+                <Button
+                  className="btn btn-primary"
+                  onClick={this.addBucket}>Create</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+        );
+      }
+    }

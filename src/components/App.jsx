@@ -233,7 +233,6 @@ export default class App extends React.Component{
   deleteCard(cardId){
     //const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
     const deletedCard = this.state.data.activities.filter((oldCard)=>(oldCard.id!==cardId));
-    console.log('card new state after delete ', cardsNextState);
     const cardsNextState = update(this.state.data, {activities: {$set: deletedCard}});
     //make a call to our api
     this.apiDeleteCard(cardId, this.state.currentGroup);
@@ -420,7 +419,6 @@ export default class App extends React.Component{
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           var result = xhr.response;
-          console.log(result);
           me.setState({
             listOfGroups: result
           });
@@ -429,7 +427,6 @@ export default class App extends React.Component{
         }
       }
     }
-    console.log('current user id ', currentUserId);
     xhr.open('GET', '/api/getUserGroups/' + currentUserId);
     xhr.responseType = 'json'
     xhr.send();
@@ -469,7 +466,7 @@ export default class App extends React.Component{
      xhr.onreadystatechange = function(){
        if(xhr.readystate === 4){
          if(xhr.status === 200){
-           console.log('success!');
+
          } else{
            console.log('oops there was an error');
          }

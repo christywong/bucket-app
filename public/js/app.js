@@ -359,7 +359,6 @@
 	      var deletedCard = this.state.data.activities.filter(function (oldCard) {
 	        return oldCard.id !== cardId;
 	      });
-	      console.log('card new state after delete ', cardsNextState);
 	      var cardsNextState = (0, _reactAddonsUpdate2.default)(this.state.data, { activities: { $set: deletedCard } });
 	      //make a call to our api
 	      this.apiDeleteCard(cardId, this.state.currentGroup);
@@ -584,7 +583,6 @@
 	        if (xhr.readyState === 4) {
 	          if (xhr.status === 200) {
 	            var result = xhr.response;
-	            console.log(result);
 	            me.setState({
 	              listOfGroups: result
 	            });
@@ -593,7 +591,6 @@
 	          }
 	        }
 	      };
-	      console.log('current user id ', currentUserId);
 	      xhr.open('GET', '/api/getUserGroups/' + currentUserId);
 	      xhr.responseType = 'json';
 	      xhr.send();
@@ -635,9 +632,7 @@
 
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readystate === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	          } else {
+	          if (xhr.status === 200) {} else {
 	            console.log('oops there was an error');
 	          }
 	        }
@@ -5343,38 +5338,20 @@
 	      });
 	    }
 
-	    // /**
-	    // * Deletes a card from a group.
-	    // * @param {Number} cardId - The id of the card that we want to remove.
-	    // */
-	    // deleteCard(cardId){
-	    //   const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
-	    //   const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
-	    //
-	    //   //make a call to our api
-	    //   this.apiDeleteCard(cardId, this.state.currentGroupId);
-	    //
-	    //   //set our new state
-	    //   this.setState({
-	    //     allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
-	    //     filteredCards: filteredCardsNextState
-	    //   })
-	    // }
-
 	    //Initialize our State whenever we update a prop from App.
 	    //This will keep the Main Component updated with whatever changes were made to App
 
 	  }, {
 	    key: 'initializeBucket',
 	    value: function initializeBucket(buckets) {
-	      console.log('...initializing bucking ', buckets);
+
 	      var currentBucket = buckets.currentGroupData;
 	      var selected = currentBucket ? currentBucket.activities : null;
 	      var listOfBuckets = currentBucket ? currentBucket.tags : [];
 	      var currentGroup = currentBucket ? currentBucket._id : 0;
 	      this.filterTags(buckets.currentGroupId);
-	      console.log('all cards ', selected);
-	      //set our state initially
+
+	      //set our initial state
 	      this.setState({
 	        bucketList: listOfBuckets,
 	        filteredCards: selected,
@@ -5383,42 +5360,15 @@
 	        currentBucketId: buckets.currentBucketId
 	      });
 	    }
-
-	    // API CALLS
-	    // apiDeleteCard(cardId, groupId){
-	    //   var me = this;
-	    //   var xhr = new XMLHttpRequest();
-	    //   var payload = 'cardId=' + cardId + '&groupId=' + groupId;
-	    //
-	    //   xhr.onreadystatechange = function(){
-	    //     if(xhr.readystate === 4){
-	    //       if(xhr.status === 200){
-	    //         console.log('success!');
-	    //       } else{
-	    //         console.log('oops there was an error');
-	    //       }
-	    //     }
-	    //   }
-	    //
-	    //   xhr.open('DELETE', '/api/deleteCard');
-	    //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-	    //   xhr.send(payload);
-	    // }
-
 	  }, {
 	    key: 'apiMoveCard',
 	    value: function apiMoveCard(cardId, groupId, newTag) {
 	      var me = this;
 	      var xhr = new XMLHttpRequest();
 	      var payload = 'cardId=' + cardId + '&groupId=' + groupId + '&tags=' + newTag;
-
 	      xhr.onreadystatechange = function () {
 	        if (xhr.readystate === 4) {
-	          if (xhr.status === 200) {
-	            console.log('success!');
-	          } else {
-	            console.log('oops there was an error');
-	          }
+	          if (xhr.status === 200) {} else {}
 	        }
 	      };
 
@@ -5648,9 +5598,7 @@
 	    }
 	  }, {
 	    key: 'selectEntry',
-	    value: function selectEntry(entryId) {
-	      console.log(entryId.id + ' ' + entryId.name);
-	    }
+	    value: function selectEntry(entryId) {}
 	  }, {
 	    key: 'searchQuery',
 	    value: function searchQuery() {
@@ -5726,7 +5674,6 @@
 	              yelpLoaded: true,
 	              showPager: true
 	            });
-	            console.log(yelpObject);
 	          } else {
 	            console.log('Ooops an error occured');
 	          }
@@ -42445,8 +42392,7 @@
 	          _react2.default.createElement('i', {
 	            className: 'fa fa-plus-square',
 	            id: 'create-bucket-button',
-	            onClick: this.props.showBucketModal }),
-	          ' '
+	            onClick: this.props.showBucketModal })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -42537,7 +42483,6 @@
 	      return _react2.default.createElement(
 	        "div",
 	        { "data-tag": this.props.bucketId, className: "bucket-tags " + this.props.active, onClick: function onClick() {
-	            //console.log(e.target.getAttribute('class'));
 	            _this2.props.changeStateBucket(_this2.props.bucketId);
 	          } },
 	        _react2.default.createElement(
@@ -42612,11 +42557,15 @@
 
 	      var movePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Move to' },
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Move to' },
 	        this.props.bucketTags.map(function (tag) {
 	          return _react2.default.createElement(
 	            'p',
-	            { key: tag.id, onClick: function onClick() {
+	            {
+	              key: tag.id,
+	              onClick: function onClick() {
 	                _this2.props.moveCard(card, tag.id);
 	                _this2.refs.overlay.hide();
 	              },
@@ -42627,10 +42576,16 @@
 	      );
 	      var deletePopover = _react2.default.createElement(
 	        _reactBootstrap.Popover,
-	        { id: 'popover-trigger-click-root-close', title: 'Are you sure?' },
+	        {
+	          id: 'popover-trigger-click-root-close',
+	          title: 'Are you sure?' },
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { bsStyle: 'danger', style: { marginLeft: 10 }, bsSize: 'xsmall', onClick: function onClick() {
+	          {
+	            bsStyle: 'danger',
+	            style: { marginLeft: 10 },
+	            bsSize: 'xsmall',
+	            onClick: function onClick() {
 	              _this2.props.deleteCard(card.id);
 	              _this2.refs.deleteOverlay.hide();
 	            } },
@@ -42638,7 +42593,10 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
-	          { style: { float: "right", marginRight: 10 }, bsSize: 'xsmall', onClick: function onClick() {
+	          {
+	            style: { float: "right", marginRight: 10 },
+	            bsSize: 'xsmall',
+	            onClick: function onClick() {
 	              _this2.props.deleteCard();
 	              _this2.refs.deleteOverlay.hide();
 	            } },
@@ -42653,13 +42611,25 @@
 	          { className: 'edit-card-controls' },
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'deleteOverlay', trigger: 'click', rootClose: true, placement: 'top', overlay: deletePopover },
+	            {
+	              ref: 'deleteOverlay',
+	              trigger: 'click',
+	              rootClose: true,
+	              placement: 'top',
+	              overlay: deletePopover },
 	            _react2.default.createElement('i', { className: 'fa fa-trash-o', 'aria-hidden': 'true' })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.OverlayTrigger,
-	            { ref: 'overlay', trigger: 'click', rootClose: true, placement: 'top', overlay: movePopover },
-	            _react2.default.createElement('i', { className: 'fa fa-pencil-square-o', 'aria-hidden': 'true' })
+	            {
+	              ref: 'overlay',
+	              trigger: 'click',
+	              rootClose: true,
+	              placement: 'top',
+	              overlay: movePopover },
+	            _react2.default.createElement('i', {
+	              className: 'fa fa-pencil-square-o',
+	              'aria-hidden': 'true' })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -42681,7 +42651,8 @@
 	          _react2.default.createElement(
 	            'a',
 	            { href: card.yelpUrl, target: '_blank' },
-	            _react2.default.createElement('img', { src: card.img,
+	            _react2.default.createElement('img', {
+	              src: card.img,
 	              width: '75' }),
 	            _react2.default.createElement(
 	              'p',
@@ -42704,19 +42675,17 @@
 	          _react2.default.createElement(
 	            'p',
 	            { className: 'p-no-margin' },
-	            ' ',
-	            card.city,
-	            ' '
+	            card.city
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'p',
 	          {
-	            className: 'card-tag-label', onClick: function onClick() {
+	            className: 'card-tag-label',
+	            onClick: function onClick() {
 	              _this2.props.changeStateBucket(tagLabel.id);
 	            } },
 	          _react2.default.createElement('i', { className: 'fa fa-tag', 'aria-hidden': 'true' }),
-	          ' ',
 	          _react2.default.createElement(
 	            'span',
 	            null,
@@ -56383,8 +56352,6 @@
 	      } else if (dropdown && !show) {
 	        this.setState({ dropdown: false });
 	      }
-	      console.log('event ', e);
-	      console.log(this.state.dropdown);
 	    }
 	  }, {
 	    key: 'handlePopoverClick',
@@ -56446,7 +56413,6 @@
 	  }, {
 	    key: 'handleChangeAddMember',
 	    value: function handleChangeAddMember(e) {
-	      console.log(e.target.value);
 	      this.setState({ newMember: e.target.value });
 	    }
 	  }, {
@@ -56464,7 +56430,6 @@
 	      var currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
 	      var currentGroupTitle = this.props.currentGroup.title ? this.props.currentGroup.title : " ";
 	      var currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
-	      console.log(currentGroupMembers);
 	      var currentGroup = this.props.groups ? this.props.groups : [];
 	      var activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
 	      var showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ? _react2.default.createElement(
@@ -56499,7 +56464,9 @@
 	                _this2.props.changeMyBucket();
 	              },
 	              id: 'group-title-nav' },
-	            _react2.default.createElement('i', { className: 'fa fa-home mybucket-btn', 'aria-hidden': 'true' }),
+	            _react2.default.createElement('i', {
+	              className: 'fa fa-home mybucket-btn',
+	              'aria-hidden': 'true' }),
 	            _react2.default.createElement(
 	              'span',
 	              { style: { paddingLeft: 45 } },
@@ -56642,7 +56609,6 @@
 	      var _this2 = this;
 
 	      var close = this.props.close;
-
 
 	      var backdropStyle = {
 	        zIndex: '1000',
@@ -57153,7 +57119,9 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'close', onClick: function onClick() {
+	              {
+	                className: 'close',
+	                onClick: function onClick() {
 	                  _this2.props.close();
 	                } },
 	              '\xD7'
@@ -57194,7 +57162,9 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { className: 'btn btn-primary', onClick: this.addBucket },
+	              {
+	                className: 'btn btn-primary',
+	                onClick: this.addBucket },
 	              'Create'
 	            )
 	          )

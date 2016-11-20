@@ -127,7 +127,6 @@ export default class AddModal extends React.Component{
           this.setState({titlevalue: event.target.value})
         }
         selectEntry(entryId){
-          console.log(entryId.id + ' ' + entryId.name);
         }
 
         searchQuery(){
@@ -203,7 +202,6 @@ export default class AddModal extends React.Component{
                   yelpLoaded: true,
                   showPager: true
                 });
-                console.log(yelpObject);
               } else{
                 console.log('Ooops an error occured');
               }

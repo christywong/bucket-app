@@ -51,8 +51,7 @@ export default class NavbarInstance extends React.Component {
     } else if (dropdown && !show) {
       this.setState({dropdown: false});
     }
-    console.log('event ', e);
-    console.log(this.state.dropdown);
+
   }
 
   handlePopoverClick(e) {
@@ -100,7 +99,6 @@ export default class NavbarInstance extends React.Component {
 
   //Handlers for adding a member
   handleChangeAddMember(e) {
-    console.log(e.target.value);
     this.setState({newMember: e.target.value});
   }
 
@@ -114,7 +112,6 @@ export default class NavbarInstance extends React.Component {
     const currentGroupId = this.props.currentGroup ? this.props.currentGroup.id : null;
     const currentGroupTitle = this.props.currentGroup.title ? this.props.currentGroup.title : " ";
     const currentGroupMembers = this.props.currentGroup ? this.props.currentGroup.members : null;
-    console.log(currentGroupMembers);
     const currentGroup = this.props.groups ? this.props.groups : [];
     const activeGroupTitle = this.props.currentGroup.title === "My Bucket" ? "Groups" : this.props.currentGroup.title;
     const showAddFriendsTab = this.props.currentGroup.title !== "My Bucket" ?
@@ -141,12 +138,12 @@ export default class NavbarInstance extends React.Component {
             }}
             onClick = {()=>{this.props.changeMyBucket()}}
             id="group-title-nav">
-            <i className="fa fa-home mybucket-btn" aria-hidden="true">
+            <i
+              className="fa fa-home mybucket-btn"
+              aria-hidden="true">
             </i>
             <span style={{paddingLeft: 45}}>Bucket</span>
           </Navbar.Brand>
-
-
           <Navbar.Toggle/>
         </Navbar.Header>
 
@@ -170,17 +167,13 @@ export default class NavbarInstance extends React.Component {
                   )
                 }
               })}
-
               <MenuItem divider/>
-
               <MenuItem
                 eventKey={3.1}
                 onClick={this.props.showGroups}>
                 Create Group
               </MenuItem>
-
             </NavDropdown>
-
             <NavDropdown
               eventKey={4}
               id="settings-dropdown"
@@ -190,7 +183,6 @@ export default class NavbarInstance extends React.Component {
                 onClick={this.props.showSettings}>
                 Account Settings
               </MenuItem>
-
               <MenuItem
                 eventKey={4.2}
                 onClick={this.props.showHelp}>

@@ -29,12 +29,30 @@ export default class HelpModal extends React.Component{
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p><strong>Create a Tag: </strong>+ icon on the sidebar.</p>
-            <p><strong>Search for Activities: </strong>+ icon on the bottom right.</p>
-            <p><strong>Move Activities: </strong>edit icon on the activitiy card.</p>
-            <p><strong>Delete an Activity: </strong>trash icon on the activity card.</p>
-            <p><strong>Create a Group: </strong>Groups dropdown on the navbar.</p>
-            <p><strong>Add Friends: </strong>Add Friends on the navbar &amp; enter your friend's name.</p>
+            <p>
+              <strong>Create a Tag: </strong>
+              + icon on the sidebar.
+            </p>
+            <p>
+              <strong>Search for Activities: </strong>
+              + icon on the bottom right.
+            </p>
+            <p>
+              <strong>Move Activities: </strong>
+              edit icon on the activitiy card.
+            </p>
+            <p>
+              <strong>Delete an Activity: </strong>
+              trash icon on the activity card.
+            </p>
+            <p>
+              <strong>Create a Group: </strong>
+              Groups dropdown on the navbar.
+            </p>
+            <p>
+              <strong>Add Friends: </strong>
+              Add Friends on the navbar &amp; enter your friend's name.
+            </p>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick = {()=>{

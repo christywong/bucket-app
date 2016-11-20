@@ -26,10 +26,9 @@ export default class AccountSettingsModal extends React.Component{
      document.getElementsByName('confirm-password')[0].style.border='2px solid red';
     }
   }
-  
+
   render(){
     var {close} = this.props;
-
     const backdropStyle = {
       zIndex: '1000',
       backgroundColor: '#fff',
@@ -59,8 +58,6 @@ export default class AccountSettingsModal extends React.Component{
             <Modal.Body className="modal-body">
               <form className="form-horizontal">
                 <fieldset>
-
-
                   <div className="form-group">
                     <label
                       className="col-md-4 control-label"

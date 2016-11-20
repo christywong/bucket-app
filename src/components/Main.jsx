@@ -171,7 +171,9 @@ export default class Component extends React.Component {
                 showBucketModal = {this.props.showBucketModal}
                 />
               <div className="main-container" id="page-wrap">
-                <h1 className="group-title">{currentGroupTitle}</h1>
+                <h1 className="group-title">
+                  {currentGroupTitle}
+                </h1>
                 <div className="card-container">
                   {
                     this.state.showModal ?
@@ -278,35 +280,17 @@ export default class Component extends React.Component {
           });
         }
 
-        // /**
-        // * Deletes a card from a group.
-        // * @param {Number} cardId - The id of the card that we want to remove.
-        // */
-        // deleteCard(cardId){
-        //   const filteredCardsNextState = this.state.filteredCards.filter((oldCard)=>(oldCard.id!==cardId));
-        //   const cardsNextState = this.state.allCards.filter((oldCard)=>(oldCard.id!==cardId));
-        //
-        //   //make a call to our api
-        //   this.apiDeleteCard(cardId, this.state.currentGroupId);
-        //
-        //   //set our new state
-        //   this.setState({
-        //     allCards: cardsNextState, //: update(this.state.buckets, {cards: {$set: bucketNextState}}),
-        //     filteredCards: filteredCardsNextState
-        //   })
-        // }
-
         //Initialize our State whenever we update a prop from App.
         //This will keep the Main Component updated with whatever changes were made to App
         initializeBucket(buckets){
-          console.log('...initializing bucking ', buckets);
+
           const currentBucket = buckets.currentGroupData;
           const selected = currentBucket ? currentBucket.activities : null;
           const listOfBuckets = currentBucket ? currentBucket.tags : [];
           const currentGroup = currentBucket ? currentBucket._id : 0;
           this.filterTags(buckets.currentGroupId);
-          console.log('all cards ', selected);
-          //set our state initially
+
+          //set our initial state
           this.setState({
             bucketList      : listOfBuckets,
             filteredCards   : selected,
@@ -316,38 +300,14 @@ export default class Component extends React.Component {
           });
         }
 
-        // API CALLS
-        // apiDeleteCard(cardId, groupId){
-        //   var me = this;
-        //   var xhr = new XMLHttpRequest();
-        //   var payload = 'cardId=' + cardId + '&groupId=' + groupId;
-        //
-        //   xhr.onreadystatechange = function(){
-        //     if(xhr.readystate === 4){
-        //       if(xhr.status === 200){
-        //         console.log('success!');
-        //       } else{
-        //         console.log('oops there was an error');
-        //       }
-        //     }
-        //   }
-        //
-        //   xhr.open('DELETE', '/api/deleteCard');
-        //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-        //   xhr.send(payload);
-        // }
-
         apiMoveCard(cardId,groupId, newTag){
           var me = this;
           var xhr = new XMLHttpRequest();
           var payload = 'cardId=' + cardId + '&groupId=' + groupId + '&tags=' + newTag;
-
           xhr.onreadystatechange = function(){
             if(xhr.readystate === 4){
               if(xhr.status === 200){
-                console.log('success!');
               } else{
-                console.log('oops there was an error');
               }
             }
           }
