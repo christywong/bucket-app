@@ -451,7 +451,6 @@ body {
   cursor: pointer;
   font-size: 12px;
 }
-
 .add-btn {
     position: fixed;
     line-height: 55px;
@@ -472,6 +471,10 @@ body {
     &:hover {
         background-color: $orange-darken;
     }
+}
+
+.btn:focus{
+  outline: none !important;
 }
 
 .bucket-tags {

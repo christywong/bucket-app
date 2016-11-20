@@ -23,15 +23,14 @@ export default class App extends React.Component{
       currentBucket: '0',
       currentGroup: '',
       myBucketId: '',
-      currentUser: 'testuser',
+      currentUserName: '',
       currentUserId: '',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
       showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
       showAccountSettingsModal: false,
-      pageLoaded: false,
-      fakeLoader: true
+      pageLoaded: false
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -82,20 +81,6 @@ export default class App extends React.Component{
     //this.getAllGroups();
     this.getUserGroups(currentUserId);
   }
-/*
-<Loader
-  loaded={this.state.fakeLoader}
-  lines={13}
-  length={20}
-  width={10}
-  radius={30}
-  corners={1} rotate={0} direction={1} color="#000" speed={1}
-  trail={60} shadow={false} hwaccel={false} className="spinner"
-  zIndex={2e9} top="50%" left="50%" scale={1.00}
-  loadedClassName="loadedContent" >
-</Loader>
-{!this.state.fakeLoader ? <div className="fake-loader-overlay" /> : null}
-*/
   render(){
     let close = () => this.setState({ showModal2: false});
     return (
@@ -257,15 +242,6 @@ export default class App extends React.Component{
   }
 
   changeMyBucket(){
-    this.setState({
-      fakeLoader: false
-    });
-
-    setTimeout(function(){
-      this.setState({
-        fakeLoader: true
-      })
-    }.bind(this), 200);
     this.changeGroup(this.state.myBucketId);
   }
 
@@ -298,7 +274,7 @@ export default class App extends React.Component{
       var newGroup = {
         id: uuid.v4(),
         title: newName,
-        members: [this.state.currentUser],
+        members: [this.state.currentUserName],
         tags: [{"id": "0", "title": "All"}],
         activities: []
       };
@@ -430,7 +406,6 @@ export default class App extends React.Component{
     xhr.open('GET', '/api/getUserGroups/' + currentUserId);
     xhr.responseType = 'json'
     xhr.send();
-
   }
 
   changePassword(newPassword){

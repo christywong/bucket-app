@@ -363,6 +363,9 @@ body {
   .add-btn:hover {
     background-color: #db7d44; }
 
+.btn:focus {
+  outline: none !important; }
+
 .bucket-tags {
   cursor: pointer; }
   .bucket-tags h4 {

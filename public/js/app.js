@@ -146,15 +146,14 @@
 	      currentBucket: '0',
 	      currentGroup: '',
 	      myBucketId: '',
-	      currentUser: 'testuser',
+	      currentUserName: '',
 	      currentUserId: '',
 	      showBucketModal: false,
 	      showGroupModal: false,
 	      showMemberModal: false,
 	      showHelpModal: JSON.parse(localStorage.getItem('firstTimeUser')),
 	      showAccountSettingsModal: false,
-	      pageLoaded: false,
-	      fakeLoader: true
+	      pageLoaded: false
 	    };
 
 	    _this.changeGroup = _this.changeGroup.bind(_this);
@@ -210,21 +209,6 @@
 	      //this.getAllGroups();
 	      this.getUserGroups(currentUserId);
 	    }
-	    /*
-	    <Loader
-	      loaded={this.state.fakeLoader}
-	      lines={13}
-	      length={20}
-	      width={10}
-	      radius={30}
-	      corners={1} rotate={0} direction={1} color="#000" speed={1}
-	      trail={60} shadow={false} hwaccel={false} className="spinner"
-	      zIndex={2e9} top="50%" left="50%" scale={1.00}
-	      loadedClassName="loadedContent" >
-	    </Loader>
-	    {!this.state.fakeLoader ? <div className="fake-loader-overlay" /> : null}
-	    */
-
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -389,15 +373,6 @@
 	  }, {
 	    key: 'changeMyBucket',
 	    value: function changeMyBucket() {
-	      this.setState({
-	        fakeLoader: false
-	      });
-
-	      setTimeout(function () {
-	        this.setState({
-	          fakeLoader: true
-	        });
-	      }.bind(this), 200);
 	      this.changeGroup(this.state.myBucketId);
 	    }
 
@@ -437,7 +412,7 @@
 	        var newGroup = {
 	          id: _uuid2.default.v4(),
 	          title: newName,
-	          members: [this.state.currentUser],
+	          members: [this.state.currentUserName],
 	          tags: [{ "id": "0", "title": "All" }],
 	          activities: []
 	        };
@@ -57210,7 +57185,15 @@
 	  function HelpModal(props) {
 	    _classCallCheck(this, HelpModal);
 
-	    return _possibleConstructorReturn(this, (HelpModal.__proto__ || Object.getPrototypeOf(HelpModal)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (HelpModal.__proto__ || Object.getPrototypeOf(HelpModal)).call(this, props));
+
+	    _this.state = {
+	      step: 0
+	    };
+	    _this.previousStep = _this.previousStep.bind(_this);
+	    _this.nextStep = _this.nextStep.bind(_this);
+	    _this.selectStep = _this.selectStep.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(HelpModal, [{
@@ -57223,6 +57206,26 @@
 	        backgroundColor: '#fff',
 	        opacity: 0.8
 	      };
+	      var helpText = this.selectStep();
+	      var buttonRight = this.state.step < 4 ? _react2.default.createElement(
+	        _reactBootstrap.Button,
+	        {
+	          bsStyle: 'info',
+	          onClick: function onClick() {
+	            _this2.nextStep();
+	          } },
+	        'Next'
+	      ) : _react2.default.createElement(
+	        _reactBootstrap.Button,
+	        {
+	          bsStyle: 'success',
+	          onClick: function onClick() {
+	            _this2.close();
+	          } },
+	        'Done'
+	      );
+
+	      var currentStep = this.state.step + 1;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -57232,7 +57235,11 @@
 	          {
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            },
+	            backdrop: true
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,
@@ -57240,86 +57247,153 @@
 	            _react2.default.createElement(
 	              _reactBootstrap.Modal.Title,
 	              null,
-	              'Getting Started'
+	              'Getting Started',
+	              _react2.default.createElement(
+	                'span',
+	                { style: { float: "right" } },
+	                '\xA0',
+	                currentStep,
+	                '/5'
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Body,
 	            null,
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Create a Tag: '
-	              ),
-	              '+ icon on the sidebar.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Search for Activities: '
-	              ),
-	              '+ icon on the bottom right.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Move Activities: '
-	              ),
-	              'edit icon on the activitiy card.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Delete an Activity: '
-	              ),
-	              'trash icon on the activity card.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Create a Group: '
-	              ),
-	              'Groups dropdown on the navbar.'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              _react2.default.createElement(
-	                'strong',
-	                null,
-	                'Add Friends: '
-	              ),
-	              'Add Friends on the navbar & enter your friend\'s name.'
-	            )
+	            helpText
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Footer,
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Button,
-	              { onClick: function onClick() {
+	              {
+	                style: { float: 'left' },
+	                onClick: function onClick() {
 	                  _this2.props.close();
 	                } },
 	              'Close'
-	            )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                bsStyle: 'info',
+	                onClick: function onClick() {
+	                  _this2.previousStep();
+	                } },
+	              'Previous'
+	            ),
+	            buttonRight
 	          )
 	        )
 	      );
+	    }
+	  }, {
+	    key: 'nextStep',
+	    value: function nextStep() {
+	      if (this.state.step < 4) {
+	        this.setState({
+	          step: this.state.step + 1
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'previousStep',
+	    value: function previousStep() {
+	      if (this.state.step > 0) {
+	        this.setState({
+	          step: this.state.step - 1
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'close',
+	    value: function close() {
+	      this.setState({
+	        step: 0
+	      });
+	      this.props.close();
+	    }
+	  }, {
+	    key: 'selectStep',
+	    value: function selectStep() {
+	      var step = this.state.step;
+	      switch (step) {
+	        case 0:
+	          return _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'To Create a Tag\xA0'
+	            ),
+	            'click the + icon on the sidebar.'
+	          );
+	          break;
+
+	        case 1:
+	          return _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'To Search for Activities\xA0'
+	            ),
+	            'click the + icon on the bottom right of the screen.'
+	          );
+	          break;
+	        case 2:
+	          return _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'To Edit Activities\xA0'
+	            ),
+	            'click the icons on the bottom right of the activity card.'
+	          );
+	          break;
+	        case 3:
+	          return _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'To Create a Group\xA0'
+	            ),
+	            'Click the Groups dropdown on the navbar.'
+	          );
+	          break;
+	        case 4:
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              _react2.default.createElement(
+	                'strong',
+	                null,
+	                'To Add and View Friends\xA0'
+	              ),
+	              'Click the Add friends link on the navbar.'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              _react2.default.createElement(
+	                'strong',
+	                null,
+	                'Note: You cannot add friends to "My Bucket".'
+	              )
+	            )
+	          );
+	          break;
+	      }
 	    }
 	  }]);
 
