@@ -18,7 +18,6 @@ export default class AddModal extends React.Component{
       categorySearch: '',
       yelpLoaded: true,
       disableNext: false
-
     }
     this.handleTitleValue = this.handleTitleValue.bind(this);
     this.searchQuery = this.searchQuery.bind(this);

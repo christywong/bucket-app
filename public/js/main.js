@@ -45,7 +45,7 @@
         if (xhr.status === 200) {
           var result = xhr.response;
           localStorage.setItem('userGroupId', result.groupId);
-          localStorage.setItem('memberId', result.memberId);
+          localStorage.setItem('memberId', result._id);
           localStorage.setItem('username', result.username);
           localStorage.setItem('firstTimeUser', result.firstTimeUser);
           window.location = '/app';

@@ -1,4 +1,3 @@
-//TODO add Hot Reloading, or just make add a watcher
 const path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');

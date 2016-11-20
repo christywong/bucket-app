@@ -7,6 +7,10 @@ import uuid from 'uuid';
 import update from 'react-addons-update';
 var Menu = require('react-burger-menu').slide;
 import Bucket from './buckets/Buckets';
+var ReactToastr = require("react-toastr");
+var {ToastContainer} = ReactToastr; // This is a React Element.
+var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
+
 
 export default class Component extends React.Component {
 
@@ -31,7 +35,6 @@ export default class Component extends React.Component {
     this.moveCard = this.moveCard.bind(this);
     //this.deleteCard = this.deleteCard.bind(this);
     this.handleDeleteBucket = this.handleDeleteBucket.bind(this);
-
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -169,7 +172,7 @@ export default class Component extends React.Component {
                 currentGroup = {this.props.currentGroup}
                 deleteBucket = {this.props.deleteBucket}
                 showBucketModal = {this.props.showBucketModal}
-                />
+              />
               <div className="main-container" id="page-wrap">
                 <h1 className="group-title">
                   {currentGroupTitle}
@@ -198,11 +201,9 @@ export default class Component extends React.Component {
                 </div>
 
               </div>
-
             </div>
           )
         }
-
         // Listener to change the state of our modal
         showModal(){
           this.setState({showModal: true})

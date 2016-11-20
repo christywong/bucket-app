@@ -12,6 +12,9 @@ import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
 var Loader = require('react-loader');
 //import AddModal from './modals/AddCardModal';
+var ReactToastr = require("react-toastr");
+var {ToastContainer} = ReactToastr; // This is a React Element.
+var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
 
 export default class App extends React.Component{
   constructor(props) {
@@ -43,6 +46,7 @@ export default class App extends React.Component{
     this.addCard = this.addCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.changeMyBucket = this.changeMyBucket.bind(this);
+    this.addActivityAlert = this.addActivityAlert.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -157,8 +161,12 @@ export default class App extends React.Component{
           changeSelected = {this.changeSelectedBucket}
           addCard = {this.addCard}
           deleteCard = {this.deleteCard}
-
         />
+        <ToastContainer
+          ref="container"
+          toastMessageFactory={ToastMessageFactory}
+          className="toast-top-right" />
+
     </Loader>
 
       </div>
@@ -166,9 +174,21 @@ export default class App extends React.Component{
   }
 
   changeSelectedBucket(selectedBucketId){
+
     this.setState({
       currentBucket: selectedBucketId
     })
+  }
+
+  addActivityAlert (tagId) {
+    var tagTitle = this.state.data.tags.filter((tag)=>(tag.id == tagId))[0];
+    this.refs.container.success(
+      "Added to " + `${tagTitle.title}`,
+      "Activity Succesfully Added", {
+        timeOut: 3000,
+        extendedTimeOut: 1000,
+        closeButton: true
+    });
   }
 
   /**
@@ -188,7 +208,7 @@ export default class App extends React.Component{
    **/
   addCard(card, bucketId){
     var tagId = bucketId !== "0" ? bucketId : null;
-
+    this.addActivityAlert(bucketId);
     //Build the new Card we want to Add
     const newCard = {
       id: uuid.v4(),
