@@ -237,7 +237,7 @@ body {
       color: #147689;
       cursor: pointer; }
       .card-container .card-style .card-tag-label:hover {
-        color: #126a7b; }
+        color: #1F5081; }
 
 .sidebar {
   z-index: 100;
@@ -359,7 +359,8 @@ body {
   font-size: 28px;
   -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4); }
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  border: solid 2px #c36f3c; }
   .add-btn:hover {
     background-color: #db7d44; }
 

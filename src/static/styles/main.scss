@@ -14,6 +14,7 @@ $pink: #ef3340;
 $pink-darken: #bf2833;
 $orange: #F48B4C;
 $orange-darken: #db7d44;
+$orange-border: #c36f3c;
 
 body,
 html {
@@ -304,8 +305,9 @@ body {
           color: $teal;
           cursor: pointer;
           &:hover{
-            color: $teal-darken;
+            color: $primary-blue;
           }
+
         }
     }
 }
@@ -467,6 +469,7 @@ body {
     -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
     -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+    border: solid 2px $orange-border;
 
     &:hover {
         background-color: $orange-darken;
