@@ -27,9 +27,11 @@ export default class AddBucketModal extends React.Component{
     return (
       <div>
         <Modal
+          backdrop={true}
           aria-labelledby='modal-label'
           backdropStyle={backdropStyle}
           show={this.props.visibility}
+          onHide={()=>{this.props.close()}}
         >
           <Modal.Header>
             <Button className="close" onClick = {()=>{

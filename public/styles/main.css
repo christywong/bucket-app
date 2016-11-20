@@ -234,7 +234,10 @@ body {
       margin: 0;
       font-size: 12px;
       font-weight: 600;
-      color: #147689; }
+      color: #147689;
+      cursor: pointer; }
+      .card-container .card-style .card-tag-label:hover {
+        color: #126a7b; }
 
 .sidebar {
   z-index: 100;
@@ -376,12 +379,11 @@ body {
   background-color: #5a9fac; }
 
 .bucket-tags:hover {
-  background-color: #184067;
-  background-color: #147689;
   background-color: #5a9fac; }
 
 .p-no-margin {
-  margin: 0; }
+  margin: 0;
+  font-weight: 500; }
 
 .tag-list {
   cursor: pointer; }
@@ -415,10 +417,10 @@ body {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 30px;
-  height: 24px;
+  width: 24px;
+  height: 18px;
   left: 38px;
-  top: 16px;
+  top: 18px;
   z-index: 1000 !important; }
 
 /* Color/shape of burger icon bars */

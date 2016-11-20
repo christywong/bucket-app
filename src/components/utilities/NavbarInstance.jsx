@@ -139,7 +139,7 @@ export default class NavbarInstance extends React.Component {
               left: 35,
               cursor: 'pointer'
             }}
-            onClick = {()=>{this.props.changeMyBucket()}} 
+            onClick = {()=>{this.props.changeMyBucket()}}
             id="group-title-nav">
             <i className="fa fa-home mybucket-btn" aria-hidden="true">
             </i>

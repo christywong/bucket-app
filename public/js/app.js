@@ -5030,7 +5030,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Menu = __webpack_require__(437).push;
+	var Menu = __webpack_require__(437).slide;
 
 	var Component = function (_React$Component) {
 	  _inherits(Component, _React$Component);
@@ -5105,7 +5105,8 @@
 	          moveCard: _this2.moveCard,
 	          bucketTags: _this2.state.bucketList,
 	          deleteCard: _this2.props.deleteCard,
-	          tags: _this2.props.allGroups
+	          tags: _this2.props.allGroups,
+	          changeStateBucket: _this2.changeState
 	        });
 	      }) : [];
 
@@ -5218,7 +5219,7 @@
 	        }),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'main-container' },
+	          { className: 'main-container', id: 'page-wrap' },
 	          _react2.default.createElement(
 	            'h1',
 	            { className: 'group-title' },
@@ -5226,7 +5227,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'card-container', id: 'page-wrap' },
+	            { className: 'card-container' },
 	            this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
 	              addCard: this.props.addCard,
 	              close: this.closeModal,
@@ -5522,9 +5523,13 @@
 	        _react2.default.createElement(
 	          _reactBootstrap.Modal,
 	          {
+	            backdrop: true,
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            }
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,
@@ -41799,13 +41804,13 @@
 	              width: '100' }),
 	            _react2.default.createElement(
 	              'p',
-	              null,
+	              { className: 'p-no-margin' },
 	              'Reviews: ',
 	              this.props.ItemEntry.review_count
 	            ),
 	            _react2.default.createElement(
 	              'p',
-	              null,
+	              { className: 'p-no-margin' },
 	              this.props.ItemEntry.location.city
 	            )
 	          )
@@ -42601,7 +42606,7 @@
 	        if (filteredTag.length === 0) {
 	          tagLabel = 'All';
 	        } else {
-	          tagLabel = filteredTag[0].title;
+	          tagLabel = filteredTag[0];
 	        }
 	      }
 
@@ -42706,13 +42711,16 @@
 	        ),
 	        _react2.default.createElement(
 	          'p',
-	          { className: 'card-tag-label' },
+	          {
+	            className: 'card-tag-label', onClick: function onClick() {
+	              _this2.props.changeStateBucket(tagLabel.id);
+	            } },
 	          _react2.default.createElement('i', { className: 'fa fa-tag', 'aria-hidden': 'true' }),
 	          ' ',
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            tagLabel
+	            tagLabel.title
 	          )
 	        )
 	      );
@@ -56650,7 +56658,11 @@
 	          {
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            },
+	            backdrop: true
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,
@@ -56822,7 +56834,11 @@
 	          {
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            },
+	            backdrop: true
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,
@@ -56952,7 +56968,11 @@
 	          {
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            },
+	            backdrop: true
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,
@@ -57120,9 +57140,13 @@
 	        _react2.default.createElement(
 	          _reactBootstrap.Modal,
 	          {
+	            backdrop: true,
 	            'aria-labelledby': 'modal-label',
 	            backdropStyle: backdropStyle,
-	            show: this.props.visibility
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            }
 	          },
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Header,

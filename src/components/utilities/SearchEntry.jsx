@@ -63,10 +63,10 @@ export default class SearchEntry extends React.Component {
             <img
               src={this.props.ItemEntry.rating_img_url}
               width='100'/>
-            <p>
+            <p className='p-no-margin'>
               Reviews: {this.props.ItemEntry.review_count}
             </p>
-            <p>
+            <p className='p-no-margin'>
               {this.props.ItemEntry.location.city}
             </p>
           </div>

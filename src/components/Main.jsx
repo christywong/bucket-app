@@ -5,7 +5,7 @@ import Sidebar from './utilities/Sidebar';
 import Cards from './buckets/Cards';
 import uuid from 'uuid';
 import update from 'react-addons-update';
-var Menu = require('react-burger-menu').push;
+var Menu = require('react-burger-menu').slide;
 import Bucket from './buckets/Buckets';
 
 export default class Component extends React.Component {
@@ -68,6 +68,7 @@ export default class Component extends React.Component {
         bucketTags = {this.state.bucketList}
         deleteCard={this.props.deleteCard}
         tags = {this.props.allGroups}
+        changeStateBucket = {this.changeState}
         />
     )}) : [];
 
@@ -169,9 +170,9 @@ export default class Component extends React.Component {
                 deleteBucket = {this.props.deleteBucket}
                 showBucketModal = {this.props.showBucketModal}
                 />
-              <div className="main-container">
+              <div className="main-container" id="page-wrap">
                 <h1 className="group-title">{currentGroupTitle}</h1>
-                <div className="card-container" id="page-wrap">
+                <div className="card-container">
                   {
                     this.state.showModal ?
                     <AddModal

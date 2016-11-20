@@ -16,7 +16,7 @@ export default class Cards extends React.Component{
         tagLabel = 'All';
       }
       else{
-        tagLabel = filteredTag[0].title;
+        tagLabel = filteredTag[0];
       }
     }
 
@@ -74,8 +74,9 @@ export default class Cards extends React.Component{
           <p className='p-no-margin'> {card.city} </p>
         </div>
 
-        <p className='card-tag-label'>
-          <i className="fa fa-tag" aria-hidden="true"></i> <span>{tagLabel}</span>
+        <p
+          className='card-tag-label' onClick={()=>{this.props.changeStateBucket(tagLabel.id)}}>
+          <i className="fa fa-tag" aria-hidden="true"></i> <span>{tagLabel.title}</span>
         </p>
 
       </div>

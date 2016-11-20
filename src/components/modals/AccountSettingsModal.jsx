@@ -26,8 +26,7 @@ export default class AccountSettingsModal extends React.Component{
      document.getElementsByName('confirm-password')[0].style.border='2px solid red';
     }
   }
-
-
+  
   render(){
     var {close} = this.props;
 
@@ -43,6 +42,8 @@ export default class AccountSettingsModal extends React.Component{
           aria-labelledby='modal-label'
           backdropStyle={backdropStyle}
           show={this.props.visibility}
+          onHide={()=>{this.props.close()}}
+          backdrop={true}
           >
 
           <Modal.Header>

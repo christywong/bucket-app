@@ -42,9 +42,11 @@ export default class AddModal extends React.Component{
     return(
       <div className="static-modal">
         <Modal
+          backdrop={true}
           aria-labelledby='modal-label'
           backdropStyle={backdropStyle}
           show={this.props.visibility}
+          onHide={()=>{this.props.close()}}
           >
           <Modal.Header>
             <Button

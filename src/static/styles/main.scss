@@ -19,15 +19,7 @@ body,
 html {
     height: 100%;
 }
-// body:before {
-//     content: "";
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     display: block;
-//     width: 100vw;
-//     height: 100%;
-// }
+
 /*** Homepage ***/
 .jumbotron {
     height: 100vh;
@@ -310,6 +302,10 @@ body {
           font-size: 12px;
           font-weight: 600;
           color: $teal;
+          cursor: pointer;
+          &:hover{
+            color: $teal-darken;
+          }
         }
     }
 }
@@ -498,8 +494,6 @@ body {
 }
 
 .bucket-tags:hover {
-    background-color: $primary-blue-hover;
-    background-color: #147689;
     background-color: #5a9fac;
 }
 //
@@ -509,6 +503,7 @@ body {
 
 .p-no-margin {
     margin: 0;
+    font-weight: 500;
 }
 
 .tag-list {
@@ -549,10 +544,10 @@ body {
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: fixed;
-    width: 30px;
-    height: 24px;
+    width: 24px;
+    height: 18px;
     left: 38px;
-    top: 16px;
+    top: 18px;
     z-index: 1000 !important;
 }
 /* Color/shape of burger icon bars */

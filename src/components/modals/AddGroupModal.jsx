@@ -28,6 +28,8 @@ export default class AddGroupModal extends React.Component{
           aria-labelledby='modal-label'
           backdropStyle={backdropStyle}
           show={this.props.visibility}
+          onHide={()=>{this.props.close()}}
+          backdrop={true}
           >
           <Modal.Header>
             <Button
