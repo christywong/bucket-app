@@ -523,3 +523,8 @@ body {
 .modal-container .modal,
 .modal-container .modal-backdrop {
   position: absolute; }
+
+.img-responsive {
+  display: block;
+  max-width: 200px;
+  height: 200px; }
