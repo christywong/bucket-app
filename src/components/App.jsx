@@ -10,6 +10,7 @@ import AddGroupModal from './modals/AddGroupModal';
 import AddMemberModal from './modals/AddMemberModal';
 import AddBucketModal from './modals/AddBucketModal';
 import HelpModal from './modals/HelpModal';
+import ReactGA from 'react-ga';
 //import AddModal from './modals/AddCardModal';
 
 export default class App extends React.Component{
@@ -51,6 +52,8 @@ export default class App extends React.Component{
     this.closeAddBucketModal = this.closeAddBucketModal.bind(this);
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
+
+    ReactGA.initialize('UA-87728260-1');
 
   }
 
@@ -305,6 +308,10 @@ export default class App extends React.Component{
 
   showAddBucketModal(){
     this.setState({showBucketModal:true});
+    ReactGA.event({
+      category: 'create-tag-old',
+      action: 'click',
+    });
   }
 
   closeAddBucketModal(){

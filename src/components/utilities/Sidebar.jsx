@@ -51,7 +51,7 @@ export default class Sidebar extends React.Component{
             <Button
               id="create-bucket-button"
               onClick={this.props.showBucketModal}>
-              Create a Bucket
+              Create a Tag
             </Button>
             {
               allBucket ?
