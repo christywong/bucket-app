@@ -86,8 +86,8 @@ export default class App extends React.Component{
     //this.getAllGroups();
     this.getUserGroups(currentUserId);
 
-    ReactGA.initialize('UA-87728260-1');
-    ReactGA.ga('send', 'pageview', '/app');
+    // ReactGA.initialize('UA-87728260-1');
+    // ReactGA.ga('send', 'pageview', '/app');
 
   }
   render(){
