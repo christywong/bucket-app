@@ -7,10 +7,6 @@ import uuid from 'uuid';
 import update from 'react-addons-update';
 var Menu = require('react-burger-menu').slide;
 import Bucket from './buckets/Buckets';
-var ReactToastr = require("react-toastr");
-var {ToastContainer} = ReactToastr; // This is a React Element.
-var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
-
 
 export default class Component extends React.Component {
 
