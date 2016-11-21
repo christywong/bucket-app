@@ -116,7 +116,7 @@
 
 	var _HelpModal2 = _interopRequireDefault(_HelpModal);
 
-	var _reactGa = __webpack_require__(524);
+	var _reactGa = __webpack_require__(520);
 
 	var _reactGa2 = _interopRequireDefault(_reactGa);
 
@@ -130,7 +130,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = __webpack_require__(520);
+	var styles = __webpack_require__(530);
 
 	//import AddModal from './modals/AddCardModal';
 
@@ -179,8 +179,6 @@
 	    _this.showHelpModal = _this.showHelpModal.bind(_this);
 	    _this.closeHelpModal = _this.closeHelpModal.bind(_this);
 
-	    _reactGa2.default.initialize('UA-87728260-1');
-
 	    return _this;
 	  }
 
@@ -208,6 +206,9 @@
 
 	      this.loadJSONData(currentGroupId);
 	      this.getAllGroups();
+
+	      _reactGa2.default.initialize('UA-87728260-1');
+	      _reactGa2.default.ga('send', 'pageview', '/app2');
 	    }
 	  }, {
 	    key: 'render',
@@ -56549,15 +56550,6 @@
 
 /***/ },
 /* 520 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -56571,12 +56563,12 @@
 	/**
 	 * Utilities
 	 */
-	var format = __webpack_require__(525);
-	var removeLeadingSlash = __webpack_require__(530);
-	var trim = __webpack_require__(528);
+	var format = __webpack_require__(521);
+	var removeLeadingSlash = __webpack_require__(526);
+	var trim = __webpack_require__(524);
 
-	var warn = __webpack_require__(529);
-	var log = __webpack_require__(531);
+	var warn = __webpack_require__(525);
+	var log = __webpack_require__(527);
 
 	var _debug = false;
 	var _titleCase = true;
@@ -57049,7 +57041,7 @@
 	  }
 	};
 
-	var OutboundLink = __webpack_require__(532);
+	var OutboundLink = __webpack_require__(528);
 	OutboundLink.origTrackLink = OutboundLink.trackLink;
 	OutboundLink.trackLink = ReactGA.outboundLink.bind(ReactGA);
 	ReactGA.OutboundLink = OutboundLink;
@@ -57058,12 +57050,12 @@
 
 
 /***/ },
-/* 525 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mightBeEmail = __webpack_require__(526);
-	var toTitleCase = __webpack_require__(527);
-	var warn = __webpack_require__(529);
+	var mightBeEmail = __webpack_require__(522);
+	var toTitleCase = __webpack_require__(523);
+	var warn = __webpack_require__(525);
 
 	var _redacted = 'REDACTED (Potential Email Address)';
 
@@ -57084,7 +57076,7 @@
 
 
 /***/ },
-/* 526 */
+/* 522 */
 /***/ function(module, exports) {
 
 	// See if s could be an email address. We don't want to send personal data like email.
@@ -57098,7 +57090,7 @@
 
 
 /***/ },
-/* 527 */
+/* 523 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -57107,7 +57099,7 @@
 	 * https://github.com/gouch/to-title-case
 	 */
 
-	var trim = __webpack_require__(528);
+	var trim = __webpack_require__(524);
 
 	function toTitleCase(s) {
 	  var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\.?|via)$/i;
@@ -57135,7 +57127,7 @@
 
 
 /***/ },
-/* 528 */
+/* 524 */
 /***/ function(module, exports) {
 
 	// GA strings need to have leading/trailing whitespace trimmed, and not all
@@ -57149,7 +57141,7 @@
 
 
 /***/ },
-/* 529 */
+/* 525 */
 /***/ function(module, exports) {
 
 	function warn(s) {
@@ -57160,7 +57152,7 @@
 
 
 /***/ },
-/* 530 */
+/* 526 */
 /***/ function(module, exports) {
 
 	function removeLeadingSlash(s) {
@@ -57175,7 +57167,7 @@
 
 
 /***/ },
-/* 531 */
+/* 527 */
 /***/ function(module, exports) {
 
 	function log(s) {
@@ -57186,11 +57178,11 @@
 
 
 /***/ },
-/* 532 */
+/* 528 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
-	var assign = __webpack_require__(533);
+	var assign = __webpack_require__(529);
 
 	var NEWTAB = '_blank';
 
@@ -57235,7 +57227,7 @@
 
 
 /***/ },
-/* 533 */
+/* 529 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -57322,6 +57314,12 @@
 		return to;
 	};
 
+
+/***/ },
+/* 530 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

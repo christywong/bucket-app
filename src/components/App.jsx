@@ -53,8 +53,6 @@ export default class App extends React.Component{
     this.showHelpModal = this.showHelpModal.bind(this);
     this.closeHelpModal = this.closeHelpModal.bind(this);
 
-    ReactGA.initialize('UA-87728260-1');
-
   }
 
   //Call our remote endpoints to initialize our application
@@ -77,6 +75,9 @@ export default class App extends React.Component{
 
     this.loadJSONData(currentGroupId);
     this.getAllGroups();
+
+    ReactGA.initialize('UA-87728260-1');
+    ReactGA.ga('send', 'pageview', '/app2');
   }
 
   render(){
