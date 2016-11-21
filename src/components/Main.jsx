@@ -39,6 +39,7 @@ export default class Component extends React.Component {
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
     this.closeAccountSettingsModal = this.closeAccountSettingsModal.bind(this);
+
   }
 
   //Initialize the Main component on start or whenever this component recieves props
