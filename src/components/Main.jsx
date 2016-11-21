@@ -80,7 +80,8 @@ export default class Component extends React.Component {
     const deletePopover = (
       <Popover
         id="popover-trigger-click-root-close"
-        title="Are you sure?">
+        title="Are you sure?"
+        >
         <Button
           bsStyle="danger"
           bsSize="small"
@@ -102,6 +103,7 @@ export default class Component extends React.Component {
         var archiveBucket = list.filter((bucket)=>(bucket.typeOfBucket === 2))[0];
 
         return (
+
           <div id="outer-container">
             <Menu
               pageWrapId={ "page-wrap" }
@@ -138,6 +140,7 @@ export default class Component extends React.Component {
                       trigger="click"
                       rootClose
                       placement="top"
+                      container={this}
                       overlay={deletePopover}>
                       <i
                         className="fa fa-trash-o"

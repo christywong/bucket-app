@@ -24,7 +24,9 @@ export default class Cards extends React.Component{
     const movePopover = (
       <Popover
         id="popover-trigger-click-root-close"
-        title="Move to">
+        title="Move to"
+        style={{width:"150px"}}
+        >
         {this.props.bucketTags.map((tag) => (
           <p
             key={tag.id}
@@ -41,7 +43,9 @@ export default class Cards extends React.Component{
     const deletePopover = (
       <Popover
         id="popover-trigger-click-root-close"
-        title="Are you sure?">
+        title="Are you sure?"
+        style={{width:"130px"}}
+        >
         <Button
           bsStyle="danger"
           style={{marginLeft: 10}}
@@ -67,7 +71,8 @@ export default class Cards extends React.Component{
                 trigger="click"
                 rootClose
                 placement="top"
-                overlay={deletePopover}>
+                overlay={deletePopover}
+                container={this}>
                 <i className="fa fa-trash-o" aria-hidden="true">
                 </i>
               </OverlayTrigger>
@@ -76,7 +81,8 @@ export default class Cards extends React.Component{
                 trigger="click"
                 rootClose
                 placement="top"
-                overlay={movePopover}>
+                overlay={movePopover}
+                container={this}>
                 <i
                   className="fa fa-pencil-square-o"
                   aria-hidden="true">

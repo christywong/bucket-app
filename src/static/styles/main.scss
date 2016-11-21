@@ -25,21 +25,28 @@ html {
 .jumbotron {
     height: 100vh;
     background-size: cover;
-    background-image: url("/images/gliderport.jpeg");
+    background-image: url("/images/gliderport-dark.png");
     margin-bottom: 0;
 }
 
 #jumbotron-text {
     margin-left: 100px;
+    h1{
+      color: $white !important;
+    }
 }
 
 #homepage-elems {
     padding-top: 100px;
 }
+// .popover-content {
+//   width: 150px;
+// }
 
 .home-text {
     font-size: 36px !important;
     font-weight: 300 !important;
+    color: $white !important;
 }
 @media (max-width: $breakpoint-tablet) {
     #jumbotron-text {
@@ -131,27 +138,36 @@ html {
     border-top-right-radius: 3px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    color: #FFFFFF;
-    font-size: 14px;
+    color: $white;
+    font-size: 18px;
+    font-weight: 600;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
+    &:hover{
+      background: $teal-darken;
+    }
+}
+
+.form input {
+  background-color: $white;
+  color: black;
 }
 
 .form .message {
     margin: 15px 0 0;
-    color: black;
+    color: $white;
     font-weight: 400;
     font-size: 16px;
 }
 
 .form .message a {
-    color: black;
+    color: $white;
     font-weight: 400;
     text-decoration: underline;
 }
 
-.form .register-form {
+.form .login-form {
     display: none;
 }
 
@@ -682,4 +698,3 @@ body {
     max-width: 200px;
     height: 200px;
 }
-
