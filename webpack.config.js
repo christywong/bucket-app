@@ -58,8 +58,16 @@ var config = {
 
 //add minimification if we are in production
 if(PROD){
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({include: /\.min\.js$/,
-            minimize: true}));
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
+    }),
+    new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
+  }));
 }
 
 module.exports = config;
