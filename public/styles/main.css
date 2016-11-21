@@ -165,9 +165,7 @@ body {
   color: #147689; }
 
 .main-container {
-  padding-left: 20px;
-  height: calc(100vh - 60px);
-  -webkit-overflow-scrolling: touch; }
+  padding-left: 20px; }
 
 .card-container {
   padding-top: 25px;
@@ -176,10 +174,15 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   overflow: auto;
-  justify-content: left;
+  justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  background-color: #f4f4f6; }
+  background-color: #f4f4f6;
+  height: calc(100vh - 60px); }
+  .card-container .group-title {
+    padding-top: 0;
+    padding-bottom: 20px;
+    flex: 0 1 100%; }
   .card-container .card-style {
     width: 200px;
     height: 185px;

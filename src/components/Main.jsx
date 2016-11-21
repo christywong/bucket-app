@@ -174,10 +174,11 @@ export default class Component extends React.Component {
                 showBucketModal = {this.props.showBucketModal}
               />
               <div className="main-container" id="page-wrap">
-                <h1 className="group-title">
-                  {currentGroupTitle}
-                </h1>
                 <div className="card-container">
+                  <h1 className="group-title">
+                    {currentGroupTitle}
+                  </h1>
+                  <br></br>
                   {
                     this.state.showModal ?
                     <AddModal

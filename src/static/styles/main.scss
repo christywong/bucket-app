@@ -217,10 +217,13 @@ body {
 }
 .main-container{
   padding-left: 20px;
-  height: calc(100vh - 60px);
-  -webkit-overflow-scrolling: touch;
 }
 .card-container {
+    .group-title{
+      padding-top: 0;
+      padding-bottom: 20px;
+      flex: 0 1 100%;
+    }
     padding-top: 25px;
     // margin-left: 225px;
     flex: 1;
@@ -228,10 +231,12 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     overflow: auto;
-    justify-content: left;
+    justify-content: flex-start;
     align-content: flex-start;
     align-items: flex-start;
     background-color: $white;
+    height: calc(100vh - 60px);
+
 
 
     .card-style {

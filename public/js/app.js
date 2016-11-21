@@ -5217,13 +5217,14 @@
 	          'div',
 	          { className: 'main-container', id: 'page-wrap' },
 	          _react2.default.createElement(
-	            'h1',
-	            { className: 'group-title' },
-	            currentGroupTitle
-	          ),
-	          _react2.default.createElement(
 	            'div',
 	            { className: 'card-container' },
+	            _react2.default.createElement(
+	              'h1',
+	              { className: 'group-title' },
+	              currentGroupTitle
+	            ),
+	            _react2.default.createElement('br', null),
 	            this.state.showModal ? _react2.default.createElement(_AddCardModal2.default, {
 	              addCard: this.props.addCard,
 	              close: this.closeModal,
