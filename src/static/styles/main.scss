@@ -23,10 +23,12 @@ html {
 
 /*** Homepage ***/
 .jumbotron {
-    height: 100vh;
+    min-height: 400px;
+    height: 100%;
     background-size: cover;
     background-image: url("/images/gliderport-dark-min.png");
     margin-bottom: 0;
+    background-position: top left;
 }
 
 #jumbotron-text {
@@ -241,7 +243,6 @@ body {
       flex: 0 1 100%;
     }
     padding-top: 25px;
-    // margin-left: 225px;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -253,11 +254,9 @@ body {
     background-color: $white;
     height: calc(100vh - 60px);
 
-
-
     .card-style {
         width: 200px;
-        height: 185px;
+        height: 200px;
         background-color: #fff;
         border-radius: 3px;
         border: solid 1px #D3D3D3;
