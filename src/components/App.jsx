@@ -79,6 +79,8 @@ export default class App extends React.Component{
 
     this.loadJSONData(currentGroupId);
     this.getUserGroups(currentUserId);
+    console.log('current group id ', currentGroupId);
+    console.log('current user id ', currentUserId);
 
   }
 
