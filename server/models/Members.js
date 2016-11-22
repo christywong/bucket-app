@@ -7,6 +7,7 @@ var MemberSchema = new Schema({
   username: String,
   password: String,
   groupId: String,
+  userGroups: [String],
   firstTimeUser: Boolean
 });
 var Member = mongoose.model('members', MemberSchema);
@@ -17,6 +18,7 @@ module.exports.actions.createMember = function(req,res){
   var person = new Member ({
     username: req.body.username,
     password: req.body.password,
+    groupId: req.body.groupId,
     firstTimeUser: true
   });
 
@@ -27,8 +29,7 @@ module.exports.actions.createMember = function(req,res){
       return err;
     }
     else{
-      console.log(member);
-      return res.status(200).json(member.username);
+      return res.status(200).json(member);
     }
   })
 }

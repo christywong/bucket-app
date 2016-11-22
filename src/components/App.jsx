@@ -22,7 +22,7 @@ export default class App extends React.Component{
       showModal: false,
       currentBucket: '0',
       currentGroup: '',
-      currentUser: 'Daniel',
+      myBucketId: '',
       currentUserId: '',
       showBucketModal: false,
       showGroupModal: false,
@@ -40,6 +40,7 @@ export default class App extends React.Component{
     this.changeSelectedBucket = this.changeSelectedBucket.bind(this);
     this.addCard = this.addCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.getUserGroups = this.getUserGroups.bind(this);
 
     //Bind modal listeners
     this.showAccountSettingsModal = this.showAccountSettingsModal.bind(this);
@@ -62,10 +63,13 @@ export default class App extends React.Component{
     var currentUsername = localStorage.getItem('username');
     var showHelpModal = JSON.parse(localStorage.getItem('firstTimeUser'));
 
+
+
     this.setState({
       currentGroup: currentGroupId,
       currentUserId: currentUserId,
-      currentUserName: currentUsername
+      currentUserName: currentUsername,
+      myBucketId: currentGroupId
     });
 
     if(showHelpModal){
@@ -74,10 +78,8 @@ export default class App extends React.Component{
     }
 
     this.loadJSONData(currentGroupId);
-    this.getAllGroups();
+    this.getUserGroups(currentUserId);
 
-    // ReactGA.initialize('UA-87728260-1');
-    // ReactGA.ga('send', 'pageview', '/app2');
   }
 
   render(){
@@ -372,6 +374,27 @@ export default class App extends React.Component{
     xhr.responseType = 'json'
     xhr.send();
   }
+
+  getUserGroups(currentUserId){
+   var me = this;
+   //var userId = this.state.currentUserId;
+   var xhr = new XMLHttpRequest();
+   xhr.onreadystatechange = function(){
+     if(xhr.readyState === 4){
+       if(xhr.status === 200){
+         var result = xhr.response;
+         me.setState({
+           listOfGroups: result
+         });
+       } else{
+         console.log('Ooops an error occured');
+       }
+     }
+   }
+   xhr.open('GET', '/api/getUserGroups/' + currentUserId);
+   xhr.responseType = 'json'
+   xhr.send();
+ }
 
   changePassword(newPassword){
     if(newPassword.length > 3){

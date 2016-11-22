@@ -10,6 +10,7 @@ var Member = require('./models/Members.js');
 //TODO Our API to do stuff
 module.exports = function (app){
   app.get('/search/:city/:category/:offset', yelpSearch.search);
+  app.get('/searchCity/:city/:offset',yelpSearch.searchCity);
   app.get('/home', bucketHome.view);
 
   app.get('/api/getData', function(req,res){
@@ -46,8 +47,6 @@ module.exports = function (app){
   app.delete('/api/deleteCard', Group.actions.deleteCard);
   //Move a card
   app.put('/api/moveCard', Group.actions.moveCard);
-
-  //TODO
   //Create a new Bucket
   app.post('/api/createBucket', Group.actions.createBucket);
   //Delete a Bucket
@@ -55,6 +54,7 @@ module.exports = function (app){
 
   //Return a list of all the groups
   app.get('/api/getAllGroups', Group.actions.getAllGroups);
+  app.get('/api/getUserGroups/:userId', Group.actions.getUserGroups);
   //Creates a new group in the database
   app.post('/api/createGroup', Group.actions.createGroup);
   //add a friend to the group
