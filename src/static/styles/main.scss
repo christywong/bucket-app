@@ -19,6 +19,7 @@ $orange-border: #c36f3c;
 body,
 html {
   height: 100%;
+  overflow-x: hidden;
 }
 /*** Homepage ***/
 .jumbotron {
@@ -704,8 +705,71 @@ body {
   height: auto;
 }
 
-img {
-  position: relative;
-  width: auto;
-  height: 150px;
+
+
+.home-screen-text{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-description{
+  margin-bottom: 75px;
+  margin-top: 75px;
+  .home-heading {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    p{
+      color: $primary-gray;
+    }
+  }
+}
+
+.home-screen-text{
+  p{
+    color: $primary-gray;
+  }
+}
+
+.box-border{
+  border: solid 1px #e5e5e5;
+  padding: 20px;
+
+
+
+
+  img {
+    position: relative;
+    width: auto;
+    height: 150px;
+  }
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+
+.box-border:first-child{
+  border-right: 0;
+}
+
+.box-border:last-child{
+  border-left: 0;
+}
+
+footer{
+  border-top: solid 1px #e5e5e5;
+  height:50px;
+  p{
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+  }
 }
