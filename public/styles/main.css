@@ -523,5 +523,10 @@ body {
 
 .img-responsive {
   display: block;
-  max-width: 200px;
-  height: 200px; }
+  width: 100%;
+  height: auto; }
+
+img {
+  position: relative;
+  width: auto;
+  height: 150px; }
