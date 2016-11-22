@@ -18,137 +18,138 @@ $orange-border: #c36f3c;
 
 body,
 html {
-    height: 100%;
+  height: 100%;
 }
-
 /*** Homepage ***/
 .jumbotron {
-    min-height: 400px;
-    height: 100%;
-    background-size: cover;
-    background-image: url("/images/gliderport-dark-min.png");
-    margin-bottom: 0;
-    background-position: top left;
+  min-height: 400px;
+  height: 100%;
+  background-size: cover;
+  background-image: url("/images/gliderport-dark-min.png");
+  margin-bottom: 0;
+  background-position: top left;
 }
 
 #jumbotron-text {
-    margin-left: 100px;
-    h1{
-      color: $white !important;
-    }
+  margin-left: 100px;
+
+  h1 {
+    color: $white !important;
+  }
 }
 
 #homepage-elems {
-    padding-top: 100px;
+  padding-top: 100px;
 }
 // .popover-content {
 //   width: 150px;
 // }
 
 .home-text {
-    font-size: 36px !important;
-    font-weight: 300 !important;
-    color: $white !important;
+  font-size: 36px !important;
+  font-weight: 300 !important;
+  color: $white !important;
 }
 @media (max-width: $breakpoint-tablet) {
-    #jumbotron-text {
-        text-align: center;
-        margin-left: 0;
-    }
+  #jumbotron-text {
+    text-align: center;
+    margin-left: 0;
+  }
 
-    #homepage-elems {
-        padding-top: 50px;
-    }
+  #homepage-elems {
+    padding-top: 50px;
+  }
 
-    .home-text {
-        font-size: 28px !important;
-        font-weight: 300 !important;
-    }
+  .home-text {
+    font-size: 28px !important;
+    font-weight: 300 !important;
+  }
 }
 /*** Login Form ***/
 .form {
-    position: relative;
-    z-index: 1;
-    /*background: #147689;*/
-    background: transparent;
-    max-width: 300px;
-    margin: 0 auto 100px;
-    padding: 30px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    text-align: center;
+  position: relative;
+  z-index: 1;
+  /*background: #147689;*/
+  background: transparent;
+  max-width: 300px;
+  margin: 0 auto 100px;
+  padding: 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
 }
 
 .form .thumbnail {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 30px;
-    padding: 10px 37px 90px 20px;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
-    border-bottom-left-radius: 100%;
-    border-bottom-right-radius: 100%;
-    box-sizing: border-box;
-    background-color: transparent;
-    border: none;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px;
+  padding: 10px 37px 90px 20px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
 }
 
 .form .thumbnail img {
-    display: block;
-    width: 100%;
-    padding: 0 5px;
+  display: block;
+  width: 100%;
+  padding: 0 5px;
 }
 
 .form input {
-    outline: 0;
-    background: #e3e7ea;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-sizing: border-box;
-    font-size: 14px;
+  outline: 0;
+  background: #e3e7ea;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
 .errormsg {
-    color: red;
-    font-size: 13px;
+  color: red;
+  font-size: 13px;
 }
 
 .successmsg {
-    color: green;
-    font-size: 13px;
+  color: green;
+  font-size: 13px;
 }
 
 .errorLogin {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .form button {
-    outline: 0;
-    background: $teal;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    color: $white;
-    font-size: 18px;
-    font-weight: 600;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    &:hover{
-      background: $teal-darken;
-    }
+  outline: 0;
+  background: $teal;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: $white;
+  font-size: 18px;
+  font-weight: 600;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+
+  &:hover {
+    background: $teal-darken;
+  }
 }
 
 .form input {
@@ -157,313 +158,316 @@ html {
 }
 
 .form .message {
-    margin: 15px 0 0;
-    color: $white;
-    font-weight: 400;
-    font-size: 16px;
+  margin: 15px 0 0;
+  color: $white;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .form .message a {
-    color: $white;
-    font-weight: 400;
-    text-decoration: underline;
+  color: $white;
+  font-weight: 400;
+  text-decoration: underline;
 }
 
 .form .login-form {
-    display: none;
+  display: none;
 }
 
 body {
-    background: #f4f4f6;
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  background: #f4f4f6;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .navbar {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 .add-friends a:focus {
-    outline: none;
+  outline: none;
 }
 
 #img-wrapper-404 {
-    float: right;
+  float: right;
 }
 
 #error-text-404 {
-    float: left;
+  float: left;
 }
 
 #error-text-404 > h1 {
-    margin-bottom: 25px;
-    font-size: 100px;
-    color: $primary-blue;
+  margin-bottom: 25px;
+  font-size: 100px;
+  color: $primary-blue;
 }
 
 #error-text-404 > h2 {
-    font-size: 28px;
-    width: 300px;
+  font-size: 28px;
+  width: 300px;
 }
 
 #container-404 {
-    margin-top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 625px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 625px;
 }
 
 #app {
-    //background-color: rgb(246,243,238);
-    //background-color: rgb(0, 121, 191);
-    //background-color: $baby-blue;
-    background-color: #f4f4f6;
-    //background-color: $aqua;
-    min-height: 100vh;
+  //background-color: rgb(246,243,238);
+  //background-color: rgb(0, 121, 191);
+  //background-color: $baby-blue;
+  background-color: #f4f4f6;
+  //background-color: $aqua;
+  min-height: 100vh;
 }
 
 .navbar {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
-.group-title{
+.group-title {
   margin-top: 0;
   margin-left: 20px;
   padding-top: 20px;
   color: $teal;
 }
-.main-container{
+
+.main-container {
   padding-left: 20px;
 }
+
 .card-container {
-    .group-title{
-      padding-top: 0;
-      padding-bottom: 20px;
-      flex: 0 1 100%;
+  .group-title {
+    padding-top: 0;
+    padding-bottom: 20px;
+    flex: 0 1 100%;
+  }
+  padding-top: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  background-color: $white;
+  height: calc(100vh - 60px);
+
+  .card-style {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: solid 1px #D3D3D3;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    position: relative;
+
+    .card-header {
+      margin: none;
+      border-bottom: solid 1px #D3D3D3;
+      width: 90%;
+      min-width: 25px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
     }
-    padding-top: 25px;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow: auto;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: flex-start;
-    background-color: $white;
-    height: calc(100vh - 60px);
 
-    .card-style {
-        width: 200px;
-        height: 200px;
-        background-color: #fff;
-        border-radius: 3px;
-        border: solid 1px #D3D3D3;
-        margin-bottom: 15px;
-        margin-left: 20px;
-        margin-right: 20px;
-        padding: 10px;
-        position: relative;
+    .card-left {
+      float: left;
+      background-color: $primary-blue;
+      position: relative;
 
-        .card-header {
-            margin: none;
-            border-bottom: solid 1px #D3D3D3;
-            width: 90%;
-            min-width: 25px;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
+      img:hover {
+        opacity: 0.4;
+      }
 
-        .card-left {
-            float: left;
-            background-color: $primary-blue;
-            position: relative;
+      img:hover + p {
+        visibility: visible;
+      }
 
-            img:hover {
-                opacity: 0.4;
-            }
-
-            img:hover + p {
-                visibility: visible;
-            }
-
-            p {
-                position: absolute;
-                top: 25%;
-                left: 50%;
-                transform: translate(-50%, 0);
-                color: white;
-                font-size: 14px;
-                width: 50px;
-                text-align: center;
-                line-height: 1.0;
-                pointer-events: none;
-                visibility: hidden;
-            }
-        }
-
-        .card-right {
-            margin-left: 75px;
-            padding-left: 5px;
-        }
-
-        .card-image {
-            width: 200px;
-            height: 120px;
-            background-color: gray;
-            margin-top: 10px;
-        }
-        .card-tag-label{
-          position: absolute;
-          display: block;
-          bottom: 10px;
-          left: 10px;
-          margin: 0;
-          font-size: 12px;
-          font-weight: 600;
-          color: $teal;
-          cursor: pointer;
-          &:hover{
-            color: $primary-blue;
-          }
-
-        }
+      p {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        color: white;
+        font-size: 14px;
+        width: 50px;
+        text-align: center;
+        line-height: 1.0;
+        pointer-events: none;
+        visibility: hidden;
+      }
     }
+
+    .card-right {
+      margin-left: 75px;
+      padding-left: 5px;
+    }
+
+    .card-image {
+      width: 200px;
+      height: 120px;
+      background-color: gray;
+      margin-top: 10px;
+    }
+
+    .card-tag-label {
+      position: absolute;
+      display: block;
+      bottom: 10px;
+      left: 10px;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: $teal;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-blue;
+      }
+    }
+  }
 }
 
 .sidebar {
-    z-index: 100;
-    left: 0;
-    top: 0;
-    position: absolute;
-    height: 100%;
-    width: 225px;
-    background-color: $white;
-    margin: 0;
-    overflow: scroll;
-    padding-top: 50px;
-    border-right: solid 1px #D3D3DD;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 225px;
+  background-color: $white;
+  margin: 0;
+  overflow: scroll;
+  padding-top: 50px;
+  border-right: solid 1px #D3D3DD;
 }
 
 .tags-title {
-    color: #333;
-    margin-left: 20px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 15px;
+  color: #333;
+  margin-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px;
 
-    #create-bucket-button {
-        color: $orange;
-        padding-left: 10px;
-        font-size: 18px;
+  #create-bucket-button {
+    color: $orange;
+    padding-left: 10px;
+    font-size: 18px;
 
-        &:hover {
-            color: $orange-darken;
-        }
+    &:hover {
+      color: $orange-darken;
     }
+  }
 }
 
 .searchWrapper {
-    margin-top: 75px;
-    width: 80%;
+  margin-top: 75px;
+  width: 80%;
 }
 
 .searchInput {
-    margin-bottom: 10px;
-    width: 100%;
-    padding-left: 5px;
-    border: none;
-    border-radius: 3px;
-    border: solid 1px #D3D3D3;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3;
 }
 
 .center-block {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .search-entry-card {
-    padding: 10px;
-    width: 90%;
-    margin-bottom: 20px;
-    border: solid 1px #D3D3D3;
-    background-color: #fff;
-    height: 130px;
-    margin-left: auto;
-    margin-right: auto;
+  padding: 10px;
+  width: 90%;
+  margin-bottom: 20px;
+  border: solid 1px #D3D3D3;
+  background-color: #fff;
+  height: 130px;
+  margin-left: auto;
+  margin-right: auto;
 
-    .search-entry-left {
-        float: left;
-        //position:absolute;
-    }
+  .search-entry-left {
+    float: left;
+    //position:absolute;
+  }
 
-    .yelp-image {
-        cursor: pointer;
-        //left: 0;
-        //top: 0;
-        //position:absolute;
-    }
+  .yelp-image {
+    cursor: pointer;
+    //left: 0;
+    //top: 0;
+    //position:absolute;
+  }
 
-    .search-entry-right {
-        margin-left: 75px;
-        padding-left: 5px;
-    }
-    // .yelp-stars{
-    //   position:absolute;
-    //   left: 0;
-    //   bottom: 20%;
-    // }
-    .add-to-bucket-btn {
-        padding: 0 0 6px;
-        float: right;
-        color: $teal;
-    }
+  .search-entry-right {
+    margin-left: 75px;
+    padding-left: 5px;
+  }
+  // .yelp-stars{
+  //   position:absolute;
+  //   left: 0;
+  //   bottom: 20%;
+  // }
+  .add-to-bucket-btn {
+    padding: 0 0 6px;
+    float: right;
+    color: $teal;
+  }
 }
 
 .modal-body {
-    max-height: 420px;
-    overflow-y: auto;
+  max-height: 420px;
+  overflow-y: auto;
 }
 
 .close {
-    float: right;
-    font-size: 21px;
-    font-weight: 700;
-    line-weight: 1;
-    opacity: 0.2;
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-weight: 1;
+  opacity: 0.2;
 }
 /***** regular css rules here *******/
 .comment-box {
-    width: 90%;
+  width: 90%;
+  margin-top: 10px;
+
+  .comment-author {
+    color: $primary-blue;
+    margin-bottom: 5px;
+  }
+
+  .comment-text {
+    color: black;
+  }
+
+  .comment-form {
     margin-top: 10px;
-
-    .comment-author {
-        color: $primary-blue;
-        margin-bottom: 5px;
-    }
-
-    .comment-text {
-        color: black;
-    }
-
-    .comment-form {
-        margin-top: 10px;
-    }
+  }
 }
 
 #bucket-container {
-    border: 1px solid $primary-blue;
-    width: 200px;
-    height: 150px;
-    text-align: center;
-    margin: 20px;
-    padding: 25px;
+  border: 1px solid $primary-blue;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  margin: 20px;
+  padding: 25px;
 }
 
 #bucket-container a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .mybucket-btn {
@@ -473,54 +477,55 @@ body {
   cursor: pointer;
   font-size: 12px;
 }
-.add-btn {
-    position: fixed;
-    line-height: 55px;
-    text-align: center;
-    background-color: $orange;
-    color: white;
-    cursor: pointer;
-    right: 30px;
-    bottom: 30px;
-    border-radius: 50px;
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-    -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
-    border: solid 2px $orange-border;
 
-    &:hover {
-        background-color: $orange-darken;
-    }
+.add-btn {
+  position: fixed;
+  line-height: 55px;
+  text-align: center;
+  background-color: $orange;
+  color: white;
+  cursor: pointer;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .4);
+  border: solid 2px $orange-border;
+
+  &:hover {
+    background-color: $orange-darken;
+  }
 }
 
-.btn:focus{
+.btn:focus {
   outline: none !important;
 }
 
 .bucket-tags {
-    cursor: pointer;
+  cursor: pointer;
 
-    h4 {
-        margin-left: 20px;
-        padding: 10px 15px;
-        color: #313131;
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 16px;
-    }
+  h4 {
+    margin-left: 20px;
+    padding: 10px 15px;
+    color: #313131;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+  }
 }
 
 .active {
-    background-color: $primary-blue-hover;
-    background-color: #147689;
-    background-color: #5a9fac;
+  background-color: $primary-blue-hover;
+  background-color: #147689;
+  background-color: #5a9fac;
 }
 
 .bucket-tags:hover {
-    background-color: #5a9fac;
+  background-color: #5a9fac;
 }
 //
 // #create-bucket-button:hover {
@@ -528,172 +533,179 @@ body {
 // }
 
 .p-no-margin {
-    margin: 0;
-    font-weight: 500;
+  margin: 0;
+  font-weight: 500;
 }
 
 .tag-list {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .tag-list:hover {
-    color: #5bc0de;
+  color: #5bc0de;
 }
 
 .edit-card-controls {
-    display: block;
-    position: absolute;
-    height: 15px;
-    right: 10px;
-    bottom: 10px;
+  display: block;
+  position: absolute;
+  height: 15px;
+  right: 10px;
+  bottom: 10px;
 }
 
 .fa {
-    cursor: pointer;
-    margin-left: 2px;
-    line-height: 15px;
-    color: $teal;
+  cursor: pointer;
+  margin-left: 2px;
+  line-height: 15px;
+  color: $teal;
 }
 
 .fa:hover {
-    color: $primary-blue;
+  color: $primary-blue;
 }
 
 .fa-trash-o {
-    margin-right: 8px;
-    padding-bottom: 3px;
+  margin-right: 8px;
+  padding-bottom: 3px;
 }
 
 .card-title {
-    color: $teal;
+  color: $teal;
 }
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: fixed;
-    width: 24px;
-    height: 18px;
-    left: 38px;
-    top: 18px;
-    z-index: 1000 !important;
+  position: fixed;
+  width: 24px;
+  height: 18px;
+  left: 38px;
+  top: 18px;
+  z-index: 1000 !important;
 }
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: $primary-gray;
+  background: $primary-gray;
 }
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 /* Color/shape of close button cross */
 .bm-cross {
-    background: #bdc3c7;
+  background: #bdc3c7;
 }
 /* General sidebar styles */
 .bm-menu {
-    background: #373a47;
-    padding-top: 2.5em;
-    font-size: 1.15em;
+  background: #373a47;
+  padding-top: 2.5em;
+  font-size: 1.15em;
 }
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-    fill: #373a47;
+  fill: #373a47;
 }
 /* Wrapper for item list */
 .bm-item-list {
-    color: #b8b7ad;
+  color: #b8b7ad;
 }
 /* Styling of overlay */
 .bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .bm-menu-wrap {
-    width: 225px !important;
+  width: 225px !important;
 }
 
 .bm-menu {
-    background-color: $white;
+  background-color: $white;
 }
 
 .empty-bucket-msg {
-    margin: 150px auto 0;
-    color: rgba(0, 0, 0, 0.2);
+  margin: 150px auto 0;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 #group-title-nav {
-    font-size: 36px;
-    color: $teal;
-    font-weight: 500;
+  font-size: 36px;
+  color: $teal;
+  font-weight: 500;
 }
 @media (min-width: $breakpoint-tablet) {
-    .bm-burger-button {
-        display: none;
-    }
+  .bm-burger-button {
+    display: none;
+  }
 
-    .main-container {
-        margin-left: 225px;
-    }
-
+  .main-container {
+    margin-left: 225px;
+  }
 }
 @media (max-width: $breakpoint-tablet) {
-    .sidebar {
-        display: none;
-    }
+  .sidebar {
+    display: none;
+  }
 
-    #group-title-nav {
-        margin-left: 40px;
-    }
-    .card-container {
-      justify-content: center;
-    }
-    .group-title{
-      text-align: center;
-      margin-left:0;
-    }
+  #group-title-nav {
+    margin-left: 40px;
+  }
+
+  .card-container {
+    justify-content: center;
+  }
+
+  .group-title {
+    text-align: center;
+    margin-left: 0;
+  }
 }
 
 .btn-primary {
-    background-color: $teal !important;
+  background-color: $teal !important;
 }
 
 .btn-primary:hover {
-    background-color: $teal-darken !important;
+  background-color: $teal-darken !important;
 }
 
 .fa-gear {
-    color: $primary-gray;
+  color: $primary-gray;
 }
 
 .fa-gear:hover {
-    color: $primary-gray;
+  color: $primary-gray;
 }
 
 #delete-bucket-icon {
-    color: #313131;
-    float: right;
+  color: #313131;
+  float: right;
 }
 
 .addInput {
-    margin-bottom: 10px;
-    width: 100%;
-    padding-left: 5px;
-    border: none;
-    border-radius: 3px;
-    border: solid 1px #D3D3D3;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #D3D3D3;
 }
 
 .modal-container {
-    position: relative;
+  position: relative;
 }
 
 .modal-container .modal,
 .modal-container .modal-backdrop {
-    position: absolute;
+  position: absolute;
 }
 
-.img-responsive{
-    display: block;
-    max-width: 200px;
-    height: 200px;
+.img-responsive {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+img {
+  position: relative;
+  width: auto;
+  height: 150px;
 }
