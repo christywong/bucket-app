@@ -24,6 +24,7 @@ export default class App extends React.Component{
       currentGroup: '',
       myBucketId: '',
       currentUserId: '',
+      currentUserName: '',
       showBucketModal: false,
       showGroupModal: false,
       showMemberModal: false,
@@ -264,7 +265,7 @@ export default class App extends React.Component{
       var newGroup = {
         id: uuid.v4(),
         title: newName,
-        members: [this.state.currentUser],
+        members: [this.state.currentUserName],
         tags: [{"id": "0", "title": "All"}],
         activities: []
       };
@@ -448,8 +449,31 @@ export default class App extends React.Component{
    * @param {Object} newGroup  The newly created group object to be added to the database
    **/
   apiCreateGroup(newGroup){
+    // var me = this;
+    // var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
+    // var xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function(){
+    //   if(xhr.readyState === 4){
+    //     if(xhr.status === 200){
+    //       var result = xhr.response;
+    //
+    //       var newGroupList = [...me.state.listOfGroups, result];
+    //       me.setState({
+    //         listOfGroups: newGroupList
+    //       });
+    //     } else{
+    //       console.log('Ooops an error occured');
+    //     }
+    //   }
+    // }
+    // xhr.open('POST', '/api/createGroup');
+    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhr.responseType = 'json'
+    // xhr.send(payload);
     var me = this;
-    var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title;
+
+    //TODO look into where newGroup.members is coming from
+    var payload = 'groupId=' + newGroup.id + '&title=' + newGroup.title + '&members=' + newGroup.members + '&tagId=' + newGroup.tags[0].id + '&tagTitle=' + newGroup.tags[0].title + '&memberId='+this.state.currentUserId;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
       if(xhr.readyState === 4){
@@ -460,6 +484,7 @@ export default class App extends React.Component{
           me.setState({
             listOfGroups: newGroupList
           });
+          me.changeGroup(result._id);
         } else{
           console.log('Ooops an error occured');
         }
