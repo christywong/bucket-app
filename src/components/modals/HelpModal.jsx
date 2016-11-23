@@ -92,7 +92,7 @@ export default class HelpModal extends React.Component{
         case 0:
           return(<p>
             <strong>To Create a Tag&nbsp;</strong>
-            click the + icon on the sidebar.
+            click the Add Tag Button on the Sidebar.
           </p>)
           break;
 
