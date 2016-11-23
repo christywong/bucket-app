@@ -219,8 +219,8 @@
 	      //this.getAllGroups();
 	      this.getUserGroups(currentUserId);
 
-	      _reactGa2.default.initialize('UA-87728260-1');
-	      _reactGa2.default.ga('send', 'pageview', '/app');
+	      // ReactGA.initialize('UA-87728260-1');
+	      // ReactGA.ga('send', 'pageview', '/app');
 	    }
 	  }, {
 	    key: 'render',
@@ -5177,13 +5177,11 @@
 	            pageWrapId: "page-wrap",
 	            outerContainerId: "outer-container" },
 	          _react2.default.createElement(
-	            'h3',
-	            { className: 'tags-title' },
-	            'Tags',
-	            _react2.default.createElement('i', {
-	              className: 'fa fa-plus-square',
-	              id: 'create-bucket-button',
-	              onClick: this.props.showBucketModal })
+	            _reactBootstrap.Button,
+	            {
+	              id: 'create-bucket-button-2',
+	              onClick: this.props.showBucketModal },
+	            'Create a Tag'
 	          ),
 	          allBucket ? _react2.default.createElement(_Buckets2.default, {
 	            changeStateBucket: this.changeState,
@@ -42404,13 +42402,11 @@
 	        'div',
 	        { className: 'sidebar' },
 	        _react2.default.createElement(
-	          'h3',
-	          { className: 'tags-title' },
-	          'Tags',
-	          _react2.default.createElement('i', {
-	            className: 'fa fa-plus-square',
-	            id: 'create-bucket-button',
-	            onClick: this.props.showBucketModal })
+	          _reactBootstrap.Button,
+	          {
+	            id: 'create-bucket-button-2',
+	            onClick: this.props.showBucketModal },
+	          'Create a Tag'
 	        ),
 	        _react2.default.createElement(
 	          'div',

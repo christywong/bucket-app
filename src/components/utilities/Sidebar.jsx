@@ -47,14 +47,11 @@ export default class Sidebar extends React.Component{
 
         return(
           <div className='sidebar'>
-            <h3 className="tags-title">
-              Tags
-              <i
-                className="fa fa-plus-square"
-                id="create-bucket-button"
-                onClick={this.props.showBucketModal} />
-            </h3>
-
+            <Button
+              id="create-bucket-button-2"
+              onClick={this.props.showBucketModal}>
+              Create a Tag
+            </Button>
             <div className='sidebar-tags'>
               {
                 allBucket ?

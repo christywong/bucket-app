@@ -369,6 +369,28 @@ body {
   }
 }
 
+#create-bucket-button-2 {
+    margin-left: 30px;
+    padding: 10px;
+    width: 150px;
+    background-color: #fff;
+    color: $teal;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+
+#create-bucket-button-2:hover {
+    background-color: #d2d2d2;
+}
+
+
 .searchWrapper {
   margin-top: 75px;
   width: 80%;
