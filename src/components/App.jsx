@@ -349,7 +349,7 @@ export default class App extends React.Component{
   showAddBucketModal(){
     this.setState({showBucketModal:true});
     ReactGA.event({
-      category: 'create-tag-old',
+      category: 'create-tag',
       action: 'click',
     });
   }
