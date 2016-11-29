@@ -5007,7 +5007,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+<<<<<<< HEAD
 	var _AddCardModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./modals/AddCardModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+=======
+	var _AddCardModal = __webpack_require__(36);
+>>>>>>> daniels-branch
 
 	var _AddCardModal2 = _interopRequireDefault(_AddCardModal);
 
@@ -5399,8 +5403,319 @@
 
 	  return Component;
 	}(_react2.default.Component);
+<<<<<<< HEAD
 
 	exports.default = Component;
+=======
+
+	exports.default = Component;
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(37);
+
+	var _SearchEntry = __webpack_require__(427);
+
+	var _SearchEntry2 = _interopRequireDefault(_SearchEntry);
+
+	var _reactLoader = __webpack_require__(428);
+
+	var _reactLoader2 = _interopRequireDefault(_reactLoader);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// export default ({close, createBucket}) => {
+	var AddModal = function (_React$Component) {
+	  _inherits(AddModal, _React$Component);
+
+	  function AddModal(props) {
+	    _classCallCheck(this, AddModal);
+
+	    var _this = _possibleConstructorReturn(this, (AddModal.__proto__ || Object.getPrototypeOf(AddModal)).call(this, props));
+
+	    _this.state = {
+	      titleValue: '',
+	      yelpEntries: [],
+	      selectedEntries: [],
+	      showPager: false,
+	      pageNumber: 0,
+	      pageSize: 20,
+	      citySearch: '',
+	      categorySearch: '',
+	      yelpLoaded: true,
+	      disableNext: false
+	    };
+	    _this.handleTitleValue = _this.handleTitleValue.bind(_this);
+	    _this.searchQuery = _this.searchQuery.bind(_this);
+	    _this.selectEntry = _this.selectEntry.bind(_this);
+	    _this.searchYelpData = _this.searchYelpData.bind(_this);
+	    _this.pageYelpData = _this.pageYelpData.bind(_this);
+	    _this.nextPage = _this.nextPage.bind(_this);
+	    _this.previousPage = _this.previousPage.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(AddModal, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          close = _props.close,
+	          addBucket = _props.addBucket,
+	          bucketTags = _props.bucketTags;
+
+
+	      var backdropStyle = {
+	        zIndex: '1000',
+	        backgroundColor: '#fff',
+	        opacity: 0.8
+	      };
+	      var disablePrevious = this.state.pageNumber > 0 ? false : true;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'static-modal' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal,
+	          {
+	            backdrop: true,
+	            'aria-labelledby': 'modal-label',
+	            backdropStyle: backdropStyle,
+	            show: this.props.visibility,
+	            onHide: function onHide() {
+	              _this2.props.close();
+	            }
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                className: 'close',
+	                onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              '\xD7'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              'Create Your Next Adventure'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            { className: 'modal-body' },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'Find a City ',
+	                _react2.default.createElement(
+	                  'span',
+	                  { style: { color: 'red' } },
+	                  '*'
+	                )
+	              ),
+	              _react2.default.createElement('input', {
+	                className: 'searchInput',
+	                type: 'text',
+	                placeholder: 'City',
+	                name: 'City' }),
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'Find an Activity'
+	              ),
+	              _react2.default.createElement('input', {
+	                className: 'searchInput',
+	                type: 'text',
+	                placeholder: 'Category',
+	                name: 'Category' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: { marginTop: 15, height: 25, position: 'relative' } },
+	              _react2.default.createElement(
+	                _reactLoader2.default,
+	                { loaded: this.state.yelpLoaded },
+	                this.state.yelpEntries.map(function (entry) {
+	                  return _react2.default.createElement(_SearchEntry2.default, {
+	                    addCard: _this2.props.addCard,
+	                    SelectEntry: _this2.selectEntry,
+	                    key: entry.id,
+	                    ItemEntry: entry,
+	                    bucketTags: bucketTags });
+	                }),
+	                this.state.showPager ? _react2.default.createElement(
+	                  _reactBootstrap.Pager,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Pager.Item,
+	                    {
+	                      onClick: this.previousPage,
+	                      disabled: disablePrevious,
+	                      previous: true,
+	                      href: '#' },
+	                    '\u2190 Previous Page'
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.Pager.Item,
+	                    {
+	                      onClick: this.nextPage,
+	                      disabled: this.state.disableNext,
+	                      next: true,
+	                      href: '#' },
+	                    'Next Page \u2192'
+	                  )
+	                ) : null
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Footer,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { onClick: function onClick() {
+	                  _this2.props.close();
+	                } },
+	              'Close'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              {
+	                className: 'btn btn-primary',
+	                onClick: this.searchQuery },
+	              ' Search '
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'handleTitleValue',
+	    value: function handleTitleValue(event) {
+	      this.setState({ titlevalue: event.target.value });
+	    }
+	  }, {
+	    key: 'selectEntry',
+	    value: function selectEntry(entryId) {}
+	  }, {
+	    key: 'searchQuery',
+	    value: function searchQuery() {
+	      var me = this;
+	      var cityValue = document.getElementsByName('City')[0].value;
+	      var categoryValue = document.getElementsByName('Category')[0].value;
+
+	      if (cityValue) {
+	        this.setState({
+	          yelpLoaded: false
+	        });
+
+	        this.searchYelpData(cityValue, categoryValue);
+	      }
+	    }
+	  }, {
+	    key: 'nextPage',
+	    value: function nextPage() {
+	      var cityValue = document.getElementsByName('City')[0].value;
+	      var categoryValue = document.getElementsByName('Category')[0].value;
+	      var nextPage = this.state.pageNumber + 1;
+	      this.setState({
+	        pageNumber: this.state.pageNumber + 1,
+	        yelpLoaded: false
+	      }, this.pageYelpData(cityValue, categoryValue, nextPage));
+	    }
+	  }, {
+	    key: 'previousPage',
+	    value: function previousPage() {
+	      var cityValue = document.getElementsByName('City')[0].value;
+	      var categoryValue = document.getElementsByName('Category')[0].value;
+
+	      if (this.state.pageNumber > 0) {
+	        var previousPage = this.state.pageNumber - 1;
+	        this.setState({
+	          pageNumber: this.state.pageNumber - 1,
+	          yelpLoaded: false
+	        }, this.pageYelpData(cityValue, categoryValue, previousPage));
+	      } else {
+	        this.setState({
+	          disablePrevious: true
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'searchYelpData',
+	    value: function searchYelpData(cityValue, categoryValue) {
+	      this.setState({
+	        pageNumber: 0
+	      }, this.pageYelpData(cityValue, categoryValue, 0));
+	    }
+	  }, {
+	    key: 'pageYelpData',
+	    value: function pageYelpData(cityValue, categoryValue, newPageNumber) {
+	      var me = this;
+	      var xhr = new XMLHttpRequest();
+	      var payload;
+
+	      var pageSize = this.state.pageSize * newPageNumber;
+	      if (categoryValue) {
+	        payload = '/search/' + cityValue + '/' + categoryValue + '/' + pageSize;
+	      } else {
+	        payload = '/searchCity/' + cityValue + '/' + pageSize;
+	      }
+	      xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	          if (xhr.status === 200) {
+	            //set application state here
+	            var result = xhr.response;
+	            var yelpObject = result.businesses;
+	            me.setState({
+	              yelpEntries: yelpObject,
+	              yelpLoaded: true,
+	              showPager: true
+	            });
+	          } else {
+	            console.log('Ooops an error occured');
+	          }
+	        }
+	      };
+	      xhr.open('GET', payload);
+	      xhr.responseType = 'json';
+	      xhr.send();
+	    }
+	  }]);
+
+	  return AddModal;
+	}(_react2.default.Component);
+
+	exports.default = AddModal;
+>>>>>>> daniels-branch
 
 /***/ },
 /* 36 */,
