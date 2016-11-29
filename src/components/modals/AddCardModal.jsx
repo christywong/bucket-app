@@ -17,7 +17,8 @@ export default class AddModal extends React.Component{
       citySearch: '',
       categorySearch: '',
       yelpLoaded: true,
-      disableNext: false
+      disableNext: false,
+      numberOfBusiness:
     }
     this.handleTitleValue = this.handleTitleValue.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
@@ -96,6 +97,7 @@ export default class AddModal extends React.Component{
                         href="#">
                         &larr; Previous Page
                       </Pager.Item>
+                      <p>{this.state.numberOfBusiness}</p>
                       <Pager.Item
                         onClick = {this.nextPage}
                         disabled = {this.state.disableNext}
@@ -199,7 +201,8 @@ export default class AddModal extends React.Component{
                 me.setState({
                   yelpEntries: yelpObject,
                   yelpLoaded: true,
-                  showPager: true
+                  showPager: true,
+                  numberOfBusiness: result.total
                 });
               } else{
                 console.log('Ooops an error occured');
