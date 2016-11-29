@@ -73,7 +73,7 @@ export default class Component extends React.Component {
     )}) : [];
 
     const groupCards = filteredCards.length > 0 ? filteredCards : (
-      <h2 className="empty-bucket-msg"> There are no cards in this bucket :( </h2>
+      <h2 className="empty-bucket-msg"> There are no cards in this tag :( </h2>
     );
 
     // Popover for deleting buckets

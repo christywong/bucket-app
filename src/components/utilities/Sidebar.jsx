@@ -47,12 +47,12 @@ export default class Sidebar extends React.Component{
 
         return(
           <div className='sidebar'>
-            <h3 className="tags-title">
+            <h3 className="tags-title" onClick={this.props.showBucketModal}>
               Tags
               <i
                 className="fa fa-plus-square"
                 id="create-bucket-button"
-                onClick={this.props.showBucketModal} />
+                 />
             </h3>
 
             <div className='sidebar-tags'>
