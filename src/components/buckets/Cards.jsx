@@ -33,7 +33,7 @@ export default class Cards extends React.Component{
         style={{width:"150px"}}
         >
         {
-          allBucket ? 
+          allBucket ?
           <p
             key = {allBucket.id}
             onClick = {()=>{
@@ -151,6 +151,7 @@ export default class Cards extends React.Component{
               onClick={()=>{this.props.changeStateBucket(tagLabel.id)}}>
               <i className="fa fa-tag" aria-hidden="true">
               </i>
+              &nbsp;
               <span>
                 {tagLabel.title}
               </span>

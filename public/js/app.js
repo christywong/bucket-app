@@ -42757,6 +42757,7 @@
 	              _this2.props.changeStateBucket(tagLabel.id);
 	            } },
 	          _react2.default.createElement('i', { className: 'fa fa-tag', 'aria-hidden': 'true' }),
+	          '\xA0',
 	          _react2.default.createElement(
 	            'span',
 	            null,
