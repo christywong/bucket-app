@@ -21,7 +21,8 @@ export default class NavbarInstance extends React.Component {
       target: '',
       newBucket: '',
       newMember: '',
-      showModal: false
+      showModal: false,
+      groupDefaultText: 'No groups yet :('
     }
 
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
@@ -123,6 +124,21 @@ export default class NavbarInstance extends React.Component {
         > Add Friends</NavItem>
     ) : null;
 
+    const groupMap = currentGroup.map((group) => {
+      if (group.title != "My Bucket") {
+        return (
+          <MenuItem
+            key={group._id}
+            onClick={() => {
+              this.props.changeGroup(group._id)
+            }}>
+            {group.title}
+          </MenuItem>
+        )
+      }
+    });
+    const groupList = groupMap.length !== 0 ? groupMap : <MenuItem header>{this.state.groupDefaultText}</MenuItem>;
+    console.log(groupList);
     return (
       <Navbar
         style={{
@@ -154,19 +170,7 @@ export default class NavbarInstance extends React.Component {
               eventKey={3}
               id="groups-dropdown"
               title={activeGroupTitle}>
-              {currentGroup.map((group) => {
-                if (group.title != "My Bucket") {
-                  return (
-                    <MenuItem
-                      key={group._id}
-                      onClick={() => {
-                        this.props.changeGroup(group._id)
-                      }}>
-                      {group.title}
-                    </MenuItem>
-                  )
-                }
-              })}
+              {groupList}
               <MenuItem divider/>
               <MenuItem
                 eventKey={3.1}
