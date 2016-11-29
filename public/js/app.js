@@ -5455,7 +5455,8 @@
 	      citySearch: '',
 	      categorySearch: '',
 	      yelpLoaded: true,
-	      disableNext: false
+	      disableNext: false,
+	      totalEntries: 0
 	    };
 	    _this.handleTitleValue = _this.handleTitleValue.bind(_this);
 	    _this.searchQuery = _this.searchQuery.bind(_this);
@@ -5564,25 +5565,36 @@
 	                    bucketTags: bucketTags });
 	                }),
 	                this.state.showPager ? _react2.default.createElement(
-	                  _reactBootstrap.Pager,
+	                  'div',
 	                  null,
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Pager.Item,
-	                    {
-	                      onClick: this.previousPage,
-	                      disabled: disablePrevious,
-	                      previous: true,
-	                      href: '#' },
-	                    '\u2190 Previous Page'
+	                    _reactBootstrap.Pager,
+	                    null,
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Pager.Item,
+	                      {
+	                        onClick: this.previousPage,
+	                        disabled: disablePrevious,
+	                        href: '#' },
+	                      '\u2190 Previous Page'
+	                    ),
+	                    '\xA0 \xA0',
+	                    _react2.default.createElement(
+	                      _reactBootstrap.Pager.Item,
+	                      {
+	                        onClick: this.nextPage,
+	                        disabled: this.state.disableNext,
+	                        href: '#' },
+	                      'Next Page \u2192'
+	                    )
 	                  ),
 	                  _react2.default.createElement(
-	                    _reactBootstrap.Pager.Item,
-	                    {
-	                      onClick: this.nextPage,
-	                      disabled: this.state.disableNext,
-	                      next: true,
-	                      href: '#' },
-	                    'Next Page \u2192'
+	                    'h5',
+	                    { style: { textAlign: 'center', marginBottom: 20 } },
+	                    'Page ',
+	                    this.state.pageNumber + 1,
+	                    ' of ',
+	                    this.state.totalEntries
 	                  )
 	                ) : null
 	              )
@@ -5687,10 +5699,12 @@
 	            //set application state here
 	            var result = xhr.response;
 	            var yelpObject = result.businesses;
+	            var totalEntries = Math.ceil(result.total / 20);
 	            me.setState({
 	              yelpEntries: yelpObject,
 	              yelpLoaded: true,
-	              showPager: true
+	              showPager: true,
+	              totalEntries: totalEntries
 	            });
 	          } else {
 	            console.log('Ooops an error occured');
@@ -56343,7 +56357,8 @@
 	      target: '',
 	      newBucket: '',
 	      newMember: '',
-	      showModal: false
+	      showModal: false,
+	      groupDefaultText: 'No groups yet :('
 	    };
 
 	    _this.handleDropdownClick = _this.handleDropdownClick.bind(_this);
@@ -56466,6 +56481,25 @@
 	        ' Add Friends'
 	      ) : null;
 
+	      var groupMap = currentGroup.map(function (group) {
+	        if (group.title != "My Bucket") {
+	          return _react2.default.createElement(
+	            _reactBootstrap.MenuItem,
+	            {
+	              key: group._id,
+	              onClick: function onClick() {
+	                _this2.props.changeGroup(group._id);
+	              } },
+	            group.title
+	          );
+	        }
+	      });
+	      var groupList = groupMap.length !== 0 ? groupMap : _react2.default.createElement(
+	        _reactBootstrap.MenuItem,
+	        { header: true },
+	        this.state.groupDefaultText
+	      );
+	      console.log(groupList);
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        {
@@ -56512,19 +56546,7 @@
 	                eventKey: 3,
 	                id: 'groups-dropdown',
 	                title: activeGroupTitle },
-	              currentGroup.map(function (group) {
-	                if (group.title != "My Bucket") {
-	                  return _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    {
-	                      key: group._id,
-	                      onClick: function onClick() {
-	                        _this2.props.changeGroup(group._id);
-	                      } },
-	                    group.title
-	                  );
-	                }
-	              }),
+	              groupList,
 	              _react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
 	              _react2.default.createElement(
 	                _reactBootstrap.MenuItem,

@@ -17,7 +17,8 @@ export default class AddModal extends React.Component{
       citySearch: '',
       categorySearch: '',
       yelpLoaded: true,
-      disableNext: false
+      disableNext: false,
+      totalEntries: 0
     }
     this.handleTitleValue = this.handleTitleValue.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
@@ -88,23 +89,27 @@ export default class AddModal extends React.Component{
                       bucketTags = {bucketTags}/>
                   )}
                   {this.state.showPager ?
-                    <Pager>
-                      <Pager.Item
-                        onClick = {this.previousPage}
-                        disabled = {disablePrevious}
-                        previous
-                        href="#">
-                        &larr; Previous Page
-                      </Pager.Item>
-                      <Pager.Item
-                        onClick = {this.nextPage}
-                        disabled = {this.state.disableNext}
-                        next
-                        href="#">
-                        Next Page &rarr;
-                      </Pager.Item>
+                    <div>
+                      <Pager>
+                        <Pager.Item
+                          onClick = {this.previousPage}
+                          disabled = {disablePrevious}
+                          href="#">
+                          &larr; Previous Page
+                        </Pager.Item>
+                        &nbsp; &nbsp;
+                        <Pager.Item
+                          onClick = {this.nextPage}
+                          disabled = {this.state.disableNext}
+                          href="#">
+                          Next Page &rarr;
+                        </Pager.Item>
                     </Pager>
+                    <h5 style={{textAlign: 'center', marginBottom: 20}}>Page {this.state.pageNumber + 1} of {this.state.totalEntries}</h5>
+
+                   </div>
                     : null}
+
                   </Loader>
                 </div>
               </Modal.Body>
@@ -196,10 +201,12 @@ export default class AddModal extends React.Component{
                 //set application state here
                 var result = xhr.response;
                 var yelpObject = result.businesses;
+                var totalEntries = Math.ceil(result.total / 20);
                 me.setState({
                   yelpEntries: yelpObject,
                   yelpLoaded: true,
-                  showPager: true
+                  showPager: true,
+                  totalEntries: totalEntries
                 });
               } else{
                 console.log('Ooops an error occured');
