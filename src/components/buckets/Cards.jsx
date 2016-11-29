@@ -20,6 +20,11 @@ export default class Cards extends React.Component{
       }
     }
 
+    const list = this.props.bucketTags ? this.props.bucketTags : [];
+    var createdBuckets = list.filter((bucket)=>(bucket.typeOfBucket !== 1 && bucket.typeOfBucket !== 2));
+    var allBucket = list.filter((bucket)=>(bucket.typeOfBucket === 1))[0];
+    var archiveBucket = list.filter((bucket)=>(bucket.typeOfBucket === 2))[0];
+
 
     const movePopover = (
       <Popover
@@ -27,7 +32,20 @@ export default class Cards extends React.Component{
         title="Move to"
         style={{width:"150px"}}
         >
-        {this.props.bucketTags.map((tag) => (
+        {
+          allBucket ? 
+          <p
+            key = {allBucket.id}
+            onClick = {()=>{
+              this.props.moveCard(card, allBucket.id);
+              this.refs.overlay.hide();
+            }}
+            className="tag-list">
+            {allBucket.title}
+          </p> : null
+        }
+        {
+          createdBuckets.map((tag) => (
           <p
             key={tag.id}
             onClick = {()=>{
@@ -38,6 +56,18 @@ export default class Cards extends React.Component{
             {tag.title}
           </p>
         ))}
+        {
+          archiveBucket ?
+          <p
+            key = {archiveBucket.id}
+            onClick = {()=>{
+              this.props.moveCard(card, archiveBucket.id);
+              this.refs.overlay.hide();
+            }}
+            className="tag-list">
+            {archiveBucket.title}
+          </p> : null
+        }
       </Popover>
     );
     const deletePopover = (
